@@ -7,6 +7,7 @@ gem 'cancan', '1.6.5'
 gem 'state_machine', '0.9.4'
 gem 'devise'
 gem 'mysql'
+gem 'compass'
 
 group :heroku do
   gem 'pg'
