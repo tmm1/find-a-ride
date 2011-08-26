@@ -11,17 +11,16 @@ gem 'compass'
 
 group :heroku do
   gem 'pg'
+  gem 'rcov_rails'
 end
 
 group :development do
-  #gem 'mongrel'
   gem "rspec-rails", "~> 2.4"
   gem 'annotate', '2.4.0'
 end
 
 group :test do
   gem "rspec-rails", "~> 2.4"
-  gem 'rcov_rails'
   gem 'factory_girl_rails'
   gem 'faker', '0.3.1'
   gem 'shoulda'
