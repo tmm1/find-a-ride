@@ -2,14 +2,14 @@ development:
   adapter: mysql
   database: pool_ride_development
   username: root
-  password: 
+  password: root
   host: localhost
 
 test:
   adapter: mysql
   database: pool_ride_test
   username: root
-  password: 
+  password: root
   host: localhost
 
 production:
