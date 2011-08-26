@@ -14,7 +14,7 @@ config/database.yml
 log/*
 logs/*
 
-public/stylesheets/compiled
+public/stylesheets
 public/version.txt
 
 tmp/
