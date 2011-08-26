@@ -31,12 +31,18 @@ module PoolRide
     # config.i18n.default_locale = :de
 
     # JavaScript files you want as :defaults (application.js is always included).
-    # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
+    config.action_view.javascript_expansions[:defaults] = %w(rails)
+    config.action_view.javascript_expansions[:jquery] = %w(jquery-1.6.2)
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+    
+    # configure haml as the template engine
+    config.generators do |g|
+      g.template_engine :haml
+    end
   end
 end
