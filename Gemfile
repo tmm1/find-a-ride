@@ -6,7 +6,9 @@ gem 'haml', '3.0.24'
 gem 'cancan', '1.6.5'
 gem 'state_machine', '0.9.4'
 gem 'devise'
+
 gem 'mysql2', "~> 0.2.7"
+gem 'compass'
 
 group :heroku do
   gem 'pg'
