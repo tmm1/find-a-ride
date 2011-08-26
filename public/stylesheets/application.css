@@ -73,3 +73,6 @@ a {
 .error_messages ul {
   margin: 0;
 }
+.status_menu{
+  float: right;
+}
