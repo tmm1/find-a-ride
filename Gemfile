@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.10'
 gem 'formtastic', '0.9.10'
-gem 'haml', '3.0.24'
+gem 'haml', '3.1.2'
 gem 'cancan', '1.6.5'
 gem 'state_machine', '0.9.4'
 gem 'devise'
