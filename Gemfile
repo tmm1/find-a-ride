@@ -9,9 +9,12 @@ gem 'devise'
 gem 'mysql'
 gem 'compass'
 
+group :ci do
+  gem 'rcov_rails'
+end
+
 group :heroku do
   gem 'pg'
-  gem 'rcov_rails'
 end
 
 group :development do
