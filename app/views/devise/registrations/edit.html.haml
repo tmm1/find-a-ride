@@ -7,6 +7,14 @@
     %br/
     = f.email_field :email
   %p
+    = f.label :first_name
+    %br/
+    = f.text_field :first_name
+  %p
+    = f.label :last_name
+    %br/
+    = f.text_field :last_name
+  %p
     = f.label :password
     %i (leave blank if you don't want to change it)
     %br/
@@ -15,5 +23,19 @@
     = f.label :password_confirmation
     %br/
     = f.password_field :password_confirmation
+  %p
+    = f.label :mobile
+    %br/
+    = f.text_field :mobile
+  %p
+    = f.label :landline
+    %br/
+    = f.text_field :landline
+  %p
+    = f.check_box :driver
+    = f.label :driver
+  %p
+    = f.check_box :rider
+    = f.label :rider
   %p= f.submit "Update"
 = link_to "Back", :back

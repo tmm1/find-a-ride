@@ -26,6 +26,6 @@ group :test do
   gem "rspec-rails", "~> 2.4"
   gem 'factory_girl_rails'
   gem 'faker', '0.3.1'
-  gem 'shoulda'
+  gem "shoulda-matchers"
   gem 'mocha', '0.9.10'
 end
