@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
     params.delete(:current_password)
     self.update_without_password(params)
   end
+  
+  def full_name
+    "#{self.first_name.capitalize} #{self.last_name.capitalize}"
+  end
 end
 
 

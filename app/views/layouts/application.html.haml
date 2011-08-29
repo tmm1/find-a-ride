@@ -8,17 +8,21 @@
     /[if lt IE 8]
       = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
       = csrf_meta_tag
-  %body.bp
+  %body.one_col
     #container
-      .status_menu
-        - if user_signed_in?
-          Welcome
-          = link_to(current_user.email, edit_user_registration_path)
-          = link_to("Sign out", destroy_user_session_path, :method => :delete)
-        - else
-          = link_to("Sign In", new_user_session_path)
+      #header
+        #big-label
+          %h1 Find a Ride. And help the planet!
+        #header-links 
+          - if user_signed_in?
+            = link_to("Your Account", edit_user_registration_path)
+            = link_to("Sign out", destroy_user_session_path, :method => :delete)
+          - else
+            = link_to("Sign In", new_user_session_path)
       .clear
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
-      = content_tag :h1, yield(:title) if show_title?
-      = yield
+      #content
+        = yield
+      #footer
+        Copyright. Pramati Technologies, Hyderabad.

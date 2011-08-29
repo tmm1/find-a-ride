@@ -1,6 +1,24 @@
 require 'spec_helper'
 
 describe User do
+  describe "#attributes and methods" do
+    it { should validate_presence_of(:first_name) }
+    it { should validate_presence_of(:last_name) }
+
+    it { should_not allow_value('1230').for(:mobile) }
+    it { should allow_value('1234567890').for(:mobile)}
+    it { should_not allow_value('1230').for(:landline) }
+    it { should allow_value('1234567890').for(:landline)}
+
+    before(:each) do
+      @user = Factory(:user, :first_name => 'testio', :last_name => 'rockio')
+    end
+    
+    it "should return the full name of the user" do
+      @user.full_name.should == 'Testio Rockio'
+    end
+  end
+  
   describe "#save" do
     before(:all) do
       @user = Factory.build(:user)
@@ -53,7 +71,6 @@ describe User do
     it { should_not allow_mass_assignment_of(:confirmation_token)}
     it { should_not allow_mass_assignment_of(:confirmed_at)}
     it { should_not allow_mass_assignment_of(:confirmation_sent_at)}
-
   end
 end
 
