@@ -3,13 +3,18 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me,
+    :mobile, :landline, :driver, :rider, :first_name, :last_name
+
+  validates :first_name, :last_name, :presence => true
+  validates :mobile, :landline, :format => { :with => /^\d{10}$/, :allow_blank => true}
 
   def update_with_password(params={})
     params.delete(:current_password)
     self.update_without_password(params)
   end
 end
+
 
 # == Schema Information
 #
@@ -31,5 +36,11 @@ end
 #  confirmation_sent_at   :datetime
 #  created_at             :datetime
 #  updated_at             :datetime
+#  first_name             :string(255)
+#  last_name              :string(255)
+#  driver                 :boolean(1)
+#  rider                  :boolean(1)
+#  mobile                 :string(255)
+#  landline               :string(255)
 #
 

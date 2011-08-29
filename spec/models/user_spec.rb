@@ -17,19 +17,28 @@ describe User do
     end
 
     it "should not require current password to update account" do
-      @user.update_attributes({:email => "test123@test.com"}).should be true
-      @user.email.should == "test123@test.com"
-    end
-
-    it "should not require current password to update account" do
       @user.update_with_password({:email => "test123@test.com"}).should be true
       @user.email.should == "test123@test.com"
     end
+
+    it { should validate_presence_of(:first_name) }
+    it { should validate_presence_of(:last_name) }
+
+    it { should_not allow_value('1230').for(:mobile) }
+    it { should allow_value('1234567890').for(:mobile)}
+    it { should_not allow_value('1230').for(:landline) }
+    it { should allow_value('1234567890').for(:landline)}
 
     it { should allow_mass_assignment_of(:email) }
     it { should allow_mass_assignment_of(:password) }
     it { should allow_mass_assignment_of(:password_confirmation) }
     it { should allow_mass_assignment_of(:remember_me) }
+    it { should allow_mass_assignment_of(:first_name) }
+    it { should allow_mass_assignment_of(:last_name) }
+    it { should allow_mass_assignment_of(:driver) }
+    it { should allow_mass_assignment_of(:rider) }
+    it { should allow_mass_assignment_of(:mobile) }
+    it { should allow_mass_assignment_of(:landline) }
 
     it { should_not allow_mass_assignment_of(:encrypted_password)}
     it { should_not allow_mass_assignment_of(:reset_password_token)}
@@ -47,6 +56,7 @@ describe User do
 
   end
 end
+
 # == Schema Information
 #
 # Table name: users
@@ -67,5 +77,11 @@ end
 #  confirmation_sent_at   :datetime
 #  created_at             :datetime
 #  updated_at             :datetime
+#  first_name             :string(255)
+#  last_name              :string(255)
+#  driver                 :boolean(1)
+#  rider                  :boolean(1)
+#  mobile                 :string(255)
+#  landline               :string(255)
 #
 
