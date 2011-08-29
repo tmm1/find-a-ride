@@ -8,9 +8,10 @@
     /[if lt IE 8]
       = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
       = csrf_meta_tag
-  %body.bp
+  %body.one_col
     #container
-      .status_menu
+      #header
+        %h1 Share a Ride 
         - if user_signed_in?
           Welcome
           = link_to(current_user.email, edit_user_registration_path)
@@ -20,5 +21,7 @@
       .clear
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
-      = content_tag :h1, yield(:title) if show_title?
-      = yield
+      #content
+        = yield
+      #footer
+        Copyright. Pramati Technologies, Hyderabad.
