@@ -11,13 +11,15 @@
   %body.one_col
     #container
       #header
-        %h1 Share a Ride 
-        - if user_signed_in?
-          Welcome
-          = link_to(current_user.email, edit_user_registration_path)
-          = link_to("Sign out", destroy_user_session_path, :method => :delete)
-        - else
-          = link_to("Sign In", new_user_session_path)
+        #big-label
+          %h1 FIND A RIDE
+        #header-links 
+          - if user_signed_in?
+            Hello
+            = link_to(current_user.email, edit_user_registration_path)
+            = link_to("Sign out", destroy_user_session_path, :method => :delete)
+          - else
+            = link_to("Sign In", new_user_session_path)
       .clear
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
