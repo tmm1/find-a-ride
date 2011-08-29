@@ -19,9 +19,9 @@
             = link_to("Sign out", destroy_user_session_path, :method => :delete)
           - else
             = link_to("Sign In", new_user_session_path)
-      / .clear
-      / - flash.each do |name, msg|
-      /   = content_tag :div, msg, :id => "flash_#{name}"
+      .clear
+      - flash.each do |name, msg|
+        = content_tag :div, msg, :id => "flash_#{name}"
       #content
         = yield
       #footer
