@@ -1,14 +1,16 @@
 body.one_col {
-
+  height: 100%;
+  
   #container {
     margin: 0 30px;
     background: #fff;
+    height: 100%;
   }
 
   #header {
     background: #606060;
     padding: 20px;
-    height: 50%;
+    height: 10%;
     #big-label {
       h1 {   
         color: #b3b3b3;
@@ -26,7 +28,7 @@ body.one_col {
   }
 
   #content {
-    height: 420px;
+    min-height: 100%;
     clear: left;
     padding: 20px;
     background: #f6f6f6;
