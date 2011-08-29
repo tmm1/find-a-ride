@@ -16,10 +16,14 @@ describe User do
       @invalid_user.errors.to_a.should include("Password doesn't match confirmation")
     end
 
-    it "should not save a user with invalid email" do
-      @user.email = "test"
-      @user.save.should_not be true
-      @user.errors.to_a.should include("Email is invalid")
+    it "should not require current password to update account" do
+      @user.update_attributes({:email => "test123@test.com"}).should be true
+      @user.email.should == "test123@test.com"
+    end
+
+    it "should not require current password to update account" do
+      @user.update_with_password({:email => "test123@test.com"}).should be true
+      @user.email.should == "test123@test.com"
     end
 
     it { should allow_mass_assignment_of(:email) }
