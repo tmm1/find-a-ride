@@ -1,4 +1,4 @@
-%h2 Sign up for an account. Make things easier.
+%h2 Getting an account enables you to use this site better.
 = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
   = devise_error_messages!
   %p
@@ -21,5 +21,5 @@
     = f.label :password_confirmation
     %br/
     = f.password_field :password_confirmation
-  %p= f.submit "Sign up"
+  %p= f.submit "Sign me up!"
 

@@ -15,8 +15,7 @@
           %h1 Find a Ride. And help the planet!
         #header-links 
           - if user_signed_in?
-            Hello
-            = link_to(current_user.full_name, edit_user_registration_path)
+            = link_to("Your Account", edit_user_registration_path)
             = link_to("Sign out", destroy_user_session_path, :method => :delete)
           - else
             = link_to("Sign In", new_user_session_path)
