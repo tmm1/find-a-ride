@@ -38,7 +38,7 @@ form.formtastic {
     white-space: normal;
     color: #000; }
   ul.errors {
-    color: #cc0000;
+    color: #b52534;
     margin: 0.5em 0 1.5em 25%;
     list-style: square;
     li {
@@ -93,10 +93,10 @@ form.formtastic {
           color: #666;
           margin: 0.5em 0 0 25%; }
         &.inline-errors {
-          color: #cc0000;
+          color: #b52534;
           margin: 0.5em 0 0 25%; } }
       ul.errors {
-        color: #cc0000;
+        color: #b52534;
         margin: 0.5em 0 0 25%;
         list-style: square;
         li {
