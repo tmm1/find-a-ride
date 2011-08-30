@@ -1,26 +1,12 @@
 %h2 Getting an account enables you to use this site better.
 #form_wrapper
-  = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+  = semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
     = devise_error_messages!
-    %p
-      = f.label :email
-      %br/
-      = f.email_field :email
-    %p
-      = f.label :first_name
-      %br/
-      = f.text_field :first_name
-    %p
-      = f.label :last_name
-      %br/
-      = f.text_field :last_name
-    %p
-      = f.label :password
-      %br/
-      = f.password_field :password
-    %p
-      = f.label :password_confirmation
-      %br/
-      = f.password_field :password_confirmation
-    %p= f.submit "Sign me up!"
-
+    = f.inputs do
+      = f.input :email
+      = f.input :first_name
+      = f.input :last_name
+      = f.input :password
+      = f.input :password_confirmation
+    = f.buttons do
+      = f.commit_button "Sign me up!"

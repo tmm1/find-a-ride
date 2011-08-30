@@ -14,3 +14,16 @@ form {
   margin-right: auto;
   width: 50%;
 }
+
+#error_explanation {
+  margin-bottom: 10px; 
+  padding-bottom: 10px;
+  ul {
+    list-style-type: none;
+  }
+  li {
+    padding: 5px;
+  }
+  color: #b52534; 
+  font-size: 0.80em;
+}

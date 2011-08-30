@@ -50,9 +50,10 @@ GEM
       factory_girl (~> 2.0.0)
       railties (>= 3.0.0)
     faker (0.3.1)
-    formtastic (0.9.10)
-      actionpack (>= 2.3.0)
-      activesupport (>= 2.3.0)
+    formtastic (1.2.4)
+      actionpack (>= 2.3.7)
+      activesupport (>= 2.3.7)
+      i18n (~> 0.4)
     fssm (0.2.7)
     haml (3.1.2)
     i18n (0.5.0)
@@ -126,7 +127,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker (= 0.3.1)
-  formtastic (= 0.9.10)
+  formtastic (= 1.2.4)
   haml (= 3.1.2)
   mocha (= 0.9.10)
   mysql

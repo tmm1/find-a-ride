@@ -39,6 +39,14 @@ describe User do
       @user.email.should == "test123@test.com"
     end
 
+    it { should validate_presence_of(:first_name) }
+    it { should validate_presence_of(:last_name) }
+
+    it { should_not allow_value('1230').for(:mobile) }
+    it { should allow_value('1234567890').for(:mobile)}
+    it { should_not allow_value('1230').for(:landline) }
+    it { should allow_value('1234567890').for(:landline)}
+
     it { should allow_mass_assignment_of(:email) }
     it { should allow_mass_assignment_of(:password) }
     it { should allow_mass_assignment_of(:password_confirmation) }
