@@ -9,5 +9,7 @@
       = f.input :last_name
       = f.input :password
       = f.input :password_confirmation, :label => 'Enter password again'
+      = f.input :terms, :as => :boolean, :label => "By Signing up, you agree to the <a rel=\"#leaflet\" href=\"#\">terms and conditions</a> of Find a Ride".html_safe
     = f.buttons do
       = f.commit_button "Sign me up!"
+= render 'devise/shared/tos'

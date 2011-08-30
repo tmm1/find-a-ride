@@ -54,6 +54,7 @@ describe User do
       @user.email.should == "test123@test.com"
     end
 
+    it { should validate_acceptance_of(:terms) }
     it { should validate_presence_of(:first_name) }
     it { should validate_presence_of(:last_name) }
 
@@ -74,6 +75,7 @@ describe User do
     it { should allow_mass_assignment_of(:landline) }
     it { should allow_mass_assignment_of(:origin) }
     it { should allow_mass_assignment_of(:destination) }
+    it { should allow_mass_assignment_of(:terms) }
     
     it { should_not allow_mass_assignment_of(:encrypted_password)}
     it { should_not allow_mass_assignment_of(:reset_password_token)}

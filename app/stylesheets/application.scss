@@ -36,12 +36,25 @@ html {
     font-size: 200%;
   }
 }
-
 #banner_block {
   width: 100%;
   text-align: center;
   margin: 5px;
 }
-  
+/* the overlayed element */
+.tos_overlay {
+  display:none;
+  background-image:url(/images/overlay/white.png);
+  width:640px;
+  padding:35px;
+  font-size:11px;
+}
 
-
+/* default close button positioned on upper right corner */
+.tos_overlay .close {
+  background-image:url(/images/overlay/close.png);
+  position:absolute; right:5px; top:5px;
+  cursor:pointer;
+  height:35px;
+  width:35px;
+}
