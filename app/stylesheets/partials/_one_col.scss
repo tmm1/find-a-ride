@@ -31,6 +31,8 @@ body.one_col {
   }
 
   #content {
+    position: relative;
+    z-index: 1;
     min-height: 100%;
     clear: left;
     padding: 20px;
@@ -45,7 +47,8 @@ body.one_col {
     opacity: 0.08;
     position: absolute;
     left: 450px;
-    top: 350px;
+    top: 395px;
+    z-index: -1;
   }
 
   #content h2 {
