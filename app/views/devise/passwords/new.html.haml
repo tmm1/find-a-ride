@@ -1,4 +1,5 @@
-%h2 Don't remember your account password?
+#banner_block
+  %h2 Don't remember your account password?
 #form_wrapper
   = semantic_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post   }) do |f|
     /= devise_error_messages!
