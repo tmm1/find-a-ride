@@ -37,11 +37,16 @@ html {
   }
 }
 
-#banner_block {
+#banner_block, #profile_edit_hint {
   width: 100%;
   text-align: center;
   margin: 5px;
 }
-  
+
+#profile_edit_hint {
+  color: #666;
+  font-size: 0.85em;
+}
+
 
 
