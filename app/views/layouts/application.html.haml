@@ -22,6 +22,7 @@
           - else
             = link_to("Sign In", new_user_session_path)
             = link_to("Forgot Password?", new_password_path(:user))
+            = link_to("Verify Account", new_confirmation_path(:user))
       .clear
       #content
         - flash.each do |name, msg|
