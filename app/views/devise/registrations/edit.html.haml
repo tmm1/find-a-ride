@@ -8,13 +8,13 @@
       = f.input :first_name
       = f.input :last_name
       = f.input :password, :hint => "(leave blank if you don't want to change it)"
-      = f.input :password_confirmation
-      = f.input :mobile
-      = f.input :landline
-      -[:origin, :destination].each do |field|
-        = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => field}
-      = f.input :driver
-      = f.input :rider
+      = f.input :password_confirmation, :label => 'Enter password again'
+      = f.input :mobile, :label => 'Mobile number'
+      = f.input :landline, :label => 'Landline number'
+      = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => :origin, :label => 'Your area of origin'}
+      = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => :destination, :label => 'Your area of destination'}
+      = f.input :driver, :label => 'Do you opt to offer rides?', :hint => "(you wish to drive other people in your car)"
+      = f.input :rider, :label => 'Do you want to share a ride?', :hint => "(you want to find someone who can drive you)"
     = f.buttons do
-      = f.commit_button "Update"
+      = f.commit_button "Go!"
 = link_to "Back", :back

@@ -3,7 +3,7 @@
 - url = auto_search_path
 
 -unless form_element.blank?
-  =form_element.input(name, :input_html => {:class => 'ac_input autocomplete', :autocomplete => "off"})
+  =form_element.input(name, :input_html => {:class => 'ac_input autocomplete', :autocomplete => "off"}, :label => label)
 -else
   =text_field_tag(input_name, '', :class => 'ac_input autocomplete', :autocomplete => "off")
 = hidden_field_tag('data-url', url)
