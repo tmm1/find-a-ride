@@ -22,8 +22,10 @@
           - else
             = link_to("Sign In", new_user_session_path)
             = link_to("Forgot Password?", new_password_path(:user))
+            = link_to("Verify Account", new_confirmation_path(:user))
       .clear
       #content
+        #splash_image
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => "flash_#{name}"
         = yield
