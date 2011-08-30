@@ -2,6 +2,10 @@
 // This file is automatically included by javascript_include_tag :defaults
 $(document).ready(function() {
   AutoSearchLocation();
+  $("a[rel]").overlay({
+    mask: 'darkred',
+    effect: 'apple'
+  });
 });
 
 var AutoSearchLocation = function(){
@@ -26,7 +30,3 @@ var AutoSearchLocation = function(){
     }
   });
 }
-
-
-
-
