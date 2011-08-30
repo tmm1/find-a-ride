@@ -11,6 +11,8 @@
       = f.input :password_confirmation
       = f.input :mobile
       = f.input :landline
+      -[:origin, :destination].each do |field|
+        = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => field}
       = f.input :driver
       = f.input :rider
     = f.buttons do

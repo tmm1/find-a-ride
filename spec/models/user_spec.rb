@@ -17,7 +17,22 @@ describe User do
     it "should return the full name of the user" do
       @user.full_name.should == 'Testio Rockio'
     end
+    
+    it "should rewrite locations attributes before save" do
+      @user.update_attributes({:origin => "maDhapUr"}).should == true
+      @user.origin.should == 'Madhapur'
+      @user.update_attributes({:destination => "madHapur"}).should == true
+      @user.destination.should == 'Madhapur'
+    end
+    
+    it "should validate inclusion of locations attributes in APP_LOCATIONS" do
+      @user.update_attributes({:origin => "Madhapur"}).should == true
+      @user.update_attributes({:destination => "Madhapur"}).should == true
+      @user.update_attributes({:origin => "vidhyadhar"}).should == false
+      @user.update_attributes({:destination => "vidhyadhar"}).should == false
+    end
   end
+
   
   describe "#save" do
     before(:all) do
@@ -57,7 +72,9 @@ describe User do
     it { should allow_mass_assignment_of(:rider) }
     it { should allow_mass_assignment_of(:mobile) }
     it { should allow_mass_assignment_of(:landline) }
-
+    it { should allow_mass_assignment_of(:origin) }
+    it { should allow_mass_assignment_of(:destination) }
+    
     it { should_not allow_mass_assignment_of(:encrypted_password)}
     it { should_not allow_mass_assignment_of(:reset_password_token)}
     it { should_not allow_mass_assignment_of(:reset_password_sent_at)}
@@ -71,6 +88,7 @@ describe User do
     it { should_not allow_mass_assignment_of(:confirmation_token)}
     it { should_not allow_mass_assignment_of(:confirmed_at)}
     it { should_not allow_mass_assignment_of(:confirmation_sent_at)}
+
   end
 end
 

@@ -1,14 +1,9 @@
 - form_element = form_element || ''
-- input_name = input_name || 'search'
+- name = name || 'search'
 - url = auto_search_path
+
 -unless form_element.blank?
-  =form_element.text_field(input_name,:class => 'ac_input autocomplete',:autocomplete=>"off")
+  =form_element.input(name, :input_html => {:class => 'ac_input autocomplete', :autocomplete => "off"})
 -else
-  =text_field_tag input_name,'',:class => 'ac_input autocomplete',:autocomplete=>"off"
-= hidden_field_tag 'data-url', url
-
-  
-
-
-
-
+  =text_field_tag(input_name, '', :class => 'ac_input autocomplete', :autocomplete => "off")
+= hidden_field_tag('data-url', url)
