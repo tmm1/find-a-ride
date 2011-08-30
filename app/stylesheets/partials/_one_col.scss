@@ -34,7 +34,18 @@ body.one_col {
     min-height: 100%;
     clear: left;
     padding: 20px;
-    background: #f6f6f6;
+    border: solid 1px #b3b3b3;
+  }
+
+  #splash_image {
+    width: 320px;
+    height: 320px;
+    background: image_url('carpool_logo.gif') no-repeat;
+    -moz-opacity:0.08;
+    opacity: 0.08;
+    position: absolute;
+    left: 450px;
+    top: 350px;
   }
 
   #content h2 {

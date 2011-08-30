@@ -25,6 +25,7 @@
             = link_to("Verify Account", new_confirmation_path(:user))
       .clear
       #content
+        #splash_image
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => "flash_#{name}"
         = yield
