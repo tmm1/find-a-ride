@@ -23,7 +23,7 @@ body.one_col {
     #header-logo { 
       position: absolute;
       right: 65px;
-      top: 9px; 
+      top: 6px; 
     }
   }
 
@@ -64,17 +64,9 @@ body.one_col {
       margin-left: 50px;
       padding: 5px;
       font-size: 80%;
-      #first {
-        position: absolute;
-        bottom: -290px;
-        left: 100px;
-      }
-      #second {
-        position: absolute;
-        bottom: -290px;
-	    left: 270px;
-      }
       #first, #second {
+        margin-left: 20px;
+        float: left;
         ul {
           list-style-type: none;
         }
