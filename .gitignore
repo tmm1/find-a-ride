@@ -24,3 +24,5 @@ results/*
 rcov/*
 
 test/performance/public/*
+
+coverage/*

@@ -3,6 +3,7 @@ PoolRide::Application.routes.draw do
   devise_for :users
 
   root :to => "home#index"
+  match '/auto_search' => 'application#auto_search', :as => :auto_search
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -20,6 +20,11 @@ body.one_col {
         margin: 0;
       }
     }
+    #header-logo { 
+      position: absolute;
+      left: 730px;
+      top: 5px; 
+    }
     #header-links {
       float: right;
       margin-bottom: 20px;
@@ -31,9 +36,10 @@ body.one_col {
   }
 
   #content {
+    position: relative;
     min-height: 100%;
     clear: left;
-    padding: 20px;
+    padding: 50px;
     border: solid 1px #b3b3b3;
   }
 
@@ -41,11 +47,11 @@ body.one_col {
     width: 320px;
     height: 320px;
     background: image_url('carpool_logo.gif') no-repeat;
-    -moz-opacity:0.08;
-    opacity: 0.08;
+    -moz-opacity:0.2;
+    opacity: 0.2;
     position: absolute;
     left: 450px;
-    top: 350px;
+    top: 395px;
   }
 
   #content h2 {

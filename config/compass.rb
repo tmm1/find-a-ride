@@ -7,14 +7,15 @@ http_path = "/"
 
 http_images_path = "public/images"
 
-css_dir      = 'tmp/stylesheets'
+#css_dir      = 'tmp/stylesheets'
 
 relative_assets = true
 
-require 'fileutils'
-FileUtils.mkdir_p(Rails.root.join("tmp", "stylesheets"))
-
-Rails.configuration.middleware.insert_before('Rack::Sendfile', 'Rack::Static',
-    :urls => ['/stylesheets'],
-    :root => "#{Rails.root}/tmp")
+# require 'fileutils'
+# 
+# FileUtils.mkdir_p(Rails.root.join("tmp", "stylesheets"))
+# 
+# Rails.configuration.middleware.insert_before('Rack::Sendfile', 'Rack::Static',
+#     :urls => ['/stylesheets'],
+#     :root => "#{Rails.root}/tmp")
 

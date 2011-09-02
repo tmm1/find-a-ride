@@ -4,10 +4,16 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-    :mobile, :landline, :driver, :rider, :first_name, :last_name
+    :mobile, :landline, :driver, :rider, :first_name, :last_name, :origin, :destination,
+    :terms
 
   validates :first_name, :last_name, :presence => true
   validates :mobile, :landline, :format => { :with => /^\d{10}$/, :allow_blank => true}
+  validates_inclusion_of :origin, :destination, :in => APP_LOCATIONS, :allow_blank => true, :message => "entered is not recognized by our system."
+  validates :terms, :acceptance => true, :on => :create
+
+ 
+  before_validation :rewrite_location_attributes
 
   def update_with_password(params={})
     params.delete(:current_password)
@@ -17,6 +23,14 @@ class User < ActiveRecord::Base
   def full_name
     "#{self.first_name.capitalize} #{self.last_name.capitalize}"
   end
+
+  private
+  
+  def rewrite_location_attributes
+    self.origin = self.origin.try(:downcase).try(:titleize)
+    self.destination = self.destination.try(:downcase).try(:titleize)
+  end
+
 end
 
 

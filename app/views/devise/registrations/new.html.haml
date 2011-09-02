@@ -1,12 +1,15 @@
-%h2 Getting an account enables you to use this site better.
+#banner_block
+  %h2 Getting an account enables you to use this site better.
 #form_wrapper
   = semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-    = devise_error_messages!
+    /= devise_error_messages!
     = f.inputs do
       = f.input :email
       = f.input :first_name
       = f.input :last_name
       = f.input :password
-      = f.input :password_confirmation
+      = f.input :password_confirmation, :label => 'Enter password again'
+      = f.input :terms, :as => :boolean, :label => "By Signing up, you agree to the <a rel=\"#leaflet\" href=\"#\">terms and conditions</a> of Find a Ride".html_safe
     = f.buttons do
       = f.commit_button "Sign me up!"
+= render 'devise/shared/tos'
