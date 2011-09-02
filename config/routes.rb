@@ -3,6 +3,12 @@ PoolRide::Application.routes.draw do
   devise_for :users
 
   root :to => "home#index"
+  resources :home do
+    collection do
+      get 'about'
+    end
+  end
+  
   match '/auto_search' => 'application#auto_search', :as => :auto_search
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -14,21 +20,6 @@ PoolRide::Application.routes.draw do
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
 
   # Sample resource route with sub-resources:
   #   resources :products do

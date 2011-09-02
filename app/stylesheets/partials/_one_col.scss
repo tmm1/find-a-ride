@@ -22,16 +22,8 @@ body.one_col {
     }
     #header-logo { 
       position: absolute;
-      left: 730px;
-      top: 5px; 
-    }
-    #header-links {
-      float: right;
-      margin-bottom: 20px;
-      padding: 20px;
-      width: 30%;
-      font-size: 90%;
-      text-align: right;
+      right: 65px;
+      top: 9px; 
     }
   }
 
@@ -40,7 +32,8 @@ body.one_col {
     min-height: 100%;
     clear: left;
     padding: 50px;
-    border: solid 1px #b3b3b3;
+    border-left: solid 1px #b3b3b3;
+    border-right: solid 1px #b3b3b3;
   }
 
   #splash_image {
@@ -58,6 +51,38 @@ body.one_col {
     color: #000;
     font-size: 160%;
     margin: 0 0 .5em;
+  }
+
+  #sub-footer {
+    background: #e5e5e5;
+    padding: 20px;
+    height: 8%; 
+    border-left: solid 1px #b3b3b3;
+    border-right: solid 1px #b3b3b3;
+    #footer-navigation {
+      float: left;
+      margin-left: 50px;
+      padding: 5px;
+      font-size: 80%;
+      #first {
+        position: absolute;
+        bottom: -290px;
+        left: 100px;
+      }
+      #second {
+        position: absolute;
+        bottom: -290px;
+	    left: 270px;
+      }
+      #first, #second {
+        ul {
+          list-style-type: none;
+        }
+        li {
+	      padding-bottom: 5px;
+	    }
+	  }
+    }
   }
 
   #footer {

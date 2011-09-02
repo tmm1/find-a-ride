@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :authenticate_user!,:except => [:auto_search]
-  
   
   def auto_search
     @result = (APP_LOCATIONS.map do |l|

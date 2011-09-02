@@ -17,21 +17,34 @@
     #container
       #header
         #big-label
-          %h1 Find a Ride. And help the planet!
+          %h1 Find-a-Ride. And help the planet!
         #header-logo
           = image_tag "carpool_header_logo.png"
-        #header-links 
-          - if user_signed_in?
-            = link_to("Your Account", edit_user_registration_path)
-            = link_to("Sign out", destroy_user_session_path, :method => :delete)
-          - else
-            = link_to("Sign In", new_user_session_path)
-            = link_to("Forgot Password?", new_password_path(:user))
-            = link_to("Verify Account", new_confirmation_path(:user))
       .clear
       #content
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => "flash_#{name}"
         = yield
+      #sub-footer
+        #footer-navigation
+          - if user_signed_in?
+            #first
+              %ul
+                %li= link_to("Your Profile Information", edit_user_registration_path)
+                %li= link_to("Sign out", destroy_user_session_path, :method => :delete)
+            #second
+              %ul
+                %li= link_to("About Find-a-Ride", about_home_index_path)
+          - else
+            #first
+              %ul
+                %li= link_to("Sign into your account", new_user_session_path)
+                %li= link_to("Sign up for an account", new_registration_path(:user))
+                %li= link_to("About Find-a-Ride", about_home_index_path)
+            #second
+              %ul
+                %li= link_to("Reset your account password", new_password_path(:user))
+                %li= link_to("Verify account", new_confirmation_path(:user))
+                %li &nbsp;
       #footer
         Copyright. Pramati Technologies, Hyderabad.
