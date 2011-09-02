@@ -30,21 +30,22 @@
           - if user_signed_in?
             #first
               %ul
-                %li= link_to("Your Profile Information", edit_user_registration_path)
-                %li= link_to("Sign out", destroy_user_session_path, :method => :delete)
+                %li= link_to("Home", home_index_path)
+                %li= link_to("About Find-a-Ride", about_home_index_path)
             #second
               %ul
-                %li= link_to("About Find-a-Ride", about_home_index_path)
+                %li= link_to("Your Profile Information", edit_user_registration_path)
+                %li= link_to("Sign out", destroy_user_session_path, :method => :delete)
           - else
             #first
               %ul
-                %li= link_to("Sign into your account", new_user_session_path)
-                %li= link_to("Sign up for an account", new_registration_path(:user))
+                %li= link_to("Home", home_index_path)
                 %li= link_to("About Find-a-Ride", about_home_index_path)
+                %li= link_to("Verify account", new_confirmation_path(:user))
             #second
               %ul
+                %li= link_to("Sign into your account", new_user_session_path)
+                %li= link_to("Sign up for an account", new_registration_path(:user))
                 %li= link_to("Reset your account password", new_password_path(:user))
-                %li= link_to("Verify account", new_confirmation_path(:user))
-                %li &nbsp;
       #footer
         Copyright. Pramati Technologies, Hyderabad.
