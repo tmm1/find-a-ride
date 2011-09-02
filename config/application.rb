@@ -43,5 +43,10 @@ module PoolRide
     config.generators do |g|
       g.template_engine :haml
     end
+
+    config.to_prepare do
+      Devise::Mailer.layout "mailer" # email.haml or email.erb
+    end
+
   end
 end
