@@ -15,6 +15,15 @@ html {
 	font-family: 'Aldrich', sans-serif;
 }
 
+#welcome_block {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  h1 {font-size: 200%;}
+}
+
+
 // flash messages
 #flash_alert, #flash_error, #flash_warning, #flash_notice {
   text_align: center;
