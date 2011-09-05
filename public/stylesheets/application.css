@@ -325,7 +325,7 @@ html {
   background-image: url(/images/overlay/white.png);
   width: 640px;
   padding: 35px;
-  font-size: 11px;
+  font-size: 1.0em;
 }
 
 /* default close button positioned on upper right corner */
