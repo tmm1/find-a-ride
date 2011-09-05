@@ -5,14 +5,20 @@
     %h1= "Hey there!"
 #message
   %span
-    
+    Fill in information below and hit the button.
 #search_block
-  = render :partial => "shared/auto_search_input", :locals => {:form_element => nil, :name => :search_origin, :label => 'You start here'}
-  = render :partial => "shared/auto_search_input", :locals => {:form_element => nil, :name => :search_destination, :label => 'You go here'}
-  = check_box_tag 'search_get_ride'
-  %span Are you looking for a ride?
-  = check_box_tag 'search_offer_ride'
-  %span Do you want to offer a ride?
+  #inputs
+    = render :partial => "shared/auto_search_input", :locals => {:form_element => nil, :name => :search_origin, :label => 'You start here*'}
+    = render :partial => "shared/auto_search_input", :locals => {:form_element => nil, :name => :search_destination, :label => 'You go here*'}
+  #options
+    = check_box_tag 'search_get_ride'
+    %span Are you looking for a ride?
+    = check_box_tag 'search_offer_ride'
+    %span Do you want to offer a ride?
+  #submit
+    %input{:id => 'search_rides', :type => 'submit', :value => 'Find a Ride'} 
+
+    
 
 
 
