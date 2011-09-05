@@ -28,6 +28,7 @@ body.one_col {
   }
 
   #content {
+    color: #606060;
     position: relative;
     min-height: 100%;
     clear: left;
@@ -47,8 +48,7 @@ body.one_col {
     top: 395px;
   }
 
-  #content h2 {
-    color: #000;
+  #content h2 {	
     font-size: 160%;
     margin: 0 0 .5em;
   }

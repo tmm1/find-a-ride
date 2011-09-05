@@ -15,15 +15,66 @@ html {
 	font-family: 'Aldrich', sans-serif;
 }
 
+#welcome_block {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  h1 { font-size: 200%; }
+}
+
+#message {
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
+#search_block {
+  background: #e5e5e5;
+  border-color: #e5e5e5;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 20px;
+  font-weight: bold;
+  #inputs {
+     font-size: 200%;
+     span { margin-left: 30px; }
+     padding: 20px; 
+     input { width: 225px; } 
+     width: 90%;
+     display: block;
+     margin-left: auto;
+	 margin-right: auto;
+  }
+  #options {
+    font-size: 150%;
+    padding: 40px;
+    width: 65%;
+    display: block;
+    margin-left: auto;
+	margin-right: auto;
+  }
+  #submit {
+    input { width: 200px; }
+    font-size: 150%;
+    width: 20%;
+    display: block;
+    margin-left: auto;
+	margin-right: auto; 
+  }
+}
+
 // flash messages
 #flash_alert, #flash_error, #flash_warning, #flash_notice {
-  text_align: center;
-  display: inline-block;
+  text-align: center;
   padding: 10px;
   background: #eceeeb;
   border-color: #eceeeb;
   margin-left: auto;
   margin-right: auto;
+  display: block;
+  width: 50%;
+  margin-top: 15px;
+  margin-bottom: 15px;
   -moz-border-radius: 7px;
   color: #b52534;
 }
@@ -72,7 +123,7 @@ html {
   background-image:url(/images/overlay/white.png);
   width:640px;
   padding:35px;
-  font-size:11px;
+  font-size:1.0em;
 }
 
 /* default close button positioned on upper right corner */

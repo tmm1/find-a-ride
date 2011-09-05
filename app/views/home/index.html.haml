@@ -1,7 +1,24 @@
 #welcome_block
   - if user_signed_in?
-    %h2= "Hello #{current_user.first_name}!"
+    %h1= "Hello #{current_user.first_name}!"
   - else
-    %h2= "Hey there!"
+    %h1= "Hey there!"
+#message
+  %span
+    Fill in information below and hit the button.
+#search_block
+  #inputs
+    = render :partial => "shared/auto_search_input", :locals => {:form_element => nil, :name => :search_origin, :label => 'You start here*'}
+    = render :partial => "shared/auto_search_input", :locals => {:form_element => nil, :name => :search_destination, :label => 'You go here*'}
+  #options
+    = check_box_tag 'search_get_ride'
+    %span Are you looking for a ride?
+    = check_box_tag 'search_offer_ride'
+    %span Do you want to offer a ride?
+  #submit
+    %input{:id => 'search_rides', :type => 'submit', :value => 'Find a Ride'} 
+
+    
+
 
 
