@@ -1,0 +1,41 @@
+/* line 1, ../../app/stylesheets/jquery.autocomplete.scss */
+.ac_results {
+  padding: 0px;
+  border: 1px solid black;
+  background-color: white;
+  overflow: hidden;
+  z-index: 99999;
+}
+/* line 7, ../../app/stylesheets/jquery.autocomplete.scss */
+.ac_results ul {
+  width: 100%;
+  list-style-position: outside;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+/* line 14, ../../app/stylesheets/jquery.autocomplete.scss */
+.ac_results li {
+  margin: 0px;
+  padding: 2px 5px;
+  cursor: default;
+  display: block;
+  line-height: 16px;
+  overflow: hidden;
+}
+
+/* line 24, ../../app/stylesheets/jquery.autocomplete.scss */
+.ac_loading {
+  background: white url("/images/indicator.gif") right center no-repeat;
+}
+
+/* line 28, ../../app/stylesheets/jquery.autocomplete.scss */
+.ac_odd {
+  background-color: #eee;
+}
+
+/* line 32, ../../app/stylesheets/jquery.autocomplete.scss */
+.ac_over {
+  background-color: #0A246A;
+  color: white;
+}
