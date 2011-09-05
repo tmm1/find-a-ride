@@ -13,7 +13,6 @@ config/database.yml
 log/*
 logs/*
 
-public/stylesheets
 public/version.txt
 
 tmp/
