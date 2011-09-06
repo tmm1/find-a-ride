@@ -23,6 +23,16 @@ html {
   h1 { font-size: 200%; }
 }
 
+#signup_block {
+  margin-top: 50px;
+  padding-top: 25px;
+  width: 100%;
+  text-align: center;
+  h1 {
+    font-size: 200%;
+  }
+}
+
 #message {
   margin-top: 10px;
   margin-bottom: 40px;
@@ -62,6 +72,7 @@ html {
     display: block;
     margin-left: auto;
 	margin-right: auto; 
+	padding-bottom: 10px;
   }
 }
 
@@ -81,15 +92,6 @@ html {
   color: #b52534;
 }
 
-#signup_block {
-  margin-top: 50px;
-  padding-top: 25px;
-  width: 100%;
-  text-align: center;
-  h1 {
-    font-size: 200%;
-  }
-}
 
 #banner_block, #profile_edit_hint {
   width: 100%;
