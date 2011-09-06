@@ -294,9 +294,8 @@ html {
   -moz-border-radius: 10px;
   border-radius: 10px;
   padding: 20px;
-  font-weight: bold;
 }
-/* line 48, ../../app/stylesheets/application.scss */
+/* line 47, ../../app/stylesheets/application.scss */
 #search_block #inputs {
   font-size: 200%;
   padding-top: 20px;
@@ -305,12 +304,13 @@ html {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  font-weight: bold;
 }
-/* line 50, ../../app/stylesheets/application.scss */
+/* line 49, ../../app/stylesheets/application.scss */
 #search_block #inputs span {
   margin-left: 30px;
 }
-/* line 51, ../../app/stylesheets/application.scss */
+/* line 50, ../../app/stylesheets/application.scss */
 #search_block #inputs input {
   width: 225px;
 }
@@ -323,8 +323,9 @@ html {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  font-weight: bold;
 }
-/* line 68, ../../app/stylesheets/application.scss */
+/* line 69, ../../app/stylesheets/application.scss */
 #search_block #submit {
   font-size: 150%;
   width: 20%;
@@ -332,13 +333,14 @@ html {
   margin-left: auto;
   margin-right: auto;
   padding-bottom: 10px;
+  padding-top: 20px;
 }
-/* line 69, ../../app/stylesheets/application.scss */
+/* line 70, ../../app/stylesheets/application.scss */
 #search_block #submit input {
   width: 200px;
 }
 
-/* line 80, ../../app/stylesheets/application.scss */
+/* line 82, ../../app/stylesheets/application.scss */
 #flash_alert, #flash_error, #flash_warning, #flash_notice {
   text-align: center;
   padding: 10px;
@@ -354,44 +356,45 @@ html {
   color: #b52534;
 }
 
-/* line 96, ../../app/stylesheets/application.scss */
-#banner_block, #profile_edit_hint {
+/* line 98, ../../app/stylesheets/application.scss */
+#banner_block, #general_hint {
   width: 100%;
   text-align: center;
   margin: 5px;
 }
 
-/* line 102, ../../app/stylesheets/application.scss */
+/* line 104, ../../app/stylesheets/application.scss */
 #about_block {
   width: 100%;
   margin: 5px;
   text_align: left;
 }
-/* line 106, ../../app/stylesheets/application.scss */
+/* line 108, ../../app/stylesheets/application.scss */
 #about_block h1 {
   font-size: 200%;
 }
-/* line 107, ../../app/stylesheets/application.scss */
+/* line 109, ../../app/stylesheets/application.scss */
 #about_block #text {
   margin: 10px;
   padding: 10px;
   color: #666;
 }
-/* line 112, ../../app/stylesheets/application.scss */
+/* line 114, ../../app/stylesheets/application.scss */
 #about_block #about_image {
   margin: 50px;
   width: 100%;
   margin-left: 450px;
 }
 
-/* line 119, ../../app/stylesheets/application.scss */
-#profile_edit_hint {
+/* line 121, ../../app/stylesheets/application.scss */
+#general_hint {
   color: #666;
+  font-weight: regular;
   font-size: 0.85em;
 }
 
 /* the overlayed element */
-/* line 125, ../../app/stylesheets/application.scss */
+/* line 128, ../../app/stylesheets/application.scss */
 .tos_overlay {
   display: none;
   background-image: url(/images/overlay/white.png);
@@ -401,7 +404,7 @@ html {
 }
 
 /* default close button positioned on upper right corner */
-/* line 134, ../../app/stylesheets/application.scss */
+/* line 137, ../../app/stylesheets/application.scss */
 .tos_overlay .close {
   background-image: url(/images/overlay/close.png);
   position: absolute;
