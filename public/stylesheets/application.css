@@ -350,43 +350,42 @@ html {
   margin-right: auto;
   display: block;
   width: 50%;
-  margin-top: 15px;
   margin-bottom: 15px;
   -moz-border-radius: 7px;
   color: #b52534;
 }
 
-/* line 98, ../../app/stylesheets/application.scss */
+/* line 97, ../../app/stylesheets/application.scss */
 #banner_block, #general_hint {
   width: 100%;
   text-align: center;
   margin: 5px;
 }
 
-/* line 104, ../../app/stylesheets/application.scss */
+/* line 103, ../../app/stylesheets/application.scss */
 #about_block {
   width: 100%;
   margin: 5px;
   text_align: left;
 }
-/* line 108, ../../app/stylesheets/application.scss */
+/* line 107, ../../app/stylesheets/application.scss */
 #about_block h1 {
   font-size: 200%;
 }
-/* line 109, ../../app/stylesheets/application.scss */
+/* line 108, ../../app/stylesheets/application.scss */
 #about_block #text {
   margin: 10px;
   padding: 10px;
   color: #666;
 }
-/* line 114, ../../app/stylesheets/application.scss */
+/* line 113, ../../app/stylesheets/application.scss */
 #about_block #about_image {
   margin: 50px;
   width: 100%;
   margin-left: 450px;
 }
 
-/* line 121, ../../app/stylesheets/application.scss */
+/* line 120, ../../app/stylesheets/application.scss */
 #general_hint {
   color: #666;
   font-weight: regular;
@@ -394,7 +393,7 @@ html {
 }
 
 /* the overlayed element */
-/* line 128, ../../app/stylesheets/application.scss */
+/* line 127, ../../app/stylesheets/application.scss */
 .tos_overlay {
   display: none;
   background-image: url(/images/overlay/white.png);
@@ -404,7 +403,7 @@ html {
 }
 
 /* default close button positioned on upper right corner */
-/* line 137, ../../app/stylesheets/application.scss */
+/* line 136, ../../app/stylesheets/application.scss */
 .tos_overlay .close {
   background-image: url(/images/overlay/close.png);
   position: absolute;

@@ -28,7 +28,7 @@ en:
       send_paranoid_instructions: 'If your e-mail exists on our database, you will receive an email with verification instructions'
       confirmed: 'Your account was successfully verified. You are now signed in!'
     registrations:
-      inactive_signed_up: 'You have signed up successfully. However, we could not sign you in because your account is %{reason}.'
+      inactive_signed_up: 'Please wait for an email with instructions on how to confirm your account'
       updated: 'Your account was successfully updated'
     mailer:
       confirmation_instructions:

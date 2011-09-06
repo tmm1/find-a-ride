@@ -1,11 +1,6 @@
-#welcome_block
-  - if user_signed_in?
-    %h1= "Hello #{current_user.first_name}!"
-  - else
-    %h1= "Hey there!"
 #message
   %span
-    Fill in information below and hit the button.
+    Find a Ride helps you find folks who you can with pool with. Fill in information below to proceed.
 #search_block
   #inputs
     = render :partial => "shared/auto_search_input", :locals => {:form_element => nil, :name => :search_origin, :label => 'You start here*'}
