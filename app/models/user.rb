@@ -23,6 +23,26 @@ class User < ActiveRecord::Base
   def full_name
     "#{self.first_name.capitalize} #{self.last_name.capitalize}"
   end
+  
+  def self.find_matches_for_drivers(origin = '', dest = '')
+    matches = []
+    User.find_each(:batch_size => 100) do |u| 
+      if u.driver && u.try(:origin).try(:downcase) == origin.downcase && u.try(:destination).try(:downcase) == dest.try(:downcase)
+        matches << u
+      end
+    end
+    matches
+  end
+  
+  def self.find_matches_for_riders(origin = '', dest = '')
+    matches = []
+    User.find_each(:batch_size => 100) do |u| 
+      if u.rider && u.try(:origin).try(:downcase) == origin.downcase && u.try(:destination).try(:downcase) == dest.try(:downcase)
+        matches << u
+      end
+    end
+    matches
+  end
 
   private
   

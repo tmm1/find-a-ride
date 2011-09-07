@@ -32,7 +32,61 @@ describe User do
       @user.update_attributes({:destination => "vidhyadhar"}).should == false
     end
   end
+  
+  describe "#find matches for drivers" do
+    before(:all) do
+      User.destroy_all
+      @user1 = Factory(:user, :email => 'test@test1.com', :origin => 'Madhapur', :destination => 'Kondapur', :driver => true)
+      @user2 = Factory(:user, :email => 'test@test2.com', :origin => 'Madhapur', :destination => 'Kondapur', :driver => true)
+      @user3 = Factory(:user, :email => 'test@test3.com', :origin => 'Madhapur', :destination => 'Banjara Hills', :driver => true)
+      @user4 = Factory(:user, :email => 'test@test4.com', :origin => 'Kondapur', :destination => 'Miyapur', :driver => true)
+      @user5 = Factory(:user, :email => 'test@test5.com', :origin => 'Madhapur', :destination => 'Kondapur', :driver => true)
+      @user6 = Factory(:user, :email => 'test@test6.com', :origin => 'Madhapur', :destination => 'Kondapur', :driver => nil, :rider => true)
+      @user7 = Factory(:user, :email => 'test@test7.com', :origin => nil, :destination => nil, :driver => true)
+    end                       
+    
+    it "should find matches for Madhapur to Kondapur" do
+      matches = User.find_matches_for_drivers('madhApur', 'Kondapur')
+      matches.should_not be_nil
+      matches.size.should == 3
+      matches.collect {|m| m.id}.should == [@user1.id, @user2.id, @user5.id]
+    end
+    
+    it "should not find matches for Miyapur to Hitec city" do
+      matches = User.find_matches_for_drivers('Miyapur', 'Hitec city')
+      matches.should == []
+    end
+    
+    it "should not find matches for blank origin or destination" do
+      matches = User.find_matches_for_drivers
+      matches.should == []
+    end
+  end
+  
+  describe "#find matches for riders" do
+     before(:all) do
+       User.destroy_all
+       @user1 = Factory(:user, :email => 'test@test8.com', :origin => 'Madhapur', :destination => 'Kondapur', :rider => true)
+       @user2 = Factory(:user, :email => 'test@test9.com', :origin => 'Madhapur', :destination => 'Kondapur', :rider => true)
+       @user3 = Factory(:user, :email => 'test@test10.com', :origin => 'Madhapur', :destination => 'Banjara Hills', :rider => true)
+       @user4 = Factory(:user, :email => 'test@test11.com', :origin => 'Kondapur', :destination => 'Miyapur', :rider => true)
+       @user5 = Factory(:user, :email => 'test@test12.com', :origin => 'Madhapur', :destination => 'Kondapur', :rider => true)
+       @user6 = Factory(:user, :email => 'test@test13.com', :origin => 'Madhapur', :destination => 'Kondapur', :rider => nil, :driver => true)
+       @user7 = Factory(:user, :email => 'test@test14.com', :origin => nil, :destination => nil, :rider => true)
+     end
 
+    it "should find matches for Madhapur to Kondapur" do
+      matches = User.find_matches_for_riders('madHapur', 'KonDapur')
+      matches.should_not be_nil
+      matches.size.should == 3
+      matches.collect {|m| m.id}.should == [@user1.id, @user2.id, @user5.id]
+    end
+    
+    it "should not find matches for Miyapur to Hitec city" do
+      matches = User.find_matches_for_riders('Miyapur', 'Hitec city')
+      matches.should == []
+    end
+  end
   
   describe "#save" do
     before(:all) do
