@@ -8,6 +8,11 @@ PoolRide::Application.routes.draw do
       get 'about'
     end
   end
+  resources :search do
+    collection do
+      get 'search_rides'
+    end
+  end
   
   match '/auto_search' => 'application#auto_search', :as => :auto_search
   # The priority is based upon order of creation:

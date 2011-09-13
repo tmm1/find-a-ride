@@ -35,7 +35,6 @@ describe User do
   
   describe "#find matches for drivers" do
     before(:all) do
-      User.destroy_all
       @user1 = Factory(:user, :email => 'test@test1.com', :origin => 'Madhapur', :destination => 'Kondapur', :driver => true)
       @user2 = Factory(:user, :email => 'test@test2.com', :origin => 'Madhapur', :destination => 'Kondapur', :driver => true)
       @user3 = Factory(:user, :email => 'test@test3.com', :origin => 'Madhapur', :destination => 'Banjara Hills', :driver => true)
