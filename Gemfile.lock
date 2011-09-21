@@ -28,6 +28,7 @@ GEM
       activemodel (= 3.0.10)
       activesupport (= 3.0.10)
     activesupport (3.0.10)
+    addressable (2.2.6)
     annotate (2.4.0)
     arel (2.0.10)
     bcrypt-ruby (2.1.4)
@@ -57,6 +58,10 @@ GEM
     fssm (0.2.7)
     haml (3.1.2)
     i18n (0.5.0)
+    launchy (2.0.5)
+      addressable (~> 2.2.6)
+    letter_opener (0.0.2)
+      launchy
     mail (2.2.19)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
@@ -129,6 +134,7 @@ DEPENDENCIES
   faker (= 0.3.1)
   formtastic (= 1.2.4)
   haml (= 3.1.2)
+  letter_opener
   mocha (= 0.9.10)
   mysql
   pg
