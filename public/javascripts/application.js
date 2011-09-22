@@ -31,11 +31,34 @@ var initRideSearch = function() {
   var search_url = $('#search_rides').attr('search_url');
   $('#search_rides').click(function() {
 	 var origin = $('#search_origin').val();
-	 var destination = $('#search_destination').val();	 
-	 if (origin == '' || destination == '') {
-		$('#search_error').fadeIn(400);
+	 var dest = $('#search_destination').val();	 
+	 var matcher = '';
+	 if ($('label.selected').attr('for') == 'search_get_ride') {
+	    matcher = 'drivers';
 	 }
-	 else { $('#search_error').hide(); }
+	 else {
+		matcher = 'riders';
+	 }
+	 if (origin == '' || dest == '') {
+		$('#search_error').fadeIn(400); 
+	 }
+	 else { 
+		$('#search_error').hide(); 
+		$('#submit').hide();
+		$('#spinner_block').show();
+		$.ajax({
+		  url: search_url,
+		  data: {origin: origin, dest: dest, matcher: matcher},	
+		  success: function(data) {
+			$('#submit').show();
+			$('#spinner_block').hide();
+		  },
+		  failure: function(data) {
+			$('#submit').show();
+			$('#spinner_block').hide();
+		  }
+		});
+	 }
 	});	
 }
 

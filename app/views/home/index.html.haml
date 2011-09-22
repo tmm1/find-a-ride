@@ -15,8 +15,12 @@
         %span I m looking for a ride
       %label{:for => "search_offer_ride", :class => "cb-disable"}
         %span I want to offer a ride
+  #spinner_block{:style => 'display:none'}
+    = image_tag 'indicator.gif' 
+    Finding Rides...
   #submit
-    %input{:id => 'search_rides', :class => 'submit_button', :type => 'submit', :value => 'GO!', :search_url => search_rides_search_index_path} 
+    %input{:id => 'search_rides', :class => 'submit_button', :type => 'submit', :value => 'GO!', :search_url => search_rides_search_index_path}
+#search_results_block{:style => 'display:none'} 
 - unless user_signed_in?
   #signup_block
     %h1 
@@ -24,7 +28,7 @@
       yourself an account or
       = link_to('Sign in', new_user_session_path)
       if you already have one.
-#search_results_block{:style => 'display:none'}
+
 
     
 
