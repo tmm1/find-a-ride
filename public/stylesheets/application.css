@@ -57,6 +57,67 @@ a img {
   border: none;
 }
 
+/* line 12, ../../app/stylesheets/partials/_base.scss */
+.cb-enable, .cb-disable, .cb-enable span, .cb-disable span {
+  background: url(/images/switch.gif) repeat-x;
+  display: block;
+  float: left;
+}
+
+/* line 13, ../../app/stylesheets/partials/_base.scss */
+.cb-enable span, .cb-disable span {
+  line-height: 30px;
+  display: block;
+  background-repeat: no-repeat;
+  font-weight: regular;
+}
+
+/* line 14, ../../app/stylesheets/partials/_base.scss */
+.cb-enable span {
+  background-position: left -90px;
+  padding: 0 20px;
+}
+
+/* line 15, ../../app/stylesheets/partials/_base.scss */
+.cb-disable span {
+  background-position: right -180px;
+  padding: 0 20px;
+}
+
+/* line 16, ../../app/stylesheets/partials/_base.scss */
+.cb-disable.selected {
+  background-position: 0 -30px;
+}
+
+/* line 17, ../../app/stylesheets/partials/_base.scss */
+.cb-disable.selected span {
+  background-position: right -210px;
+  color: #fff;
+}
+
+/* line 18, ../../app/stylesheets/partials/_base.scss */
+.cb-enable.selected {
+  background-position: 0 -60px;
+}
+
+/* line 19, ../../app/stylesheets/partials/_base.scss */
+.cb-enable.selected span {
+  background-position: left -150px;
+  color: #fff;
+}
+
+/* line 21, ../../app/stylesheets/partials/_base.scss */
+.submit_button {
+  padding-left: 5px;
+  padding-right: 5px;
+  border: solid 1px #717883;
+  background-color: #717883;
+  text-decoration: none;
+  font-size: 1.0em;
+  font-family: 'Hammersmith One', sans-serif;
+  cursor: pointer;
+}
+
 /* line 1, ../../app/stylesheets/partials/_form.scss */
 form {
   font-family: 'Aldrich', sans-serif;
@@ -177,8 +238,8 @@ body.one_col #header {
 body.one_col #header #big-label h1 {
   color: #b3b3b3;
   font-weight: bold;
-  font-family: 'Wallpoet', cursive;
-  font-size: 200%;
+  font-family: 'Anonymous Pro', sans-serif;
+  font-size: 250%;
   margin: 0;
 }
 /* line 23, ../../app/stylesheets/partials/_one_col.scss */
@@ -244,7 +305,7 @@ body.one_col #sub-footer #footer-navigation #first li, body.one_col #sub-footer 
 /* line 80, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #footer {
   color: #b3b3b3;
-  font-family: 'Wallpoet', cursive;
+  font-family: 'Anonymous Pro', sans-serif;
   background: #606060;
   text-align: right;
   padding: 20px;
@@ -254,7 +315,7 @@ body.one_col #footer {
 /* line 13, ../../app/stylesheets/application.scss */
 html {
   height: 100%;
-  font-family: 'Aldrich', sans-serif;
+  font-family: 'Hammersmith One', sans-serif;
 }
 
 /* line 18, ../../app/stylesheets/application.scss */
@@ -295,7 +356,12 @@ html {
   border-radius: 10px;
   padding: 20px;
 }
-/* line 47, ../../app/stylesheets/application.scss */
+/* line 42, ../../app/stylesheets/application.scss */
+#search_block #search_error {
+  margin-left: 30px;
+  color: #b52534;
+}
+/* line 51, ../../app/stylesheets/application.scss */
 #search_block #inputs {
   font-size: 200%;
   padding-top: 20px;
@@ -306,26 +372,25 @@ html {
   margin-right: auto;
   font-weight: bold;
 }
-/* line 49, ../../app/stylesheets/application.scss */
+/* line 53, ../../app/stylesheets/application.scss */
 #search_block #inputs span {
   margin-left: 30px;
 }
-/* line 50, ../../app/stylesheets/application.scss */
+/* line 54, ../../app/stylesheets/application.scss */
 #search_block #inputs input {
-  width: 225px;
+  width: 250px;
 }
-/* line 59, ../../app/stylesheets/application.scss */
+/* line 63, ../../app/stylesheets/application.scss */
 #search_block #options {
   font-size: 150%;
-  width: 73%;
+  width: 45%;
   padding-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  font-weight: bold;
 }
-/* line 69, ../../app/stylesheets/application.scss */
+/* line 72, ../../app/stylesheets/application.scss */
 #search_block #submit {
   font-size: 150%;
   width: 20%;
@@ -333,14 +398,14 @@ html {
   margin-left: auto;
   margin-right: auto;
   padding-bottom: 10px;
-  padding-top: 20px;
+  padding-top: 30px;
 }
-/* line 70, ../../app/stylesheets/application.scss */
+/* line 73, ../../app/stylesheets/application.scss */
 #search_block #submit input {
   width: 200px;
 }
 
-/* line 82, ../../app/stylesheets/application.scss */
+/* line 85, ../../app/stylesheets/application.scss */
 #flash_alert, #flash_error, #flash_warning, #flash_notice {
   text-align: center;
   padding: 10px;
@@ -355,37 +420,41 @@ html {
   color: #b52534;
 }
 
-/* line 97, ../../app/stylesheets/application.scss */
+/* line 100, ../../app/stylesheets/application.scss */
 #banner_block, #general_hint {
   width: 100%;
   text-align: center;
   margin: 5px;
 }
 
-/* line 103, ../../app/stylesheets/application.scss */
+/* line 106, ../../app/stylesheets/application.scss */
 #about_block {
-  width: 100%;
-  margin: 5px;
+  background: #e5e5e5;
+  border-color: #e5e5e5;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 20px;
   text_align: left;
 }
-/* line 107, ../../app/stylesheets/application.scss */
+/* line 113, ../../app/stylesheets/application.scss */
 #about_block h1 {
   font-size: 200%;
+  margin: 15px;
 }
-/* line 108, ../../app/stylesheets/application.scss */
+/* line 117, ../../app/stylesheets/application.scss */
 #about_block #text {
   margin: 10px;
   padding: 10px;
   color: #666;
 }
-/* line 113, ../../app/stylesheets/application.scss */
+/* line 122, ../../app/stylesheets/application.scss */
 #about_block #about_image {
   margin: 50px;
   width: 100%;
   margin-left: 450px;
 }
 
-/* line 120, ../../app/stylesheets/application.scss */
+/* line 129, ../../app/stylesheets/application.scss */
 #general_hint {
   color: #666;
   font-weight: regular;
@@ -393,7 +462,7 @@ html {
 }
 
 /* the overlayed element */
-/* line 127, ../../app/stylesheets/application.scss */
+/* line 136, ../../app/stylesheets/application.scss */
 .tos_overlay {
   display: none;
   background-image: url(/images/overlay/white.png);
@@ -403,7 +472,7 @@ html {
 }
 
 /* default close button positioned on upper right corner */
-/* line 136, ../../app/stylesheets/application.scss */
+/* line 145, ../../app/stylesheets/application.scss */
 .tos_overlay .close {
   background-image: url(/images/overlay/close.png);
   position: absolute;

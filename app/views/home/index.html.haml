@@ -2,18 +2,21 @@
   %span
     Find-a-Ride helps you find folks who you can with pool with. Fill in information below to proceed.
 #search_block
+  #search_error{:style => 'display:none'}
+    We need both the fields to be filled in to perform a search!
   #inputs
     = render :partial => "shared/auto_search_input", :locals => {:form_element => nil, :name => :search_origin, :label => 'You start here*'}
     = render :partial => "shared/auto_search_input", :locals => {:form_element => nil, :name => :search_destination, :label => 'You go here*'}
   #options
-    = check_box_tag 'search_get_ride'
-    %span Are you looking for a ride?
-    = check_box_tag 'search_offer_ride'
-    %span Do you want to offer a ride?
-  #general_hint
-    You can choose one of the two
+    %p{:class => "field switch"}
+      %input{:type => "radio", :id => "search_get_ride", :name => "field", :value => "1"}
+      %input{:type => "radio", :id => "search_offer_ride", :name => "field", :value => "1"}
+      %label{:for => "search_get_ride", :class => "cb-enable selected"}
+        %span I m looking for a ride
+      %label{:for => "search_offer_ride", :class => "cb-disable"}
+        %span I want to offer a ride
   #submit
-    %input{:id => 'search_rides', :type => 'submit', :value => 'Find a Ride'} 
+    %input{:id => 'search_rides', :class => 'submit_button', :type => 'submit', :value => 'GO!', :search_url => search_rides_search_index_path} 
 - unless user_signed_in?
   #signup_block
     %h1 
@@ -21,7 +24,7 @@
       yourself an account or
       = link_to('Sign in', new_user_session_path)
       if you already have one.
-
+#search_results_block{:style => 'display:none'}
 
     
 

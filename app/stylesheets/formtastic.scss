@@ -159,6 +159,17 @@ form.formtastic {
 /* padding and negative margin juggling is for Firefox */
 /* clearing contained floats */
 
+.create {
+  padding-left:10px;
+  padding-right:10px;
+  background-color: #717883;
+  border: solid 1px #717883;
+  text-decoration:none;
+  font-size: 1.0em;
+  font-family: 'Hammersmith One', sans-serif;
+  cursor:pointer;
+}
+
 /* LABELS
 --------------------------------------------------------------------------------------------------*/
 

@@ -8,3 +8,23 @@ $blueprint-grid-margin: 10px;
 // Use this to calculate the width based on the total width.
 // Or you can set $blueprint-grid-width to a fixed value and unset $blueprint-container-size -- it will be calculated for you.
 $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $blueprint-grid-columns - $blueprint-grid-margin;
+
+.cb-enable, .cb-disable, .cb-enable span, .cb-disable span { background: url(/images/switch.gif) repeat-x; display: block; float: left; }
+.cb-enable span, .cb-disable span { line-height: 30px; display: block; background-repeat: no-repeat; font-weight: regular; }
+.cb-enable span { background-position: left -90px; padding: 0 20px; }
+.cb-disable span { background-position: right -180px;padding: 0 20px; }
+.cb-disable.selected { background-position: 0 -30px; }
+.cb-disable.selected span { background-position: right -210px; color: #fff; }
+.cb-enable.selected { background-position: 0 -60px; }
+.cb-enable.selected span { background-position: left -150px; color: #fff; }
+
+.submit_button {
+  padding-left:5px;
+  padding-right:5px;
+  border: solid 1px #717883;
+  background-color: #717883;
+  text-decoration:none;
+  font-size: 1.0em;
+  font-family: 'Hammersmith One', sans-serif;
+  cursor:pointer;
+}
