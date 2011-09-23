@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
   validates_inclusion_of :origin, :destination, :in => APP_LOCATIONS, :allow_blank => true, :message => "entered is not recognized by our system."
   validates :terms, :acceptance => true, :on => :create
 
- 
   before_validation :rewrite_location_attributes
 
   def update_with_password(params={})

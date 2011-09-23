@@ -1,6 +1,6 @@
 #message
-  %span
-    Find-a-Ride helps you find folks who you can with pool with. Fill in information below to proceed.
+  %h2
+    Find-a-Ride helps you hook up with folks with who you can share a ride.
 #search_block
   #search_error{:style => 'display:none'}
     We need both the fields to be filled in to perform a search!
@@ -17,7 +17,7 @@
         %span I want to offer a ride
   #spinner_block{:style => 'display:none'}
     = image_tag 'indicator.gif' 
-    Finding Rides...
+    Looking for rides..
   #submit
     %input{:id => 'search_rides', :class => 'submit_button', :type => 'submit', :value => 'GO!', :search_url => search_rides_search_index_path}
 #search_results_block{:style => 'display:none'} 

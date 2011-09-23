@@ -50,8 +50,9 @@ var initRideSearch = function() {
 		  url: search_url,
 		  data: {origin: origin, dest: dest, matcher: matcher},	
 		  success: function(data) {
-			$('#submit').show();
-			$('#spinner_block').hide();
+            $('#search_block').hide();
+            $('#search_results_block').html(data);
+            $('#search_results_block').fadeIn(400);
 		  },
 		  failure: function(data) {
 			$('#submit').show();

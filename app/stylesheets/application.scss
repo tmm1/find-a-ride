@@ -24,18 +24,21 @@ html {
 }
 
 #signup_block {
-  margin-top: 50px;
-  padding-top: 25px;
+  margin-top: 150px;
+  padding-top: 50px;
   width: 100%;
   text-align: center;
   h1 {
-    font-size: 200%;
+    font-size: 225%;
   }
 }
 
 #message {
   margin-top: 10px;
   margin-bottom: 40px;
+  h2 {
+    font-size: 175%;
+  }
 }
 
 #search_block {
@@ -45,15 +48,17 @@ html {
   }
   #spinner_block {
     padding: 20px;
-    width: 15%;
+    width: 20%;
     margin-left: auto;
-	margin-right: auto;
+	margin-right: auto; 
+	font-size: 125%;
   }
   background: #e5e5e5;
   border-color: #e5e5e5;
   -moz-border-radius: 10px;
   border-radius: 10px;
   padding: 20px;
+  height: 300px;
   #inputs {
      font-size: 200%;
      span { margin-left: 30px; }
@@ -68,7 +73,7 @@ html {
   }
   #options {
     font-size: 150%;
-    width: 45%;
+    width: 55%;
     padding-top: 20px;
     padding-bottom: 40px;
     display: block;
@@ -82,8 +87,19 @@ html {
     display: block;
     margin-left: auto;
 	margin-right: auto; 
-	padding-bottom: 10px;
-	padding-top: 30px;
+	padding-bottom: 20px;
+	padding-top: 70px;
+  }
+}
+
+#search_results_block {
+  height: 300px;
+  padding: 20px;
+  #no_results {
+    width: 100%;
+    text-align: center;
+    font-size: 125%;
+    color: #b52534;
   }
 }
 
