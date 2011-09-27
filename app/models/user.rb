@@ -1,11 +1,14 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+    :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
     :mobile, :landline, :driver, :rider, :first_name, :last_name, :origin, :destination,
     :terms
+
+  devise :omniauthable
+
 
   validates :first_name, :last_name, :presence => true
   validates :mobile, :landline, :format => { :with => /^\d{10}$/, :allow_blank => true}
@@ -42,6 +45,17 @@ class User < ActiveRecord::Base
     end
     matches
   end
+
+  def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
+    data = access_token['extra']['user_hash']
+    if user = User.find_by_email(data["email"])
+      user
+    else # Create a user with a stub password.
+      a = User.create(:email => data["email"], :password => "welcome234",:first_name => data["first_name"],:last_name => data["last_name"])
+      return a
+    end
+  end
+
 
   private
   
