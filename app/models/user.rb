@@ -24,23 +24,11 @@ class User < ActiveRecord::Base
   end
   
   def self.find_matches_for_drivers(origin = '', dest = '')
-    matches = []
-    User.find_each(:batch_size => 100) do |u| 
-      if u.driver && u.try(:origin).try(:downcase) == origin.downcase && u.try(:destination).try(:downcase) == dest.try(:downcase)
-        matches << u
-      end
-    end
-    matches
+    User.where(:driver => true, :origin.downcase => origin.downcase, :destination.downcase => dest.downcase)
   end
   
   def self.find_matches_for_riders(origin = '', dest = '')
-    matches = []
-    User.find_each(:batch_size => 100) do |u| 
-      if u.rider && u.try(:origin).try(:downcase) == origin.downcase && u.try(:destination).try(:downcase) == dest.try(:downcase)
-        matches << u
-      end
-    end
-    matches
+    User.where(:rider => true, :origin.downcase => origin.downcase, :destination.downcase => dest.downcase)
   end
 
   private
