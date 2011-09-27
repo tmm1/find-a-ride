@@ -8,7 +8,15 @@ gem 'state_machine', '0.9.4'
 gem 'devise'
 gem 'mysql'
 gem 'compass'
+
 gem 'will_paginate', '3.0'
+
+gem "oa-oauth", :require => "omniauth/oauth"
+gem "omniauth"
+gem "nifty-generators"
+
+
+
 
 group :ci do
   gem 'rcov_rails'
