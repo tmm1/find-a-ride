@@ -5,4 +5,13 @@
       = link_to('Go back', home_index_path)
       and try again.
 - else
-  = will_paginate @paginated_results
+  #results
+    %span
+      Yay! Found
+      = pluralize(@paginated_results.total_entries, 'match') 
+      for your search.
+    %ul
+      - @paginated_results.each do |result|
+        %li
+          = result.full_name
+      = will_paginate @paginated_results
