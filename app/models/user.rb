@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
 
   devise :omniauthable
 
-
   validates :first_name, :last_name, :presence => true
   validates :mobile, :landline, :format => { :with => /^\d{10}$/, :allow_blank => true}
   validates_inclusion_of :origin, :destination, :in => APP_LOCATIONS, :allow_blank => true, :message => "entered is not recognized by our system."

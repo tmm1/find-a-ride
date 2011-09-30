@@ -10,14 +10,18 @@
       Yay! Found
       = pluralize(@paginated_results.total_entries, 'match') 
       for your search.
-    %ul
-      - @paginated_results.each do |result|
-        %li
-          #result_info
-            = image_tag('blank_profile_picture.png', :size => '75x75')
-            = result.full_name
+    #list
+      %table
+        - @paginated_results.each do |result|
+          %tr
+            %td.image
+              = image_tag('blank_profile_picture.png', :size => '75x75')
+            %td.name
+              = result.full_name
+            %td.contact_link
+              = link_to('Contact this person', '')
       = will_paginate @paginated_results
     %span.go_back
-      = link_to('Go back to Search', home_index_path)
+      = link_to('Search again', home_index_path)
       
      

@@ -12,7 +12,7 @@
 // layout, home page and general navigation
 html {
 	height: 100%;
-	font-family: 'Hammersmith One', sans-serif;
+	font-family: 'Varela Round', sans-serif;
 }
 
 #welcome_block {
@@ -107,18 +107,28 @@ html {
     color: #b52534;
   }
   #results {
-    ul {
+    #list {
       margin-left: 200px;
-      font-size: 1.25em;
-      text-align: left;
-      list-style-type: none;
-    }
-    li {
-      #result_info {
-        
-      }
-      padding: 20px;
-    }
+      margin-right: 200px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      background: #e5e5e5;
+	  border-color: #e5e5e5;
+	  -moz-border-radius: 10px;
+	 table {
+	      margin-left: 50px;
+	      margin-top: 25px;
+	      margin-bottom: 35px;
+	      font-size: 1.25em;
+	      width: 80%;
+	      border-spacing: 8px;
+	      tr { 
+		    td.image { width: 100px; }
+		    td.name { width: 400px; }
+		    td.contact_link { font-size: 75%; }
+		  }
+	  }
+	}
     span.total {
       font-size: 1.5em;
       font-weight: bold;
