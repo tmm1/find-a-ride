@@ -359,7 +359,7 @@ html {
 /* line 26, ../../app/stylesheets/application.scss */
 #signup_block {
   margin-top: 150px;
-  padding-top: 50px;
+  padding-top: 100px;
   width: 100%;
   text-align: center;
 }
@@ -379,11 +379,11 @@ html {
 /* line 38, ../../app/stylesheets/application.scss */
 #message {
   margin-top: 10px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 /* line 41, ../../app/stylesheets/application.scss */
-#message h2 {
-  font-size: 175%;
+#message span {
+  font-size: 2.0em;
 }
 
 /* line 46, ../../app/stylesheets/application.scss */
@@ -402,13 +402,14 @@ html {
 }
 /* line 51, ../../app/stylesheets/application.scss */
 #search_block #spinner_block {
-  padding: 20px;
+  padding-top: 60px;
+  padding-bottom: 20px;
   width: 20%;
   margin-left: auto;
   margin-right: auto;
   font-size: 125%;
 }
-/* line 64, ../../app/stylesheets/application.scss */
+/* line 65, ../../app/stylesheets/application.scss */
 #search_block #inputs {
   font-size: 200%;
   padding-top: 20px;
@@ -419,15 +420,15 @@ html {
   margin-right: auto;
   font-weight: bold;
 }
-/* line 66, ../../app/stylesheets/application.scss */
+/* line 67, ../../app/stylesheets/application.scss */
 #search_block #inputs span {
   margin-left: 30px;
 }
-/* line 67, ../../app/stylesheets/application.scss */
+/* line 68, ../../app/stylesheets/application.scss */
 #search_block #inputs input {
   width: 250px;
 }
-/* line 76, ../../app/stylesheets/application.scss */
+/* line 77, ../../app/stylesheets/application.scss */
 #search_block #options {
   font-size: 150%;
   width: 55%;
@@ -437,7 +438,7 @@ html {
   margin-left: auto;
   margin-right: auto;
 }
-/* line 85, ../../app/stylesheets/application.scss */
+/* line 86, ../../app/stylesheets/application.scss */
 #search_block #submit {
   font-size: 150%;
   width: 20%;
@@ -447,25 +448,53 @@ html {
   padding-bottom: 20px;
   padding-top: 70px;
 }
-/* line 86, ../../app/stylesheets/application.scss */
+/* line 87, ../../app/stylesheets/application.scss */
 #search_block #submit input {
   width: 200px;
 }
 
-/* line 97, ../../app/stylesheets/application.scss */
+/* line 98, ../../app/stylesheets/application.scss */
 #search_results_block {
   height: 300px;
-  padding: 20px;
-}
-/* line 100, ../../app/stylesheets/application.scss */
-#search_results_block #no_results {
+  padding: 10px;
   width: 100%;
   text-align: center;
-  font-size: 125%;
+}
+/* line 99, ../../app/stylesheets/application.scss */
+#search_results_block a:link {
+  color: #638ea8;
+}
+/* line 100, ../../app/stylesheets/application.scss */
+#search_results_block a:visited {
+  color: #638ea8;
+}
+/* line 105, ../../app/stylesheets/application.scss */
+#search_results_block #no_results {
+  font-size: 1.0em;
   color: #b52534;
 }
+/* line 110, ../../app/stylesheets/application.scss */
+#search_results_block #results ul {
+  margin-left: 200px;
+  font-size: 1.25em;
+  text-align: left;
+  list-style-type: none;
+}
+/* line 116, ../../app/stylesheets/application.scss */
+#search_results_block #results li {
+  padding: 20px;
+}
+/* line 122, ../../app/stylesheets/application.scss */
+#search_results_block #results span.total {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+/* line 126, ../../app/stylesheets/application.scss */
+#search_results_block #results span.go_back {
+  font-size: 1.0em;
+}
 
-/* line 109, ../../app/stylesheets/application.scss */
+/* line 133, ../../app/stylesheets/application.scss */
 #flash_alert, #flash_error, #flash_warning, #flash_notice {
   text-align: center;
   padding: 10px;
@@ -480,14 +509,14 @@ html {
   color: #b52534;
 }
 
-/* line 124, ../../app/stylesheets/application.scss */
+/* line 148, ../../app/stylesheets/application.scss */
 #banner_block, #general_hint {
   width: 100%;
   text-align: center;
   margin: 5px;
 }
 
-/* line 130, ../../app/stylesheets/application.scss */
+/* line 154, ../../app/stylesheets/application.scss */
 #about_block {
   background: #e5e5e5;
   border-color: #e5e5e5;
@@ -496,25 +525,25 @@ html {
   padding: 20px;
   text_align: left;
 }
-/* line 137, ../../app/stylesheets/application.scss */
+/* line 161, ../../app/stylesheets/application.scss */
 #about_block h1 {
   font-size: 200%;
   margin: 15px;
 }
-/* line 141, ../../app/stylesheets/application.scss */
+/* line 165, ../../app/stylesheets/application.scss */
 #about_block #text {
   margin: 10px;
   padding: 10px;
   color: #666;
 }
-/* line 146, ../../app/stylesheets/application.scss */
+/* line 170, ../../app/stylesheets/application.scss */
 #about_block #about_image {
   margin: 50px;
   width: 100%;
   margin-left: 450px;
 }
 
-/* line 153, ../../app/stylesheets/application.scss */
+/* line 177, ../../app/stylesheets/application.scss */
 #general_hint {
   color: #666;
   font-weight: regular;
@@ -522,7 +551,7 @@ html {
 }
 
 /* the overlayed element */
-/* line 160, ../../app/stylesheets/application.scss */
+/* line 184, ../../app/stylesheets/application.scss */
 .tos_overlay {
   display: none;
   background-image: url(/images/overlay/white.png);
@@ -532,7 +561,7 @@ html {
 }
 
 /* default close button positioned on upper right corner */
-/* line 169, ../../app/stylesheets/application.scss */
+/* line 193, ../../app/stylesheets/application.scss */
 .tos_overlay .close {
   background-image: url(/images/overlay/close.png);
   position: absolute;

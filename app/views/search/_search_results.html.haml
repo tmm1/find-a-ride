@@ -6,12 +6,18 @@
       and try again.
 - else
   #results
-    %span
+    %span.total
       Yay! Found
       = pluralize(@paginated_results.total_entries, 'match') 
       for your search.
     %ul
       - @paginated_results.each do |result|
         %li
-          = result.full_name
+          #result_info
+            = image_tag('blank_profile_picture.png', :size => '75x75')
+            = result.full_name
       = will_paginate @paginated_results
+    %span.go_back
+      = link_to('Go back to Search', home_index_path)
+      
+     

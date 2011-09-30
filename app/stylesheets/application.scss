@@ -25,7 +25,7 @@ html {
 
 #signup_block {
   margin-top: 150px;
-  padding-top: 50px;
+  padding-top: 100px;
   width: 100%;
   a:link { color: #638ea8; }
   a:visited { color: #638ea8; }
@@ -37,9 +37,9 @@ html {
 
 #message {
   margin-top: 10px;
-  margin-bottom: 40px;
-  h2 {
-    font-size: 175%;
+  margin-bottom: 20px;
+  span {
+    font-size: 2.0em;
   }
 }
 
@@ -49,7 +49,8 @@ html {
     color: #b52534;
   }
   #spinner_block {
-    padding: 20px;
+    padding-top: 60px;
+    padding-bottom: 20px;
     width: 20%;
     margin-left: auto;
 	margin-right: auto; 
@@ -95,13 +96,36 @@ html {
 }
 
 #search_results_block {
+  a:link { color: #638ea8; }
+  a:visited { color: #638ea8; }
   height: 300px;
-  padding: 20px;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
   #no_results {
-    width: 100%;
-    text-align: center;
-    font-size: 125%;
+    font-size: 1.0em;
     color: #b52534;
+  }
+  #results {
+    ul {
+      margin-left: 200px;
+      font-size: 1.25em;
+      text-align: left;
+      list-style-type: none;
+    }
+    li {
+      #result_info {
+        
+      }
+      padding: 20px;
+    }
+    span.total {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    span.go_back {
+      font-size: 1.0em;
+    }
   }
 }
 
