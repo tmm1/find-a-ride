@@ -236,14 +236,14 @@ body.one_col #header {
 }
 /* line 14, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #header #big-label {
-  padding-left: 105px;
+  padding-left: 10px;
 }
 /* line 16, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #header #big-label h1 {
   color: #b3b3b3;
   font-weight: bold;
   font-family: 'Anonymous Pro', sans-serif;
-  font-size: 250%;
+  font-size: 3.5em;
   margin: 0;
 }
 /* line 24, ../../app/stylesheets/partials/_one_col.scss */
@@ -252,20 +252,20 @@ body.one_col #header #header-logo {
   left: 50px;
   top: 6px;
 }
-/* line 30, ../../app/stylesheets/partials/_one_col.scss */
+/* line 29, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #header #user_nav {
   color: #b3b3b3;
   float: right;
 }
-/* line 33, ../../app/stylesheets/partials/_one_col.scss */
+/* line 32, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #header #user_nav a:link {
-  color: #4eae42;
+  color: #638ea8;
 }
-/* line 34, ../../app/stylesheets/partials/_one_col.scss */
+/* line 33, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #header #user_nav a:visited {
-  color: #4eae42;
+  color: #638ea8;
 }
-/* line 38, ../../app/stylesheets/partials/_one_col.scss */
+/* line 37, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #content {
   color: #606060;
   position: relative;
@@ -275,7 +275,7 @@ body.one_col #content {
   border-left: solid 1px #b3b3b3;
   border-right: solid 1px #b3b3b3;
 }
-/* line 48, ../../app/stylesheets/partials/_one_col.scss */
+/* line 47, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #splash_image {
   width: 320px;
   height: 320px;
@@ -286,12 +286,12 @@ body.one_col #splash_image {
   left: 450px;
   top: 395px;
 }
-/* line 59, ../../app/stylesheets/partials/_one_col.scss */
+/* line 58, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #content h2 {
   font-size: 160%;
   margin: 0 0 .5em;
 }
-/* line 64, ../../app/stylesheets/partials/_one_col.scss */
+/* line 63, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #sub-footer {
   background: #e5e5e5;
   padding-top: 10px;
@@ -300,35 +300,35 @@ body.one_col #sub-footer {
   border-left: solid 1px #b3b3b3;
   border-right: solid 1px #b3b3b3;
 }
-/* line 65, ../../app/stylesheets/partials/_one_col.scss */
+/* line 64, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #sub-footer a:link {
-  color: #4eae42;
+  color: #638ea8;
 }
-/* line 66, ../../app/stylesheets/partials/_one_col.scss */
+/* line 65, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #sub-footer a:visited {
-  color: #4eae42;
+  color: #638ea8;
 }
-/* line 73, ../../app/stylesheets/partials/_one_col.scss */
+/* line 72, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #sub-footer #footer-navigation {
   float: left;
   margin-left: 50px;
   padding: 5px;
   font-size: 80%;
 }
-/* line 78, ../../app/stylesheets/partials/_one_col.scss */
+/* line 77, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #sub-footer #footer-navigation #first, body.one_col #sub-footer #footer-navigation #second {
   margin-left: 20px;
   float: left;
 }
-/* line 81, ../../app/stylesheets/partials/_one_col.scss */
+/* line 80, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #sub-footer #footer-navigation #first ul, body.one_col #sub-footer #footer-navigation #second ul {
   list-style-type: none;
 }
-/* line 84, ../../app/stylesheets/partials/_one_col.scss */
+/* line 83, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #sub-footer #footer-navigation #first li, body.one_col #sub-footer #footer-navigation #second li {
   padding-bottom: 5px;
 }
-/* line 91, ../../app/stylesheets/partials/_one_col.scss */
+/* line 90, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #footer {
   color: #b3b3b3;
   font-family: 'Anonymous Pro', sans-serif;
@@ -365,11 +365,11 @@ html {
 }
 /* line 30, ../../app/stylesheets/application.scss */
 #signup_block a:link {
-  color: #4eae42;
+  color: #638ea8;
 }
 /* line 31, ../../app/stylesheets/application.scss */
 #signup_block a:visited {
-  color: #4eae42;
+  color: #638ea8;
 }
 /* line 33, ../../app/stylesheets/application.scss */
 #signup_block h1 {

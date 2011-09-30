@@ -12,12 +12,12 @@ body.one_col {
     padding: 20px;
     height: 10%;
     #big-label {
-      padding-left: 105px;
+      padding-left: 10px;
       h1 {   
         color: #b3b3b3;
         font-weight: bold;
         font-family: 'Anonymous Pro', sans-serif;
-        font-size: 250%;
+        font-size: 3.5em;
         margin: 0;
       }
     }
@@ -26,12 +26,11 @@ body.one_col {
       left: 50px;
       top: 6px; 
     }
-
     #user_nav {
       color: #b3b3b3;
       float: right;
-      a:link { color: #4eae42; }
-	  a:visited { color: #4eae42; }
+      a:link { color: #638ea8; }
+	  a:visited { color: #638ea8; }
     }
   }
 
@@ -62,8 +61,8 @@ body.one_col {
   }
 
   #sub-footer {
-    a:link { color: #4eae42; }
-	a:visited { color: #4eae42; }
+    a:link { color: #638ea8; }
+	a:visited { color: #638ea8; }
     background: #e5e5e5;
     padding-top: 10px;
     padding-bottom: 20px;
