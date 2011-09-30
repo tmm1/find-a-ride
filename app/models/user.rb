@@ -37,8 +37,8 @@ class User < ActiveRecord::Base
     data = access_token['extra']['user_hash']
     if user = User.find_by_email(data["email"])
       user
-    else # Create a user with a stub password.
-      a = User.create(:email => data["email"], :password => "welcome234",:first_name => data["first_name"],:last_name => data["last_name"])
+    else
+      a = User.create(:email => data["email"], :password => "changeme!",:first_name => data["first_name"],:last_name => data["last_name"])
       return a
     end
   end
