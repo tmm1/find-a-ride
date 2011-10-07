@@ -14,6 +14,7 @@ gem 'will_paginate', '3.0'
 gem "oa-oauth", :require => "omniauth/oauth"
 gem "omniauth"
 gem "nifty-generators"
+gem "paperclip", "~> 2.4"
 
 
 

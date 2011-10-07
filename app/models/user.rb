@@ -2,10 +2,15 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
+  has_attached_file :photo, :styles => { :small => "75x75>", :medium => "300x300>", :thumb => "100x100>" },
+                                        :url  => "public/images/:id_:basename.:extension",
+                                        :path => ":rails_root/public/images/:id_:basename.:extension"
+
+
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
     :mobile, :landline, :driver, :rider, :first_name, :last_name, :origin, :destination,
-    :terms
+    :terms, :photo, :photo_content_type, :photo_file_size
 
   devise :omniauthable
 
@@ -13,8 +18,11 @@ class User < ActiveRecord::Base
   validates :mobile, :landline, :format => { :with => /^\d{10}$/, :allow_blank => true}
   validates_inclusion_of :origin, :destination, :in => APP_LOCATIONS, :allow_blank => true, :message => "entered is not recognized by our system."
   validates :terms, :acceptance => true, :on => :create
+  validates_attachment_content_type :photo, :content_type => %w(image/jpeg image/png image/gif), :message => 'must be of type jpeg, png or gif', :if => :photo_attached?
+  validates_attachment_size :photo, :less_than => 3.megabytes, :message => 'cannot be greater than 3 MB', :if => :photo_attached?
 
   before_validation :rewrite_location_attributes
+  after_validation :concat_photo_errors
 
   def update_with_password(params={})
     params.delete(:current_password)
@@ -52,12 +60,23 @@ class User < ActiveRecord::Base
     end
   end
 
+  def photo_attached?
+    self.photo.file?
+  end
+
+  def photo_file_exists?
+    photo_path = "#{RAILS_ROOT}/public/images/#{self.id}_#{self.photo_file_name}"
+    File.exists?("#{photo_path}")
+  end
 
   private
   
   def rewrite_location_attributes
     self.origin = self.origin.try(:downcase).try(:titleize)
     self.destination = self.destination.try(:downcase).try(:titleize)
+  end
+
+  def concat_photo_errors
   end
 
 end

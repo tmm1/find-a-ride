@@ -32,6 +32,32 @@ describe User do
       @user.update_attributes({:destination => "vidhyadhar"}).should == false
     end
   end
+
+  describe "#profile picture" do
+    before(:all) do
+      @user = Factory(:user)
+    end
+
+    it "should fail attachment content_type validation" do
+      @user.photo = File.new("spec/data/sample.bmp")
+      @user.save.should be false
+      @user.errors.to_a.should include("Photo content type must be of type jpeg, png or gif")
+    end
+
+    it "should fail attachment file size validation" do
+      @user.photo = File.new("spec/data/image_6mb.jpg")
+      @user.save.should be false
+      @user.errors.to_a.should include("Photo file size cannot be greater than 3 MB")
+    end
+
+    it "should save attachment successfully" do
+      @user.photo = File.new("spec/data/sample.png")
+      @user.save.should be true
+      @user.photo_content_type.should == "image/png"
+      @user.photo_file_size.should < 3.megabytes
+      @user.photo_file_name.should == "sample.png"
+    end
+  end
   
   describe "#find matches for drivers" do
     before(:all) do

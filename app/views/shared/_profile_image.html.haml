@@ -1,0 +1,13 @@
+%table
+  %tr
+    %td.label{:width => '143 px', :style => 'color:block; font-weight: bold;'}
+      = label
+    %td.image{:width => '100 px'}
+      - if @user.photo_file_name && @user.photo_file_exists?
+        - image = @user.id.to_s+'_'+@user.photo_file_name
+        = image_tag(image, :size => '75x75')
+      - else
+        = image_tag('blank_profile_picture.png', :size => '75x75')
+    %td.browse
+      = form_element.file_field :photo
+%br
