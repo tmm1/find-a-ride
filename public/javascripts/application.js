@@ -25,7 +25,7 @@ var initCBSwitch = function() {
 		$(this).addClass('selected');
 		$('.checkbox',parent).attr('checked', false);
 	});	
-}
+};
 
 var initRideSearch = function() {
   var search_url = $('#search_rides').attr('search_url');
@@ -52,6 +52,7 @@ var initRideSearch = function() {
 		  success: function(data) {
             $('#search_block').hide();
             $('#search_results_block').html(data);
+            initPaginationLinks();
             $('#search_results_block').fadeIn(400);
 		  },
 		  failure: function(data) {
@@ -61,6 +62,23 @@ var initRideSearch = function() {
 		});
 	 }
 	});	
+};
+
+var initPaginationLinks = function() {
+	$('#list .pagination a').click(function(e) {
+		e.preventDefault();
+		search_url = $(this).attr('href');
+		$.ajax({
+		  url: search_url,
+		  success: function(data) {
+            $('#search_results_block').html(data);
+            initPaginationLinks();
+            $('#search_results_block').fadeIn(400);
+		  },
+		  failure: function(data) {
+		  }
+		});
+	});
 }
 
 var AutoSearchLocation = function(){
