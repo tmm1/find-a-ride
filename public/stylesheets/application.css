@@ -358,7 +358,7 @@ html {
 
 /* line 26, ../../app/stylesheets/application.scss */
 #signup_block {
-  margin-top: 150px;
+  margin-top: 175px;
   padding-top: 100px;
   width: 100%;
   text-align: center;
@@ -378,7 +378,7 @@ html {
 
 /* line 38, ../../app/stylesheets/application.scss */
 #message {
-  margin-top: 10px;
+  margin-top: 0;
   margin-bottom: 20px;
 }
 /* line 41, ../../app/stylesheets/application.scss */
@@ -474,47 +474,85 @@ html {
   color: #b52534;
 }
 /* line 110, ../../app/stylesheets/application.scss */
+#search_results_block #results .pagination {
+  background: #f1f1f1;
+  border: 1px solid #e5e5e5;
+  text-align: center;
+  padding: 1em;
+  cursor: default;
+}
+/* line 116, ../../app/stylesheets/application.scss */
+#search_results_block #results .pagination a, #search_results_block #results .pagination span {
+  padding: 0.2em 0.3em;
+}
+/* line 119, ../../app/stylesheets/application.scss */
+#search_results_block #results .pagination .disabled {
+  color: #aaaaaa;
+}
+/* line 122, ../../app/stylesheets/application.scss */
+#search_results_block #results .pagination .current {
+  font-style: normal;
+  font-weight: bold;
+  background-color: #bebebe;
+  display: inline-block;
+  width: 1.4em;
+  height: 1.4em;
+  line-height: 1.5;
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em;
+  text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px;
+}
+/* line 135, ../../app/stylesheets/application.scss */
+#search_results_block #results .pagination a {
+  text-decoration: none;
+  color: black;
+}
+/* line 138, ../../app/stylesheets/application.scss */
+#search_results_block #results .pagination a:hover, #search_results_block #results .pagination a:focus {
+  text-decoration: underline;
+}
+/* line 143, ../../app/stylesheets/application.scss */
 #search_results_block #results #list {
-  margin-left: 200px;
-  margin-right: 200px;
+  margin-left: 175px;
+  margin-right: 175px;
   margin-top: 20px;
   margin-bottom: 20px;
   background: #e5e5e5;
   border-color: #e5e5e5;
   -moz-border-radius: 10px;
 }
-/* line 118, ../../app/stylesheets/application.scss */
+/* line 151, ../../app/stylesheets/application.scss */
 #search_results_block #results #list table {
   margin-left: 50px;
   margin-top: 25px;
-  margin-bottom: 35px;
   font-size: 1.25em;
-  width: 80%;
+  width: 85%;
   border-spacing: 8px;
 }
-/* line 126, ../../app/stylesheets/application.scss */
+/* line 158, ../../app/stylesheets/application.scss */
 #search_results_block #results #list table tr td.image {
   width: 100px;
 }
-/* line 127, ../../app/stylesheets/application.scss */
+/* line 159, ../../app/stylesheets/application.scss */
 #search_results_block #results #list table tr td.name {
   width: 400px;
 }
-/* line 128, ../../app/stylesheets/application.scss */
+/* line 160, ../../app/stylesheets/application.scss */
 #search_results_block #results #list table tr td.contact_link {
   font-size: 75%;
 }
-/* line 132, ../../app/stylesheets/application.scss */
+/* line 164, ../../app/stylesheets/application.scss */
 #search_results_block #results span.total {
   font-size: 1.5em;
   font-weight: bold;
 }
-/* line 136, ../../app/stylesheets/application.scss */
+/* line 168, ../../app/stylesheets/application.scss */
 #search_results_block #results span.go_back {
   font-size: 1.0em;
 }
 
-/* line 143, ../../app/stylesheets/application.scss */
+/* line 175, ../../app/stylesheets/application.scss */
 #flash_alert, #flash_error, #flash_warning, #flash_notice {
   text-align: center;
   padding: 10px;
@@ -529,14 +567,14 @@ html {
   color: #b52534;
 }
 
-/* line 158, ../../app/stylesheets/application.scss */
+/* line 190, ../../app/stylesheets/application.scss */
 #banner_block, #general_hint {
   width: 100%;
   text-align: center;
   margin: 5px;
 }
 
-/* line 164, ../../app/stylesheets/application.scss */
+/* line 196, ../../app/stylesheets/application.scss */
 #about_block {
   background: #e5e5e5;
   border-color: #e5e5e5;
@@ -545,25 +583,25 @@ html {
   padding: 20px;
   text_align: left;
 }
-/* line 171, ../../app/stylesheets/application.scss */
+/* line 203, ../../app/stylesheets/application.scss */
 #about_block h1 {
   font-size: 200%;
   margin: 15px;
 }
-/* line 175, ../../app/stylesheets/application.scss */
+/* line 207, ../../app/stylesheets/application.scss */
 #about_block #text {
   margin: 10px;
   padding: 10px;
   color: #666;
 }
-/* line 180, ../../app/stylesheets/application.scss */
+/* line 212, ../../app/stylesheets/application.scss */
 #about_block #about_image {
   margin: 50px;
   width: 100%;
   margin-left: 450px;
 }
 
-/* line 187, ../../app/stylesheets/application.scss */
+/* line 219, ../../app/stylesheets/application.scss */
 #general_hint {
   color: #666;
   font-weight: regular;
@@ -571,7 +609,7 @@ html {
 }
 
 /* the overlayed element */
-/* line 194, ../../app/stylesheets/application.scss */
+/* line 226, ../../app/stylesheets/application.scss */
 .tos_overlay {
   display: none;
   background-image: url(/images/overlay/white.png);
@@ -581,7 +619,7 @@ html {
 }
 
 /* default close button positioned on upper right corner */
-/* line 203, ../../app/stylesheets/application.scss */
+/* line 235, ../../app/stylesheets/application.scss */
 .tos_overlay .close {
   background-image: url(/images/overlay/close.png);
   position: absolute;

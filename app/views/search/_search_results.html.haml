@@ -10,6 +10,8 @@
       Yay! Found
       = pluralize(@paginated_results.total_entries, 'match') 
       for your search.
+    %span.go_back
+      = link_to('Search again', home_index_path)
     #list
       %table
         - @paginated_results.each do |result|
@@ -21,7 +23,6 @@
             %td.contact_link
               = link_to('Contact this person', '')
       = will_paginate @paginated_results
-    %span.go_back
-      = link_to('Search again', home_index_path)
+
       
      
