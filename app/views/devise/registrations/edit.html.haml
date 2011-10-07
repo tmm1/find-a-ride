@@ -14,6 +14,9 @@
       = f.input :mobile, :label => 'Mobile number'
       = f.input :landline, :label => 'Landline number'
       = render :partial => "/shared/profile_image", :locals => {:form_element => f, :name => :attach_profile_picture, :label => 'Attach Profile Picture'}
+      %li
+        = f.errors_on :photo_content_type
+        = f.errors_on :photo_file_size
       = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => :origin, :label => 'Your area of origin'}
       = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => :destination, :label => 'Your area of destination'}
       = f.input :driver, :label => 'Do you opt to offer rides?', :hint => "(you wish to drive other people in your car)"
