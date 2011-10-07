@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
   end
 
   def photo_file_exists?
-    photo_path = "#{RAILS_ROOT}/public/images/#{self.id}_#{self.photo_file_name}"
+    photo_path = "#{Rails.root.to_s}/public/images/#{self.id}_#{self.photo_file_name}"
     File.exists?("#{photo_path}")
   end
 
