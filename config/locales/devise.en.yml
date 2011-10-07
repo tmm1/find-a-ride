@@ -16,7 +16,7 @@ en:
       signed_out: ''
     failure:
       already_authenticated: 'You are already signed in!'
-      unconfirmed: 'You have to verify your account before you can use it.'
+      unconfirmed: 'You have to verify your account using the email that was sent to you.'
       locked: 'Your account is locked.'
       invalid: 'Please put in a valid email and password!'
       invalid_token: 'Invalid authentication token.'

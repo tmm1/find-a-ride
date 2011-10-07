@@ -16,6 +16,10 @@ PoolRide::Application.routes.draw do
   end
   
   match '/auto_search' => 'application#auto_search', :as => :auto_search
+  match '/twitter' => 'users/omniauth_callback#twitter'
+  match '/register_user_with_twitter' => 'users/omniauth_callback#register_user_with_twitter'
+ 
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
