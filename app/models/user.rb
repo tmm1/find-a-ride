@@ -22,7 +22,6 @@ class User < ActiveRecord::Base
   validates_attachment_size :photo, :less_than => 3.megabytes, :message => 'cannot be greater than 3 MB', :if => :photo_attached?
 
   before_validation :rewrite_location_attributes
-  after_validation :concat_photo_errors
 
   def update_with_password(params={})
     params.delete(:current_password)
@@ -75,10 +74,6 @@ class User < ActiveRecord::Base
     self.origin = self.origin.try(:downcase).try(:titleize)
     self.destination = self.destination.try(:downcase).try(:titleize)
   end
-
-  def concat_photo_errors
-  end
-
 end
 
 

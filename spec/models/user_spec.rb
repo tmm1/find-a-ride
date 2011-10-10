@@ -172,42 +172,42 @@ describe User do
 
   end
 
-  describe "twitter oauth " do
+  describe "twitter oauth" do
     before(:all) do
       @user1 = Factory(:user, :first_name  => 'amar', :last_name => 'singh', :email => "reshubhan@gmail.com")
     end
-    it "should not create a duplicate user if the user is already in the system." do
+    
+    it "should not create a duplicate user if the user is already in the system" do
       match = User.find_for_twitter_oauth('reshubhan@gmail.com', 'amar', 'singh', nil)
       match.should == @user1
     end
 
-    it "should create a new user" do
+    it "should create a new user if the user doesnt exist in the system" do
       User.find_by_email("reshubhann@gmail.com").should == nil
       match = User.find_for_twitter_oauth('reshubhann@gmail.com', 'rahul', 'singh', nil)
       match.should_not == @user1
-      User.find_by_email("reshubhann@gmail.com").should == match
       match.should ==  User.find_by_email("reshubhann@gmail.com")
     end
   end
 
-#  describe "facebook oauth " do
-#    before(:all) do
-#      @user1 = Factory(:user, :first_name  => 'ask', :last_name => 'singh', :email => "amar@gmail.com")
-#      @user_info = {:access_token =>{:extra => {:user_hash => {:email => "amar@gmail.com", :first_name => "ask", :last_name => "singh"}}}}
-#    end
-#    it "should not create a duplicate user if the user is already in the system." do
-#      match = User.find_for_facebook_oauth(@user_info, nil)
-#      match.should == @user1
-#    end
-#
-#    it "should create a new user" do
-#      User.find_by_email("reshubhann@gmail.com").should == nil
-#      match = User.find_for_twitter_oauth('reshubhann@gmail.com', 'rahul', 'singh', nil)
-#      match.should_not == @user1
-#      User.find_by_email("reshubhann@gmail.com").should == match
-#      match.should ==  User.find_by_email("reshubhann@gmail.com")
-#    end
-#  end
+  describe "facebook oauth " do
+    before(:all) do
+      @user1 = Factory(:user, :first_name  => 'ask', :last_name => 'singh', :email => "amar@gmail.com")
+    end
+    it "should not create a duplicate user if the user is already in the system." do
+      @user_info = {"extra" => {"user_hash" => {"email" => "amar@gmail.com", "first_name" => "ask", "last_name" => "singh"}}}
+      match = User.find_for_facebook_oauth(@user_info, nil)
+      match.should == @user1
+    end
+
+    it "should create a new user if the user doesnt exist in the system" do
+      User.find_by_email("reshubhann@gmail.com").should == nil
+      @user_info = {"extra" => {"user_hash" => {"email" => "reshubhann@gmail.com", "first_name" => "Rahul", "last_name" => "singh"}}}
+      match = User.find_for_facebook_oauth(@user_info, nil)
+      match.should_not == @user1
+      match.should ==  User.find_by_email("reshubhann@gmail.com")
+    end
+  end
 end
 
 # == Schema Information
