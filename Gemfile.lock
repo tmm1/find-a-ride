@@ -33,6 +33,10 @@ GEM
     addressable (2.2.6)
     annotate (2.4.0)
     arel (2.0.10)
+    aws-s3 (0.6.2)
+      builder
+      mime-types
+      xml-simple
     bcrypt-ruby (2.1.4)
     bcrypt-ruby (2.1.4-java)
     builder (2.1.2)
@@ -198,6 +202,7 @@ GEM
     warden (1.0.5)
       rack (>= 1.0)
     will_paginate (3.0.0)
+    xml-simple (1.1.0)
 
 PLATFORMS
   java
@@ -205,6 +210,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate (= 2.4.0)
+  aws-s3
   cancan (= 1.6.5)
   compass
   devise

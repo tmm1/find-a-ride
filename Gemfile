@@ -15,6 +15,7 @@ gem "oa-oauth", :require => "omniauth/oauth"
 gem "omniauth"
 gem "nifty-generators"
 gem "paperclip", "~> 2.4"
+gem "aws-s3"
 
 
 

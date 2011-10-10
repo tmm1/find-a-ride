@@ -2,9 +2,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  has_attached_file :photo, :styles => { :small => "75x75>", :medium => "300x300>", :thumb => "100x100>" },
-                                        :url  => "public/images/:id_:basename.:extension",
-                                        :path => ":rails_root/public/images/:id_:basename.:extension"
+  has_attached_file :photo, :styles => { :thumb => "100x100>" },
+                                         :storage => :s3,
+                                         :s3_credentials => "#{Rails.root.to_s}/config/s3.yml",
+                                         :path => "/:style/:id/:filename"
 
 
   # Setup accessible (or protected) attributes for your model
@@ -61,11 +62,6 @@ class User < ActiveRecord::Base
 
   def photo_attached?
     self.photo.file?
-  end
-
-  def photo_file_exists?
-    photo_path = "#{Rails.root.to_s}/public/images/#{self.id}_#{self.photo_file_name}"
-    File.exists?("#{photo_path}")
   end
 
   private

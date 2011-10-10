@@ -56,6 +56,7 @@ describe User do
       @user.photo_content_type.should == "image/png"
       @user.photo_file_size.should < 3.megabytes
       @user.photo_file_name.should == "sample.png"
+      @user.photo.url.include?("http://s3.amazonaws.com/find-a-ride-test/original/#{@user.id}/#{@user.photo_file_name}").should be true
     end
   end
   
