@@ -1,0 +1,18 @@
+%div{:id => "contact_ride_#{contact.id}", :class => 'modal_overlay'}
+  %h2 Fill in information below and hit proceed!
+  #contact_form
+    %span.to
+      = "To: #{contact.full_name}"
+    - if user_signed_in?
+      %span.message Message
+      = text_area_tag 'contact_msg'
+    - else
+      %span.name Name
+      = text_field_tag 'contact_name'
+      %span.email Email
+      = text_field_tag 'contact_email'
+      %span.email Phone
+      = text_field_tag 'contact_phone'
+      %span.message Message
+      = text_area_tag 'contact_msg'
+    = submit_tag 'Proceed'

@@ -610,7 +610,7 @@ html {
 
 /* the overlayed element */
 /* line 226, ../../app/stylesheets/application.scss */
-.tos_overlay {
+.modal_overlay {
   display: none;
   background-image: url(/images/overlay/white.png);
   width: 640px;
@@ -620,7 +620,7 @@ html {
 
 /* default close button positioned on upper right corner */
 /* line 235, ../../app/stylesheets/application.scss */
-.tos_overlay .close {
+.modal_overlay .close {
   background-image: url(/images/overlay/close.png);
   position: absolute;
   right: 5px;

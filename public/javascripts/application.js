@@ -4,11 +4,15 @@ $(document).ready(function() {
   initCBSwitch();
   AutoSearchLocation();
   initRideSearch();
-  $("a[rel]").overlay({
+  initOverlays();
+});
+
+var initOverlays = function() {
+   $('.overlay_link').overlay({
     mask: 'darkred',
     effect: 'apple'
-  });
-});
+   });		
+}
 
 var initCBSwitch = function() {
 	$('#search_get_ride').hide();
@@ -52,8 +56,9 @@ var initRideSearch = function() {
 		  success: function(data) {
             $('#search_block').hide();
             $('#search_results_block').html(data);
-            initPaginationLinks();
             $('#search_results_block').fadeIn(400);
+            initPaginationLinks();
+            initOverlays();
 		  },
 		  failure: function(data) {
 			$('#submit').show();
@@ -72,8 +77,9 @@ var initPaginationLinks = function() {
 		  url: search_url,
 		  success: function(data) {
             $('#search_results_block').html(data);
-            initPaginationLinks();
             $('#search_results_block').fadeIn(400);
+            initOverlays();
+            initPaginationLinks();
 		  },
 		  failure: function(data) {
 		  }
