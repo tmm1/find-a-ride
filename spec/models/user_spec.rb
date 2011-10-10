@@ -89,16 +89,16 @@ describe User do
   end
   
   describe "#find matches for riders" do
-     before(:all) do
-       User.destroy_all
-       @user1 = Factory(:user, :email => 'test@test8.com', :origin => 'Madhapur', :destination => 'Kondapur', :rider => true)
-       @user2 = Factory(:user, :email => 'test@test9.com', :origin => 'Madhapur', :destination => 'Kondapur', :rider => true)
-       @user3 = Factory(:user, :email => 'test@test10.com', :origin => 'Madhapur', :destination => 'Banjara Hills', :rider => true)
-       @user4 = Factory(:user, :email => 'test@test11.com', :origin => 'Kondapur', :destination => 'Miyapur', :rider => true)
-       @user5 = Factory(:user, :email => 'test@test12.com', :origin => 'Madhapur', :destination => 'Kondapur', :rider => true)
-       @user6 = Factory(:user, :email => 'test@test13.com', :origin => 'Madhapur', :destination => 'Kondapur', :rider => nil, :driver => true)
-       @user7 = Factory(:user, :email => 'test@test14.com', :origin => nil, :destination => nil, :rider => true)
-     end
+    before(:all) do
+      User.destroy_all
+      @user1 = Factory(:user, :email => 'test@test8.com', :origin => 'Madhapur', :destination => 'Kondapur', :rider => true)
+      @user2 = Factory(:user, :email => 'test@test9.com', :origin => 'Madhapur', :destination => 'Kondapur', :rider => true)
+      @user3 = Factory(:user, :email => 'test@test10.com', :origin => 'Madhapur', :destination => 'Banjara Hills', :rider => true)
+      @user4 = Factory(:user, :email => 'test@test11.com', :origin => 'Kondapur', :destination => 'Miyapur', :rider => true)
+      @user5 = Factory(:user, :email => 'test@test12.com', :origin => 'Madhapur', :destination => 'Kondapur', :rider => true)
+      @user6 = Factory(:user, :email => 'test@test13.com', :origin => 'Madhapur', :destination => 'Kondapur', :rider => nil, :driver => true)
+      @user7 = Factory(:user, :email => 'test@test14.com', :origin => nil, :destination => nil, :rider => true)
+    end
 
     it "should find matches for Madhapur to Kondapur" do
       matches = User.find_matches_for_riders('madHapur', 'KonDapur')
@@ -171,6 +171,43 @@ describe User do
     it { should_not allow_mass_assignment_of(:confirmation_sent_at)}
 
   end
+
+  describe "twitter oauth " do
+    before(:all) do
+      @user1 = Factory(:user, :first_name  => 'amar', :last_name => 'singh', :email => "reshubhan@gmail.com")
+    end
+    it "should not create a duplicate user if the user is already in the system." do
+      match = User.find_for_twitter_oauth('reshubhan@gmail.com', 'amar', 'singh', nil)
+      match.should == @user1
+    end
+
+    it "should create a new user" do
+      User.find_by_email("reshubhann@gmail.com").should == nil
+      match = User.find_for_twitter_oauth('reshubhann@gmail.com', 'rahul', 'singh', nil)
+      match.should_not == @user1
+      User.find_by_email("reshubhann@gmail.com").should == match
+      match.should ==  User.find_by_email("reshubhann@gmail.com")
+    end
+  end
+
+#  describe "facebook oauth " do
+#    before(:all) do
+#      @user1 = Factory(:user, :first_name  => 'ask', :last_name => 'singh', :email => "amar@gmail.com")
+#      @user_info = {:access_token =>{:extra => {:user_hash => {:email => "amar@gmail.com", :first_name => "ask", :last_name => "singh"}}}}
+#    end
+#    it "should not create a duplicate user if the user is already in the system." do
+#      match = User.find_for_facebook_oauth(@user_info, nil)
+#      match.should == @user1
+#    end
+#
+#    it "should create a new user" do
+#      User.find_by_email("reshubhann@gmail.com").should == nil
+#      match = User.find_for_twitter_oauth('reshubhann@gmail.com', 'rahul', 'singh', nil)
+#      match.should_not == @user1
+#      User.find_by_email("reshubhann@gmail.com").should == match
+#      match.should ==  User.find_by_email("reshubhann@gmail.com")
+#    end
+#  end
 end
 
 # == Schema Information

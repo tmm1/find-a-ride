@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
   def self.find_for_twitter_oauth(email, first_name, last_name, signed_in_resource=nil)
     if user = User.find_by_email(email)
       user
-    else # Create a user with a stub password.
+    else 
       a = User.create(:email => email, :password => "changeme!", :first_name => first_name, :last_name => last_name)
       return a
     end
