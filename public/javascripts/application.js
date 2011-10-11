@@ -5,11 +5,12 @@ $(document).ready(function() {
   AutoSearchLocation();
   initRideSearch();
   initOverlays();
+  initContact();
 });
 
 var initOverlays = function() {
    $('.overlay_link').overlay({
-    mask: 'darkred',
+    mask: { color: '#ebecff', opacity: 0.9 },
     effect: 'apple'
    });		
 }

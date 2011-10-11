@@ -576,8 +576,8 @@ html {
 }
 /* line 184, ../../app/stylesheets/application.scss */
 #contact_form textarea {
-  width: 60%;
-  height: 35%;
+  width: 80%;
+  height: 100px;
   border: 2px solid #cccccc;
   resize: none;
 }
@@ -605,7 +605,7 @@ html {
 /* line 207, ../../app/stylesheets/application.scss */
 #contact_form #form_wrapper {
   width: 80%;
-  height: 70%;
+  height: 65%;
   margin-bottom: 10px;
 }
 
