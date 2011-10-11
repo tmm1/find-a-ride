@@ -120,7 +120,7 @@ a img {
 
 /* line 1, ../../app/stylesheets/partials/_form.scss */
 form {
-  font-family: 'Aldrich', sans-serif;
+  font-family: 'Hammersmith One', sans-serif;
 }
 /* line 18, ../../../../.rvm/gems/ruby-1.9.2-p136/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_form.scss */
 form label {
@@ -201,19 +201,35 @@ form textarea {
   -moz-opacity: 0.7;
   opacity: 0.7;
 }
+/* line 18, ../../app/stylesheets/partials/_form.scss */
+#form_wrapper .submit {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #717883;
+  border: solid 1px #717883;
+  text-decoration: none;
+  font-size: 1.5em;
+  font-family: 'Hammersmith One', sans-serif;
+  cursor: pointer;
+}
 
-/* line 20, ../../app/stylesheets/partials/_form.scss */
+/* line 35, ../../app/stylesheets/partials/_form.scss */
 #error_explanation {
   margin-bottom: 10px;
   padding-bottom: 10px;
   color: #b52534;
   font-size: 0.80em;
 }
-/* line 23, ../../app/stylesheets/partials/_form.scss */
+/* line 38, ../../app/stylesheets/partials/_form.scss */
 #error_explanation ul {
   list-style-type: none;
 }
-/* line 26, ../../app/stylesheets/partials/_form.scss */
+/* line 41, ../../app/stylesheets/partials/_form.scss */
 #error_explanation li {
   padding: 5px;
 }
@@ -386,7 +402,7 @@ html {
   font-size: 2.0em;
 }
 
-/* line 46, ../../app/stylesheets/application.scss */
+/* line 47, ../../app/stylesheets/application.scss */
 #search_block {
   background: #e5e5e5;
   border-color: #e5e5e5;
@@ -395,12 +411,12 @@ html {
   padding: 20px;
   height: 300px;
 }
-/* line 47, ../../app/stylesheets/application.scss */
+/* line 48, ../../app/stylesheets/application.scss */
 #search_block #search_error {
   margin-left: 30px;
   color: #b52534;
 }
-/* line 51, ../../app/stylesheets/application.scss */
+/* line 52, ../../app/stylesheets/application.scss */
 #search_block #spinner_block {
   padding-top: 60px;
   padding-bottom: 20px;
@@ -409,7 +425,7 @@ html {
   margin-right: auto;
   font-size: 125%;
 }
-/* line 65, ../../app/stylesheets/application.scss */
+/* line 66, ../../app/stylesheets/application.scss */
 #search_block #inputs {
   font-size: 200%;
   padding-top: 20px;
@@ -420,15 +436,15 @@ html {
   margin-right: auto;
   font-weight: bold;
 }
-/* line 67, ../../app/stylesheets/application.scss */
+/* line 68, ../../app/stylesheets/application.scss */
 #search_block #inputs span {
   margin-left: 30px;
 }
-/* line 68, ../../app/stylesheets/application.scss */
+/* line 69, ../../app/stylesheets/application.scss */
 #search_block #inputs input {
   width: 250px;
 }
-/* line 77, ../../app/stylesheets/application.scss */
+/* line 78, ../../app/stylesheets/application.scss */
 #search_block #options {
   font-size: 150%;
   width: 55%;
@@ -438,7 +454,7 @@ html {
   margin-left: auto;
   margin-right: auto;
 }
-/* line 86, ../../app/stylesheets/application.scss */
+/* line 87, ../../app/stylesheets/application.scss */
 #search_block #submit {
   font-size: 150%;
   width: 20%;
@@ -448,32 +464,32 @@ html {
   padding-bottom: 20px;
   padding-top: 70px;
 }
-/* line 87, ../../app/stylesheets/application.scss */
+/* line 88, ../../app/stylesheets/application.scss */
 #search_block #submit input {
   width: 200px;
 }
 
-/* line 98, ../../app/stylesheets/application.scss */
+/* line 100, ../../app/stylesheets/application.scss */
 #search_results_block {
   height: 300px;
   padding: 10px;
   width: 100%;
   text-align: center;
 }
-/* line 99, ../../app/stylesheets/application.scss */
+/* line 101, ../../app/stylesheets/application.scss */
 #search_results_block a:link {
   color: #638ea8;
 }
-/* line 100, ../../app/stylesheets/application.scss */
+/* line 102, ../../app/stylesheets/application.scss */
 #search_results_block a:visited {
   color: #638ea8;
 }
-/* line 105, ../../app/stylesheets/application.scss */
+/* line 107, ../../app/stylesheets/application.scss */
 #search_results_block #no_results {
   font-size: 1.0em;
   color: #b52534;
 }
-/* line 110, ../../app/stylesheets/application.scss */
+/* line 112, ../../app/stylesheets/application.scss */
 #search_results_block #results .pagination {
   background: #f1f1f1;
   border: 1px solid #e5e5e5;
@@ -481,15 +497,15 @@ html {
   padding: 1em;
   cursor: default;
 }
-/* line 116, ../../app/stylesheets/application.scss */
+/* line 118, ../../app/stylesheets/application.scss */
 #search_results_block #results .pagination a, #search_results_block #results .pagination span {
   padding: 0.2em 0.3em;
 }
-/* line 119, ../../app/stylesheets/application.scss */
+/* line 121, ../../app/stylesheets/application.scss */
 #search_results_block #results .pagination .disabled {
   color: #aaaaaa;
 }
-/* line 122, ../../app/stylesheets/application.scss */
+/* line 124, ../../app/stylesheets/application.scss */
 #search_results_block #results .pagination .current {
   font-style: normal;
   font-weight: bold;
@@ -503,16 +519,16 @@ html {
   border-radius: 1em;
   text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px;
 }
-/* line 135, ../../app/stylesheets/application.scss */
+/* line 137, ../../app/stylesheets/application.scss */
 #search_results_block #results .pagination a {
   text-decoration: none;
   color: black;
 }
-/* line 138, ../../app/stylesheets/application.scss */
+/* line 140, ../../app/stylesheets/application.scss */
 #search_results_block #results .pagination a:hover, #search_results_block #results .pagination a:focus {
   text-decoration: underline;
 }
-/* line 143, ../../app/stylesheets/application.scss */
+/* line 145, ../../app/stylesheets/application.scss */
 #search_results_block #results #list {
   margin-left: 175px;
   margin-right: 175px;
@@ -522,7 +538,7 @@ html {
   border-color: #e5e5e5;
   -moz-border-radius: 10px;
 }
-/* line 151, ../../app/stylesheets/application.scss */
+/* line 153, ../../app/stylesheets/application.scss */
 #search_results_block #results #list table {
   margin-left: 50px;
   margin-top: 25px;
@@ -530,29 +546,70 @@ html {
   width: 85%;
   border-spacing: 8px;
 }
-/* line 158, ../../app/stylesheets/application.scss */
+/* line 160, ../../app/stylesheets/application.scss */
 #search_results_block #results #list table tr td.image {
   width: 100px;
 }
-/* line 159, ../../app/stylesheets/application.scss */
+/* line 161, ../../app/stylesheets/application.scss */
 #search_results_block #results #list table tr td.name {
   width: 400px;
 }
-/* line 160, ../../app/stylesheets/application.scss */
+/* line 162, ../../app/stylesheets/application.scss */
 #search_results_block #results #list table tr td.contact_link {
+  width: 200px;
   font-size: 75%;
 }
-/* line 164, ../../app/stylesheets/application.scss */
+/* line 168, ../../app/stylesheets/application.scss */
 #search_results_block #results span.total {
   font-size: 1.5em;
   font-weight: bold;
 }
-/* line 168, ../../app/stylesheets/application.scss */
+/* line 172, ../../app/stylesheets/application.scss */
 #search_results_block #results span.go_back {
   font-size: 1.0em;
 }
 
-/* line 175, ../../app/stylesheets/application.scss */
+/* line 180, ../../app/stylesheets/application.scss */
+#contact_form input {
+  width: 250px;
+  margin: 25px;
+}
+/* line 184, ../../app/stylesheets/application.scss */
+#contact_form textarea {
+  width: 60%;
+  height: 35%;
+  border: 2px solid #cccccc;
+  resize: none;
+}
+/* line 190, ../../app/stylesheets/application.scss */
+#contact_form span {
+  font-family: 'Hammersmith One', sans-serif;
+  font-size: 1.25em;
+}
+/* line 194, ../../app/stylesheets/application.scss */
+#contact_form span.to {
+  margin-left: 30px;
+  font-size: 1.0em;
+}
+/* line 198, ../../app/stylesheets/application.scss */
+#contact_form ul {
+  list-style-type: none;
+  font-size: 0.75em;
+  font-weight: bold;
+}
+/* line 203, ../../app/stylesheets/application.scss */
+#contact_form li {
+  margin-left: 15px;
+  padding-top: 5px;
+}
+/* line 207, ../../app/stylesheets/application.scss */
+#contact_form #form_wrapper {
+  width: 80%;
+  height: 70%;
+  margin-bottom: 10px;
+}
+
+/* line 215, ../../app/stylesheets/application.scss */
 #flash_alert, #flash_error, #flash_warning, #flash_notice {
   text-align: center;
   padding: 10px;
@@ -567,14 +624,14 @@ html {
   color: #b52534;
 }
 
-/* line 190, ../../app/stylesheets/application.scss */
+/* line 230, ../../app/stylesheets/application.scss */
 #banner_block, #general_hint {
   width: 100%;
   text-align: center;
   margin: 5px;
 }
 
-/* line 196, ../../app/stylesheets/application.scss */
+/* line 236, ../../app/stylesheets/application.scss */
 #about_block {
   background: #e5e5e5;
   border-color: #e5e5e5;
@@ -583,25 +640,25 @@ html {
   padding: 20px;
   text_align: left;
 }
-/* line 203, ../../app/stylesheets/application.scss */
+/* line 243, ../../app/stylesheets/application.scss */
 #about_block h1 {
   font-size: 200%;
   margin: 15px;
 }
-/* line 207, ../../app/stylesheets/application.scss */
+/* line 247, ../../app/stylesheets/application.scss */
 #about_block #text {
   margin: 10px;
   padding: 10px;
   color: #666;
 }
-/* line 212, ../../app/stylesheets/application.scss */
+/* line 252, ../../app/stylesheets/application.scss */
 #about_block #about_image {
   margin: 50px;
   width: 100%;
   margin-left: 450px;
 }
 
-/* line 219, ../../app/stylesheets/application.scss */
+/* line 259, ../../app/stylesheets/application.scss */
 #general_hint {
   color: #666;
   font-weight: regular;
@@ -609,7 +666,7 @@ html {
 }
 
 /* the overlayed element */
-/* line 226, ../../app/stylesheets/application.scss */
+/* line 266, ../../app/stylesheets/application.scss */
 .modal_overlay {
   display: none;
   background-image: url(/images/overlay/white.png);
@@ -619,7 +676,7 @@ html {
 }
 
 /* default close button positioned on upper right corner */
-/* line 235, ../../app/stylesheets/application.scss */
+/* line 275, ../../app/stylesheets/application.scss */
 .modal_overlay .close {
   background-image: url(/images/overlay/close.png);
   position: absolute;

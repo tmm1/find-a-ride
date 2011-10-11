@@ -56,7 +56,7 @@ var initRideSearch = function() {
 		  success: function(data) {
             $('#search_block').hide();
             $('#search_results_block').html(data);
-            $('#search_results_block').fadeIn(400);
+            $('#search_results_block').show();
             initPaginationLinks();
             initOverlays();
 		  },
@@ -77,7 +77,7 @@ var initPaginationLinks = function() {
 		  url: search_url,
 		  success: function(data) {
             $('#search_results_block').html(data);
-            $('#search_results_block').fadeIn(400);
+            $('#search_results_block').show();
             initOverlays();
             initPaginationLinks();
 		  },
