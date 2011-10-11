@@ -3,6 +3,8 @@ $(document).ready(function() {
   AutoSearchLocation();
   initRideSearch();
   initOverlays();
+  initInactiveOverlay();
+  initClickInactive();
 });
 
 
@@ -18,6 +20,35 @@ var initOverlays = function() {
     mask: { color: '#ebecff', opacity: 0.9 },
     effect: 'apple'
    });		
+}
+
+var initInactiveOverlay = function() {
+    $('.inactive_input').overlay({
+			mask:{
+			  color: '#ebecff',
+		    loadSpeed: 200,
+		    opacity: 0.9
+			},
+      closeOnClick: false
+    });
+}
+
+var initClickInactive = function(){
+  $('#user_inactive').live('click', function(){
+    $('.confirm_dialog').show();
+  });
+
+  $('#confirm_yes').click(function(){
+    $('.inactive_input').attr('checked', true);
+    $('.confirm_dialog').hide();
+    return false;
+  });
+
+  $('#confirm_no').click(function(){
+    $('.inactive_input').attr('checked', false);
+    $('.confirm_dialog').hide();
+    return false;
+  });
 }
 
 var initCBSwitch = function() {
