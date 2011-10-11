@@ -183,7 +183,7 @@ html {
   }
   textarea {
     width: 80%;
-    height: 100px;
+    height: 80px;
     border: 2px solid #cccccc;
     resize: none;
   }
@@ -193,7 +193,7 @@ html {
   }
   span.to {
     margin-left: 30px; 
-    font-size: 1.0em; 
+    font-size: 1.25em; 
   }
   ul {
     list-style-type: none;
@@ -204,10 +204,10 @@ html {
     margin-left: 15px;
     padding-top: 5px;
   }
-  #form_wrapper {
+  .form_wrapper {
     width: 80%;
-    height: 65%;
-	margin-bottom: 10px;
+    height: 55%;
+    padding-bottom: 5px;
   }
 }
 
@@ -267,6 +267,7 @@ html {
   display:none;
   background-image:url(/images/overlay/white.png);
   width:640px;
+  height: auto;
   padding:35px;
   font-size:1.0em;
 }

@@ -187,7 +187,7 @@ form textarea {
 }
 
 /* line 5, ../../app/stylesheets/partials/_form.scss */
-#form_wrapper {
+#form_wrapper, .form_wrapper {
   background: #e5e5e5;
   border-color: #e5e5e5;
   -moz-border-radius: 10px;
@@ -202,9 +202,9 @@ form textarea {
   opacity: 0.7;
 }
 /* line 18, ../../app/stylesheets/partials/_form.scss */
-#form_wrapper .submit {
-  margin-top: 20px;
-  margin-bottom: 20px;
+#form_wrapper .submit, .form_wrapper .submit {
+  margin-top: 10px;
+  margin-bottom: 5px;
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -217,19 +217,28 @@ form textarea {
   font-family: 'Hammersmith One', sans-serif;
   cursor: pointer;
 }
+/* line 33, ../../app/stylesheets/partials/_form.scss */
+#form_wrapper .form_error, .form_wrapper .form_error {
+  margin-left: 15px;
+  color: #b52534;
+}
+/* line 34, ../../app/stylesheets/partials/_form.scss */
+#form_wrapper .form_error h3, .form_wrapper .form_error h3 {
+  font-size: 0.75em;
+}
 
-/* line 35, ../../app/stylesheets/partials/_form.scss */
+/* line 40, ../../app/stylesheets/partials/_form.scss */
 #error_explanation {
   margin-bottom: 10px;
   padding-bottom: 10px;
   color: #b52534;
   font-size: 0.80em;
 }
-/* line 38, ../../app/stylesheets/partials/_form.scss */
+/* line 43, ../../app/stylesheets/partials/_form.scss */
 #error_explanation ul {
   list-style-type: none;
 }
-/* line 41, ../../app/stylesheets/partials/_form.scss */
+/* line 46, ../../app/stylesheets/partials/_form.scss */
 #error_explanation li {
   padding: 5px;
 }
@@ -577,7 +586,7 @@ html {
 /* line 184, ../../app/stylesheets/application.scss */
 #contact_form textarea {
   width: 80%;
-  height: 100px;
+  height: 80px;
   border: 2px solid #cccccc;
   resize: none;
 }
@@ -589,7 +598,7 @@ html {
 /* line 194, ../../app/stylesheets/application.scss */
 #contact_form span.to {
   margin-left: 30px;
-  font-size: 1.0em;
+  font-size: 1.25em;
 }
 /* line 198, ../../app/stylesheets/application.scss */
 #contact_form ul {
@@ -603,10 +612,10 @@ html {
   padding-top: 5px;
 }
 /* line 207, ../../app/stylesheets/application.scss */
-#contact_form #form_wrapper {
+#contact_form .form_wrapper {
   width: 80%;
-  height: 65%;
-  margin-bottom: 10px;
+  height: 55%;
+  padding-bottom: 5px;
 }
 
 /* line 215, ../../app/stylesheets/application.scss */
@@ -671,12 +680,13 @@ html {
   display: none;
   background-image: url(/images/overlay/white.png);
   width: 640px;
+  height: auto;
   padding: 35px;
   font-size: 1.0em;
 }
 
 /* default close button positioned on upper right corner */
-/* line 275, ../../app/stylesheets/application.scss */
+/* line 276, ../../app/stylesheets/application.scss */
 .modal_overlay .close {
   background-image: url(/images/overlay/close.png);
   position: absolute;

@@ -3,7 +3,8 @@
     %span.to
       = "To"
       %b.to_name= "#{contact.full_name}"
-    #form_wrapper
+    .form_wrapper
+      .form_error{:style => 'display:none'}
       - if user_signed_in?
         %ul
           %li
