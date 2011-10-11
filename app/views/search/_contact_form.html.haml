@@ -9,6 +9,8 @@
           %li
             %span.message Message
             = text_area_tag 'contact_msg'
+          %li
+            = submit_tag 'Proceed', :class => 'submit'
       - else
         %ul
           %li
