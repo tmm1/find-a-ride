@@ -21,7 +21,7 @@
             %td.name
               = result.full_name
             %td.contact_link
-              = link_to 'Contact this person', '#', :rel => "#contact_ride_#{result.id}", :class => 'overlay_link'
+              = link_to 'Contact this person', '#', :rel => "#contact_ride_#{result.id}", :class => 'overlay_link contact_click'
             %td.contact_modal
               = render :partial => 'contact_form', :locals => {:contact => result}
       = will_paginate @paginated_results

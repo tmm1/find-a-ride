@@ -19,7 +19,7 @@ var initOverlays = function() {
    $('.overlay_link').overlay({
     mask: { color: '#ebecff', opacity: 0.9 },
     effect: 'apple'
-   });		
+   });	
 }
 
 var initInactiveOverlay = function() {
@@ -105,9 +105,12 @@ var initRideSearch = function() {
             $('#search_block').hide();
             $('#search_results_block').html(data);
             $('#search_results_block').show();
-            initPaginationLinks();
             initOverlays();
-            initContact();  
+            initPaginationLinks();
+            initContactForm();  
+            $('.contact_click').click(function() {
+	           resetContactForm();
+	        });
 		  },
 		  failure: function(data) {
 			$('#submit').show();
@@ -129,7 +132,10 @@ var initPaginationLinks = function() {
             $('#search_results_block').show();
             initOverlays();
             initPaginationLinks();
-            initContact();  
+            initContactForm();  
+            $('.contact_click').click(function() {
+	           resetContactForm();
+	        });
 		  },
 		  failure: function(data) {
 		  }
@@ -137,22 +143,33 @@ var initPaginationLinks = function() {
 	});
 }
 
-var initContact = function() {
-  $('.form_wrapper').find('.submit').click(function() {
-    var name = $('#contact_name').val();
-    var email = $('#contact_email').val();	
+var initContactForm = function() {
+  $('.form_wrapper').find('.submit_button').click(function() {
+	form_div = $(this).closest('.form_wrapper');
+    var name = form_div.find('#contact_name').val();
+    var email = form_div.find('#contact_email').val();	
     if (name == '' || email == '') {
-	   $('.form_error').html('<h3>Need both name and email!</h3>');
-	   $('.form_error').fadeIn(400);
+	   form_div.find('.form_error').html('<h3>Need both name and email!</h3>');
+	   form_div.find('.form_error').fadeIn(400);
 	}
 	else if (!isValidEmail(email)) {
-	   $('.form_error').html('<h3>Need a valid email!</h3>');
-	   $('.form_error').fadeIn(400);
+	   form_div.find('.form_error').html('<h3>Need a valid email!</h3>');
+	   form_div.find('.form_error').fadeIn(400);
 	}
 	else {
-	   $('.form_error').hide();
+	   form_div.find('.form_error').hide();
 	}
   });
+}
+
+var resetContactForm = function() {
+	$('.form_wrapper').each(function (){
+	  $(this).find('.form_error').hide();
+	  $(this).find('#contact_name').val('');
+	  $(this).find('#contact_email').val('');	
+	  $(this).find('#contact_phone').val('');		
+	  $(this).find('#contact_msg').val('');	
+	});
 }
 
 var AutoSearchLocation = function(){
