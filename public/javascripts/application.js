@@ -18,17 +18,14 @@ var isValidEmail = function(email) {
 var initOverlays = function() {
    $('.overlay_link').overlay({
     mask: { color: '#ebecff', opacity: 0.9 },
-    effect: 'apple'
+    effect: 'apple',
+    closeOnClick: false
    });		
 }
 
 var initInactiveOverlay = function() {
     $('.inactive_input').overlay({
-			mask:{
-			  color: '#ebecff',
-		    loadSpeed: 200,
-		    opacity: 0.9
-			},
+			   mask:{ color: '#ebecff', loadSpeed: 200, opacity: 0.8 },
       closeOnClick: false
     });
 }
@@ -36,7 +33,7 @@ var initInactiveOverlay = function() {
 var initConfirmBtns = function(){
   $('#user_inactive').live('click', function(){
     $('.confirm_dialog').show();
-      checked = ($('.inactive_input').attr('checked'));
+    checked = ($('.inactive_input').attr('checked'));
   });
 
   $('#confirm_yes').live('click', function(){
@@ -47,6 +44,7 @@ var initConfirmBtns = function(){
       $('.inactive_input').attr('checked', false);
     }
     $('.confirm_dialog').hide();
+    $('.inactive_input').overlay().close();
     return false;
   });
 
@@ -58,6 +56,7 @@ var initConfirmBtns = function(){
       $('.inactive_input').attr('checked', true);
     }
     $('.confirm_dialog').hide();
+    $('.inactive_input').overlay().close();
     return false;
   });
 }
