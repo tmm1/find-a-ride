@@ -17,7 +17,8 @@
     #container
       #header
         #big-label
-          %h1 Find-a-Ride. 
+          %h1 Find-a-Ride.
+          = render :partial => "shared/search_city"
         #user_nav
           - if user_signed_in?
             Hello 

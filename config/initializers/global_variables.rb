@@ -1,4 +1,4 @@
-APP_LOCATIONS = ['Abids',
+APP_LOCATIONS = { "Hyderabad" => ['Abids',
 'AC Guards',
 'Addagutta',
 'Adikmet',
@@ -428,5 +428,5 @@ APP_LOCATIONS = ['Abids',
 'Whitehouse, Begumpet',
 'Yapral',
 'Yousufguda',
-'Ziaguda',
-]
+'Ziaguda'
+]}
