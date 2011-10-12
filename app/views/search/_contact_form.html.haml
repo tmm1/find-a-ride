@@ -7,24 +7,24 @@
       .form_error{:style => 'display:none'}
       - if user_signed_in?
         %ul
-          %li
+          %li.field
             %span.message Message
             = text_area_tag 'contact_msg'
           %li
             = submit_tag 'Proceed', :class => 'submit'
       - else
         %ul
-          %li
+          %li.field
             %span.name Name*
             = text_field_tag 'contact_name'
-          %li
+          %li.field
             %span.email Email*
             = text_field_tag 'contact_email'
-          %li
+          %li.field
             %span.email Phone
             = text_field_tag 'contact_phone'
-          %li
+          %li.field
             %span.message Message
             = text_area_tag 'contact_msg'
           %li
-            = submit_tag 'Proceed', :class => 'submit'
+            = submit_tag 'Submit', :class => 'submit_button'

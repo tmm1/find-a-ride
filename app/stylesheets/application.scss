@@ -177,9 +177,14 @@ html {
 
 // contact ride
 #contact_form {
-  input { 
-    width: 250px;
-    margin: 25px; 
+  li.field { 
+    input { 
+      width: 250px;
+      margin: 25px; 
+    }
+  }
+  .submit_button {
+    border: solid 1px #717883;
   }
   textarea {
     width: 80%;
