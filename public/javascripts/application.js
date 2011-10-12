@@ -17,7 +17,7 @@ var isValidEmail = function(email) {
 
 var initOverlays = function() {
    $('.overlay_link').overlay({
-    mask: { color: '#ebecff', opacity: 0.9 },
+    mask: { color: '#eff2f7', loadSpeed: 100, opacity: 0.7 },
     effect: 'apple',
     closeOnClick: false
    });		
@@ -25,7 +25,7 @@ var initOverlays = function() {
 
 var initInactiveOverlay = function() {
     $('.inactive_input').overlay({
-	  mask:{ color: '#ebecff', loadSpeed: 200, opacity: 0.8 },
+	  mask: { color: '#eff2f7', loadSpeed: 100, opacity: 0.7 },
       closeOnClick: false
     });
 }
