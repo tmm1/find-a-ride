@@ -161,7 +161,7 @@ var AutoSearchLocation = function(){
   elem.unautocomplete();
   elem.autocomplete(url,{
     dataType: 'json',
-    extraParams: {city: $("#source").val()},
+    extraParams: {city: $("#city_select").val()},
     delay :200,
     scroll: true,
     scrollHeight: 300,
@@ -178,4 +178,3 @@ var AutoSearchLocation = function(){
     }
   });
 }
-
