@@ -27,8 +27,18 @@ body.one_col {
       top: 6px; 
     }
     #user_nav {
+      font-size: 1.10em;
       color: #b3b3b3;
-      float: right;
+      #auth {
+        position: absolute;
+        top: 60px;
+        right: 35px;
+      }
+      #no_auth {
+        position: absolute;
+        top: 80px;
+        right: 35px;
+      }
       a:link { color: #638ea8; }
 	  a:visited { color: #638ea8; }
     }

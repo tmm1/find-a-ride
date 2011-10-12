@@ -17,10 +17,7 @@
         - @paginated_results.each do |result|
           %tr
             %td.image
-              - if result.photo_file_name
-                = image_tag(result.photo.url, :size => '75x75')
-              - else
-                = image_tag('blank_profile_picture.png', :size => '75x75')
+              = user_display_pic(result, '75x75')
             %td.name
               = result.full_name
             %td.contact_link

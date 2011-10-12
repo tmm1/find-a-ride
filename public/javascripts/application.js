@@ -1,17 +1,54 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
 $(document).ready(function() {
   initCBSwitch();
   AutoSearchLocation();
   initRideSearch();
-  initOverlays();  
+  initOverlays();
+  initInactiveOverlay();
+  initClickInactive();
 });
+
+
+var isValidEmail = function(email) {
+   var email_regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+   if(email_regex.test(email) == false) {
+      return false;
+   }
+}
 
 var initOverlays = function() {
    $('.overlay_link').overlay({
-    mask: 'darkred',
+    mask: { color: '#ebecff', opacity: 0.9 },
     effect: 'apple'
    });		
+}
+
+var initInactiveOverlay = function() {
+    $('.inactive_input').overlay({
+			mask:{
+			  color: '#ebecff',
+		    loadSpeed: 200,
+		    opacity: 0.9
+			},
+      closeOnClick: false
+    });
+}
+
+var initClickInactive = function(){
+  $('#user_inactive').live('click', function(){
+    $('.confirm_dialog').show();
+  });
+
+  $('#confirm_yes').click(function(){
+    $('.inactive_input').attr('checked', true);
+    $('.confirm_dialog').hide();
+    return false;
+  });
+
+  $('#confirm_no').click(function(){
+    $('.inactive_input').attr('checked', false);
+    $('.confirm_dialog').hide();
+    return false;
+  });
 }
 
 var initCBSwitch = function() {
@@ -59,6 +96,7 @@ var initRideSearch = function() {
             $('#search_results_block').show();
             initPaginationLinks();
             initOverlays();
+            initContact();  
 		  },
 		  failure: function(data) {
 			$('#submit').show();
@@ -80,11 +118,30 @@ var initPaginationLinks = function() {
             $('#search_results_block').show();
             initOverlays();
             initPaginationLinks();
+            initContact();  
 		  },
 		  failure: function(data) {
 		  }
 		});
 	});
+}
+
+var initContact = function() {
+  $('.form_wrapper').find('.submit').click(function() {
+    var name = $('#contact_name').val();
+    var email = $('#contact_email').val();	
+    if (name == '' || email == '') {
+	   $('.form_error').html('<h3>Need both name and email!</h3>');
+	   $('.form_error').fadeIn(400);
+	}
+	else if (!isValidEmail(email)) {
+	   $('.form_error').html('<h3>Need a valid email!</h3>');
+	   $('.form_error').fadeIn(400);
+	}
+	else {
+	   $('.form_error').hide();
+	}
+  });
 }
 
 var AutoSearchLocation = function(){
@@ -110,6 +167,7 @@ var AutoSearchLocation = function(){
     }
   });
 }
+
 //May be usefull for custom dropdown
 /*function createDropDown(){
     var source = $("#source");

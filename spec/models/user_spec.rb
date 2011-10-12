@@ -31,6 +31,12 @@ describe User do
       @user.update_attributes({:origin => "vidhyadhar"}).should == false
       @user.update_attributes({:destination => "vidhyadhar"}).should == false
     end
+ 
+    it "should update inactive attribute successfully" do
+      @user.update_attributes({:inactive => 1})
+      @user.save.should be true
+      @user.inactive.should be true
+    end 
   end
 
   describe "#profile picture" do
@@ -87,6 +93,19 @@ describe User do
       matches = User.find_matches_for_drivers
       matches.should == []
     end
+
+    it "should find matches for drivers excluding inactive drivers" do
+      matches = User.find_matches_for_drivers('madhApur', 'Kondapur')
+      matches.size.should == 3
+      @user1.update_attributes({:inactive => 1})
+      @user1.save.should be true
+      matches = User.find_matches_for_drivers('madhApur', 'Kondapur')
+      matches.size.should == 2
+      @user1.update_attributes({:inactive => 0})
+      @user1.save.should be true
+      matches = User.find_matches_for_drivers('madhApur', 'Kondapur')
+      matches.size.should == 3
+    end
   end
   
   describe "#find matches for riders" do
@@ -111,6 +130,19 @@ describe User do
     it "should not find matches for Miyapur to Hitec city" do
       matches = User.find_matches_for_riders('Miyapur', 'Hitec city')
       matches.should == []
+    end
+
+    it "should find matches for riders excluding inactive riders" do
+      matches = User.find_matches_for_riders('madhApur', 'Kondapur')
+      matches.size.should == 3
+      @user1.update_attributes({:inactive => 1})
+      @user1.save.should be true
+      matches = User.find_matches_for_riders('madhApur', 'Kondapur')
+      matches.size.should == 2
+      @user1.update_attributes({:inactive => 0})
+      @user1.save.should be true
+      matches = User.find_matches_for_riders('madhApur', 'Kondapur')
+      matches.size.should == 3
     end
   end
   

@@ -19,14 +19,7 @@
         #big-label
           %h1 Find-a-Ride.
           = render :partial => "shared/search_city"
-        #user_nav
-          - if user_signed_in?
-            Hello 
-            = link_to("#{current_user.first_name}", edit_user_registration_path)
-            | 
-            = link_to("Sign out", destroy_user_session_path, :method => :delete)
-          - else
-            = link_to("Sign in", new_user_session_path)
+        = render 'shared/user_nav'
       .clear
       #content
         - flash.each do |name, msg|

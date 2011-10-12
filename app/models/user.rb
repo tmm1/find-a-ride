@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
     :mobile, :landline, :driver, :rider, :first_name, :last_name, :origin, :destination,
-    :terms, :photo, :photo_content_type, :photo_file_size
+    :terms, :photo, :photo_content_type, :photo_file_size, :inactive
 
   devise :omniauthable
 
@@ -34,11 +34,11 @@ class User < ActiveRecord::Base
   end
   
   def self.find_matches_for_drivers(origin = '', dest = '')
-    User.where(:driver => true, :origin.downcase => origin.downcase, :destination.downcase => dest.downcase)
+    User.where(:driver => true, :origin.downcase => origin.downcase, :destination.downcase => dest.downcase, :inactive => false)
   end
   
   def self.find_matches_for_riders(origin = '', dest = '')
-    User.where(:rider => true, :origin.downcase => origin.downcase, :destination.downcase => dest.downcase)
+    User.where(:rider => true, :origin.downcase => origin.downcase, :destination.downcase => dest.downcase, :inactive => false)
   end
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
