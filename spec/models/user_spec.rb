@@ -94,7 +94,7 @@ describe User do
       matches.should == []
     end
 
-    it "should find matches for drivers based on inactive checkbox selection" do
+    it "should find matches for drivers excluding inactive drivers" do
       matches = User.find_matches_for_drivers('madhApur', 'Kondapur')
       matches.size.should == 3
       @user1.update_attributes({:inactive => 1})
@@ -132,7 +132,7 @@ describe User do
       matches.should == []
     end
 
-    it "should find matches for riders based on inactive checkbox selection" do
+    it "should find matches for riders excluding inactive riders" do
       matches = User.find_matches_for_riders('madhApur', 'Kondapur')
       matches.size.should == 3
       @user1.update_attributes({:inactive => 1})
