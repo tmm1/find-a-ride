@@ -691,14 +691,22 @@ html {
   padding: 10px;
   color: #666;
 }
+/* line 259, ../../app/stylesheets/application.scss */
+#about_block #text a:link {
+  color: #638ea8;
+}
 /* line 260, ../../app/stylesheets/application.scss */
+#about_block #text a:visited {
+  color: #638ea8;
+}
+/* line 262, ../../app/stylesheets/application.scss */
 #about_block #about_image {
   margin: 50px;
   width: 100%;
   margin-left: 450px;
 }
 
-/* line 267, ../../app/stylesheets/application.scss */
+/* line 269, ../../app/stylesheets/application.scss */
 #general_hint {
   color: #666;
   font-weight: regular;
@@ -706,7 +714,7 @@ html {
 }
 
 /* the overlayed element */
-/* line 274, ../../app/stylesheets/application.scss */
+/* line 276, ../../app/stylesheets/application.scss */
 .modal_overlay {
   display: none;
   background-image: url(/images/overlay/white.png);
@@ -717,7 +725,7 @@ html {
 }
 
 /* default close button positioned on upper right corner */
-/* line 284, ../../app/stylesheets/application.scss */
+/* line 286, ../../app/stylesheets/application.scss */
 .modal_overlay .close {
   background-image: url(/images/overlay/close.png);
   position: absolute;
@@ -728,7 +736,7 @@ html {
   width: 35px;
 }
 
-/* line 292, ../../app/stylesheets/application.scss */
+/* line 294, ../../app/stylesheets/application.scss */
 .confirm_dialog {
   background-color: #F0F0F0;
   display: none;
@@ -740,22 +748,22 @@ html {
   -webkit-border-radius: 6px;
   -webkit-box-shadow: 0 0 50px #ccc;
 }
-/* line 293, ../../app/stylesheets/application.scss */
+/* line 295, ../../app/stylesheets/application.scss */
 .confirm_dialog span.sure {
   font-size: 1.25em;
   font-weight: bold;
 }
-/* line 297, ../../app/stylesheets/application.scss */
+/* line 299, ../../app/stylesheets/application.scss */
 .confirm_dialog #buttons {
   width: 100%;
   margin: 20px;
 }
-/* line 299, ../../app/stylesheets/application.scss */
+/* line 301, ../../app/stylesheets/application.scss */
 .confirm_dialog #buttons input {
   width: 75px;
 }
 
-/* line 313, ../../app/stylesheets/application.scss */
+/* line 315, ../../app/stylesheets/application.scss */
 .confirm_dialog .close {
   background-image: url(/images/overlay/close.png);
   position: absolute;

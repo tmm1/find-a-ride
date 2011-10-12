@@ -7,7 +7,9 @@
     %br
     %p
       Find-a-Ride is available for the city of <b>Hyderabad</b>. We hope to expand to other metros in India in the near future.
+    %br
+    %p
       = link_to "See Find-a-Ride's terms of service", '#', :rel => "#leaflet", :class => 'overlay_link'
-      = render :partial => "shared/tos"
   #about_image
     = image_tag("find_a_ride_about.gif")
+= render :partial => "shared/tos"
