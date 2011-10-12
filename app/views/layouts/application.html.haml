@@ -18,7 +18,8 @@
       #header
         #big-label
           %h1 Find-a-Ride.
-          = render :partial => "shared/search_city"
+        %select#city_select
+          %option{:selected => "selected", :value => "Hyderabad"} Hyderabad
         = render 'shared/user_nav'
       .clear
       #content
