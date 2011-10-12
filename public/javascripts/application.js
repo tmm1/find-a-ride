@@ -33,19 +33,31 @@ var initInactiveOverlay = function() {
     });
 }
 
+var checked = '';
 var initClickInactive = function(){
   $('#user_inactive').live('click', function(){
     $('.confirm_dialog').show();
+      checked = ($('.inactive_input').attr('checked'));
   });
 
-  $('#confirm_yes').click(function(){
-    $('.inactive_input').attr('checked', true);
+  $('#confirm_yes').live('click', function(){
+    if (checked == 'checked'){
+      $('.inactive_input').attr('checked', true);
+    }
+    else{
+      $('.inactive_input').attr('checked', false);
+    }
     $('.confirm_dialog').hide();
     return false;
   });
 
-  $('#confirm_no').click(function(){
-    $('.inactive_input').attr('checked', false);
+  $('#confirm_no').live('click', function(){
+    if (checked == 'checked'){
+      $('.inactive_input').attr('checked', false);
+    }
+    else{
+      $('.inactive_input').attr('checked', true);
+    }
     $('.confirm_dialog').hide();
     return false;
   });
