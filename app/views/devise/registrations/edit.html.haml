@@ -21,13 +21,7 @@
       = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => :destination, :label => 'Your area of destination'}
       = f.input :driver, :label => 'Do you opt to offer rides?', :hint => "(you wish to drive other people in your car)"
       = f.input :rider, :label => 'Do you want to share a ride?', :hint => "(you want to find someone who can drive you)"
-      %table
-        %tr
-          %td.inactive
-            = f.input :inactive, :label => '', :input_html => {:rel => "#confirmation_overlay", :class => "inactive_input"}
-          %td.inactive_label{:style => 'color:block; font-weight: bold; font-size: 18px;'}
-            &nbsp
-            = 'I want to be inactive'
+      = f.input :inactive, :label => 'I want to be inactive', :input_html => {:rel => "#confirmation_overlay", :class => "inactive_input"}    
       = render :partial => "shared/confirm"
     = f.buttons do
       = f.commit_button "Go!"
