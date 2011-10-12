@@ -1,16 +1,6 @@
 #confirmation_overlay.confirm_dialog
-  %table
-    %tr
-      %td
-        %span{:style => 'color:#CC0033; font-size:14px;'}
-          = "Are you sure?"
-  %br
-  %table
-    %tr
-      %td
-        %button{:id => 'confirm_yes'}
-          = "Yes"
-      %td
-        %button{:id => 'confirm_no'}
-          = "No"
-%br
+  %span.sure Are you sure?
+  #buttons
+    = submit_tag 'Yes', :id => 'confirm_yes'
+    = submit_tag 'No', :id => 'confirm_no'
+

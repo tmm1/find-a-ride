@@ -275,30 +275,38 @@ html {
 /* default close button positioned on upper right corner */
 .modal_overlay .close {
   background-image:url(/images/overlay/close.png);
-  position:absolute; right:5px; top:5px;
-  cursor:pointer;
-  height:35px;
-  width:35px;
+  position: absolute; right:5px; top:5px;
+  cursor: pointer;
+  height: 35px;
+  width: 35px;
 }
 
 .confirm_dialog {
+  span.sure {
+    font-size: 1.25em;
+    font-weight: bold;
+  }
+  #buttons {
+    width: 100%;
+    input { width: 75px; }
+    margin: 20px;
+  }
   background-color: #F0F0F0;
-		display:none;
-		width:210px;
-  height:55px;
-		padding:25px;
-  font-size: 1.0em;
-  border:2px solid #333;
-		-moz-border-radius:6px;
-		-webkit-border-radius:6px;
-		-webkit-box-shadow: 0 0 50px #ccc;
+  display: none;
+  width: 225px;
+  height: 55px;
+  padding: 20px;
+  border: 1px solid #333;
+  -moz-border-radius:6px;
+  -webkit-border-radius:6px;
+  -webkit-box-shadow: 0 0 50px #ccc;
 }
 
 .confirm_dialog .close {
-  background-image:url(/images/overlay/close.png);
-  position:absolute; right:5px; top:5px;
-  cursor:pointer;
-  height:35px;
-  width:35px;
+  background-image: url(/images/overlay/close.png);
+  position: absolute; right: -8px; top: -10px;
+  cursor: pointer;
+  height: 35px;
+  width: 35px;
 }
 
