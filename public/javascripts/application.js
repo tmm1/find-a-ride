@@ -4,7 +4,7 @@ $(document).ready(function() {
   initRideSearch();
   initOverlays();
   initInactiveOverlay();
-  initClickInactive();
+  initConfirmBtns();
 });
 
 
@@ -33,7 +33,7 @@ var initInactiveOverlay = function() {
     });
 }
 
-var initClickInactive = function(){
+var initConfirmBtns = function(){
   $('#user_inactive').live('click', function(){
     $('.confirm_dialog').show();
   });

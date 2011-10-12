@@ -160,14 +160,13 @@ form.formtastic {
 /* clearing contained floats */
 
 .create {
-  padding-left:10px;
-  padding-right:10px;
-  background-color: #717883;
+  margin: 10px;
+  width: 125px;
+  padding-left:5px;
+  padding-right:5px;
   border: solid 1px #717883;
-  text-decoration:none;
   font-size: 1.0em;
   font-family: 'Hammersmith One', sans-serif;
-  cursor:pointer;
 }
 
 /* LABELS
