@@ -18,8 +18,9 @@
       #header
         #big-label
           %h1 Find-a-Ride.
-        %select#city_select
-          %option{:selected => "selected", :value => "Hyderabad"} Hyderabad
+        #custom_select
+          %select{:id => 'city_select'}
+            %option{:selected => "selected", :value => "Hyderabad"} Hyderabad
         = render 'shared/user_nav'
       .clear
       #content

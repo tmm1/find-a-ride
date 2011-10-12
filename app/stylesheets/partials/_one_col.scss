@@ -21,6 +21,11 @@ body.one_col {
         margin: 0;
       }
     }
+    #custom_select {
+      position: absolute;
+      left: 425px;
+      top: 40px;
+    }
     #header-logo { 
       position: absolute;
       left: 50px;
@@ -57,7 +62,6 @@ body.one_col {
   #splash_image {
     width: 320px;
     height: 320px;
-    background: image_url('carpool_logo.gif') no-repeat;
     -moz-opacity:0.2;
     opacity: 0.2;
     position: absolute;

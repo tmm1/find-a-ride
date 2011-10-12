@@ -59,6 +59,7 @@ html {
   }
   background: #e5e5e5;
   border-color: #e5e5e5;
+  box-shadow: 1px 1px 11px #B3B3B3;
   -moz-border-radius: 10px;
   border-radius: 10px;
   padding: 20px;
@@ -149,6 +150,7 @@ html {
       margin-bottom: 20px;
       background: #e5e5e5;
 	  border-color: #e5e5e5;
+	  box-shadow: 1px 1px 11px #B3B3B3;
 	  -moz-border-radius: 10px;
 	 table {
 	      margin-left: 50px;
@@ -242,6 +244,7 @@ html {
   background: #e5e5e5;
   border-color: #e5e5e5;
   -moz-border-radius: 10px;
+  box-shadow: 1px 1px 11px #B3B3B3;
   border-radius: 10px;
   padding: 20px;
   text_align: left;
@@ -314,23 +317,3 @@ html {
   height: 35px;
   width: 35px;
 }
-
-.desc { color:#6b6b6b;}
-.desc a {color:#0092dd;}
-
-.dropdown dd, .dropdown dt, .dropdown ul { margin:0px; padding:0px; }
-.dropdown dd { position:relative; }
-.dropdown a, .dropdown a:visited { color:#816c5b; text-decoration:none; outline:none;}
-.dropdown a:hover { color:#5d4617;}
-.dropdown dt a:hover { color:#5d4617; border: 1px solid #d0c9af;}
-.dropdown dt a {background:#e4dfcb url(/images/arrow.png) no-repeat scroll right center; display:block; padding-right:20px;
-                    border:1px solid #d4ca9a; width:150px;}
-.dropdown dt a span {cursor:pointer; display:block; padding:5px;}
-.dropdown dd ul { background:#e4dfcb none repeat scroll 0 0; border:1px solid #d4ca9a; color:#C5C0B0; display:none;
-                      left:0px; padding:5px 0px; position:absolute; top:2px; width:auto; min-width:170px; list-style:none;}
-.dropdown span.value { display:none;}
-.dropdown dd ul li a { padding:5px; display:block;}
-.dropdown dd ul li a:hover { background-color:#d0c9af;}
-
-.dropdown img.flag { border:none; vertical-align:middle; margin-left:10px; }
-.flagvisibility { display:none;}
