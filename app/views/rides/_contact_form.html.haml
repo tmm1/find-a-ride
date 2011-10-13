@@ -1,11 +1,16 @@
 %div{:id => "contact_ride_#{contact.id}", :class => 'modal_overlay'}
   #contact_form
+    = hidden_field_tag 'origin', "#{origin}"
+    = hidden_field_tag 'dest', "#{dest}"
+    = hidden_field_tag 'matcher', "#{matcher}"
     %span.to
       = "To"
       %b.to_name= "#{contact.full_name}"
     .form_wrapper
       .form_error{:style => 'display:none'}
       - if user_signed_in?
+        = hidden_field_tag 'contactee_id', "#{contact.id}"
+        = hidden_field_tag 'contacter_id', "#{current_user.id}"
         %ul
           %li.field
             %span.message Message
@@ -13,6 +18,7 @@
           %li
             = submit_tag 'Proceed', :class => 'submit'
       - else
+        = hidden_field_tag 'contactee_id', "#{contact.id}"
         %ul
           %li.field
             %span.name Name*
@@ -27,4 +33,4 @@
             %span.message Message
             = text_area_tag 'contact_msg'
           %li
-            = submit_tag 'Submit', :class => 'submit_button'
+            = submit_tag 'Submit', :class => 'submit_button', :post_url => contact_rides_path

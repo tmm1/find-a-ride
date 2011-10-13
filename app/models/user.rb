@@ -6,7 +6,9 @@ class User < ActiveRecord::Base
                                          :storage => :s3,
                                          :s3_credentials => "#{Rails.root.to_s}/config/s3.yml",
                                          :path => "/:style/:id/:filename"
-
+                                         
+  has_many :offered_rides, :class_name => 'Ride', :foreign_key => 'offerer_id'
+  has_many :shared_rides, :class_name => 'Ride', :foreign_key => 'sharer_id'
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
@@ -73,6 +75,7 @@ class User < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: users
@@ -99,5 +102,12 @@ end
 #  rider                  :boolean(1)
 #  mobile                 :string(255)
 #  landline               :string(255)
+#  origin                 :string(255)
+#  destination            :string(255)
+#  photo_file_name        :string(255)
+#  photo_content_type     :string(255)
+#  photo_file_size        :integer(4)
+#  photo_updated_at       :datetime
+#  inactive               :boolean(1)      default(FALSE)
 #
 

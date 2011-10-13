@@ -9,13 +9,14 @@ PoolRide::Application.routes.draw do
       get 'about'
     end
   end
-  resources :search do
+  resources :rides do
     collection do
-      get 'search_rides'
+      get 'search'
+      put 'contact'
     end
   end
   
-  match '/auto_search' => 'application#auto_search', :as => :auto_search
+  match '/location_search' => 'application#location_search', :as => :location_search
   match '/twitter' => 'users/omniauth_callback#twitter'
   match '/register_user_with_twitter' => 'users/omniauth_callback#register_user_with_twitter'
  

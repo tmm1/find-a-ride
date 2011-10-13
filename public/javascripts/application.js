@@ -1,6 +1,6 @@
 $(document).ready(function() {
   initCBSwitch();
-  AutoSearchLocation();
+  locationSearch();
   initRideSearch();
   initOverlays();
   initInactiveOverlay();
@@ -13,6 +13,15 @@ var isValidEmail = function(email) {
    if(email_regex.test(email) == false) {
       return false;
    }
+}
+
+var constructContactMsg = function(origin, dest, matcher) {
+  if (matcher == 'drivers') {
+	return 'I see that you are looking to offer a ride from '+origin+' to '+dest+'. I m interested. Please get in touch with me so we can make this happen.'
+  }
+  else if (matcher == 'riders') {
+	return 'I see that you are looking to find a ride from '+origin+' to '+dest+'. I would be willing to share a ride with you. Please get in touch with me so we can make this happen.'
+  }			
 }
 
 var initOverlays = function() {
@@ -145,33 +154,64 @@ var initPaginationLinks = function() {
 var initContactForm = function() {
   $('.form_wrapper').find('.submit_button').click(function() {
 	form_div = $(this).closest('.form_wrapper');
-    var name = form_div.find('#contact_name').val();
-    var email = form_div.find('#contact_email').val();	
-    if (name == '' || email == '') {
-	   form_div.find('.form_error').html('<h3>Need both name and email!</h3>');
-	   form_div.find('.form_error').fadeIn(400);
-	}
-	else if (!isValidEmail(email)) {
-	   form_div.find('.form_error').html('<h3>Need a valid email!</h3>');
-	   form_div.find('.form_error').fadeIn(400);
+	var url = $(this).attr('post_url');
+	var contactor_id = form_div.find('#contacter_id').val();
+	var msg = form_div.find('#contact_msg').val();	
+    var contactee_id = form_div.find('#contactee_id').val();
+    var origin = $('#origin').val();
+	var dest = $('#dest').val();
+	var matcher = $('#matcher').val();
+	if (contactor_id == '') {
+		var name = form_div.find('#contact_name').val();
+	    var email = form_div.find('#contact_email').val();	
+	    var phone = form_div.find('#contact_phone').val();	
+
+	    if (name == '' || email == '') {
+		   form_div.find('.form_error').html('<h3>Need both name and email!</h3>');
+		   form_div.find('.form_error').fadeIn(400);
+		}
+		else if (!isValidEmail(email)) {
+		   form_div.find('.form_error').html('<h3>Need a valid email!</h3>');
+		   form_div.find('.form_error').fadeIn(400);
+		}
+		else {
+		   form_div.find('.form_error').hide();
+		   $.post({
+			url: url,
+			data: {contactee_id: contactee_id, matcher: matcher, user_info: {name: name, email: email, phone: phone}, message: msg},
+			success: ,
+			failure:
+
+		   });
+		}
 	}
 	else {
-	   form_div.find('.form_error').hide();
-	}
+		$.post({
+			url: url,
+			data: {contactor_id: contactor_id, contactee_id: contactee_id, matcher: matcher, message: msg},
+			success: ,
+			failure:
+			
+		});
+		
+	} 	
   });
 }
 
 var resetContactForm = function() {
+	var origin = $('#origin').val();
+	var dest = $('#dest').val();
+	var matcher = $('#matcher').val();
 	$('.form_wrapper').each(function (){
 	  $(this).find('.form_error').hide();
 	  $(this).find('#contact_name').val('');
 	  $(this).find('#contact_email').val('');	
 	  $(this).find('#contact_phone').val('');		
-	  $(this).find('#contact_msg').val('');	
+	  $(this).find('#contact_msg').val(constructContactMsg(origin, dest, matcher));	
 	});
 }
 
-var AutoSearchLocation = function(){
+var locationSearch = function(){
   var url = $('#data-url').val();
   var elem = $("input.autocomplete");
   elem.unautocomplete();

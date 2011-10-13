@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  def auto_search    
+  def location_search    
     @result = (APP_LOCATIONS[params[:city]].map do |l|
         l if l.to_s.match(params[:q].to_s.try(:downcase).try(:titleize))
       end).compact

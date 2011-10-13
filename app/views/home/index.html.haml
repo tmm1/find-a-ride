@@ -19,7 +19,7 @@
     = image_tag 'indicator.gif' 
     Looking for rides..
   #submit
-    %input{:id => 'search_rides', :class => 'submit_button', :type => 'submit', :value => 'GO!', :search_url => search_rides_search_index_path}
+    %input{:id => 'search_rides', :class => 'submit_button', :type => 'submit', :value => 'GO!', :search_url => search_rides_path}
 #search_results_block{:style => 'display:none'} 
 - unless user_signed_in?
   #signup_block

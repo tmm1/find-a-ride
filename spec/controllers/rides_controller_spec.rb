@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SearchController do
+describe RidesController do
   before(:all) do
     User.destroy_all
     3.times { Factory(:user) }
@@ -8,14 +8,14 @@ describe SearchController do
   describe "#search rides for drivers" do
     it "should return matches for drivers" do
       User.stub!(:find_matches_for_drivers).and_return(User.where(:origin => 'Madhapur'))
-      get 'search_rides', {:origin => 'origin1', :dest => 'dest1', :matcher => 'drivers'}
+      get 'search', {:origin => 'origin1', :dest => 'dest1', :matcher => 'drivers'}
       response.should be_success
       response.should render_template(:search_results)
       assigns(:paginated_results).size.should == 3
     end
     it "should not return matches for drivers" do
       User.stub!(:find_matches_for_drivers).and_return(User.where(:origin => 'nowhere'))
-      get 'search_rides', {:origin => 'origin1', :dest => 'dest1', :matcher => 'drivers'}
+      get 'search', {:origin => 'origin1', :dest => 'dest1', :matcher => 'drivers'}
       response.should be_success
       response.should render_template(:search_results)
       assigns(:paginated_results).empty?.should == true
@@ -24,7 +24,7 @@ describe SearchController do
   describe "#search rides for riders" do
     it "should return matches for riders" do
       User.stub!(:find_matches_for_riders).and_return(User.where(:origin => 'Madhapur'))
-      get 'search_rides', {:origin => 'origin1', :dest => 'dest1', :matcher => 'riders'}
+      get 'search', {:origin => 'origin1', :dest => 'dest1', :matcher => 'riders'}
       response.should be_success
       response.should render_template(:search_results)
       assigns(:paginated_results).size.should == 3

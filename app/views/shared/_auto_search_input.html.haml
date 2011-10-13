@@ -1,6 +1,6 @@
 - form_element = form_element || ''
 - name = name || 'search'
-- url = auto_search_path
+- url = location_search_path
 
 - unless form_element.blank?
   = form_element.input(name, :input_html => {:class => 'ac_input autocomplete', :autocomplete => "off"}, :label => label)

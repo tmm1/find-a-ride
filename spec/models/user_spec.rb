@@ -243,6 +243,7 @@ describe User do
   end
 end
 
+
 # == Schema Information
 #
 # Table name: users
@@ -269,5 +270,12 @@ end
 #  rider                  :boolean(1)
 #  mobile                 :string(255)
 #  landline               :string(255)
+#  origin                 :string(255)
+#  destination            :string(255)
+#  photo_file_name        :string(255)
+#  photo_content_type     :string(255)
+#  photo_file_size        :integer(4)
+#  photo_updated_at       :datetime
+#  inactive               :boolean(1)      default(FALSE)
 #
 
