@@ -12,7 +12,7 @@ PoolRide::Application.routes.draw do
   resources :rides do
     collection do
       get 'search'
-      put 'contact'
+      post 'contact'
     end
   end
   

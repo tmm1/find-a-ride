@@ -179,9 +179,11 @@ var initContactForm = function() {
 		   $.post({
 			url: url,
 			data: {contactee_id: contactee_id, matcher: matcher, user_info: {name: name, email: email, phone: phone}, message: msg},
-			success: ,
-			failure:
-
+			success: function(data) {
+				
+			},
+			failure: function(data) {
+            }
 		   });
 		}
 	}

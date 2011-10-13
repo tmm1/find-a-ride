@@ -1,6 +1,4 @@
 class RidesController < ApplicationController
-  before_filter :setup_params
-  
   def search
     @origin = params[:origin] 
     @dest = params[:dest]
@@ -13,12 +11,9 @@ class RidesController < ApplicationController
   end
   
   def contact
-    Ride.create_ride(@ride_params)
-  end
-  
-  private
-  
-  def setup_params
-    @ride_params = {:contactee_id => params[:contactee_id], :contactor_id => params[:contactor_id], :user_info => params[:user_info], :message => params[:message], :matcher => params[:matcher]}
+    Ride.create_ride(params)
+    respond_to do |format|
+      format.html {render :text => 'Your message was successfully sent. Thank you!', :status => 200 }
+    end
   end
 end
