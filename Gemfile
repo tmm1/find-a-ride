@@ -8,17 +8,13 @@ gem 'state_machine', '0.9.4'
 gem 'devise'
 gem 'mysql'
 gem 'compass'
-
+gem 'heroku'
 gem 'will_paginate', '3.0'
-
 gem "oa-oauth", :require => "omniauth/oauth"
 gem "omniauth"
 gem "nifty-generators"
 gem "paperclip", "~> 2.4"
 gem "aws-s3"
-
-
-
 
 group :ci do
   gem 'rcov_rails'
