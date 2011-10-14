@@ -178,7 +178,7 @@ var initContactForm = function() {
     	}
      }
     else {
-	  postContactMsg(contact_url, {contactee_id: contactee_id, matcher: matcher, user_info: {name: name, email: email, phone: phone}, message: msg});
+	  postContactMsg(contact_url, {contactor_id: contactor_id, contactee_id: contactee_id, matcher: matcher, message: msg});
 	} 	
   });
 }

@@ -17,7 +17,7 @@
             %span.message Message
             = text_area_tag 'contact_msg'
           %li
-            = submit_tag 'Proceed', :class => 'submit'
+            = submit_tag 'Proceed', :class => 'submit_button', :post_url => contact_rides_path
       - else
         = hidden_field_tag 'contactee_id', "#{contact.id}"
         %ul
