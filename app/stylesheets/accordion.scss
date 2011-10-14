@@ -4,7 +4,8 @@
 .ui-accordion .ui-accordion-li-fix { display: inline; }
 .ui-accordion .ui-accordion-header-active { border-bottom: 0 !important; }
 .ui-accordion .ui-accordion-header a { display: inline; font-weight: bold; font-size: 1em; padding-left: 1em; }
-.ui-accordion .ui-accordion-header span#accordion_errors { color: #b52534; float: right; padding-right: 2em; }
+.ui-accordion .ui-accordion-header span.accordion_errors { color: #b52534; float: right; padding-right: 2em; display: none; }
+.ui-accordion .ui-accordion-header span.personal_info .contact_info .account_info { display: none; }
 .ui-accordion .ui-accordion-content { background: #e5e5e5; border-color: #e5e5e5; padding: 1em; margin-left: auto; margin-right: auto; }
 .ui-accordion .ui-accordion-content li { padding: 0 0 .5em 0;}
 .ui-accordion .ui-accordion-content li input { float:right;}

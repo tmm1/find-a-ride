@@ -25,6 +25,7 @@ var constructContactMsg = function(origin, dest, matcher) {
 
 var initAccordion = function() {
   $("#accordion").accordion();
+  $('.accordion_errors').fadeIn(3000);
 }
 
 var initOverlays = function() {
