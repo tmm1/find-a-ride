@@ -5,6 +5,7 @@ $(document).ready(function() {
   initOverlays();
   initInactiveOverlay();
   initConfirmBtns();
+  initAccordion();
 });
 
 
@@ -20,6 +21,10 @@ var constructContactMsg = function(origin, dest, matcher) {
   else if (matcher == 'riders') {
 	return 'I see that you are looking to find a ride from '+origin+' to '+dest+'. I would be willing to share a ride with you. Please get in touch with me so we can make this happen.'
   }			
+}
+
+var initAccordion = function() {
+  $("#accordion").accordion();
 }
 
 var initOverlays = function() {
@@ -89,8 +94,9 @@ var initRideSearch = function() {
   var search_url = $('#search_rides').attr('search_url');
   $('#search_rides').click(function() {
 	 var origin = $('#search_origin').val();
-	 var dest = $('#search_destination').val();	 
+	 var dest = $('#search_destination').val();
 	 var matcher = '';
+  $('#flash_notice').hide();
 	 if ($('label.selected').attr('for') == 'search_get_ride') {
 	    matcher = 'drivers';
 	 }

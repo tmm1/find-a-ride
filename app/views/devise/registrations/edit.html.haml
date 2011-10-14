@@ -6,22 +6,44 @@
   = semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :multipart => true }) do |f|
     /= devise_error_messages!
     = f.inputs do
-      = f.input :email
-      = f.input :first_name
-      = f.input :last_name
-      = f.input :password, :hint => "(leave blank if you don't want to change it)"
-      = f.input :password_confirmation, :label => 'Enter password again'
-      = f.input :mobile, :label => 'Mobile number'
-      = f.input :landline, :label => 'Landline number'
-      = render :partial => "/shared/profile_image", :locals => {:form_element => f, :name => :attach_profile_picture, :label => 'Attach Profile Picture'}
-      %li
-        = f.errors_on :photo_content_type
-        = f.errors_on :photo_file_size
-      = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => :origin, :label => 'Your area of origin'}
-      = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => :destination, :label => 'Your area of destination'}
-      = f.input :driver, :label => 'Do you opt to offer rides?', :hint => "(you wish to drive other people in your car)"
-      = f.input :rider, :label => 'Do you want to share a ride?', :hint => "(you want to find someone who can drive you)"
-      = f.input :inactive, :label => 'I want to be inactive', :input_html => {:rel => "#confirmation_overlay", :class => "inactive_input"}    
+      #accordion
+        - errors_by_accordion = @user.errors ? errors_by_accordion_type(@user.errors) : {}
+        %h3
+          %a{:href => "#"} Personal Information
+          - if errors_by_accordion && !errors_by_accordion[:personal_info_errors].blank?
+            %span{:id => "accordion_errors"}
+              = pluralize("#{errors_by_accordion[:personal_info_errors].length}", "Error")
+        #profile
+          = f.input :email
+          = f.input :first_name
+          = f.input :last_name
+          = render :partial => "/shared/profile_image", :locals => {:form_element => f, :name => :attach_profile_picture, :label => 'Attach Profile Picture'}
+          %li
+            = f.errors_on :photo_content_type
+            = f.errors_on :photo_file_size
+        %h3
+          %a{:href => "#"} Contact/Other Information
+          - if errors_by_accordion && !errors_by_accordion[:contact_info_errors].blank?
+            %span{:id => "accordion_errors"}
+              = pluralize("#{errors_by_accordion[:contact_info_errors].length}", "Error")
+        #profile
+          = f.input :mobile, :label => 'Mobile number'
+          = f.input :landline, :label => 'Landline number'
+          = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => :origin, :label => 'Your area of origin'}
+          = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => :destination, :label => 'Your area of destination'}
+          = f.input :driver, :label => 'Do you opt to offer rides?', :hint => "(you wish to drive other people in your car)"
+          = f.input :rider, :label => 'Do you want to share a ride?', :hint => "(you want to find someone who can drive you)"
+        %h3
+          %a{:href => "#"} Account Settings
+          - if errors_by_accordion && !errors_by_accordion[:account_settings_errors].blank?
+            %span{:id => "accordion_errors"}
+              = pluralize("#{errors_by_accordion[:account_settings_errors].length}", "Error")
+        #profile
+          = f.input :password, :hint => "(leave blank if you don't want to change it)"
+          = f.input :password_confirmation, :label => 'Enter password again'
+          %br
+          = f.input :inactive, :label => 'I want to be inactive', :input_html => {:rel => "#confirmation_overlay", :class => "inactive_input"}
+    %br
     = f.buttons do
       = f.commit_button "Go!"
 = render :partial => "shared/confirm"
