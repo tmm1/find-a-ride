@@ -1,6 +1,6 @@
 %div{:id => "contact_ride_#{contact.id}", :class => 'modal_overlay'}
-  #contact_response{:style => 'display: none'}
-  #contact_form
+  .contact_response{:style => 'display: none'}
+  .contact_form
     = hidden_field_tag 'origin', "#{origin}"
     = hidden_field_tag 'dest', "#{dest}"
     = hidden_field_tag 'matcher', "#{matcher}"

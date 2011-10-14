@@ -9,10 +9,8 @@ $(document).ready(function() {
 
 
 var isValidEmail = function(email) {
-   var email_regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-   if(email_regex.test(email) == false) {
-      return false;
-   }
+   var email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+   return email_regex.test(email);
 }
 
 var constructContactMsg = function(origin, dest, matcher) {
@@ -152,16 +150,17 @@ var initPaginationLinks = function() {
 }
 
 var initContactForm = function() {
-  $('.form_wrapper').find('.submit_button').click(function() {
+  $('.form_wrapper').find('.submit_button').click(function(e) {
+	e.preventDefault();
 	form_div = $(this).closest('.form_wrapper');
-	var url = $(this).attr('post_url');
+	var contact_url = $(this).attr('post_url');
 	var contactor_id = form_div.find('#contacter_id').val();
 	var msg = form_div.find('#contact_msg').val();	
     var contactee_id = form_div.find('#contactee_id').val();
     var origin = $('#origin').val();
 	var dest = $('#dest').val();
 	var matcher = $('#matcher').val();
-	if (contactor_id == '') {
+	if (typeof contactor_id == 'undefined') {
 		var name = form_div.find('#contact_name').val();
 	    var email = form_div.find('#contact_email').val();	
 	    var phone = form_div.find('#contact_phone').val();	
@@ -175,35 +174,36 @@ var initContactForm = function() {
 		   form_div.find('.form_error').fadeIn(400);
 		}
 		else {
-		   form_div.find('.form_error').hide();
-		   $.post({
-			url: url,
-			data: {contactee_id: contactee_id, matcher: matcher, user_info: {name: name, email: email, phone: phone}, message: msg},
-			success: function(data) {
-				
-			},
-			failure: function(data) {
-            }
-		   });
-		}
-	}
-	else {
-		$.post({
-			url: url,
-			data: {contactor_id: contactor_id, contactee_id: contactee_id, matcher: matcher, message: msg},
-			success: ,
-			failure:
-			
-		});
-		
+	       postContactMsg(contact_url, {contactee_id: contactee_id, matcher: matcher, user_info: {name: name, email: email, phone: phone}, message: msg});
+    	}
+     }
+    else {
+	  postContactMsg(contact_url, {contactee_id: contactee_id, matcher: matcher, user_info: {name: name, email: email, phone: phone}, message: msg});
 	} 	
   });
+}
+
+var postContactMsg = function(contact_url, post_data) {
+	$.ajax({
+		type: 'post',
+		url: contact_url,
+		data: post_data,
+		success: function(data) {
+		    $('.form_error').hide();
+			$('.contact_form').hide();
+			$('.contact_response').html(data);
+			$('.contact_response').fadeIn(400);
+		},
+		failure: function(data) {
+		}
+	});
 }
 
 var resetContactForm = function() {
 	var origin = $('#origin').val();
 	var dest = $('#dest').val();
 	var matcher = $('#matcher').val();
+	$('.contact_response').hide();
 	$('.form_wrapper').each(function (){
 	  $(this).find('.form_error').hide();
 	  $(this).find('#contact_name').val('');
@@ -211,6 +211,7 @@ var resetContactForm = function() {
 	  $(this).find('#contact_phone').val('');		
 	  $(this).find('#contact_msg').val(constructContactMsg(origin, dest, matcher));	
 	});
+	$('.contact_form').show();
 }
 
 var locationSearch = function(){

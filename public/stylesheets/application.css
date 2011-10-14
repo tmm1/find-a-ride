@@ -604,51 +604,60 @@ html {
   font-size: 1.0em;
 }
 
-/* line 183, ../../app/stylesheets/application.scss */
-#contact_form li.field input {
+/* line 181, ../../app/stylesheets/application.scss */
+.contact_response {
+  margin-top: 25px;
+  text-align: center;
+  width: 100%;
+  font-size: 1.0em;
+  color: #b52534;
+}
+
+/* line 191, ../../app/stylesheets/application.scss */
+.contact_form li.field input {
   width: 250px;
   margin: 25px;
 }
-/* line 188, ../../app/stylesheets/application.scss */
-#contact_form .submit_button {
+/* line 196, ../../app/stylesheets/application.scss */
+.contact_form .submit_button {
   border: solid 1px #717883;
 }
-/* line 191, ../../app/stylesheets/application.scss */
-#contact_form textarea {
+/* line 199, ../../app/stylesheets/application.scss */
+.contact_form textarea {
   width: 80%;
   height: 80px;
   border: 2px solid #cccccc;
   resize: none;
 }
-/* line 197, ../../app/stylesheets/application.scss */
-#contact_form span {
+/* line 205, ../../app/stylesheets/application.scss */
+.contact_form span {
   font-family: 'Hammersmith One', sans-serif;
   font-size: 1.25em;
 }
-/* line 201, ../../app/stylesheets/application.scss */
-#contact_form span.to {
+/* line 209, ../../app/stylesheets/application.scss */
+.contact_form span.to {
   margin-left: 30px;
   font-size: 1.25em;
 }
-/* line 205, ../../app/stylesheets/application.scss */
-#contact_form ul {
+/* line 213, ../../app/stylesheets/application.scss */
+.contact_form ul {
   list-style-type: none;
   font-size: 0.75em;
   font-weight: bold;
 }
-/* line 210, ../../app/stylesheets/application.scss */
-#contact_form li {
+/* line 218, ../../app/stylesheets/application.scss */
+.contact_form li {
   margin-left: 15px;
   padding-top: 5px;
 }
-/* line 214, ../../app/stylesheets/application.scss */
-#contact_form .form_wrapper {
+/* line 222, ../../app/stylesheets/application.scss */
+.contact_form .form_wrapper {
   width: 80%;
   height: 55%;
   padding-bottom: 5px;
 }
 
-/* line 222, ../../app/stylesheets/application.scss */
+/* line 230, ../../app/stylesheets/application.scss */
 #flash_alert, #flash_error, #flash_warning, #flash_notice {
   text-align: center;
   padding: 10px;
@@ -663,14 +672,14 @@ html {
   color: #b52534;
 }
 
-/* line 237, ../../app/stylesheets/application.scss */
+/* line 245, ../../app/stylesheets/application.scss */
 #banner_block, #general_hint {
   width: 100%;
   text-align: center;
   margin: 5px;
 }
 
-/* line 243, ../../app/stylesheets/application.scss */
+/* line 251, ../../app/stylesheets/application.scss */
 #about_block {
   background: #e5e5e5;
   border-color: #e5e5e5;
@@ -680,33 +689,33 @@ html {
   padding: 20px;
   text_align: left;
 }
-/* line 251, ../../app/stylesheets/application.scss */
+/* line 259, ../../app/stylesheets/application.scss */
 #about_block h1 {
   font-size: 200%;
   margin: 15px;
 }
-/* line 255, ../../app/stylesheets/application.scss */
+/* line 263, ../../app/stylesheets/application.scss */
 #about_block #text {
   margin: 10px;
   padding: 10px;
   color: #666;
 }
-/* line 259, ../../app/stylesheets/application.scss */
+/* line 267, ../../app/stylesheets/application.scss */
 #about_block #text a:link {
   color: #638ea8;
 }
-/* line 260, ../../app/stylesheets/application.scss */
+/* line 268, ../../app/stylesheets/application.scss */
 #about_block #text a:visited {
   color: #638ea8;
 }
-/* line 262, ../../app/stylesheets/application.scss */
+/* line 270, ../../app/stylesheets/application.scss */
 #about_block #about_image {
   margin: 50px;
   width: 100%;
   margin-left: 450px;
 }
 
-/* line 269, ../../app/stylesheets/application.scss */
+/* line 277, ../../app/stylesheets/application.scss */
 #general_hint {
   color: #666;
   font-weight: regular;
@@ -714,7 +723,7 @@ html {
 }
 
 /* the overlayed element */
-/* line 276, ../../app/stylesheets/application.scss */
+/* line 284, ../../app/stylesheets/application.scss */
 .modal_overlay {
   display: none;
   background-image: url(/images/overlay/white.png);
@@ -725,7 +734,7 @@ html {
 }
 
 /* default close button positioned on upper right corner */
-/* line 286, ../../app/stylesheets/application.scss */
+/* line 294, ../../app/stylesheets/application.scss */
 .modal_overlay .close {
   background-image: url(/images/overlay/close.png);
   position: absolute;
@@ -736,7 +745,7 @@ html {
   width: 35px;
 }
 
-/* line 294, ../../app/stylesheets/application.scss */
+/* line 302, ../../app/stylesheets/application.scss */
 .confirm_dialog {
   background-color: #F0F0F0;
   z-index: 10000;
@@ -750,22 +759,22 @@ html {
   -moz-box-shadow: 0 0 50px #ccc;
   -webkit-box-shadow: 0 0 50px #ccc;
 }
-/* line 295, ../../app/stylesheets/application.scss */
+/* line 303, ../../app/stylesheets/application.scss */
 .confirm_dialog span.sure {
   font-size: 1.25em;
   font-weight: bold;
 }
-/* line 299, ../../app/stylesheets/application.scss */
+/* line 307, ../../app/stylesheets/application.scss */
 .confirm_dialog #buttons {
   width: 100%;
   margin: 20px;
 }
-/* line 301, ../../app/stylesheets/application.scss */
+/* line 309, ../../app/stylesheets/application.scss */
 .confirm_dialog #buttons input {
   width: 75px;
 }
 
-/* line 317, ../../app/stylesheets/application.scss */
+/* line 325, ../../app/stylesheets/application.scss */
 .confirm_dialog .close {
   background-image: url(/images/overlay/close.png);
   position: absolute;

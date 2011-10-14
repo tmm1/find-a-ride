@@ -178,7 +178,15 @@ html {
 }
 
 // contact ride
-#contact_form {
+.contact_response {
+  margin-top: 25px;
+  text-align: center;
+  width: 100%;
+  font-size: 1.0em;
+  color: #b52534;
+}
+
+.contact_form {
   li.field { 
     input { 
       width: 250px;
