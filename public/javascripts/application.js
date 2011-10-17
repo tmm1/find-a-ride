@@ -6,9 +6,8 @@ $(document).ready(function() {
     initInactiveOverlay();
     initConfirmBtns();
     initAccordion();
-    initialize_geo_location();
+    initGeolocation();
 });
-
 
 var isValidEmail = function(email) {
     var email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -280,45 +279,35 @@ var locationSearch = function(){
 
 // Note that using Google Gears requires loading the Javascript
 // at http://code.google.com/apis/gears/gears_init.js
-
-var initialLocation  ;
-var hyderabad = new google.maps.LatLng(17.385044, 78.486671);
-var browserSupportFlag =  new Boolean();
-
-function initialize_geo_location() {
+function initGeolocation() {
     var myOptions = {
         zoom: 6,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
+	var defaultLocation = new google.maps.LatLng(17.385044, 78.486671); //Hyderabad
     var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-
     // Try W3C Geolocation (Preferred)
     if(navigator.geolocation) {
-        browserSupportFlag = true;
+	    var coordLocation = new google.maps.LatLng(17.385044, 78.486671);
         navigator.geolocation.getCurrentPosition(function(position) {
-            initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-            map.setCenter(initialLocation);
+            coordLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+            map.setCenter(coordLocation);
 
         }, function() {
-            handleNoGeolocation(browserSupportFlag);
+            coordLocation = defaultLocation;
+	        map.setCenter(coordLocation);
         });
-        var url = $('#latlng').val();
+        var url = $('#geocode_city_url').val();
         $.ajax({
             url: url,
             data: {
-                lat: initialLocation.toString()
+                lat_long: coordLocation.toString()
             },
             success: function(data) {
             },
             failure : function(){
             }
         })
-    }
-
-    function handleNoGeolocation(errorFlag) {
-        initialLocation = hyderabad;
-        map.setCenter(initialLocation);
-           
     }
 }
 

@@ -13,12 +13,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def geo_location_parameters
-    values = params[:lat].gsub("(","").gsub(")", "").split(",")
+  def geocode_city
+    values = params[:lat_long].gsub("(","").gsub(")", "").split(",")
     res = GoogleGeocoder.reverse_geocode([values[0] , values[1]])
     values = res.full_address.split(",")
-    session[:city] = values[-3]
+    session[:city] = values[-3].strip
     render :text => "success" , :status => 200
   end
-  
 end

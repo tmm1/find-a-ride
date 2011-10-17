@@ -432,4 +432,4 @@ APP_LOCATIONS = { "Hyderabad" => ['Abids',
 ]}
 
 
-APP_CITIES = ["Hyderabad" ]
+APP_CITIES = ["Hyderabad"]

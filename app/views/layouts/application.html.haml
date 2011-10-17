@@ -21,7 +21,6 @@
       #header
         #big-label
           %h1 Find-a-Ride.
-          = render :partial => "/shared/google_map"
         #custom_select
           = select("city", "select", APP_CITIES, :selected => session[:city])
         = render 'shared/user_nav'
@@ -54,3 +53,4 @@
                 %li= link_to("Reset your account password", new_password_path(:user))
       #footer
         Copyright. Pramati Technologies, Hyderabad.
+      = render :partial => "/shared/google_map"
