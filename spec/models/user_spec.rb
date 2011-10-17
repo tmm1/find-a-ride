@@ -40,7 +40,11 @@ describe User do
       @user.update_attributes({:inactive => 1})
       @user.save.should be true
       @user.inactive.should be true
-    end 
+    end
+    
+    it 'should return ext_attributes' do
+      @user.ext_attributes.keys.include?("name").should be_true
+    end
   end
 
   describe "#profile picture" do

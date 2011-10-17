@@ -67,7 +67,11 @@ class User < ActiveRecord::Base
   def photo_attached?
     self.photo.file?
   end
-
+  
+  def ext_attributes
+    self.attributes.merge({"name" => self.name})
+  end
+  
   private
   
   def rewrite_location_attributes

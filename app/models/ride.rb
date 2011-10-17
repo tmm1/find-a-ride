@@ -13,11 +13,21 @@ class Ride < ActiveRecord::Base
     end
     # create ride
     if params[:matcher] == 'drivers'
-      Ride.create(:sharer => contactor, :offerer => contactee, :user_info => user_info, :contact_date => Time.now)
+      ride = Ride.create(:sharer => contactor, :offerer => contactee, :user_info => user_info, :contact_date => Time.now)
+      UserMailer.contact_rider_email(ride).deliver
     elsif params[:matcher] == 'riders'
-      Ride.create(:sharer => contactee, :offerer => contactor, :user_info => user_info, :contact_date => Time.now)
+      ride = Ride.create(:sharer => contactee, :offerer => contactor, :user_info => user_info, :contact_date => Time.now)
+      UserMailer.contact_driver_email(ride).deliver
     end
-    #send email
+    ride
+  end
+
+  def humanized_user_info
+    humanized = {}
+    unless user_info.nil?
+      user_info.keys.each {|k| humanized[k.to_s] = user_info[k]} 
+    end
+    humanized
   end
 end
 
