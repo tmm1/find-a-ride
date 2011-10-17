@@ -35,7 +35,7 @@ en:
       updated: 'Your account was successfully updated'
     mailer:
       confirmation_instructions:
-        subject: 'Find a Ride account verification'
+        subject: 'Find-a-Ride account verification'
       reset_password_instructions:
-        subject: 'Find a Ride password reset'
+        subject: 'Find-a-Ride password reset'
 

@@ -18,6 +18,10 @@ describe User do
       @user.full_name.should == 'Testio Rockio'
     end
     
+    it "should use full name alias method for name of the user" do
+      @user.name.should == @user.full_name
+    end
+    
     it "should rewrite locations attributes before save" do
       @user.update_attributes({:origin => "maDhapUr"}).should == true
       @user.origin.should == 'Madhapur'
@@ -36,7 +40,11 @@ describe User do
       @user.update_attributes({:inactive => 1})
       @user.save.should be true
       @user.inactive.should be true
-    end 
+    end
+    
+    it 'should return ext_attributes' do
+      @user.ext_attributes.keys.include?("name").should be_true
+    end
   end
 
   describe "#profile picture" do
