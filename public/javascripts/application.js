@@ -316,13 +316,7 @@ function initialize_geo_location() {
     }
 
     function handleNoGeolocation(errorFlag) {
-        if (errorFlag == true) {
-            alert("Geolocation service failed.");
-            initialLocation = hyderabad;
-        } else {
-            alert("Your browser doesn't support geolocation. We've placed you in Siberia.");
-            initialLocation = hyderabad;
-        }
+        initialLocation = hyderabad;
         map.setCenter(initialLocation);
            
     }
