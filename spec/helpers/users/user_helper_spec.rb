@@ -11,9 +11,8 @@ describe Users::UserHelper do
 
   it 'should return contact info error count' do
     user = Factory(:user)
-    user.update_attributes({:mobile => '9876sd3210', :landline => '244aa66210'})
+    user.update_attributes({:mobile => '9876sd3210', :landline => '244aa66210', :origin => 'test', :destination => 'test1'})
     user_errors = helper.errors_by_accordion_type(user.errors)
-    user_errors[:contact_info_errors].length.should == 2
+    user_errors[:contact_info_errors].length.should == 4
   end
-
 end
