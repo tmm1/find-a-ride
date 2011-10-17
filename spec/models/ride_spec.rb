@@ -1,10 +1,26 @@
 require 'spec_helper'
 
 describe Ride do
+  describe '#attributes and methods' do
+    before(:all) do
+      @ride = Factory(:ride)
+    end
+    it "should return humanized user info hash" do
+      @ride.user_info = {:name => 'Mahi Dhoni', :email => 'msd@india.com', :phone => '0012201101'}
+      @ride.humanized_user_info.should == {"name" => 'Mahi Dhoni', "email" => 'msd@india.com', "phone" => '0012201101'}
+    end
+  end
+  
   describe '#create_ride' do
     before(:all) do
       @user_1 = Factory(:user)
       @user_2 = Factory(:user)
+      ActionMailer::Base.delivery_method = :test
+      ActionMailer::Base.perform_deliveries = true
+    end
+    
+    before(:each) do
+      ActionMailer::Base.deliveries.clear
     end
     
     it 'should create ride for user looking for drivers' do
@@ -14,6 +30,7 @@ describe Ride do
       ride_created.offerer.should == @user_1
       ride_created.sharer.should == @user_2
       ride_created.user_info.should be_nil
+      ActionMailer::Base.deliveries.size.should == 1
     end
   
     it 'should create ride for user looking for riders' do
@@ -23,6 +40,7 @@ describe Ride do
       ride_created.offerer.should == @user_2
       ride_created.sharer.should == @user_1
       ride_created.user_info.should be_nil
+      ActionMailer::Base.deliveries.size.should == 1
     end
     
     it 'should create ride for anonymous user looking for drivers' do
@@ -32,6 +50,7 @@ describe Ride do
       ride_created.sharer.should be_nil
       ride_created.offerer.should == @user_1
       ride_created.user_info.should == ride_params[:user_info]
+      ActionMailer::Base.deliveries.size.should == 1
     end
     
     it 'should create ride for anonymous user looking for riders' do
@@ -41,6 +60,7 @@ describe Ride do
       ride_created.offerer.should be_nil
       ride_created.sharer.should == @user_2
       ride_created.user_info.should == ride_params[:user_info]
+      ActionMailer::Base.deliveries.size.should == 1
     end
   end
 end

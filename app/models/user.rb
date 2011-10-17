@@ -35,6 +35,8 @@ class User < ActiveRecord::Base
     "#{self.first_name.capitalize} #{self.last_name.capitalize}"
   end
   
+  alias_method :name, :full_name
+  
   def self.find_matches_for_drivers(origin = '', dest = '')
     User.where(:driver => true, :origin.downcase => origin.downcase, :destination.downcase => dest.downcase, :inactive => false)
   end
@@ -65,7 +67,11 @@ class User < ActiveRecord::Base
   def photo_attached?
     self.photo.file?
   end
-
+  
+  def ext_attributes
+    self.attributes.merge({"name" => self.name})
+  end
+  
   private
   
   def rewrite_location_attributes
