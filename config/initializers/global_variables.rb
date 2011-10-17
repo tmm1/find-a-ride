@@ -430,3 +430,6 @@ APP_LOCATIONS = { "Hyderabad" => ['Abids',
 'Yousufguda',
 'Ziaguda'
 ]}
+
+
+APP_CITIES = ["Hyderabad" ]

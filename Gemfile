@@ -15,6 +15,7 @@ gem "omniauth"
 gem "nifty-generators"
 gem "paperclip", "~> 2.4"
 gem "aws-s3"
+gem "geokit"
 
 group :ci do
   gem 'rcov_rails'

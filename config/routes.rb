@@ -16,7 +16,9 @@ PoolRide::Application.routes.draw do
     end
   end
   
+
   match '/location_search' => 'application#location_search', :as => :location_search
+  match '/geo_location_parameters' => 'application#geo_location_parameters'
   match '/twitter' => 'users/omniauth_callback#twitter'
   match '/register_user_with_twitter' => 'users/omniauth_callback#register_user_with_twitter'
  
