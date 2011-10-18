@@ -277,6 +277,20 @@ var locationSearch = function(){
     });
 }
 
+function setAppCity(location){
+    var url = $('#geocode_city_url').val();
+    $.ajax({
+        url: url,
+        data: {
+            lat_long: location.toString()
+        },
+        success: function(data) {
+        },
+        failure : function(){
+        }
+    })
+}
+
 // Note that using Google Gears requires loading the Javascript
 // at http://code.google.com/apis/gears/gears_init.js
 function initGeolocation() {
@@ -284,30 +298,22 @@ function initGeolocation() {
         zoom: 6,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-	var defaultLocation = new google.maps.LatLng(17.385044, 78.486671); //Hyderabad
+    var coordLocation;
+    var defaultLocation = new google.maps.LatLng(17.385044, 78.486671); //Hyderabad
     var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
     // Try W3C Geolocation (Preferred)
+    
     if(navigator.geolocation) {
-	    var coordLocation = new google.maps.LatLng(17.385044, 78.486671);
         navigator.geolocation.getCurrentPosition(function(position) {
             coordLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
             map.setCenter(coordLocation);
+            setAppCity(coordLocation);
 
-        }, function() {
-            coordLocation = defaultLocation;
-	        map.setCenter(coordLocation);
         });
-        var url = $('#geocode_city_url').val();
-        $.ajax({
-            url: url,
-            data: {
-                lat_long: coordLocation.toString()
-            },
-            success: function(data) {
-            },
-            failure : function(){
-            }
-        })
+    }
+    else {
+        map.setCenter(defaultLocation);
+        setAppCity(defaultLocation);
     }
 }
 
