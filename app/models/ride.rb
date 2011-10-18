@@ -14,10 +14,10 @@ class Ride < ActiveRecord::Base
     # create ride
     if params[:matcher] == 'drivers'
       ride = Ride.create(:sharer => contactor, :offerer => contactee, :user_info => user_info, :contact_date => Time.now)
-      UserMailer.contact_rider_email(ride).deliver
+      UserMailer.contact_rider_email(ride, params[:message]).deliver
     elsif params[:matcher] == 'riders'
       ride = Ride.create(:sharer => contactee, :offerer => contactor, :user_info => user_info, :contact_date => Time.now)
-      UserMailer.contact_driver_email(ride).deliver
+      UserMailer.contact_driver_email(ride, params[:message]).deliver
     end
     ride
   end

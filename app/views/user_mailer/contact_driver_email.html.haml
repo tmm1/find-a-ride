@@ -1,6 +1,8 @@
 %p= "Hello #{@to_user["first_name"]}!"
 %br
 %p= "#{@from_user["name"]} who found you on #{link_to('Find-a-Ride', root_url)} is looking to offer a ride."
-%p= "#{@from_user["name"]}'s email is #{@from_user["email"]} if you would like to get in touch and take this further"
+%p= "#{@from_user["name"]}'s email is #{@from_user["email"]} if you would like to get in touch and take this further. Please see below the message from #{@from_user["name"]}"
+%br
+%p= @message
 %br
 %p Find-a-Ride Team
