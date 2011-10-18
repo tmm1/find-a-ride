@@ -278,44 +278,48 @@ body.one_col #header #big-label h1 {
   font-size: 3.5em;
   margin: 0;
 }
-/* line 24, ../../app/stylesheets/partials/_one_col.scss */
+/* line 23, ../../app/stylesheets/partials/_one_col.scss */
+body.one_col #header #big-label span.header_text {
+  cursor: pointer;
+}
+/* line 25, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #header #custom_select {
   position: absolute;
   left: 425px;
   top: 40px;
 }
-/* line 29, ../../app/stylesheets/partials/_one_col.scss */
+/* line 30, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #header #header-logo {
   position: absolute;
   left: 50px;
   top: 6px;
 }
-/* line 34, ../../app/stylesheets/partials/_one_col.scss */
+/* line 35, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #header #user_nav {
   font-size: 1.10em;
   color: #b3b3b3;
 }
-/* line 37, ../../app/stylesheets/partials/_one_col.scss */
+/* line 38, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #header #user_nav #auth {
   position: absolute;
   top: 60px;
   right: 35px;
 }
-/* line 42, ../../app/stylesheets/partials/_one_col.scss */
+/* line 43, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #header #user_nav #no_auth {
   position: absolute;
   top: 80px;
   right: 35px;
 }
-/* line 47, ../../app/stylesheets/partials/_one_col.scss */
+/* line 48, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #header #user_nav a:link {
   color: #638ea8;
 }
-/* line 48, ../../app/stylesheets/partials/_one_col.scss */
+/* line 49, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #header #user_nav a:visited {
   color: #638ea8;
 }
-/* line 52, ../../app/stylesheets/partials/_one_col.scss */
+/* line 53, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #content {
   color: #606060;
   position: relative;
@@ -325,7 +329,7 @@ body.one_col #content {
   border-left: solid 1px #b3b3b3;
   border-right: solid 1px #b3b3b3;
 }
-/* line 62, ../../app/stylesheets/partials/_one_col.scss */
+/* line 63, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #splash_image {
   width: 320px;
   height: 320px;
@@ -335,12 +339,12 @@ body.one_col #splash_image {
   left: 450px;
   top: 395px;
 }
-/* line 72, ../../app/stylesheets/partials/_one_col.scss */
+/* line 73, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #content h2 {
   font-size: 160%;
   margin: 0 0 .5em;
 }
-/* line 77, ../../app/stylesheets/partials/_one_col.scss */
+/* line 78, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #sub-footer {
   background: #e5e5e5;
   padding-top: 10px;
@@ -349,35 +353,35 @@ body.one_col #sub-footer {
   border-left: solid 1px #b3b3b3;
   border-right: solid 1px #b3b3b3;
 }
-/* line 78, ../../app/stylesheets/partials/_one_col.scss */
+/* line 79, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #sub-footer a:link {
   color: #638ea8;
 }
-/* line 79, ../../app/stylesheets/partials/_one_col.scss */
+/* line 80, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #sub-footer a:visited {
   color: #638ea8;
 }
-/* line 86, ../../app/stylesheets/partials/_one_col.scss */
+/* line 87, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #sub-footer #footer-navigation {
   float: left;
   margin-left: 50px;
   padding: 5px;
   font-size: 80%;
 }
-/* line 91, ../../app/stylesheets/partials/_one_col.scss */
+/* line 92, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #sub-footer #footer-navigation #first, body.one_col #sub-footer #footer-navigation #second {
   margin-left: 20px;
   float: left;
 }
-/* line 94, ../../app/stylesheets/partials/_one_col.scss */
+/* line 95, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #sub-footer #footer-navigation #first ul, body.one_col #sub-footer #footer-navigation #second ul {
   list-style-type: none;
 }
-/* line 97, ../../app/stylesheets/partials/_one_col.scss */
+/* line 98, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #sub-footer #footer-navigation #first li, body.one_col #sub-footer #footer-navigation #second li {
   padding-bottom: 5px;
 }
-/* line 104, ../../app/stylesheets/partials/_one_col.scss */
+/* line 105, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #footer {
   color: #b3b3b3;
   font-family: 'Anonymous Pro', sans-serif;

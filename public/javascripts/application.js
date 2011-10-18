@@ -1,5 +1,6 @@
 $(document).ready(function() {
     initCBSwitch();
+    headerTextLink();
     locationSearch();
     initRideSearch();
     initOverlays();
@@ -21,6 +22,13 @@ var constructContactMsg = function(origin, dest, matcher) {
     else if (matcher == 'riders') {
         return 'I see that you are looking to find a ride from '+origin+' to '+dest+'. I would be willing to share a ride with you. Please get in touch with me so we can make this happen.'
     }
+}
+
+var headerTextLink = function(){
+  $("#header #big-label span.header_text").live('click', function(){
+    var url = $(this).attr('redirect_url');
+    window.location.href = url;
+  });
 }
 
 var initAccordion = function() {
