@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe RidesController do
+  include Devise::TestHelpers
   describe "#search rides for drivers" do
     before(:all) do
       User.destroy_all
@@ -36,6 +37,25 @@ describe RidesController do
       response.should be_success
       response.should render_template(:search_results)
       assigns(:paginated_results).size.should == 3
+    end
+  end
+  
+  describe "#search rides for riders excluding the current user" do
+    before(:each) do
+      User.destroy_all
+      3.times { Factory(:user, :origin => 'Madhapur', :destination => 'Kondapur', :rider => true) }
+      @login_user = Factory(:user, :origin => 'Madhapur', :destination => 'Kondapur', :rider => true)
+      @login_user.confirm!
+      sign_in @login_user
+    end
+    
+    it "should exclude the current user from search results" do
+      get 'search', {:origin => 'Madhapur', :dest => 'Kondapur', :matcher => 'riders'}
+      response.should be_success
+      response.should render_template(:search_results)
+      results = assigns(:paginated_results)
+      results.size.should == 3
+      results.include?(@login_user).should be_false
     end
   end
   

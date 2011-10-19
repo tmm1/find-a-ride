@@ -154,6 +154,21 @@ describe User do
     end
   end
   
+  describe "#find matches for riders excluding a user" do
+     before(:all) do
+       User.destroy_all
+       @user1 = Factory(:user, :email => 'test@test8.com', :origin => 'Madhapur', :destination => 'Kondapur', :rider => true)
+       @user2 = Factory(:user, :email => 'test@test9.com', :origin => 'Madhapur', :destination => 'Kondapur', :rider => true)
+       @user3 = Factory(:user, :email => 'test@test10.com', :origin => 'Madhapur', :destination => 'Kondapur', :rider => true)
+     end
+
+     it "should find matches for riders excluding a user" do
+       matches = User.find_matches_for_riders('madhApur', 'Kondapur', @user3)
+       matches.size.should == 2
+       matches.collect {|m| m.id}.should == [@user1.id, @user2.id]
+     end
+   end
+  
   describe "#save" do
     before(:all) do
       @user = Factory.build(:user)
