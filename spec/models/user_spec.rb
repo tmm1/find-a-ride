@@ -13,6 +13,23 @@ describe User do
     before(:each) do
       @user = Factory(:user, :first_name => 'testio', :last_name => 'rockio')
     end
+
+    it "should reset passowrd with new password" do
+      @user.update_with_password({:password => 'changeme!',:password_confirmation => 'changeme!'})
+      @user.password.should == 'changeme!'
+    end
+    
+    it "should update user info without password" do
+      @user.update_with_password({:first_name => 'Devise!'})
+      @user.first_name.should == 'Devise!'
+    end
+
+    it "should update user info with password" do
+      @user.update_with_password({:first_name => 'Devise!',:last_name => 'Devise Last Name',:password => 'changemeagain!',:password_confirmation => 'changemeagain!'})
+      @user.first_name.should == 'Devise!'
+      @user.last_name.should == 'Devise Last Name'
+      @user.password.should == 'changemeagain!'
+    end
     
     it "should return the full name of the user" do
       @user.full_name.should == 'Testio Rockio'

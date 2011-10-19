@@ -3,9 +3,9 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_attached_file :photo, :styles => { :thumb => "100x100>" },
-                                         :storage => :s3,
-                                         :s3_credentials => "#{Rails.root.to_s}/config/s3.yml",
-                                         :path => "/:style/:id/:filename"
+    :storage => :s3,
+    :s3_credentials => "#{Rails.root.to_s}/config/s3.yml",
+    :path => "/:style/:id/:filename"
                                          
   has_many :offered_rides, :class_name => 'Ride', :foreign_key => 'offerer_id'
   has_many :shared_rides, :class_name => 'Ride', :foreign_key => 'sharer_id'
@@ -27,8 +27,11 @@ class User < ActiveRecord::Base
   before_validation :rewrite_location_attributes
 
   def update_with_password(params={})
-    params.delete(:current_password)
-    self.update_without_password(params)
+    if params[:password].blank?
+      self.update_without_password(params)
+    elsif !params[:password].blank? || !params[:password_confirmation].blank?
+      self.update_attributes(params)
+    end
   end
   
   def full_name
