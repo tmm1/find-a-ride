@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
-  devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_attached_file :photo, :styles => { :thumb => "100x100>" },
     :storage => :s3,
@@ -40,12 +39,24 @@ class User < ActiveRecord::Base
   
   alias_method :name, :full_name
   
-  def self.find_matches_for_drivers(origin = '', dest = '')
-    User.where(:driver => true, :origin.downcase => origin.downcase, :destination.downcase => dest.downcase, :inactive => false)
+  def self.find_matches_for_drivers(origin = '', dest = '', current_user=nil)
+    if current_user
+      items_table = Arel::Table.new(:users)
+      users_without_current = User.where(items_table[:id].not_in current_user.id)
+      User.where(:driver => true, :origin.downcase => origin.downcase, :destination.downcase => dest.downcase, :inactive => false, :id => users_without_current)
+    else
+      User.where(:driver => true, :origin.downcase => origin.downcase, :destination.downcase => dest.downcase, :inactive => false)
+    end
   end
   
-  def self.find_matches_for_riders(origin = '', dest = '')
-    User.where(:rider => true, :origin.downcase => origin.downcase, :destination.downcase => dest.downcase, :inactive => false)
+  def self.find_matches_for_riders(origin = '', dest = '', current_user=nil)
+    if current_user
+      items_table = Arel::Table.new(:users)
+      users_without_current = User.where(items_table[:id].not_in [current_user.id])
+      User.where(:rider => true, :origin.downcase => origin.downcase, :destination.downcase => dest.downcase, :inactive => false, :id => users_without_current)
+    else
+      User.where(:rider => true, :origin.downcase => origin.downcase, :destination.downcase => dest.downcase, :inactive => false)
+    end
   end
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
