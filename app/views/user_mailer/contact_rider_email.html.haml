@@ -1,14 +1,13 @@
-%p= "Hello #{@to_user["first_name"]}!"
+%span= "Hello #{@to_user["first_name"]}!"
 %br
 %p= "#{@from_user["name"]} who found you on #{link_to('Find-a-Ride', root_url)} is looking to share a ride."
-%p= "Please see below the message from #{@from_user["name"]}"
-%br
-%p= @message
-%br
-%p= "The #{@from_user["name"]}'s contact information is provided below if you would like to get in touch and take this further"
+%p= "Please see below the message from #{@from_user["name"]}:"
 %p
-  %b= "#{@from_user["email"]}"
-  %br
-  %b= "#{@from_user["phone"]}"
-%br
-%p Find-a-Ride Team
+  %b= @message
+%p= "#{@from_user["name"]}'s contact information is here if you would like to hook up and take this further"
+%b
+  %ul{:style => 'list-style-type: none;'}
+    %li= link_to("#{@from_user["email"]}", "mailto:#{@from_user["email"]}")
+    %li= "#{@from_user["phone"]}"
+%p 
+  %b Find-a-Ride Team

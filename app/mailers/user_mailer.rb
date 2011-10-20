@@ -1,5 +1,6 @@
 class UserMailer < ActionMailer::Base
   default :from => "champ@find-a-ride.com"
+  layout 'mailer'
   
   def contact_rider_email(ride, message)
     @from_user = ride.sharer.try(:ext_attributes) || ride.humanized_user_info
