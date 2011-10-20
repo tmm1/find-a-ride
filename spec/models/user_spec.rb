@@ -73,7 +73,13 @@ describe User do
     end
     
     it 'should return ext_attributes' do
-      @user.ext_attributes.keys.include?("name").should be_true
+      @user.ext_attributes.keys == ['name', 'phone']
+    end
+    
+    it 'should return the phone' do
+      @user.mobile = '3012211221'
+      @user.landline = '3032211221'
+      @user.phone.should == '3012211221'
     end
   end
 

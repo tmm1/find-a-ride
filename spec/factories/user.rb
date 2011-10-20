@@ -6,5 +6,6 @@ Factory.define :user do |f|
   f.password_confirmation 'test1234'
   f.origin 'Madhapur'
   f.destination 'Kondapur'
-  f.rider 1
+  f.rider true
+  f.mobile '8091221221'
 end

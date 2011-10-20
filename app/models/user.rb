@@ -86,7 +86,11 @@ class User < ActiveRecord::Base
   end
   
   def ext_attributes
-    self.attributes.merge({"name" => self.name})
+    self.attributes.merge({"name" => self.name, "phone" => self.phone})
+  end
+  
+  def phone
+    self.mobile || self.landline
   end
   
   private
