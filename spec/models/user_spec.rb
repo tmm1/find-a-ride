@@ -40,17 +40,26 @@ describe User do
     end
     
     it "should rewrite locations attributes before save" do
-      @user.update_attributes({:origin => "maDhapUr"}).should == true
+      @user.update_attributes({:origin => "maDhapUr", :destination => "konDaPur", :rider => "1"}).should == true
       @user.origin.should == 'Madhapur'
-      @user.update_attributes({:destination => "madHapur"}).should == true
-      @user.destination.should == 'Madhapur'
+      @user.destination.should == 'Kondapur'
+      @user.rider.should be true
     end
     
     it "should validate inclusion of locations attributes in APP_LOCATIONS" do
-      @user.update_attributes({:origin => "Madhapur"}).should == true
-      @user.update_attributes({:destination => "Madhapur"}).should == true
+      @user.update_attributes({:origin => "Madhapur", :destination => ""}).should == false
+      @user.update_attributes({:origin => "Kondapur", :destination => "Madhapur", :rider => "", :driver => ""}).should == false
       @user.update_attributes({:origin => "vidhyadhar"}).should == false
       @user.update_attributes({:destination => "vidhyadhar"}).should == false
+    end
+
+    it "should fail rider and driver validations" do
+      @user.update_attributes({:rider => "", :driver => ""}).should == false
+    end
+
+    it "should update rider or driver successfully" do
+      @user.update_attributes({:rider => "1", :driver => ""}).should == true
+      @user.update_attributes({:rider => "", :driver => "1"}).should == true
     end
  
     it "should update inactive attribute successfully" do
