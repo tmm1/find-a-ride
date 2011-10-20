@@ -1,5 +1,4 @@
 module Users::UserHelper
-
   def errors_by_accordion_type(user_errors)
     return {} if user_errors.blank?
     personal_info_errors = []
@@ -19,6 +18,5 @@ module Users::UserHelper
     account_setting_errors << user_errors[:password] if !user_errors[:password].blank?
     account_setting_errors << user_errors[:password_confirmation] if !user_errors[:password_confirmation].blank?
     {:personal_info_errors => personal_info_errors, :contact_info_errors => contact_info_errors, :account_setting_errors => account_setting_errors}
-end
-
+  end
 end

@@ -1,13 +1,7 @@
-class RiderDriverValidator < ActiveModel::EachValidator
-  def validate_each(record, attribute, value)
-    record.errors[attribute] << 'Select atleast one of the two options'
-  end
-end
-
 class User < ActiveRecord::Base
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
-
   include ActiveModel::Validations
+  
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_attached_file :photo, :styles => { :thumb => "100x100>" },
     :storage => :s3,
     :s3_credentials => "#{Rails.root.to_s}/config/s3.yml",
@@ -30,7 +24,7 @@ class User < ActiveRecord::Base
   validates :terms, :acceptance => true, :on => :create
   validates_attachment_content_type :photo, :content_type => %w(image/jpeg image/jpg image/png image/gif), :message => 'must be of type jpeg, png or gif', :if => :photo_attached?
   validates_attachment_size :photo, :less_than => 3.megabytes, :message => 'cannot be greater than 3 MB', :if => :photo_attached?
-  validates :rider, :rider_driver => true, :if => Proc.new {|a| !a.driver and !a.rider}, :on => :update
+  validates :rider, :rider_driver => true, :on => :update
 
   before_validation :rewrite_location_attributes
 
