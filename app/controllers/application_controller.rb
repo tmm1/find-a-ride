@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   include Geokit::Geocoders
   
   def location_search    
-    @result = (APP_LOCATIONS[params[:city]].map do |l|
-        l if l.to_s.match(params[:q].to_s.try(:downcase).try(:titleize))
+    @result = (APP_LOCATIONS[params[:city]].collect {|loc| loc.downcase}.map do |l|
+        l.titleize if l.to_s.match(params[:q].to_s.try(:downcase))
       end).compact
     respond_to do |wants|
       wants.json {

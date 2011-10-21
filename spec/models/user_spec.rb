@@ -41,8 +41,8 @@ describe User do
     
     it "should rewrite locations attributes before save" do
       @user.update_attributes({:origin => "maDhapUr", :destination => "konDaPur", :rider => "1"}).should == true
-      @user.origin.should == 'Madhapur'
-      @user.destination.should == 'Kondapur'
+      @user.origin.should == 'madhapur'
+      @user.destination.should == 'kondapur'
       @user.rider.should be true
     end
     
