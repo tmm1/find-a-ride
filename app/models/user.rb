@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :presence => true
   validates :origin, :destination, :presence => true, :on => :update
   validates :mobile, :landline, :format => { :with => /^\d{10}$/, :allow_blank => true}
-  validates_inclusion_of :origin, :destination, :in => APP_LOCATIONS["Hyderabad"], :message => "entered is not recognized by our system.", :on => :update
+  validates_inclusion_of :origin, :destination, :in => APP_LOCATIONS["Hyderabad"].collect {|l| l.downcase}, :message => "is not recognized by our system.", :on => :update
   validates :terms, :acceptance => true, :on => :create
   validates_attachment_content_type :photo, :content_type => %w(image/jpeg image/jpg image/png image/gif), :message => 'must be of type jpeg, png or gif', :if => :photo_attached?
   validates_attachment_size :photo, :less_than => 3.megabytes, :message => 'cannot be greater than 3 MB', :if => :photo_attached?
@@ -46,9 +46,9 @@ class User < ActiveRecord::Base
     if current_user
       items_table = Arel::Table.new(:users)
       users_without_current = User.where(items_table[:id].not_in current_user.id)
-      User.where(:driver => true, :origin.downcase => origin.downcase, :destination.downcase => dest.downcase, :inactive => false, :id => users_without_current)
+      User.where(:driver => true, :origin => origin.downcase, :destination => dest.downcase, :inactive => false, :id => users_without_current)
     else
-      User.where(:driver => true, :origin.downcase => origin.downcase, :destination.downcase => dest.downcase, :inactive => false)
+      User.where(:driver => true, :origin => origin.downcase, :destination => dest.downcase, :inactive => false)
     end
   end
   
@@ -56,9 +56,9 @@ class User < ActiveRecord::Base
     if current_user
       items_table = Arel::Table.new(:users)
       users_without_current = User.where(items_table[:id].not_in [current_user.id])
-      User.where(:rider => true, :origin.downcase => origin.downcase, :destination.downcase => dest.downcase, :inactive => false, :id => users_without_current)
+      User.where(:rider => true, :origin => origin.downcase, :destination => dest.downcase, :inactive => false, :id => users_without_current)
     else
-      User.where(:rider => true, :origin.downcase => origin.downcase, :destination.downcase => dest.downcase, :inactive => false)
+      User.where(:rider => true, :origin => origin.downcase, :destination => dest.downcase, :inactive => false)
     end
   end
 
@@ -96,8 +96,8 @@ class User < ActiveRecord::Base
   private
   
   def rewrite_location_attributes
-    self.origin = self.origin.try(:downcase).try(:titleize)
-    self.destination = self.destination.try(:downcase).try(:titleize)
+    self.origin = self.origin.try(:downcase)
+    self.destination = self.destination.try(:downcase)
   end
 end
 
