@@ -3,9 +3,8 @@ form {
   @include blueprint-form; }
 
 #form_wrapper, .form_wrapper {
-  box-shadow: 1px 1px 11px #B3B3B3;
-  background: #e5e5e5;
-  border-color: #e5e5e5;
+  box-shadow: 1px 1px 11px #AEB6B9;
+  border: solid 2px #AEB6B9;
   -moz-border-radius: 10px;
   border-radius: 10px;
   margin-top: 20px;
