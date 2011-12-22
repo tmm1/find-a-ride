@@ -61,9 +61,8 @@ html {
 	margin-right: auto; 
 	font-size: 125%;
   }
-  background: #e5e5e5;
-  border-color: #e5e5e5;
-  box-shadow: 1px 1px 11px #B3B3B3;
+  border: solid 2px #AEB6B9;
+  box-shadow: 1px 1px 11px #AEB6B9;
   -moz-border-radius: 10px;
   border-radius: 10px;
   padding: 20px;
@@ -115,8 +114,8 @@ html {
   }
   #results {
     .pagination {
-	  background: #f1f1f1;
-	  border: 1px solid #e5e5e5;
+	  border: solid 2px #AEB6B9;
+	  box-shadow: 1px 1px 11px #AEB6B9;
 	  text-align: center;
 	  padding: 1em;
 	  cursor: default;
@@ -152,10 +151,10 @@ html {
       margin-right: 175px;
       margin-top: 20px;
       margin-bottom: 20px;
-      background: #e5e5e5;
-	  border-color: #e5e5e5;
-	  box-shadow: 1px 1px 11px #B3B3B3;
+      border: solid 2px #AEB6B9;
+	  box-shadow: 1px 1px 11px #AEB6B9;
 	  -moz-border-radius: 10px;
+	   border-radius: 10px;
 	 table {
 	      margin-left: 50px;
 	      margin-top: 25px;
@@ -234,8 +233,6 @@ html {
 #flash_alert, #flash_error, #flash_warning, #flash_notice {
   text-align: center;
   padding: 10px;
-  background: #eceeeb;
-  border-color: #eceeeb;
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -253,10 +250,9 @@ html {
 }
 
 #about_block {
-  background: #e5e5e5;
-  border-color: #e5e5e5;
+  border: solid 2px #AEB6B9;
   -moz-border-radius: 10px;
-  box-shadow: 1px 1px 11px #B3B3B3;
+  box-shadow: 1px 1px 11px #AEB6B9;
   border-radius: 10px;
   padding: 20px;
   text_align: left;
