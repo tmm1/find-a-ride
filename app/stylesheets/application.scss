@@ -333,3 +333,46 @@ html {
   height: 35px;
   width: 35px;
 }
+ul.css_tabs {
+  border-bottom: 1px solid #666666;
+  height: 30px;
+  margin: 0 !important;
+  padding: 0;
+  a.current {
+    background-color: #DDDDDD;
+    border-bottom: 1px solid #DDDDDD;
+    color: #000000;
+    cursor: default;
+  }
+ a {
+    -moz-border-radius: 4px 4px 0 0;
+    background-color: #EFEFEF;
+    border-color: #666666 #666666 -moz-use-text-color;
+    border-style: solid solid none;
+    border-width: 1px 1px 0;
+    color: #777777;
+    display: block;
+    float: left;
+    font-size: 13px;
+    height: 18px;
+    margin-right: 2px;
+    outline: 0 none;
+    padding: 5px 30px;
+    position: relative;
+    text-decoration: none;
+    top: 1px;
+  }
+ li {
+    float: left;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+.css_panes div.tab_content {
+  background-color: #DDDDDD;
+  border-color: #666666;
+  border-style: solid;
+  border-width: 0 1px 1px;
+  min-height: 150px;
+}

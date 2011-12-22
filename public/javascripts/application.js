@@ -8,6 +8,7 @@ $(document).ready(function() {
     initConfirmBtns();
     initAccordion();
     initGeolocation();
+    tabbed();
 });
 
 var isValidEmail = function(email) {
@@ -323,6 +324,16 @@ function initGeolocation() {
         map.setCenter(defaultLocation);
         setAppCity(defaultLocation);
     }
+}
+
+var tabbed = function(){
+  $(function() {
+
+    $("ul.css_tabs").tabs("div.css_panes > div", {
+      effect: 'ajax'
+    });
+
+  });
 }
 
 
