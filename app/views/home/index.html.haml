@@ -1,3 +1,13 @@
 = render 'shared/tabs'
 %div.css_panes
   %div.tab_content{:style=>"display:block"}
+- unless user_signed_in?
+  #signup_block
+    %h1
+      Sign up
+      = link_to('here', new_registration_path(:user))
+      or use your
+      = link_to('Facebook', user_omniauth_authorize_path(:facebook))
+      = "/"
+      = link_to('Twitter', user_omniauth_authorize_path(:twitter))
+      account.

@@ -21,16 +21,6 @@
   #submit
     %input{:id => 'search_rides', :class => 'submit_button', :type => 'submit', :value => 'GO!', :search_url => search_rides_path}
 #search_results_block{:style => 'display:none'}
-- unless user_signed_in?
-  #signup_block
-    %h1
-      Sign up
-      = link_to('here', new_registration_path(:user))
-      or use your
-      = link_to('Facebook', user_omniauth_authorize_path(:facebook))
-      = "/"
-      = link_to('Twitter', user_omniauth_authorize_path(:twitter))
-      account.
 %script{:type=>"text/javascript"}
   initCBSwitch();
   locationSearch();
