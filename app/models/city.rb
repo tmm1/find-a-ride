@@ -1,12 +1,12 @@
-
-
+class City < ActiveRecord::Base
+  has_many :locations
+end
 # == Schema Information
 #
-# Table name: locations
+# Table name: cities
 #
 #  id         :integer(4)      not null, primary key
 #  name       :string(255)
-#  city_id    :integer(4)
 #  created_at :datetime
 #  updated_at :datetime
 #
