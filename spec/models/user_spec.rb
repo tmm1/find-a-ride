@@ -303,6 +303,7 @@ describe User do
 end
 
 
+
 # == Schema Information
 #
 # Table name: users
@@ -325,12 +326,8 @@ end
 #  updated_at             :datetime
 #  first_name             :string(255)
 #  last_name              :string(255)
-#  driver                 :boolean(1)
-#  rider                  :boolean(1)
 #  mobile                 :string(255)
 #  landline               :string(255)
-#  origin                 :string(255)
-#  destination            :string(255)
 #  photo_file_name        :string(255)
 #  photo_content_type     :string(255)
 #  photo_file_size        :integer(4)

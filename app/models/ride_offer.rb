@@ -1,6 +1,5 @@
-class Ride < ActiveRecord::Base
-  has_one :origin, :class_name => 'Location', :foreign_key => 'origin'
-  has_one :destination, :class_name => 'Location', :foreign_key => 'destination'
+class RideOffer < Ride
+  belongs_to :offerer, :class_name => 'User', :foreign_key => 'user_id'
 end
 
 # == Schema Information

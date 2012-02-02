@@ -2,31 +2,27 @@ class User < ActiveRecord::Base
   include ActiveModel::Validations
   
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  has_many :locations, :through => :user_locations
+  has_many :ride_offers
+  has_many :ride_requests
+  has_many :hook_ups
+  
   has_attached_file :photo, :styles => { :thumb => "100x100>" },
     :storage => :s3,
     :s3_credentials => "#{Rails.root.to_s}/config/s3.yml",
     :path => "/:style/:id/:filename"
 
-  has_many :offered_rides, :class_name => 'Ride', :foreign_key => 'offerer_id'
-  has_many :shared_rides, :class_name => 'Ride', :foreign_key => 'sharer_id'
-
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me,
-    :mobile, :landline, :driver, :rider, :first_name, :last_name, :origin, :destination,
-    :terms, :photo, :photo_content_type, :photo_file_size, :inactive
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :mobile, :landline, :first_name, :last_name, :terms, :photo, :photo_content_type, :photo_file_size, :inactive
 
   devise :omniauthable
 
   validates :first_name, :last_name, :presence => true
-  validates :origin, :destination, :presence => true, :on => :update
   validates :mobile, :landline, :format => { :with => /^\d{10}$/, :allow_blank => true}
   validates_inclusion_of :origin, :destination, :in => APP_LOCATIONS["Hyderabad"].collect {|l| l.downcase}, :message => "is not recognized by our system.", :on => :update
   validates :terms, :acceptance => true, :on => :create
   validates_attachment_content_type :photo, :content_type => %w(image/jpeg image/jpg image/png image/gif), :message => 'must be of type jpeg, png or gif', :if => :photo_attached?
   validates_attachment_size :photo, :less_than => 3.megabytes, :message => 'cannot be greater than 3 MB', :if => :photo_attached?
-  validates :rider, :rider_driver => true, :on => :update
-
-  before_validation :rewrite_location_attributes
 
   def update_with_password(params={})
     if params[:password].blank?
@@ -41,26 +37,6 @@ class User < ActiveRecord::Base
   end
   
   alias_method :name, :full_name
-  
-  def self.find_matches_for_drivers(origin = '', dest = '', current_user=nil)
-    if current_user
-      items_table = Arel::Table.new(:users)
-      users_without_current = User.where(items_table[:id].not_in current_user.id)
-      User.where(:driver => true, :origin => origin.downcase, :destination => dest.downcase, :inactive => false, :id => users_without_current)
-    else
-      User.where(:driver => true, :origin => origin.downcase, :destination => dest.downcase, :inactive => false)
-    end
-  end
-  
-  def self.find_matches_for_riders(origin = '', dest = '', current_user=nil)
-    if current_user
-      items_table = Arel::Table.new(:users)
-      users_without_current = User.where(items_table[:id].not_in [current_user.id])
-      User.where(:rider => true, :origin => origin.downcase, :destination => dest.downcase, :inactive => false, :id => users_without_current)
-    else
-      User.where(:rider => true, :origin => origin.downcase, :destination => dest.downcase, :inactive => false)
-    end
-  end
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token['extra']['user_hash']
@@ -85,21 +61,12 @@ class User < ActiveRecord::Base
     self.photo.file?
   end
   
-  def ext_attributes
-    self.attributes.merge({"name" => self.name, "phone" => self.phone})
-  end
-  
   def phone
     self.mobile || self.landline
   end
-  
-  private
-  
-  def rewrite_location_attributes
-    self.origin = self.origin.try(:downcase)
-    self.destination = self.destination.try(:downcase)
-  end
 end
+
+
 
 
 
@@ -125,12 +92,8 @@ end
 #  updated_at             :datetime
 #  first_name             :string(255)
 #  last_name              :string(255)
-#  driver                 :boolean(1)
-#  rider                  :boolean(1)
 #  mobile                 :string(255)
 #  landline               :string(255)
-#  origin                 :string(255)
-#  destination            :string(255)
 #  photo_file_name        :string(255)
 #  photo_content_type     :string(255)
 #  photo_file_size        :integer(4)

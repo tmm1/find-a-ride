@@ -65,16 +65,20 @@ describe Ride do
   end
 end
 
+
 # == Schema Information
 #
 # Table name: rides
 #
-#  id           :integer(4)      not null, primary key
-#  offerer_id   :integer(4)
-#  sharer_id    :integer(4)
-#  user_info    :string(1000)
-#  contact_date :datetime
-#  created_at   :datetime
-#  updated_at   :datetime
+#  id          :integer(4)      not null, primary key
+#  origin      :integer(4)
+#  destination :integer(4)
+#  ride_time   :datetime
+#  fulfilled   :boolean(1)
+#  vehicle     :string(255)
+#  user_id     :integer(4)
+#  type        :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
 #
 

@@ -16,4 +16,20 @@ describe HomeController do
       response.should render_template(:about)
     end
   end
+  
+  describe "#request_ride" do
+    it "should request ride" do
+      get 'request_ride'
+      response.should be_success
+      response.should render_template(:request_ride)
+    end
+  end
+  
+  describe "#offer_ride" do
+    it "should offer_ride" do
+      get 'offer_ride'
+      response.should be_success
+      response.should render_template(:offer_ride)
+    end
+  end
 end

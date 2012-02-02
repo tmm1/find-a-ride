@@ -2,8 +2,6 @@ class AddColumnsToUsers < ActiveRecord::Migration
   def self.up
     add_column :users, :first_name, :string
     add_column :users, :last_name, :string
-    add_column :users, :driver, :boolean
-    add_column :users, :rider, :boolean
     add_column :users, :mobile, :string
     add_column :users, :landline, :string
 

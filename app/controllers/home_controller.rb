@@ -3,12 +3,14 @@ class HomeController < ApplicationController
   def about
   end
   
-  def request_for_ride
+  def index
+  end
+  
+  def request_ride
     render :layout => false
   end
   
-  def offer_for_ride
+  def offer_ride
     render :layout => false
   end
- 
 end
