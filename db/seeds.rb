@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+APP_CITIES.each do |city|
+  City.create(:name => city)
+end
+
+APP_LOCATIONS.each do |city,locations|
+    city = City.find_by_name(city)
+  locations.each do |location|
+    city.locations.create(:name => location) unless location.blank?
+  end
+end  

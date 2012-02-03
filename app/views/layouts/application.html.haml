@@ -24,7 +24,7 @@
             %span{:class => 'header_text', :redirect_url => root_url} Find-a-Ride.
           = render :partial => "/shared/google_map"
         #custom_select
-          = select("city", "select", APP_CITIES, :selected => session[:city])
+          = select("city", "select", City.all.collect(&:name), :selected => session[:city])
         = render 'shared/user_nav'
       .clear
       #content
