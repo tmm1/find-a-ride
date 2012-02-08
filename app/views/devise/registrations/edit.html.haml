@@ -29,10 +29,6 @@
         .contact_profile
           = f.input :mobile, :label => 'Mobile number'
           = f.input :landline, :label => 'Landline number'
-          = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => :origin, :label => 'Your area of origin'}
-          = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => :destination, :label => 'Your area of destination'}
-          = f.input :driver, :label => 'Do you opt to offer rides?', :hint => "(you wish to drive other people in your car)"
-          = f.input :rider, :label => 'Do you want to share a ride?', :hint => "(you want to find someone who can drive you)"
         %h3
           %a{:href => "#"} Account Settings
           - if errors_by_accordion && !errors_by_accordion[:account_setting_errors].blank?
