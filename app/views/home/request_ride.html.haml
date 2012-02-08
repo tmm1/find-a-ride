@@ -1,25 +1,2 @@
-#search_block
-  #search_error{:style => 'display:none'}
-    We need both the fields to be filled in to perform a search!
-  #inputs
-    = render :partial => "shared/auto_search_input", :locals => {:form_element => nil, :name => :search_origin, :label => 'You start here*'}
-    = render :partial => "shared/auto_search_input", :locals => {:form_element => nil, :name => :search_destination, :label => 'You go here*'}
-  #options
-    %p{:class => "field switch"}
-      %input{:type => "radio", :id => "search_get_ride", :name => "field", :value => "1"}
-      %input{:type => "radio", :id => "search_offer_ride", :name => "field", :value => "1"}
-      %label{:for => "search_get_ride", :class => "cb-enable selected"}
-        %span I m looking for a ride
-      %label{:for => "search_offer_ride", :class => "cb-disable"}
-        %span I want to offer a ride
-  #spinner_block{:style => 'display:none'}
-    = image_tag 'indicator.gif'
-    Looking for rides..
-  #submit
-    %input{:id => 'search_rides', :class => 'submit_button', :type => 'submit', :value => 'GO!', :search_url => search_rides_path}
-#search_results_block{:style => 'display:none'}
-%script{:type=>"text/javascript"}
-  initCBSwitch();
-  locationSearch();
-  initRideSearch();
+Request a Ride
 

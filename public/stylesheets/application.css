@@ -788,25 +788,25 @@ html {
 
 /* line 328, ../../app/stylesheets/application.scss */
 ul.css_tabs {
-  border-bottom: 1px solid #666666;
+  border-bottom: 2px solid #666666;
   height: 30px;
   margin: 0 !important;
   padding: 0;
 }
 /* line 333, ../../app/stylesheets/application.scss */
 ul.css_tabs a.current {
-  background-color: #DDDDDD;
-  border-bottom: 1px solid #DDDDDD;
+  background-color: #FFF;
+  border-bottom: 2px solid #FFF;
   color: #000000;
   cursor: default;
 }
 /* line 339, ../../app/stylesheets/application.scss */
 ul.css_tabs a {
   -moz-border-radius: 4px 4px 0 0;
-  background-color: #EFEFEF;
+  background-color: #FFF;
   border-color: #666666 #666666 -moz-use-text-color;
-  border-style: solid solid none;
-  border-width: 1px 1px 0;
+  border-style: solid solid solid;
+  border-width: 2px 2px 2px;
   color: #777777;
   display: block;
   float: left;
@@ -829,9 +829,9 @@ ul.css_tabs li {
 
 /* line 364, ../../app/stylesheets/application.scss */
 .css_panes div.tab_content {
-  background-color: #DDDDDD;
+  background-color: #FFF;
   border-color: #666666;
   border-style: solid;
-  border-width: 0 1px 1px;
+  border-width: 0 2px 2px;
   min-height: 150px;
 }
