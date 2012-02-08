@@ -1,10 +1,12 @@
 - form_element = form_element || ''
 - name = name || 'search'
 - url = location_search_path
+- selected_value = selected_value || '' 
+- style = style || ''
 
 - unless form_element.blank?
   = form_element.input(name, :input_html => {:class => 'ac_input autocomplete', :autocomplete => "off"}, :label => label)
 - else
   %span= "#{label}"
-  = text_field_tag(name, '', :class => 'ac_input autocomplete', :autocomplete => "off")
+  = text_field_tag(name, '', :class => 'ac_input autocomplete', :autocomplete => "off", :value => selected_value,:style => style)
 = hidden_field_tag('data-url', url)

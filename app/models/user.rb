@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   include ActiveModel::Validations
   
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  has_many :user_locations
   has_many :locations, :through => :user_locations
   has_many :ride_offers
   has_many :ride_requests
