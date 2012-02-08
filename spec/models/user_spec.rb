@@ -39,41 +39,10 @@ describe User do
       @user.name.should == @user.full_name
     end
     
-    it "should rewrite locations attributes before save" do
-      @user.update_attributes({:origin => "maDhapUr", :destination => "konDaPur", :rider => "1"}).should == true
-      @user.origin.should == 'madhapur'
-      @user.destination.should == 'kondapur'
-      @user.rider.should be true
-    end
-    
-    it "should validate inclusion of locations attributes in APP_LOCATIONS" do
-      @user.update_attributes({:origin => "Kondapur", :destination => "Madhapur", :rider => "", :driver => ""}).should == false
-      @user.update_attributes({:origin => "vidhyadhar"}).should == false
-      @user.update_attributes({:destination => "vidhyadhar"}).should == false
-    end
-    
-    it 'should fail update with no origin and destination' do
-      @user.update_attributes({:origin => "", :destination => ""}).should == false
-      @user.update_attributes({:origin => "Madhapur", :destination => ""}).should == false
-    end
-
-    it "should fail rider and driver validation" do
-      @user.update_attributes({:rider => nil, :driver => nil}).should == false
-    end
-
-    it "should update rider or driver successfully" do
-      @user.update_attributes({:rider => true, :driver => nil}).should == true
-      @user.update_attributes({:rider => nil, :driver => true}).should == true
-    end
- 
     it "should update inactive attribute successfully" do
       @user.update_attributes({:inactive => 1})
       @user.save.should be true
       @user.inactive.should be true
-    end
-    
-    it 'should return ext_attributes' do
-      @user.ext_attributes.keys == ['name', 'phone']
     end
     
     it 'should return the phone' do
@@ -110,101 +79,6 @@ describe User do
     end
   end
   
-  describe "#find matches for drivers" do
-    before(:all) do
-      @user1 = Factory(:user, :email => 'test@test1.com', :origin => 'Madhapur', :destination => 'Kondapur', :driver => true)
-      @user2 = Factory(:user, :email => 'test@test2.com', :origin => 'Madhapur', :destination => 'Kondapur', :driver => true)
-      @user3 = Factory(:user, :email => 'test@test3.com', :origin => 'Madhapur', :destination => 'Banjara Hills', :driver => true)
-      @user4 = Factory(:user, :email => 'test@test4.com', :origin => 'Kondapur', :destination => 'Miyapur', :driver => true)
-      @user5 = Factory(:user, :email => 'test@test5.com', :origin => 'Madhapur', :destination => 'Kondapur', :driver => true)
-      @user6 = Factory(:user, :email => 'test@test6.com', :origin => 'Madhapur', :destination => 'Kondapur', :driver => nil, :rider => true)
-      @user7 = Factory(:user, :email => 'test@test7.com', :origin => nil, :destination => nil, :driver => true)
-    end                       
-    
-    it "should find matches for Madhapur to Kondapur" do
-      matches = User.find_matches_for_drivers('madhApur', 'Kondapur')
-      matches.should_not be_nil
-      matches.size.should == 3
-      matches.collect {|m| m.id}.should == [@user1.id, @user2.id, @user5.id]
-    end
-    
-    it "should not find matches for Miyapur to Hitec city" do
-      matches = User.find_matches_for_drivers('Miyapur', 'Hitec city')
-      matches.should == []
-    end
-    
-    it "should not find matches for blank origin or destination" do
-      matches = User.find_matches_for_drivers
-      matches.should == []
-    end
-
-    it "should find matches for drivers excluding inactive drivers" do
-      matches = User.find_matches_for_drivers('madhApur', 'Kondapur')
-      matches.size.should == 3
-      @user1.update_attributes({:inactive => 1})
-      @user1.save.should be true
-      matches = User.find_matches_for_drivers('madhApur', 'Kondapur')
-      matches.size.should == 2
-      @user1.update_attributes({:inactive => 0})
-      @user1.save.should be true
-      matches = User.find_matches_for_drivers('madhApur', 'Kondapur')
-      matches.size.should == 3
-    end
-  end
-  
-  describe "#find matches for riders" do
-    before(:all) do
-      User.destroy_all
-      @user1 = Factory(:user, :email => 'test@test8.com', :origin => 'Madhapur', :destination => 'Kondapur', :rider => true)
-      @user2 = Factory(:user, :email => 'test@test9.com', :origin => 'Madhapur', :destination => 'Kondapur', :rider => true)
-      @user3 = Factory(:user, :email => 'test@test10.com', :origin => 'Madhapur', :destination => 'Banjara Hills', :rider => true)
-      @user4 = Factory(:user, :email => 'test@test11.com', :origin => 'Kondapur', :destination => 'Miyapur', :rider => true)
-      @user5 = Factory(:user, :email => 'test@test12.com', :origin => 'Madhapur', :destination => 'Kondapur', :rider => true)
-      @user6 = Factory(:user, :email => 'test@test13.com', :origin => 'Madhapur', :destination => 'Kondapur', :rider => nil, :driver => true)
-      @user7 = Factory(:user, :email => 'test@test14.com', :origin => nil, :destination => nil, :rider => true)
-    end
-
-    it "should find matches for Madhapur to Kondapur" do
-      matches = User.find_matches_for_riders('madHapur', 'KonDapur')
-      matches.should_not be_nil
-      matches.size.should == 3
-      matches.collect {|m| m.id}.should == [@user1.id, @user2.id, @user5.id]
-    end
-    
-    it "should not find matches for Miyapur to Hitec city" do
-      matches = User.find_matches_for_riders('Miyapur', 'Hitec city')
-      matches.should == []
-    end
-
-    it "should find matches for riders excluding inactive riders" do
-      matches = User.find_matches_for_riders('madhApur', 'Kondapur')
-      matches.size.should == 3
-      @user1.update_attributes({:inactive => 1})
-      @user1.save.should be true
-      matches = User.find_matches_for_riders('madhApur', 'Kondapur')
-      matches.size.should == 2
-      @user1.update_attributes({:inactive => 0})
-      @user1.save.should be true
-      matches = User.find_matches_for_riders('madhApur', 'Kondapur')
-      matches.size.should == 3
-    end
-  end
-  
-  describe "#find matches for riders excluding a user" do
-     before(:all) do
-       User.destroy_all
-       @user1 = Factory(:user, :email => 'test@test8.com', :origin => 'Madhapur', :destination => 'Kondapur', :rider => true)
-       @user2 = Factory(:user, :email => 'test@test9.com', :origin => 'Madhapur', :destination => 'Kondapur', :rider => true)
-       @user3 = Factory(:user, :email => 'test@test10.com', :origin => 'Madhapur', :destination => 'Kondapur', :rider => true)
-     end
-
-     it "should find matches for riders excluding a user" do
-       matches = User.find_matches_for_riders('madhApur', 'Kondapur', @user3)
-       matches.size.should == 2
-       matches.collect {|m| m.id}.should == [@user1.id, @user2.id]
-     end
-   end
-  
   describe "#save" do
     before(:all) do
       @user = Factory.build(:user)
@@ -240,12 +114,8 @@ describe User do
     it { should allow_mass_assignment_of(:remember_me) }
     it { should allow_mass_assignment_of(:first_name) }
     it { should allow_mass_assignment_of(:last_name) }
-    it { should allow_mass_assignment_of(:driver) }
-    it { should allow_mass_assignment_of(:rider) }
     it { should allow_mass_assignment_of(:mobile) }
     it { should allow_mass_assignment_of(:landline) }
-    it { should allow_mass_assignment_of(:origin) }
-    it { should allow_mass_assignment_of(:destination) }
     it { should allow_mass_assignment_of(:terms) }
     
     it { should_not allow_mass_assignment_of(:encrypted_password)}
@@ -282,7 +152,7 @@ describe User do
     end
   end
 
-  describe "facebook oauth " do
+  describe "facebook oauth" do
     before(:all) do
       @user1 = Factory(:user, :first_name  => 'ask', :last_name => 'singh', :email => "amar@gmail.com")
     end
