@@ -8,8 +8,9 @@ body.one_col {
   }
 
   #header {
-    background-image: url(/images/dropzone_repeating_pattern.png);
-    background-color: #AEB6B9;
+    box-shadow: 1px 1px 11px #AEB6B9;
+    margin-top: 10px;
+    border: solid 2px #AEB6B9;
     padding: 20px;
     height: 10%;
     #big-label {
@@ -34,7 +35,7 @@ body.one_col {
       top: 6px; 
     }
     #user_nav {
-      font-size: 1.0em;
+      font-size: 0.85em;
       color: #606060;
       #auth {
         position: absolute;
@@ -57,8 +58,8 @@ body.one_col {
     min-height: 100%;
     clear: left;
     padding: 30px;
-    border-left: solid 1px #AEB6B9;
-    border-right: solid 1px #AEB6B9;
+    border-left: solid 2px #AEB6B9;
+    border-right: solid 2px #AEB6B9;
   }
 
   #splash_image {
@@ -82,8 +83,8 @@ body.one_col {
     padding-top: 10px;
     padding-bottom: 20px;
     height: 8%; 
-    border-left: solid 1px #AEB6B9;
-    border-right: solid 1px #AEB6B9;
+    border-left: solid 2px #AEB6B9;
+    border-right: solid 2px #AEB6B9;
     #footer-navigation {
       float: left;
       margin-left: 50px;
@@ -103,13 +104,15 @@ body.one_col {
   }
 
   #footer {
-    background-image: url(/images/dropzone_repeating_pattern.png);
-    background-color: #AEB6B9;
+    # background-image: url(/images/dropzone_repeating_pattern.png);
+    # background-color: #AEB6B9;
+    border: solid 2px #AEB6B9;
     color: #606060;
     font-family: 'Anonymous Pro', sans-serif;
     text-align: right;
     padding: 20px;
     height: 1%;
+    margin-bottom: 10px;
   }
 
 }

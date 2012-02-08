@@ -261,16 +261,17 @@ body.one_col #container {
 }
 /* line 10, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #header {
-  background-image: url(/images/dropzone_repeating_pattern.png);
-  background-color: #AEB6B9;
+  box-shadow: 1px 1px 11px #AEB6B9;
+  margin-top: 10px;
+  border: solid 2px #AEB6B9;
   padding: 20px;
   height: 10%;
 }
-/* line 15, ../../app/stylesheets/partials/_one_col.scss */
+/* line 16, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #header #big-label {
   padding-left: 10px;
 }
-/* line 17, ../../app/stylesheets/partials/_one_col.scss */
+/* line 18, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #header #big-label h1 {
   color: #606060;
   font-weight: bold;
@@ -278,58 +279,58 @@ body.one_col #header #big-label h1 {
   font-size: 3.5em;
   margin: 0;
 }
-/* line 24, ../../app/stylesheets/partials/_one_col.scss */
+/* line 25, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #header #big-label span.header_text {
   cursor: pointer;
 }
-/* line 26, ../../app/stylesheets/partials/_one_col.scss */
+/* line 27, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #header #custom_select {
   position: absolute;
   left: 425px;
   top: 40px;
 }
-/* line 31, ../../app/stylesheets/partials/_one_col.scss */
+/* line 32, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #header #header-logo {
   position: absolute;
   left: 50px;
   top: 6px;
 }
-/* line 36, ../../app/stylesheets/partials/_one_col.scss */
+/* line 37, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #header #user_nav {
-  font-size: 1.0em;
+  font-size: 0.85em;
   color: #606060;
 }
-/* line 39, ../../app/stylesheets/partials/_one_col.scss */
+/* line 40, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #header #user_nav #auth {
   position: absolute;
   top: 60px;
   right: 35px;
 }
-/* line 44, ../../app/stylesheets/partials/_one_col.scss */
+/* line 45, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #header #user_nav #no_auth {
   position: absolute;
   top: 80px;
   right: 35px;
 }
-/* line 49, ../../app/stylesheets/partials/_one_col.scss */
+/* line 50, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #header #user_nav a:link {
   color: #606060;
 }
-/* line 50, ../../app/stylesheets/partials/_one_col.scss */
+/* line 51, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #header #user_nav a:visited {
   color: #606060;
 }
-/* line 54, ../../app/stylesheets/partials/_one_col.scss */
+/* line 55, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #content {
   color: #606060;
   position: relative;
   min-height: 100%;
   clear: left;
   padding: 30px;
-  border-left: solid 1px #AEB6B9;
-  border-right: solid 1px #AEB6B9;
+  border-left: solid 2px #AEB6B9;
+  border-right: solid 2px #AEB6B9;
 }
-/* line 64, ../../app/stylesheets/partials/_one_col.scss */
+/* line 65, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #splash_image {
   width: 320px;
   height: 320px;
@@ -339,56 +340,58 @@ body.one_col #splash_image {
   left: 450px;
   top: 395px;
 }
-/* line 74, ../../app/stylesheets/partials/_one_col.scss */
+/* line 75, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #content h2 {
   font-size: 160%;
   margin: 0 0 .5em;
 }
-/* line 79, ../../app/stylesheets/partials/_one_col.scss */
+/* line 80, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #sub-footer {
   padding-top: 10px;
   padding-bottom: 20px;
   height: 8%;
-  border-left: solid 1px #AEB6B9;
-  border-right: solid 1px #AEB6B9;
+  border-left: solid 2px #AEB6B9;
+  border-right: solid 2px #AEB6B9;
 }
-/* line 80, ../../app/stylesheets/partials/_one_col.scss */
+/* line 81, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #sub-footer a:link {
   color: #606060;
 }
-/* line 81, ../../app/stylesheets/partials/_one_col.scss */
+/* line 82, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #sub-footer a:visited {
   color: #606060;
 }
-/* line 87, ../../app/stylesheets/partials/_one_col.scss */
+/* line 88, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #sub-footer #footer-navigation {
   float: left;
   margin-left: 50px;
   padding: 5px;
   font-size: 80%;
 }
-/* line 92, ../../app/stylesheets/partials/_one_col.scss */
+/* line 93, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #sub-footer #footer-navigation #first, body.one_col #sub-footer #footer-navigation #second {
   margin-left: 20px;
   float: left;
 }
-/* line 95, ../../app/stylesheets/partials/_one_col.scss */
+/* line 96, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #sub-footer #footer-navigation #first ul, body.one_col #sub-footer #footer-navigation #second ul {
   list-style-type: none;
 }
-/* line 98, ../../app/stylesheets/partials/_one_col.scss */
+/* line 99, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #sub-footer #footer-navigation #first li, body.one_col #sub-footer #footer-navigation #second li {
   padding-bottom: 5px;
 }
-/* line 105, ../../app/stylesheets/partials/_one_col.scss */
+/* line 106, ../../app/stylesheets/partials/_one_col.scss */
 body.one_col #footer {
-  background-image: url(/images/dropzone_repeating_pattern.png);
-  background-color: #AEB6B9;
+  # background-image: url(/images/dropzone_repeating_pattern.png);
+  # background-color: #AEB6B9;
+  border: solid 2px #AEB6B9;
   color: #606060;
   font-family: 'Anonymous Pro', sans-serif;
   text-align: right;
   padding: 20px;
   height: 1%;
+  margin-bottom: 10px;
 }
 
 /* line 13, ../../app/stylesheets/application.scss */
