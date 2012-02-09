@@ -1,1 +1,1 @@
-LOCATION_CONFIG = YAML.load_file("#{RAILS_ROOT}/config/locations.yml")
+LOCATION_CONFIG = YAML.load_file("#{Rails.root.to_s}/config/locations.yml")
