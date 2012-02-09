@@ -1,6 +1,6 @@
 PoolRide::Application.routes.draw do
 
-  devise_for :users , :controllers => { :omniauth_callbacks => "users/omniauth_callback" }
+  devise_for :users , :controllers => { :omniauth_callbacks => "users/omniauth_callback" , :registrations => "users/registrations" }
 
 
   root :to => "home#index"

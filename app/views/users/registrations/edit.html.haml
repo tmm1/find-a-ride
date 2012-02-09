@@ -1,0 +1,52 @@
+#banner_block
+  %h2 Update your profile information here.
+#form_wrapper
+  = semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :multipart => true }) do |f|
+    /= devise_error_messages!
+    = f.inputs do
+      #accordion
+        - errors_by_accordion = @user.errors ? errors_by_accordion_type(@user.errors) : {}
+        %h3
+          %a{:href => "#"} Personal Information
+          - if errors_by_accordion && !errors_by_accordion[:personal_info_errors].blank?
+            %span{:class => "accordion_errors", :id => "personal_info"}
+              = pluralize("#{errors_by_accordion[:personal_info_errors].length}", "Error")
+        .personal_profile
+          = f.input :email
+          = f.input :first_name
+          = f.input :last_name
+          = render :partial => "/shared/profile_image", :locals => {:form_element => f, :name => :attach_profile_picture, :label => 'Attach Profile Picture'}
+          %li
+            = f.errors_on :photo_content_type
+            = f.errors_on :photo_file_size
+        %h3
+          %a{:href => "#"} Contact/Other Information
+          - if errors_by_accordion && !errors_by_accordion[:contact_info_errors].blank?
+            %span{:class => "accordion_errors", :id => "contact_info"}
+              = pluralize("#{errors_by_accordion[:contact_info_errors].length}", "Error")
+        .contact_profile
+          = f.input :mobile, :label => 'Mobile number'
+          = f.input :landline, :label => 'Landline number'
+          .fav_location
+            = "Favourite Locations"
+            %br
+            - (5 - @user.user_locations.count).times{@user.user_locations.build}
+            - @user.user_locations.each_with_index do |u_l,i|
+              %div{:class => "#{'hide' if u_l.new_record?}"} 
+                = render :partial => "shared/auto_search_input", :locals => {:form_element => nil, :name => "user_locations[]", :label => "Location #{i+1}", :selected_value => "#{u_l.location.name if u_l.location}"}
+              %br
+            = link_to("Add More","#",:href=>"javascript:void(0);",:onclick=>"$(this).siblings('.hide').first().removeClass('hide').addClass('show');")
+        %h3
+          %a{:href => "#"} Account Settings
+          - if errors_by_accordion && !errors_by_accordion[:account_setting_errors].blank?
+            %span{:class => "accordion_errors", :id => "account_info"}
+              = pluralize("#{errors_by_accordion[:account_setting_errors].length}", "Error")
+        .account_profile
+          = f.input :password, :hint => "(leave blank if you don't want to change it)"
+          = f.input :password_confirmation, :label => 'Enter password again'
+          %br
+          = f.input :inactive, :label => 'I want to be inactive', :input_html => {:rel => "#confirmation_overlay", :class => "inactive_input"}
+    %br
+    = f.buttons do
+      = f.commit_button "Go!"
+= render :partial => "shared/confirm"
