@@ -9,7 +9,7 @@ $(document).ready(function() {
     initAccordion();
     initGeolocation();
     tabbed();
-    setTimeout(hideFlashMessages, 10000);
+    setTimeout(hideFlashMessages, 7000);
 });
 
 
