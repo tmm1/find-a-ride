@@ -27,24 +27,30 @@ html {
   display: none;
 }
 
-#signup_block {
-  margin-top: 175px;
-  padding-top: 100px;
+#home {
+ #index_copy {
+  font-size: 1.25em;
+  a:link { color: #638ea8; }
+  a:visited { color: #638ea8; }
+  a {font-size: 0.75em; }
+  width: 100%;
+  text-align: center;
+ }
+
+ #about_image {
+   text-align: center;
+   width: 100%;
+   margin-top: 80px;
+ }
+
+ #signup_block {
+  margin-top: 100px;
   width: 100%;
   a:link { color: #638ea8; }
   a:visited { color: #638ea8; }
   text-align: center;
-  h1 {
-    font-size: 225%;
-  }
-}
-
-#message {
-  margin-top: 0;
-  margin-bottom: 20px;
-  span {
-    font-size: 2.0em;
-  }
+  h1 { font-size: 200%; }
+ }
 }
 
 // search 
@@ -226,15 +232,12 @@ html {
 }
 
 // flash messages
-#flash_alert, #flash_error, #flash_warning, #flash_notice {
+.flash_msg{
   text-align: center;
-  padding: 10px;
   margin-left: auto;
   margin-right: auto;
   display: block;
   width: 50%;
-  margin-bottom: 15px;
-  -moz-border-radius: 7px;
   color: #b52534;
 }
 

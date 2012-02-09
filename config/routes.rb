@@ -7,14 +7,14 @@ PoolRide::Application.routes.draw do
   resources :home do
     collection do
       get 'about'
-      get 'request_ride'
-      get 'offer_ride'
+      get 'index'
     end
   end
   resources :rides do
     collection do
       get 'search'
-      post 'contact'
+      get 'request_ride'
+      get 'offer_ride'
     end
   end
   

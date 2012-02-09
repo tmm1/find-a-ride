@@ -9,7 +9,13 @@ $(document).ready(function() {
     initAccordion();
     initGeolocation();
     tabbed();
+    setTimeout(hideFlashMessages, 10000);
 });
+
+
+function hideFlashMessages() {
+  $('p#notice, p#warning, p#error, p#alert').fadeOut(250)
+}
 
 var isValidEmail = function(email) {
     var email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;

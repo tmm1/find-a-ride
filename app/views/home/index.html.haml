@@ -1,13 +1,21 @@
-= render 'shared/tabs'
-%div.css_panes
-  %div.tab_content{:style=>"display:block"}
-- unless user_signed_in?
-  #signup_block
-    %h1
-      Sign up
-      = link_to('here', new_registration_path(:user))
-      or use your
-      = link_to('Facebook', user_omniauth_authorize_path(:facebook))
-      = "/"
-      = link_to('Twitter', user_omniauth_authorize_path(:twitter))
-      account.
+#home
+  #index_copy
+    The idea is simple. Find-a-Ride enables eco-friendly citizens to share rides with other like minded folks cutting fuel usage, saving money and mother earth in the process. 
+    = link_to('more here', about_home_index_path)
+  #about_image
+    = image_tag("find_a_ride_about.gif")
+  - unless user_signed_in?
+    #signup_block
+      %h1
+        Three ways to get started!
+        Sign up 
+        = link_to('here', new_registration_path(:user))
+        or use your
+        = link_to(image_tag("facebook_logo.jpeg"), user_omniauth_authorize_path(:facebook))
+        or
+        = link_to(image_tag("twitter_logo.png"), user_omniauth_authorize_path(:twitter))
+        accounts.
+
+
+
+

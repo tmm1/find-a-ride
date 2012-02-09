@@ -1,4 +1,6 @@
 class RidesController < ApplicationController
+  before_filter :authenticate_user!
+  
   def search
     @origin = params[:origin] 
     @dest = params[:dest]
@@ -13,7 +15,19 @@ class RidesController < ApplicationController
   def contact
     Ride.create_ride(params)
     respond_to do |format|
-      format.html {render :text => 'Your message was successfully sent. Thank you!', :status => 200 }
+      format.html {render :text => 'Your message was successfully sent. Thank you!', :status => 200}
     end
+  end
+  
+  
+  def index
+  end
+  
+  def request_ride
+    render :layout => false
+  end
+  
+  def offer_ride
+    render :layout => false
   end
 end
