@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe ApplicationController do
+  before(:all) do
+    hyd = Factory(:city)
+    Factory(:location, :name => 'Madhapur', :city => hyd)
+    Factory(:location, :name => 'Kondapur', :city => hyd)
+    Factory(:location, :name => 'Miyapur', :city => hyd)
+  end
   describe "#Location Search" do
     it "should return matched locations" do
       get 'location_search', {:q => 'madh', :city => 'Hyderabad'}
@@ -9,12 +15,12 @@ describe ApplicationController do
       assigns[:result].size.should == 1
       assigns[:result].first.should == "Madhapur"
     end
-    it "should return empty array of locations " do
+    it "should return empty array of locations" do
       get 'location_search', {:q => 'xxxx', :city => 'Hyderabad'}, :format => :json
       assigns[:result].class.should == Array
       assigns[:result].first.should == nil
     end
-    it "should rewrite the search value before search " do
+    it "should rewrite the search value before search" do
       get 'location_search', {:q => 'MadHap', :city => 'Hyderabad'}, :format => :json
       assigns[:result].should_not be nil
       assigns[:result].class.should == Array
