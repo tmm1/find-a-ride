@@ -1,0 +1,11 @@
+- @ride_request = RideRequest.new
+#form_wrapper
+  = semantic_form_for @ride_request, :url => ride_requests_path(@ride_request) do |f|
+    = f.inputs do
+      = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => "origin", :label => "Going from"}
+      = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => "destination", :label => "Going to"}
+    = f.buttons do
+      = f.commit_button :label => 'Post request'
+    
+
+

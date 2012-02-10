@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.10'
-gem 'formtastic', '1.2.4'
+gem 'formtastic', '2.0'
 gem 'haml', '3.1.2'
 gem 'cancan', '1.6.5'
 gem 'state_machine', '0.9.4'
@@ -17,10 +17,6 @@ gem "paperclip", "~> 2.4"
 gem "aws-s3"
 gem "geokit"
 
-group :ci do
-  gem 'rcov_rails'
-end
-
 group :heroku do
   gem 'pg'
 end
@@ -29,6 +25,7 @@ group :development do
   gem "rspec-rails", "~> 2.4"
   gem 'annotate', '2.4.0'
   gem 'letter_opener'
+  gem "awesome_print"
 end
 
 group :test do

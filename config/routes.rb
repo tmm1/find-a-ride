@@ -2,7 +2,6 @@ PoolRide::Application.routes.draw do
 
   devise_for :users , :controllers => { :omniauth_callbacks => "users/omniauth_callback" }
 
-
   root :to => "home#index"
   resources :home do
     collection do
@@ -13,11 +12,11 @@ PoolRide::Application.routes.draw do
   resources :rides do
     collection do
       get 'search'
-      get 'request_ride'
-      get 'offer_ride'
     end
   end
   
+  resources :ride_requests 
+  resources :ride_offers
 
   match '/location_search' => 'application#location_search', :as => :location_search
   match '/geocode_city' => 'application#geocode_city'
