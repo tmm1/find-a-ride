@@ -22,6 +22,7 @@ PoolRide::Application.routes.draw do
   match '/geocode_city' => 'application#geocode_city'
   match '/twitter' => 'users/omniauth_callback#twitter'
   match '/register_user_with_twitter' => 'users/omniauth_callback#register_user_with_twitter'
+  match '/remove_location/:id' => 'home#remove_fav_location'
  
   # The priority is based upon order of creation:
   # first created -> highest priority.

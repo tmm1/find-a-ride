@@ -24,7 +24,7 @@
           - if errors_by_accordion && !errors_by_accordion[:contact_info_errors].blank?
             %span{:class => "accordion_errors", :id => "contact_info"}
               = pluralize("#{errors_by_accordion[:contact_info_errors].length}", "Error")
-        .contact_profile
+        %div{:class => 'contact_profile', :style=>"height:auto !important;"}
           = f.input :mobile, :label => 'Mobile number'
           = f.input :landline, :label => 'Landline number'
           .fav_location
@@ -32,8 +32,9 @@
             %br
             - (5 - @user.user_locations.count).times{@user.user_locations.build}
             - @user.user_locations.each_with_index do |u_l,i|
-              %div{:class => "#{'hide' if u_l.new_record?}"} 
+              %div{:class => "#{'hide' if u_l.new_record?}", :id => "location_#{u_l.id}"} 
                 = render :partial => "shared/auto_search_input", :locals => {:form_element => nil, :name => "user_locations[]", :label => "Location #{i+1}", :selected_value => "#{u_l.location.name if u_l.location}"}
+                = link_to image_tag('/images/remove_icon.png',:style => "width:16px;height:16px;"), "#", :href => "javascript:void(0);", :onclick =>"remove_fav_location('location_#{u_l.id}')"  
               %br
             = link_to("Add More","#",:href=>"javascript:void(0);",:onclick=>"$(this).siblings('.hide').first().removeClass('hide').addClass('show');")
         %h3
