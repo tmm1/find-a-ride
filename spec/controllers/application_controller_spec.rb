@@ -38,7 +38,7 @@ describe ApplicationController do
 
     it "should return Bangalore" do
       get "geocode_city" , {:lat_long =>"(12.874642,77.827148)"}
-      session[:city].should == "Bengaluru"
+      session[:city].should == "Bangalore"
       response.should be_success
     end
 

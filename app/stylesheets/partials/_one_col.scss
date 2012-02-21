@@ -18,7 +18,6 @@ body.one_col {
       h1 {   
         color: #606060;
         font-weight: bold;
-        font-family: 'Anonymous Pro', sans-serif;
         font-size: 3.5em;
         margin: 0;
       }
@@ -26,7 +25,7 @@ body.one_col {
     }
     #custom_select {
       position: absolute;
-      left: 425px;
+      left: 400px;
       top: 40px;
     }
     #header-logo { 
@@ -35,7 +34,7 @@ body.one_col {
       top: 6px; 
     }
     #user_nav {
-      font-size: 0.85em;
+      font-size: 1.0em;
       color: #606060;
       #auth {
         position: absolute;
@@ -47,8 +46,6 @@ body.one_col {
         top: 80px;
         right: 35px;
       }
-      a:link { color: #606060; }
-	  a:visited { color: #606060; }
     }
   }
 
@@ -78,8 +75,6 @@ body.one_col {
   }
 
   #sub-footer {
-    a:link { color: #606060; }
-	a:visited { color: #606060; }
     padding-top: 10px;
     padding-bottom: 20px;
     height: 8%; 
@@ -89,7 +84,7 @@ body.one_col {
       float: left;
       margin-left: 50px;
       padding: 5px;
-      font-size: 80%;
+      font-size: 1.0em;
       #first, #second {
         margin-left: 20px;
         float: left;
@@ -104,11 +99,8 @@ body.one_col {
   }
 
   #footer {
-    # background-image: url(/images/dropzone_repeating_pattern.png);
-    # background-color: #AEB6B9;
     border: solid 2px #AEB6B9;
     color: #606060;
-    font-family: 'Anonymous Pro', sans-serif;
     text-align: right;
     padding: 20px;
     height: 1%;

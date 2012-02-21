@@ -9,14 +9,63 @@ $blueprint-grid-margin: 10px;
 // Or you can set $blueprint-grid-width to a fixed value and unset $blueprint-container-size -- it will be calculated for you.
 $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $blueprint-grid-columns - $blueprint-grid-margin;
 
-.cb-enable, .cb-disable, .cb-enable span, .cb-disable span { background: url(/images/switch.gif) repeat-x; display: block; float: left; }
-.cb-enable span, .cb-disable span { line-height: 30px; display: block; background-repeat: no-repeat; font-weight: regular; }
-.cb-enable span { background-position: left -90px; padding: 0 20px; }
-.cb-disable span { background-position: right -180px;padding: 0 20px; }
-.cb-disable.selected { background-position: 0 -30px; }
-.cb-disable.selected span { background-position: right -210px; color: #fff; }
-.cb-enable.selected { background-position: 0 -60px; }
-.cb-enable.selected span { background-position: left -150px; color: #fff; }
+
+
+body {
+background: #fff;
+font: 14px/21px "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+color: #444;
+-webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
+-webkit-text-size-adjust: 100%;
+}
+
+/* #Links
+================================================== */
+
+a, a:visited { color: #333; text-decoration: underline; outline: 0; }
+a:hover, a:focus { color: #000; }
+p a, p a:visited { line-height: inherit; }
+
+
+/* #Images
+================================================== */
+
+img.scale-with-grid {
+max-width: 100%;
+height: auto; }
+
+/* #Typography
+================================================== */
+h1, h2, h3, h4, h5, h6 {
+color: #181818;
+font-family: "Georgia", "Times New Roman", Helvetica, Arial, sans-serif;
+font-weight: normal; }
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }
+h1 { font-size: 46px; line-height: 50px; margin-bottom: 14px;}
+h2 { font-size: 35px; line-height: 40px; margin-bottom: 10px; }
+h3 { font-size: 28px; line-height: 34px; margin-bottom: 8px; }
+h4 { font-size: 21px; line-height: 30px; margin-bottom: 4px; }
+h5 { font-size: 17px; line-height: 24px; }
+h6 { font-size: 14px; line-height: 21px; }
+.subheader { color: #777; }
+
+p { margin: 0 0 20px 0; }
+p img { margin: 0; }
+p.lead { font-size: 21px; line-height: 27px; color: #777;  }
+
+em { font-style: italic; }
+strong { font-weight: bold; color: #333; }
+small { font-size: 80%; }
+
+/*	Blockquotes  */
+blockquote, blockquote p { font-size: 17px; line-height: 24px; color: #777; font-style: italic; }
+blockquote { margin: 0 0 20px; padding: 9px 20px 0 19px; border-left: 1px solid #ddd; }
+blockquote cite { display: block; font-size: 12px; color: #555; }
+blockquote cite:before { content: "\2014 \0020"; }
+blockquote cite a, blockquote cite a:visited, blockquote cite a:visited { color: #555; }
+
+hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 10px 0 30px; height: 0; }
+
 
 #custom_select { 
   overflow:hidden; 

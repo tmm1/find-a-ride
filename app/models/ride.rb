@@ -1,6 +1,11 @@
 class Ride < ActiveRecord::Base
   has_one :origin, :class_name => 'Location', :foreign_key => 'origin'
   has_one :destination, :class_name => 'Location', :foreign_key => 'destination'
+  
+  cattr_accessor :orig
+  cattr_accessor :dest
+  cattr_accessor :start_date
+  cattr_accessor :start_time
 end
 
 # == Schema Information

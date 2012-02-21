@@ -30,8 +30,6 @@ html {
 #home {
  #index_copy {
   font-size: 1.25em;
-  a:link { color: #638ea8; }
-  a:visited { color: #638ea8; }
   a {font-size: 0.75em; }
   width: 100%;
   text-align: center;
@@ -46,8 +44,6 @@ html {
  #signup_block {
   margin-top: 100px;
   width: 100%;
-  a:link { color: #638ea8; }
-  a:visited { color: #638ea8; }
   text-align: center;
   h1 { font-size: 200%; }
  }
@@ -90,22 +86,10 @@ html {
     margin-left: auto;
 	margin-right: auto;
   }
-  #submit {
-    input { width: 200px; }
-    font-size: 150%;
-    width: 20%;
-    display: block;
-    margin-left: auto;
-	margin-right: auto; 
-	padding-bottom: 20px;
-	padding-top: 70px;
-  }
 }
 
 // search results
 #search_results_block {
-  a:link { color: #638ea8; }
-  a:visited { color: #638ea8; }
   height: 300px;
   padding: 10px;
   width: 100%;
@@ -259,12 +243,11 @@ html {
     font-size: 200%;
     margin: 15px;
   }
+  p {font-size: 1.25em;}
   #text {
     margin: 10px;
     padding: 10px;
     color: #666;
-    a:link { color: #638ea8; }
-    a:visited { color: #638ea8; }
   }
   #about_image {
     margin: 50px;
@@ -338,6 +321,7 @@ ul.css_tabs {
     border-bottom: 2px solid #FFF;
     color: #000000;
     cursor: default;
+    font-weight: bold;
   }
   a {
     -moz-border-radius: 4px 4px 0 0;
@@ -348,7 +332,7 @@ ul.css_tabs {
     color: #777777;
     display: block;
     float: left;
-    font-size: 13px;
+    font-size: 15px;
     height: 18px;
     margin-right: 2px;
     outline: 0 none;
@@ -371,6 +355,18 @@ ul.css_tabs {
   border-width: 0 2px 2px;
   min-height: 150px;
 }
+
+#ride_request_form, #ride_offer_form {
+  margin: 15px;
+  #ride_request_orig, #ride_request_dest, #ride_offer_orig, #ride_offer_dest { 
+    width: 300px;
+  }
+  #ride_request_start_date, #ride_request_start_time, #ride_offer_start_date, #ride_offer_start_time {
+    width: 150px;
+  }
+  label { font-size: 1.5em; }
+}
+
 
 .hide {
   display:none;

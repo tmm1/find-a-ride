@@ -233,17 +233,6 @@ form.formtastic fieldset > ol > li.date fieldset ol li label input, form.formtas
 --------------------------------------------------------------------------------------------------*/
 /* padding and negative margin juggling is for Firefox */
 /* clearing contained floats */
-/* line 162, ../../app/stylesheets/formtastic.scss */
-.create {
-  margin: 10px;
-  width: 125px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border: solid 1px #717883;
-  font-size: 1.0em;
-  font-family: 'Hammersmith One', sans-serif;
-}
-
 /* LABELS
 --------------------------------------------------------------------------------------------------*/
 /* NESTED FIELDSETS AND LEGENDS (radio, check boxes and date/time inputs use nested fieldsets)
