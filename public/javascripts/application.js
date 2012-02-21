@@ -341,16 +341,3 @@ var tabbed = function(){
 
   });
 }
-
-function remove_fav_location(location_id){
-	    $.ajax({
-        type: 'get',
-        url: "/remove_location/"+location_id,
-        dataType: 'html',
-        success: function(data) {
-           $(".fav_location").html(data);
-        },
-        failure: function(data) {
-        }
-    });
-}
