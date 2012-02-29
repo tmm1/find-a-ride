@@ -263,7 +263,7 @@ var resetContactForm = function() {
 }
 
 var locationSearch = function(){
-    var url = $('#data-url').val();
+    var url = $('#data-url').val();   
     var elem = $("input.autocomplete");
     elem.unautocomplete();
     elem.autocomplete(url,{
@@ -274,7 +274,8 @@ var locationSearch = function(){
         delay :200,
         scroll: true,
         scrollHeight: 300,
-        parse: function(data) {
+        parse: function(data) {         
+            data = jQuery.grep(data, function (a) { return a != $("#ride_request_orig").val(); });            
             var array = new Array();
             for(var i=0; i<data.length; i++)
             {
@@ -341,3 +342,24 @@ var tabbed = function(){
 
   });
 }
+var rideTime = function(){
+      $('input.timepicker').timepicker({
+                timeFormat: 'h:mm:ss p',
+                interval: 30
+           });
+}
+
+var rideDate = function(){
+		$( "input.datepicker" ).datepicker({
+                     nextText: '',
+                     prevText: '',
+                     dateFormat: 'yy-mm-dd'
+                });
+	}
+
+var rideOriginDest = function(){
+            $("#ride_request_orig").live("change",function(){
+               $("#ride_request_dest").val("");
+            });
+}
+

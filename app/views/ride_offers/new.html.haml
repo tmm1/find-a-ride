@@ -1,12 +1,14 @@
+= javascript_include_tag  "rider.js"
 - @ride_offer = RideOffer.new
 #ride_offer_form
   = semantic_form_for @ride_offer, :url => ride_offers_path(@ride_offer) do |f|
     = f.inputs do
       = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => "orig", :label => "Going from"}
       = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => "dest", :label => "Going to"}
-      = f.input :start_date, :label => 'What day?'
-      = f.input :start_time, :label => 'Roughly what time?'
+      = f.input :start_date,  :input_html => { :class => 'datepicker'},  :label => 'What day?', :required => true
+      = f.input :start_time,:input_html => { :class => 'timepicker'}, :label => 'Roughly what time?'
       = f.input :vehicle, :as => :select, :label => 'Vehicle you use?', :include_blank => false, :collection => ['4-Wheeler', '2-Wheeler']
+      = f.input :type , :as => :hidden , :value => "RideOffer"
     = f.buttons do
       = f.commit_button :label => 'Post your Offer'
     

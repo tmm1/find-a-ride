@@ -17,6 +17,7 @@ gem "paperclip", "~> 2.4"
 gem "aws-s3"
 gem "geokit"
 
+
 group :heroku do
   gem 'pg'
 end
