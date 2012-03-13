@@ -2,7 +2,9 @@ $(document).ready(function() {
     locationSearch();
     rideTime();
     rideDate();
-    rideOriginDest();    
+    rideOriginDest();
+    rideRequestValidate();
+    rideOfferValidate();
 });
 
 

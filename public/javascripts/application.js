@@ -362,4 +362,35 @@ var rideOriginDest = function(){
                $("#ride_request_dest").val("");
             });
 }
-
+var rideRequestValidate = function(){
+          $("#new_ride_request").validate({
+                       rules: {
+                            "ride_request[orig]": {
+                                                    required: true,
+                                                    notEqualTo: "#ride_request_dest"
+                                                   },
+                            "ride_request[dest]":  {
+                                                    required: true,
+                                                    notEqualTo: "#ride_request_orig"
+                                                   },
+                            "ride_request[start_date]": {required: true},
+                            "ride_request[start_time]": {required: true}
+                             }
+           });
+}
+var rideOfferValidate = function(){
+          $("#new_ride_offer").validate({
+                       rules: {
+                            "ride_offer[orig]": {
+                                                    required: true,
+                                                    notEqualTo: "#ride_offer_dest"
+                                                   },
+                            "ride_offer[dest]":  {
+                                                    required: true,
+                                                    notEqualTo: "#ride_offer_orig"
+                                                   },
+                            "ride_offer[start_date]": {required: true},
+                            "ride_offer[start_time]": {required: true}
+                             }
+            });
+}
