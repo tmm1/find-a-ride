@@ -2,6 +2,10 @@ $(document).ready(function() {
     locationSearch();
     initRideSearch();
     setTimeout(hideFlashMessages, 5000);
+
+    $('.carousel').carousel({
+	  interval: 3000
+	})
 });
 
 

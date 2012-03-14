@@ -3,15 +3,13 @@
   .home
     %h2
       The idea is simple. Find.a.Ride enables eco-friendly citizens to share rides with other like minded folks cutting down fuel usage, saving money and mother earth in the process. 
-    = link_to('Learn more', about_home_index_path, :class => 'btn btn-primary btn-large')
-    %br
-    %br
+      = link_to('Learn more', about_home_index_path, :class => 'btn btn-primary btn-large')
+    = render 'shared/carousel'
     - unless user_signed_in?
       .signup-block
         %h3
           Three ways to get started!
-          Sign up 
-          = link_to('here', new_registration_path(:user))
+          = link_to('Sign up here', new_registration_path(:user), :class => 'btn btn-primary btn-large')
           or use your
           = link_to(image_tag("facebook_logo.jpeg", :size => '30x30'), user_omniauth_authorize_path(:facebook))
           or
