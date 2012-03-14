@@ -27,7 +27,4 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 end
 
-# hack to fix some stupid rspec blow up related to forgery protection 
-def protect_against_forgery?
-end
 
