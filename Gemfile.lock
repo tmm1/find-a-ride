@@ -17,6 +17,7 @@ GEM
       rack-mount (~> 0.6.14)
       rack-test (~> 0.5.7)
       tzinfo (~> 0.3.23)
+    active_reload (0.6.1)
     activemodel (3.0.10)
       activesupport (= 3.0.10)
       builder (~> 2.1.2)
@@ -42,12 +43,7 @@ GEM
     bcrypt-ruby (2.1.4-java)
     builder (2.1.2)
     cancan (1.6.5)
-    chunky_png (1.2.1)
     cocaine (0.2.0)
-    compass (0.11.5)
-      chunky_png (~> 1.2)
-      fssm (>= 0.2.7)
-      sass (~> 3.1)
     devise (1.4.2)
       bcrypt-ruby (~> 2.1.2)
       orm_adapter (~> 0.0.3)
@@ -67,7 +63,6 @@ GEM
     ffi (1.0.11-java)
     formtastic (2.0.0)
       rails (~> 3.0)
-    fssm (0.2.7)
     geokit (1.6.0)
     haml (3.1.2)
     heroku (2.9.0)
@@ -195,7 +190,6 @@ GEM
       ruby-openid (>= 2.1.7)
     rubyntlm (0.1.1)
     rubyzip (0.9.4)
-    sass (3.1.7)
     shoulda-matchers (1.0.0.beta3)
     spoon (0.0.1)
     state_machine (0.9.4)
@@ -218,11 +212,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_reload
   annotate (= 2.4.0)
   awesome_print
   aws-s3
   cancan (= 1.6.5)
-  compass
   devise
   factory_girl_rails
   faker (= 0.3.1)

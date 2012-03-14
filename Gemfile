@@ -7,7 +7,6 @@ gem 'cancan', '1.6.5'
 gem 'state_machine', '0.9.4'
 gem 'devise'
 gem 'mysql'
-gem 'compass'
 gem 'heroku'
 gem 'will_paginate', '3.0'
 gem "oa-oauth", :require => "omniauth/oauth"
@@ -27,6 +26,7 @@ group :development do
   gem 'annotate', '2.4.0'
   gem 'letter_opener'
   gem "awesome_print"
+  gem 'active_reload'
 end
 
 group :test do
