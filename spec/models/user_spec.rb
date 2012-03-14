@@ -136,38 +136,42 @@ describe User do
 
   describe "twitter oauth" do
     before(:all) do
-      @user1 = Factory(:user, :first_name  => 'amar', :last_name => 'singh', :email => "reshubhan@gmail.com")
+      @email = Faker::Internet.email
+      @user1 = Factory(:user, :first_name  => 'amar', :last_name => 'singh', :email => @email)
     end
     
     it "should not create a duplicate user if the user is already in the system" do
-      match = User.find_for_twitter_oauth('reshubhan@gmail.com', 'amar', 'singh', nil)
+      match = User.find_for_twitter_oauth(@email, 'amar', 'singh', nil)
       match.should == @user1
     end
 
     it "should create a new user if the user doesnt exist in the system" do
-      User.find_by_email("reshubhann@gmail.com").should == nil
-      match = User.find_for_twitter_oauth('reshubhann@gmail.com', 'rahul', 'singh', nil)
+      @email = Faker::Internet.email
+      User.find_by_email(@email).should == nil
+      match = User.find_for_twitter_oauth(@email, 'rahul', 'singh', nil)
       match.should_not == @user1
-      match.should ==  User.find_by_email("reshubhann@gmail.com")
+      match.should ==  User.find_by_email(@email)
     end
   end
 
   describe "facebook oauth" do
     before(:all) do
-      @user1 = Factory(:user, :first_name  => 'ask', :last_name => 'singh', :email => "amar@gmail.com")
+      @email = Faker::Internet.email
+      @user1 = Factory(:user, :first_name  => 'ask', :last_name => 'singh', :email => @email)
     end
     it "should not create a duplicate user if the user is already in the system." do
-      @user_info = {"extra" => {"user_hash" => {"email" => "amar@gmail.com", "first_name" => "ask", "last_name" => "singh"}}}
+      @user_info = {"extra" => {"user_hash" => {"email" => @email, "first_name" => "ask", "last_name" => "singh"}}}
       match = User.find_for_facebook_oauth(@user_info, nil)
       match.should == @user1
     end
 
     it "should create a new user if the user doesnt exist in the system" do
-      User.find_by_email("reshubhann@gmail.com").should == nil
-      @user_info = {"extra" => {"user_hash" => {"email" => "reshubhann@gmail.com", "first_name" => "Rahul", "last_name" => "singh"}}}
+      @email = Faker::Internet.email
+      User.find_by_email(@email).should == nil
+      @user_info = {"extra" => {"user_hash" => {"email" => @email, "first_name" => "Rahul", "last_name" => "singh"}}}
       match = User.find_for_facebook_oauth(@user_info, nil)
       match.should_not == @user1
-      match.should ==  User.find_by_email("reshubhann@gmail.com")
+      match.should ==  User.find_by_email(@email)
     end
   end
 end
