@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title Find-a-Ride  
+    %title Find.a.Ride  
     = stylesheet_link_tag 'application.css', :media => 'screen, projection'
     = stylesheet_link_tag 'print.css', :media => 'print'
     = stylesheet_link_tag 'bootstrap.css'
@@ -12,11 +12,13 @@
     .navbar
       .navbar-inner
         .container
-          %a{:href => root_url, :class => 'brand'} Find-a-Ride
+          %h2
+            %a{:href => root_url, :class => 'brand'} Find.a.Ride
     .container
+      %hr
       = yield
       %hr
       .footer
-        &copy; Pramati Technologies, Hyderabad. 2012.
+        %b &copy; Pramati Technologies, Hyderabad. 2012.
 
 
