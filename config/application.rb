@@ -31,7 +31,7 @@ module PoolRide
     # config.i18n.default_locale = :de
 
     # JavaScript files you want as :defaults (application.js is always included).
-    config.action_view.javascript_expansions[:defaults] = %w(jquery jquery_ujs jquery_tools jquery.autocomplete.min)
+    config.action_view.javascript_expansions[:defaults] = %w(jquery.min jquery_ujs jquery.autocomplete.min bootstrap jquery.validate jquery.ui.datepicker jquery.ui.core jquery.timepicker)
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"

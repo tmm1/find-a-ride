@@ -1,4 +1,7 @@
-#form_wrapper
+.text
+  %h2 Sign into Find.a.Ride
+%hr
+.hero-unit
   = semantic_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
     = f.inputs do
       = f.input :email
@@ -6,4 +9,4 @@
       - if devise_mapping.rememberable?
         = f.input :remember_me, :as => :boolean
     = f.buttons do
-      = f.commit_button "GO!"
+      = f.commit_button "Sign in"

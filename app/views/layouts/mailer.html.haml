@@ -1,20 +1,22 @@
 !!!
 %html
   %head
-    %title Find-a-Ride
-    = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Aldrich"
-    = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Wallpoet"
+    %title Find-a-Ride  
     = stylesheet_link_tag 'application.css', :media => 'screen, projection'
     = stylesheet_link_tag 'print.css', :media => 'print'
-    = stylesheet_link_tag 'formtastic.css'
-  %body.one_col
-    #container
-      #header
-        #big-label
-          %h1 Find-a-Ride. 
-      .clear
-      #content
-        = yield
-      #footer
-        %br
-        Copyright. Pramati Technologies, Hyderabad.
+    = stylesheet_link_tag 'bootstrap.css'
+    /[if lt IE 8]
+      = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
+      = csrf_meta_tag
+  %body
+    .navbar
+      .navbar-inner
+        .container
+          %a{:href => root_url, :class => 'brand'} Find-a-Ride
+    .container
+      = yield
+      %hr
+      .footer
+        &copy; Pramati Technologies, Hyderabad. 2012.
+
+

@@ -1,6 +1,6 @@
 = javascript_include_tag  "rider.js"
 - @ride_request = RideRequest.new
-#ride_request_form
+.hero-unit
   = semantic_form_for @ride_request, :url => ride_requests_path(@ride_request) , :validate => true do |f|
     = f.inputs do
       = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => "orig", :label => "Going from"}

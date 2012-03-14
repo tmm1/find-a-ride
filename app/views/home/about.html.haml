@@ -1,15 +1,12 @@
-#about_block
-  %h1
-    %b Find-a-Ride is on a mission to the help the planet (Hyderabad for now)!
-  #text
+%hr
+.hero-unit
+  .first-about
+    %h2
+      Find.a.Ride is on a mission to the help the planet (Hyderabad for now)!
     %p
       We are responsible citizens. Not just for our colonies, but for the entire planet. And it is our responsibility to conserve our resources. Find-a-Ride is a service we are doing to ourselves. On this site, People who want to share rides can contact each other & mutually arrange for traveling together. This site doesn't deal with the financial arrangement between the parties involved and leaves that to the discretion of the parties themselves. 
-    %br
     %p
-      Find-a-Ride is available for the city of <b>Hyderabad</b>. We hope to expand to other metros in India in the near future.
-    %br
+      Find.a.Ride is available for the city of <b>Hyderabad</b>. We hope to expand to other metros in India in the near future.
     %p
-      = link_to "See Find-a-Ride's terms of service", '#', :rel => "#leaflet", :class => 'overlay_link'
-  #about_image
-    = image_tag("find_a_ride_about.gif")
+      = link_to "See terms of service", '#terms', :class => 'btn btn-info btn-large', "data-toggle" => "modal"
 = render :partial => "shared/tos"

@@ -1,20 +1,12 @@
 $(document).ready(function() {
-    initCBSwitch();
-    headerTextLink();
     locationSearch();
     initRideSearch();
-    initOverlays();
-    initInactiveOverlay();
-    initConfirmBtns();
-    initAccordion();
-    initGeolocation();
-    tabbed();
-    setTimeout(hideFlashMessages, 7000);
+    setTimeout(hideFlashMessages, 5000);
 });
 
 
 function hideFlashMessages() {
-  $('p#notice, p#warning, p#error, p#alert').fadeOut(250)
+  $('.alert').fadeOut(400)
 }
 
 var isValidEmail = function(email) {
@@ -30,89 +22,6 @@ var constructContactMsg = function(origin, dest, matcher) {
         return 'I see that you are looking to find a ride from '+origin+' to '+dest+'. I would be willing to share a ride with you. Please get in touch with me so we can make this happen.'
     }
 }
-
-var headerTextLink = function(){
-  $("#header #big-label span.header_text").live('click', function(){
-    var url = $(this).attr('redirect_url');
-    window.location.href = url;
-  });
-}
-
-var initAccordion = function() {
-    $("#accordion").accordion();
-    $('.accordion_errors').fadeIn(3000);
-}
-
-var initOverlays = function() {
-    $('.overlay_link').overlay({
-        mask: {
-            color: '#eff2f7',
-            loadSpeed: 100,
-            opacity: 0.7
-        },
-        effect: 'apple',
-        closeOnClick: false
-    });
-}
-
-var initInactiveOverlay = function() {
-    $('.inactive_input').overlay({
-        mask: {
-            color: '#eff2f7',
-            loadSpeed: 100,
-            opacity: 0.7
-        },
-        closeOnClick: false
-    });
-}
-
-var initConfirmBtns = function(){
-    $('#user_inactive').live('click', function(){
-        $('.confirm_dialog').show();
-        checked = ($('.inactive_input').attr('checked'));
-    });
-
-    $('#confirm_yes').live('click', function(){
-        if (checked == 'checked'){
-            $('.inactive_input').attr('checked', true);
-        }
-        else{
-            $('.inactive_input').attr('checked', false);
-        }
-        $('.confirm_dialog').hide();
-        $('.inactive_input').overlay().close();
-        return false;
-    });
-
-    $('#confirm_no').live('click', function(){
-        if (checked == 'checked'){
-            $('.inactive_input').attr('checked', false);
-        }
-        else{
-            $('.inactive_input').attr('checked', true);
-        }
-        $('.confirm_dialog').hide();
-        $('.inactive_input').overlay().close();
-        return false;
-    });
-}
-
-var initCBSwitch = function() {
-    $('#search_get_ride').hide();
-    $('#search_offer_ride').hide();
-    $(".cb-enable").click(function(){
-        var parent = $(this).parents('.switch');
-        $('.cb-disable',parent).removeClass('selected');
-        $(this).addClass('selected');
-        $('.checkbox',parent).attr('checked', true);
-    });
-    $(".cb-disable").click(function(){
-        var parent = $(this).parents('.switch');
-        $('.cb-enable',parent).removeClass('selected');
-        $(this).addClass('selected');
-        $('.checkbox',parent).attr('checked', false);
-    });
-};
 
 var initRideSearch = function() {
     var search_url = $('#search_rides').attr('search_url');
@@ -333,15 +242,6 @@ function initGeolocation() {
     }
 }
 
-var tabbed = function(){
-  $(function() {
-
-    $("ul.css_tabs").tabs("div.css_panes > div", {
-      effect: 'ajax'
-    });
-
-  });
-}
 var rideTime = function(){
       $('input.timepicker').timepicker({
                 timeFormat: 'h:mm:ss p',

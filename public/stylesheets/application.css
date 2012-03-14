@@ -1,0 +1,15 @@
+.home {
+  h3 {
+	margin: 15px;
+  }
+  .image {
+     
+  }
+  .signup-block {
+	margin: 25px;
+  }
+}
+p.inline-errors {
+	font-size: 13px;
+	color: #cf210b;
+}
