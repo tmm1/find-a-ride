@@ -1,5 +1,6 @@
-= javascript_include_tag  "rider.js"
 - @ride_offer = RideOffer.new
+.text
+  %h2 Fill in information below to offer a ride
 .hero-unit
   = semantic_form_for @ride_offer, :url => ride_offers_path(@ride_offer) do |f|
     = f.inputs do
@@ -10,8 +11,8 @@
       = f.input :vehicle, :as => :select, :label => 'Vehicle you use?', :include_blank => false, :collection => ['4-Wheeler', '2-Wheeler']
       = f.input :type , :as => :hidden , :value => "RideOffer"
     = f.buttons do
-      = f.commit_button :label => 'Post your Offer'
-    
+      = f.commit_button :label => 'Submit'
+   
 
 
 

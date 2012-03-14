@@ -1,10 +1,6 @@
 class RideRequestsController < RidesController 
   before_filter :authenticate_user!
-  
-  def new
-    render :layout => false
-  end
-  
+
   def create
    @ride_request = current_user.ride_requests.new(params[:ride_request])
     respond_to do |format|

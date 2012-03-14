@@ -1,5 +1,6 @@
-= javascript_include_tag  "rider.js"
 - @ride_request = RideRequest.new
+.text
+  %h2 Fill in information below to request a ride
 .hero-unit
   = semantic_form_for @ride_request, :url => ride_requests_path(@ride_request) , :validate => true do |f|
     = f.inputs do
@@ -10,7 +11,8 @@
       = f.input :vehicle, :as => :select, :label => 'Vehicle you prefer?', :include_blank => false, :collection => ['4-Wheeler', '2-Wheeler'],:input_html => {:class => "required"}
       = f.input :type , :as => :hidden , :value => "RideRequest"
     = f.buttons do
-      = f.commit_button :label => 'Post your Request'
+      = f.commit_button :label => 'Submit'
+
     
 
 
