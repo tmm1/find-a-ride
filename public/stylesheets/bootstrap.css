@@ -2259,7 +2259,7 @@ button.btn.small, input[type="submit"].btn.small {
 }
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover {
   color: #555555;
-  background-color: #F5F5F5;
+  background-color: #F5F5F5	;
   border: 1px solid #ddd;
   border-bottom-color: transparent;
   cursor: default;
