@@ -10,7 +10,7 @@ $(document).ready(function() {
 
 
 function hideFlashMessages() {
-  $('.alert').fadeOut(400)
+  $('.alert').slideUp(400)
 }
 
 var isValidEmail = function(email) {
