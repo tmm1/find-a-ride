@@ -1,10 +1,12 @@
 %hr
 .hero-unit  
   .home
-    %h2
-      The idea is simple. Find.a.Ride enables eco-friendly citizens to share rides with other like minded folks cutting down fuel usage, saving money and mother earth in the process. 
-      = link_to('Learn more', about_home_index_path, :class => 'btn btn-primary btn-large')
     = render 'shared/carousel'
+    %h2
+      This is a free service that enables eco-friendly citizens to find and share rides with other like minded folks to drive down fuel usage, save money and mother earth in the process. Simple, ain't it?
+      = link_to('Learn more', about_home_index_path, :class => 'btn btn-primary btn-large')
+    %br
+    %br
     - unless user_signed_in?
       .signup-block
         %h3
