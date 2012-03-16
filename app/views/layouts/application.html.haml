@@ -48,7 +48,8 @@
               %p{:class => 'navbar-text pull-right'}
                 = link_to("Sign in", new_user_session_path)
     .container
-      = render 'shared/flashes'  
+      .notice-area
+        = render 'shared/flashes'  
       = yield
       %hr
       .footer
