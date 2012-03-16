@@ -1,8 +1,17 @@
 PoolRide::Application.routes.draw do
 
-  devise_for :users , :controllers => { :omniauth_callbacks => "users/omniauth_callback" }
+  devise_for :users , :controllers => { :omniauth_callbacks => "users/omniauth_callback" } do
+    get '/signin' => 'devise/sessions#new'
+    get '/signup', :to => "devise/registrations#new"
+    get '/users/confirm', :to => 'devise/confirmations#new'
+    get '/users/reset_password', :to => 'devise/passwords#new'
+    get '/users/change_password', :to => 'devise/passwords#edit'
+  end
 
-  root :to => "home#index"
+  root :to => 'home#index'
+  match '/about' => 'home#about'
+  match '/index' => 'home#index'
+  
   resources :home do
     collection do
       get 'about'
@@ -22,7 +31,6 @@ PoolRide::Application.routes.draw do
   match '/geocode_city' => 'application#geocode_city'
   match '/twitter' => 'users/omniauth_callback#twitter'
   match '/register_user_with_twitter' => 'users/omniauth_callback#register_user_with_twitter'
-  match '/remove_location/:id' => 'home#remove_fav_location'
  
   # The priority is based upon order of creation:
   # first created -> highest priority.
