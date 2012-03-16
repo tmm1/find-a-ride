@@ -1,12 +1,12 @@
 $(document).ready(function() {
-     typeaheadSearch();
-     rideTime();
-     rideDate();
-    setTimeout(hideFlashMessages, 5000);
+    typeaheadSearch();
+    rideTime();
+    rideDate();
+    setTimeout(hideFlashMessages, 3500);
 
     // set carousel interval
     $('.carousel').carousel({
-	  interval: 3000
+	  interval: 3500
 	});
 	
 	// define tooltip on input fields across the app
@@ -241,7 +241,7 @@ var rideDate = function(){
 		$( "input.datepicker" ).datepicker({
                      nextText: '',
                      prevText: '',
-                     dateFormat: 'yy-mm-dd'
+                     dateFormat: 'dd-mm-yyyy'
                 });
 	}
 

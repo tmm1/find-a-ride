@@ -28,4 +28,11 @@ p.inline-errors {
 	text-align: center;
 }
 #contact {
+	.contact-error {
+		display: none;
+		p {			
+		  font-size: 13px!important;
+		  color: #cf210b!important;
+		}
+	}
 }
