@@ -6,7 +6,7 @@
     /= devise_error_messages!
     = f.hidden_field :reset_password_token
     = f.inputs do
-      = f.input :password, :label => "New Password"
-      = f.input :password_confirmation, :label => "Confirm new Password"
+      = f.input :password, :label => "New Password", :input_html => {:title => 'Enter new password', :class => 'text-input'}
+      = f.input :password_confirmation, :label => "Confirm new Password", :input_html => {:title => 'Confirm the password', :class => 'text-input'}
     = f.buttons do
       = f.commit_button "Submit"
