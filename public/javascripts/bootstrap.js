@@ -1478,6 +1478,8 @@
     this.highlighter = this.options.highlighter || this.highlighter
     this.$menu = $(this.options.menu).appendTo('body')
     this.source = this.options.source
+    this.onselect = this.options.onselect
+    this.strings = true
     this.shown = false
     this.listen()
   }
@@ -1487,8 +1489,18 @@
     constructor: Typeahead
 
   , select: function () {
-      var val = this.$menu.find('.active').attr('data-value')
-      this.$element.val(val)
+     // var val = this.$menu.find('.active').attr('data-value')
+      // this.$element.val(val)
+      var val = JSON.parse(this.$menu.find('.active').attr('data-value'))
+     , text
+
+     if (!this.strings) text = val[this.options.property]
+    else text = val
+
+    this.$element.val(text)
+
+    if (typeof this.onselect == "function")
+    this.onselect(val)
       return this.hide()
     }
 
@@ -1517,6 +1529,23 @@
       var that = this
         , items
         , q
+        , value
+        this.query = this.$element.val()
+
+        if (typeof this.source == "function")
+         value = this.source(this, this.query)
+        if (value)
+         this.process(value)
+        else
+         this.process(this.source)
+    }
+  , process: function (results) {
+      var that = this
+        , items
+        , q
+
+      if (results.length && typeof results[0] != "string")
+          this.strings = false
 
       this.query = this.$element.val()
 
@@ -1524,7 +1553,9 @@
         return this.shown ? this.hide() : this
       }
 
-      items = $.grep(this.source, function (item) {
+      items = $.grep(results, function (item) {
+        if (!that.strings)
+          item = item[that.options.property]
         if (that.matcher(item)) return item
       })
 
@@ -1536,7 +1567,6 @@
 
       return this.render(items.slice(0, this.options.items)).show()
     }
-
   , matcher: function (item) {
       return ~item.toLowerCase().indexOf(this.query.toLowerCase())
     }
@@ -1546,11 +1576,17 @@
         , caseSensitive = []
         , caseInsensitive = []
         , item
+        , sortby
+        while (item = items.shift()) {
+       // if (!item.toLowerCase().indexOf(this.query.toLowerCase())) beginswith.push(item)
+       // else if (~item.indexOf(this.query)) caseSensitive.push(item)
 
-      while (item = items.shift()) {
-        if (!item.toLowerCase().indexOf(this.query.toLowerCase())) beginswith.push(item)
-        else if (~item.indexOf(this.query)) caseSensitive.push(item)
-        else caseInsensitive.push(item)
+        if (this.strings) sortby = item
+        else sortby = item[this.options.property]
+
+        if (!sortby.toLowerCase().indexOf(this.query.toLowerCase())) beginswith.push(item)
+        else if (~sortby.indexOf(this.query)) caseSensitive.push(item)
+          else caseInsensitive.push(item)
       }
 
       return beginswith.concat(caseSensitive, caseInsensitive)
@@ -1566,7 +1602,10 @@
       var that = this
 
       items = $(items).map(function (i, item) {
-        i = $(that.options.item).attr('data-value', item)
+       // i = $(that.options.item).attr('data-value', item)
+        i = $(that.options.item).attr('data-value', JSON.stringify(item))
+        if (!that.strings)
+         item = item[that.options.property]
         i.find('a').html(that.highlighter(item))
         return i[0]
       })
@@ -1700,6 +1739,8 @@
   , items: 8
   , menu: '<ul class="typeahead dropdown-menu"></ul>'
   , item: '<li><a href="#"></a></li>'
+  , onselect: null
+  , property: 'value'
   }
 
   $.fn.typeahead.Constructor = Typeahead

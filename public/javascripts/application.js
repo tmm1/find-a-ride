@@ -1,4 +1,7 @@
 $(document).ready(function() {
+     typeaheadSearch();
+     rideTime();
+     rideDate();
     setTimeout(hideFlashMessages, 5000);
 
     // set carousel interval
@@ -247,6 +250,23 @@ var rideOriginDest = function(){
                $("#ride_request_dest").val("");
             });
 }
+
+var typeaheadSearch = function(){
+        $('.typeahead').typeahead({
+        source: function (typeahead, query) {
+            return  $.ajax({
+                url: '/location_search?q='+query,
+                dataType: 'json',
+                success: function(data) {
+                    return typeahead.process(data);
+                },
+                failure : function(){
+                }
+               })
+           }
+         });
+}
+
 var rideRequestValidate = function(){
           $("#new_ride_request").validate({
                        rules: {
