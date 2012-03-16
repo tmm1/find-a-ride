@@ -17,7 +17,9 @@
       .navbar-inner
         .container
           %h2
-            %a{:href => root_url, :class => 'brand'} Find.a.Ride
+            %a{:href => root_url, :class => 'brand'} 
+              Find.a.Ride 
+              %span{:class => 'badge badge-info'} Beta
           .nav-collapse
             - if user_signed_in?
               %ul{:class => 'nav'}
@@ -57,7 +59,7 @@
       = yield
       %hr
       .footer
-        %b &copy; Pramati Technologies, Hyderabad. 2012.
+        %span{:class => 'badge badge-info'} &copy; Imaginea 2012
         .footer-image
           = image_tag('find_a_ride_about.gif', :size => '125x125')
 
