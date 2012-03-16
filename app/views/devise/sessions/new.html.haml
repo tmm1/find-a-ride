@@ -4,8 +4,8 @@
 .hero-unit
   = semantic_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
     = f.inputs do
-      = f.input :email
-      = f.input :password
+      = f.input :email, :input_html => {:title => 'Enter your account email', :class => 'text-input'}
+      = f.input :password, :input_html => {:title => 'Enter the password', :class => 'text-input'}
       - if devise_mapping.rememberable?
         = f.input :remember_me, :as => :boolean
     = f.buttons do

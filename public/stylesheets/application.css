@@ -1,14 +1,14 @@
 .home {
-  h3 {
-	margin: 15px;
-  }
   .signup-block {
-	margin: 25px;
-	text-align: center;
+	h3 {
+	  margin: 25px!important;
+	  text-align: center!important;
+	}
   }
 }
 p.inline-errors {
-	font-size: 13px;
+	margin-top: 0px!important;
+	font-size: 13px!important;
 	color: #cf210b;
 }
 .carousel-container {

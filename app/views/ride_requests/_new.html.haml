@@ -6,9 +6,9 @@
     = f.inputs do
       = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => "orig", :label => "Going from"}
       = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => "dest", :label => "Going to"}
-      = f.input :start_date, :required => true , :input_html => { :class => 'datepicker'}, :label => 'What day?'
-      = f.input :start_time, :input_html => { :class => 'timepicker'},:label => 'Roughly what time?'
-      = f.input :vehicle, :as => :select, :label => 'Vehicle you prefer?', :include_blank => false, :collection => ['4-Wheeler', '2-Wheeler'],:input_html => {:class => "required"}
+      = f.input :start_date,  :input_html => { :class => 'text-input datepicker', :title => 'Enter the date you are looking for a ride'},  :label => 'What day?', :required => true
+      = f.input :start_time, :input_html => { :class => 'text-input timepicker', :title => 'Enter the time you are looking for a ride'}, :label => 'Roughly what time?'
+      = f.input :vehicle, :as => :select, :label => 'Vehicle you use?', :include_blank => false, :collection => ['4-Wheeler', '2-Wheeler'], :input_html => { :class => 'text-input', :title => 'Enter the type of vehicle you prefer'}
       = f.input :type , :as => :hidden , :value => "RideRequest"
     = f.buttons do
       = f.commit_button :label => 'Submit'

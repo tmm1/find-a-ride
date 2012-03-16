@@ -9,3 +9,5 @@
         = content_tag :div, msg, :class => "alert alert-warning"
       - when :notice then
         = content_tag :div, msg, :class => "alert alert-info"
+      - else 
+        = content_tag :div, msg, :class => "alert alert-info"

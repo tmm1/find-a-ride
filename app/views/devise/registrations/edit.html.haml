@@ -13,9 +13,9 @@
             %span{:class => "accordion_errors", :id => "personal_info"}
               = pluralize("#{errors_by_accordion[:personal_info_errors].length}", "Error")
         .personal_profile
-          = f.input :email
-          = f.input :first_name
-          = f.input :last_name
+          = f.input :email, :input_html => { :class => 'text-input', :title => 'Your email'}
+          = f.input :first_name, :input_html => { :class => 'text-input', :title => 'Your first name'}
+          = f.input :last_name, :input_html => { :class => 'text-input', :title => 'Your last name'}
           = render :partial => "/shared/profile_image", :locals => {:form_element => f, :name => :attach_profile_picture, :label => 'Attach Profile Picture'}
           %li
             = f.errors_on :photo_content_type
@@ -26,25 +26,18 @@
             %span{:class => "accordion_errors", :id => "contact_info"}
               = pluralize("#{errors_by_accordion[:contact_info_errors].length}", "Error")
         .contact_profile
-          = f.input :mobile, :label => 'Mobile number'
-          = f.input :landline, :label => 'Landline number'
-          .fav_location
-            = "Favourite Locations"
-            %br
-            - (5 - @user.user_locations.count).times{@user.user_locations.build}
-            - @user.user_locations.each_with_index do |u_l,i|
-              = render :partial => "shared/auto_search_input", :locals => {:form_element => nil, :name => "user[user_locationss][]", :label => "Location #{i+1}", :selected_value => "#{u_l.location.name if u_l.location}", :style=> "margin-bottom:5px;"}
-              %br
+          = f.input :mobile, :label => 'Mobile number', :input_html => { :class => 'text-input', :title => 'Your mobile/cell number'}
+          = f.input :landline, :label => 'Landline number', :input_html => { :class => 'text-input', :title => 'Your landline number'}
         %h3
           %a{:href => "#"} Account Settings
           - if errors_by_accordion && !errors_by_accordion[:account_setting_errors].blank?
             %span{:class => "accordion_errors", :id => "account_info"}
               = pluralize("#{errors_by_accordion[:account_setting_errors].length}", "Error")
         .account_profile
-          = f.input :password, :hint => "(leave blank if you don't want to change it)"
-          = f.input :password_confirmation, :label => 'Enter password again'
+          = f.input :password, :input_html => { :class => 'text-input', :title => 'leave blank if you don\'t want to change it'}
+          = f.input :password_confirmation, :label => 'Enter password again', :input_html => { :class => 'text-input', :title => 'Confirm password'}
           %br
-          = f.input :inactive, :label => 'I want to be inactive', :input_html => {:rel => "#confirmation_overlay", :class => "inactive_input"}
+          = f.input :inactive, :label => 'I want to be inactive', :input_html => {:rel => "#confirmation_overlay", :class => "inactive_input text-input", :title => 'Check this if you want to deactivate your account'}
     %br
     = f.buttons do
       = f.commit_button "Submit"
