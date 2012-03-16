@@ -3,9 +3,11 @@ $(document).ready(function() {
     initRideSearch();
     setTimeout(hideFlashMessages, 5000);
 
+    #
     $('.carousel').carousel({
 	  interval: 3000
 	});
+	
 });
 
 
@@ -73,28 +75,6 @@ var initRideSearch = function() {
         }
     });
 };
-
-var initPaginationLinks = function() {
-    $('#list .pagination a').click(function(e) {
-        e.preventDefault();
-        search_url = $(this).attr('href');
-        $.ajax({
-            url: search_url,
-            success: function(data) {
-                $('#search_results_block').html(data);
-                $('#search_results_block').show();
-                initOverlays();
-                initPaginationLinks();
-                initContactForm();
-                $('.contact_click').click(function() {
-                    resetContactForm();
-                });
-            },
-            failure: function(data) {
-            }
-        });
-    });
-}
 
 var initContactForm = function() {
     $('.form_wrapper').find('.submit_button').click(function(e) {
