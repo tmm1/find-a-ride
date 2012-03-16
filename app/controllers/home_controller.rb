@@ -7,4 +7,8 @@ class HomeController < ApplicationController
       redirect_to rides_path
     end
   end
+  
+  def contact
+    
+  end
 end

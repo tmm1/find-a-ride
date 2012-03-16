@@ -16,8 +16,10 @@ PoolRide::Application.routes.draw do
     collection do
       get 'about'
       get 'index'
+      post 'contact'
     end
   end
+  
   resources :rides do
     collection do
       get 'search'
