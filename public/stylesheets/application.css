@@ -14,6 +14,11 @@ p.inline-errors {
 	font-size: 13px!important;
 	color: #cf210b;
 }
+.carousel {
+	background-color: #dcebda;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+}
 .carousel-container {
 	margin: 80px 0 80px 0;
 	padding: 0px;
