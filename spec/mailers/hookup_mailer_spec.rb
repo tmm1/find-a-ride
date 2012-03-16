@@ -1,5 +1,5 @@
 require "spec_helper"
 
-describe UserMailer do
+describe HookupMailer do
   
 end
