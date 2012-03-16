@@ -1,7 +1,4 @@
-$(document).ready(function() {
-    locationSearch();
-    rideTime();
-    rideDate();
+$(document).ready(function() {   
     rideOriginDest();
     rideRequestValidate();
     rideOfferValidate();
