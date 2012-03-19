@@ -1,6 +1,7 @@
-#confirmation_overlay.confirm_dialog
-  %span.sure Are you sure?
-  #buttons
-    = submit_tag 'Yes', :id => 'confirm_yes'
-    = submit_tag 'No', :id => 'confirm_no'
-
+%div{:id => "mymodal" , :class => "fade modal", :style => "display:none"}
+  %div{:class => "modal-body"}
+    %span.sure Are you sure ?
+  %div{:class => "modal-footer"}
+    #buttons
+      %a{:href => "#" , :id => 'confirm_yes', :class => "btn" } Yes
+      %a{:href => "#" , :id => 'confirm_no', :class => "btn" } No

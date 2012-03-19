@@ -6,17 +6,42 @@ $(document).ready(function() {
 
     // set carousel interval
     $('.carousel').carousel({
-	  interval: 3500
-	});
+        interval: 3500
+    });
 	
-	// define tooltip on input fields across the app
-	$('.text-input').tooltip({title: $('.text-input').attr('title'), placement: 'right', trigger: 'focus'})
+    // define tooltip on input fields across the app
+    $('.text-input').tooltip({
+        title: $('.text-input').attr('title'),
+        placement: 'right',
+        trigger: 'focus'
+    })
+
+    $('#mymodal').modal({
+        keyboard: false,
+        show: false
+    });
+
+    $(".inactive_input").click(function(e){
+        $('#mymodal').modal('toggle');
+    });
+
+    $("#confirm_yes").click(function(e){
+        e.preventDefault();
+        $('.inactive_input').attr("checked", "checked");
+        $('#mymodal').modal('toggle');
+    });
+
+    $("#confirm_no").click(function(e){
+        e.preventDefault();
+        $('.inactive_input').attr("checked", null);
+        $('#mymodal').modal('toggle');
+    });
 	
 });
 
 
 function hideFlashMessages() {
-  $('.alert').fadeOut(600);
+    $('.alert').fadeOut(600);
 }
 
 var isValidEmail = function(email) {
@@ -231,28 +256,28 @@ function initGeolocation() {
 }
 
 var rideTime = function(){
-      $('input.timepicker').timepicker({
-                timeFormat: 'h:mm:ss p',
-                interval: 30
-           });
+    $('input.timepicker').timepicker({
+        timeFormat: 'h:mm:ss p',
+        interval: 30
+    });
 }
 
 var rideDate = function(){
-		$( "input.datepicker" ).datepicker({
-                     nextText: '',
-                     prevText: '',
-                     dateFormat: 'dd-mm-yyyy'
-                });
-	}
+    $( "input.datepicker" ).datepicker({
+        nextText: '',
+        prevText: '',
+        dateFormat: 'dd-mm-yyyy'
+    });
+}
 
 var rideOriginDest = function(){
-            $("#ride_request_orig").live("change",function(){
-               $("#ride_request_dest").val("");
-            });
+    $("#ride_request_orig").live("change",function(){
+        $("#ride_request_dest").val("");
+    });
 }
 
 var typeaheadSearch = function(){
-        $('.typeahead').typeahead({
+    $('.typeahead').typeahead({
         source: function (typeahead, query) {
             return  $.ajax({
                 url: '/location_search?q='+query,
@@ -262,40 +287,48 @@ var typeaheadSearch = function(){
                 },
                 failure : function(){
                 }
-               })
-           }
-         });
+            })
+        }
+    });
 }
 
 var rideRequestValidate = function(){
-          $("#new_ride_request").validate({
-                       rules: {
-                            "ride_request[orig]": {
-                                                    required: true,
-                                                    notEqualTo: "#ride_request_dest"
-                                                   },
-                            "ride_request[dest]":  {
-                                                    required: true,
-                                                    notEqualTo: "#ride_request_orig"
-                                                   },
-                            "ride_request[start_date]": {required: true},
-                            "ride_request[start_time]": {required: true}
-                             }
-           });
+    $("#new_ride_request").validate({
+        rules: {
+            "ride_request[orig]": {
+                required: true,
+                notEqualTo: "#ride_request_dest"
+            },
+            "ride_request[dest]":  {
+                required: true,
+                notEqualTo: "#ride_request_orig"
+            },
+            "ride_request[start_date]": {
+                required: true
+            },
+            "ride_request[start_time]": {
+                required: true
+            }
+        }
+    });
 }
 var rideOfferValidate = function(){
-          $("#new_ride_offer").validate({
-                       rules: {
-                            "ride_offer[orig]": {
-                                                    required: true,
-                                                    notEqualTo: "#ride_offer_dest"
-                                                   },
-                            "ride_offer[dest]":  {
-                                                    required: true,
-                                                    notEqualTo: "#ride_offer_orig"
-                                                   },
-                            "ride_offer[start_date]": {required: true},
-                            "ride_offer[start_time]": {required: true}
-                             }
-            });
+    $("#new_ride_offer").validate({
+        rules: {
+            "ride_offer[orig]": {
+                required: true,
+                notEqualTo: "#ride_offer_dest"
+            },
+            "ride_offer[dest]":  {
+                required: true,
+                notEqualTo: "#ride_offer_orig"
+            },
+            "ride_offer[start_date]": {
+                required: true
+            },
+            "ride_offer[start_time]": {
+                required: true
+            }
+        }
+    });
 }
