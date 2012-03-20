@@ -36,3 +36,15 @@ p.inline-errors {
 		}
 	}
 }
+.accordion-heading {
+	background-color: #D8D8D8;
+	cursor: pointer;
+}
+.accordion-heading h3{
+	color: #2E9AFE;
+}
+.accordion-heading .accordion_errors {
+	color: #cf210b;
+  float: right;
+	margin: -22px 10px 0 0;
+}
