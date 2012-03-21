@@ -20,5 +20,7 @@ class RidesController < ApplicationController
   end
   
   def index
+    @ride_request = RideRequest.new
+    @ride_offer = RideOffer.new
   end
 end

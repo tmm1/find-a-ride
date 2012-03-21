@@ -258,7 +258,15 @@ function initGeolocation() {
 var rideTime = function(){
     $('input.timepicker').timepicker({
         timeFormat: 'h:mm:ss p',
-        interval: 30
+        interval: 30,
+        blur: function(time) {
+
+           alert($.fn.timepicker.parseTime('h:mm:ss p',time));
+           
+        },
+        minTime: new Date
+     
+        
     });
 }
 
@@ -266,7 +274,8 @@ var rideDate = function(){
     $( "input.datepicker" ).datepicker({
         nextText: '',
         prevText: '',
-        dateFormat: 'dd-mm-yyyy'
+        dateFormat: 'dd-mm-yy',
+        minDate: new Date
     });
 }
 
