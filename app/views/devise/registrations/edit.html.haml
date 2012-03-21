@@ -5,40 +5,52 @@
   = semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :multipart => true }) do |f|
     /= devise_error_messages!
     = f.inputs do
-      #accordion
-        - errors_by_accordion = @user.errors ? errors_by_accordion_type(@user.errors) : {}
-        %h3
-          %a{:href => "#"} Personal Information
-          - if errors_by_accordion && !errors_by_accordion[:personal_info_errors].blank?
-            %span{:class => "accordion_errors", :id => "personal_info"}
-              = pluralize("#{errors_by_accordion[:personal_info_errors].length}", "Error")
-        .personal_profile
-          = f.input :email, :input_html => { :class => 'text-input', :title => 'Your email'}
-          = f.input :first_name, :input_html => { :class => 'text-input', :title => 'Your first name'}
-          = f.input :last_name, :input_html => { :class => 'text-input', :title => 'Your last name'}
-          = render :partial => "/shared/profile_image", :locals => {:form_element => f, :name => :attach_profile_picture, :label => 'Attach Profile Picture'}
-          %li
-            = f.errors_on :photo_content_type
-            = f.errors_on :photo_file_size
-        %h3
-          %a{:href => "#"} Contact/Other Information
-          - if errors_by_accordion && !errors_by_accordion[:contact_info_errors].blank?
-            %span{:class => "accordion_errors", :id => "contact_info"}
-              = pluralize("#{errors_by_accordion[:contact_info_errors].length}", "Error")
-        .contact_profile
-          = f.input :mobile, :label => 'Mobile number', :input_html => { :class => 'text-input', :title => 'Your mobile/cell number'}
-          = f.input :landline, :label => 'Landline number', :input_html => { :class => 'text-input', :title => 'Your landline number'}
-        %h3
-          %a{:href => "#"} Account Settings
-          - if errors_by_accordion && !errors_by_accordion[:account_setting_errors].blank?
-            %span{:class => "accordion_errors", :id => "account_info"}
-              = pluralize("#{errors_by_accordion[:account_setting_errors].length}", "Error")
-        .account_profile
-          = f.input :password, :input_html => { :class => 'text-input', :title => 'leave blank if you don\'t want to change it'}
-          = f.input :password_confirmation, :label => 'Enter password again', :input_html => { :class => 'text-input', :title => 'Confirm password'}
-          %br
-          = f.input :inactive, :label => 'I want to be inactive', :input_html => {:class => "inactive_input"}
-    %br
+      - errors_by_accordion = @user.errors ? errors_by_accordion_type(@user.errors) : {}
+      .accordion{:id => 'accordion2'}
+        .accordion-group
+          .accordion-heading
+            %span{:class => "accordion-toggle", :"data-toggle" => "collapse", :"data-parent" => "#accordion2", :href => "#collapseOne"}
+              %h3 Personal Information
+              - if errors_by_accordion && !errors_by_accordion[:personal_info_errors].blank?
+                %span{:class => "accordion_errors", :id => "personal_info"}
+                  = pluralize("#{errors_by_accordion[:personal_info_errors].length}", "Error")
+          #collapseOne{:class => "accordion-body collapse in"}
+            .accordion-inner
+              .personal_profile
+                = f.input :email, :input_html => { :class => 'text-input', :title => 'Your email'}
+                = f.input :first_name, :input_html => { :class => 'text-input', :title => 'Your first name'}
+                = f.input :last_name, :input_html => { :class => 'text-input', :title => 'Your last name'}
+                = render :partial => "/shared/profile_image", :locals => {:form_element => f, :name => :attach_profile_picture, :label => 'Attach Profile Picture'}
+                %li
+                  = f.errors_on :photo_content_type
+                  = f.errors_on :photo_file_size
+        .accordion-group
+          .accordion-heading
+            %span{:class => "accordion-toggle", :"data-toggle" => "collapse", :"data-parent" => "#accordion2", :href => "#collapseTwo"}
+              %h3 Contact/Other Information
+              - if errors_by_accordion && !errors_by_accordion[:contact_info_errors].blank?
+                %span{:class => "accordion_errors", :id => "contact_info"}
+                  = pluralize("#{errors_by_accordion[:contact_info_errors].length}", "Error")
+          #collapseTwo{:class => "accordion-body collapse"}
+            .accordion-inner
+              .contact_profile
+                = f.input :mobile, :label => 'Mobile number', :input_html => { :class => 'text-input', :title => 'Your mobile/cell number'}
+                = f.input :landline, :label => 'Landline number', :input_html => { :class => 'text-input', :title => 'Your landline number'}
+        .accordion-group
+          .accordion-heading
+            %%span{:class => "accordion-toggle", :"data-toggle" => "collapse", :"data-parent" => "#accordion2", :href => "#collapseThree"}
+              %h3 Account Settings
+              - if errors_by_accordion && !errors_by_accordion[:account_setting_errors].blank?
+                %span{:class => "accordion_errors", :id => "account_info"}
+                  = pluralize("#{errors_by_accordion[:account_setting_errors].length}", "Error")
+          #collapseThree{:class => "accordion-body collapse"}
+            .accordion-inner
+              .account_profile
+                = f.input :password, :input_html => { :class => 'text-input', :title => 'leave blank if you don\'t want to change it'}
+                = f.input :password_confirmation, :label => 'Enter password again', :input_html => { :class => 'text-input', :title => 'Confirm password'}
+                %br
+                = f.input :inactive, :label => 'I want to be inactive', :input_html => {:class => "inactive_input"}
+        %br
     = f.buttons do
       = f.commit_button "Submit"
 = render :partial => "shared/confirm"
