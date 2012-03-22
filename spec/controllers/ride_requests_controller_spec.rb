@@ -6,12 +6,18 @@ describe RideRequestsController do
   #     @login_user = Factory(:user)
   #     @login_user.confirm!
   #   end
-  #   
-  #   describe "#new" do
-  #     it "should render new" do     
+  # 
+  #   describe "#create" do
+  #     it "should assign ride details" do
   #       sign_in @login_user
-  #       get 'new'
-  #       response.should be_success
+  #       params = {"orig"=>"S.R. Nagar", "dest"=>"Safilguda", "start_date"=>"21-03-2012", "start_time"=>"10:30:00 AM", "vehicle"=>"2-Wheeler", "type"=>"RideRequest"}
+  #       post 'create', :ride_request => params
+  #       response.should redirect_to(rides_path)
+  #     end
+  #     it "should render new" do
+  #       sign_in @login_user
+  #       params = {"orig"=>"", "dest"=>"Safilguda", "start_date"=>"21-03-2012", "start_time"=>"10:30:00 AM", "vehicle"=>"2-Wheeler", "type"=>"RideRequest"}
+  #       post 'create', :ride_request => params
   #       response.should render_template(:new)
   #     end
   #   end

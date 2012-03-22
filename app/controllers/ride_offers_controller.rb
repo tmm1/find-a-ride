@@ -8,6 +8,7 @@ class RideOffersController < RidesController
         format.html { redirect_to(rides_path, :notice => 'Your Ride Offer was successfully created.') }
       else
         format.html { render :action => "new" }
+        format.js {render :json => @ride_offer.errors }
       end
     end
   end

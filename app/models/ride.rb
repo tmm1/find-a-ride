@@ -5,8 +5,9 @@ class Ride < ActiveRecord::Base
   before_save :do_ride
 
 
-  #validates :orig,:dest, :presence => true
-
+  validates :orig,:dest,:start_date, :start_time, :presence => true
+  validate :start_is_time?
+  
   cattr_accessor :orig
   cattr_accessor :dest
   cattr_accessor :start_date
@@ -15,11 +16,23 @@ class Ride < ActiveRecord::Base
   
   private
 
-    def do_ride     
-      self.ride_time = "#{self.start_date} #{self.start_time}".to_datetime     
-      self.origin = Location.find_by_name(self.orig).id
-      self.destination = Location.find_by_name(self.dest).id
+  def do_ride
+    self.ride_time = "#{self.start_date} #{self.start_time}".to_datetime
+    self.origin = Location.find_by_name(self.orig).id if self.orig
+    self.destination = Location.find_by_name(self.dest).id if self.dest
+  end
+
+  def start_is_time?
+   begin
+      timeObj = Time.parse(self.start_time)
+      if !timeObj.is_a?(Time)
+        errors.add(:start_time, 'must be a valid time')
+      end
+    rescue
+      errors.add(:start_time, 'must be a valid time')
     end
+  end
+
 end
 
 # == Schema Information

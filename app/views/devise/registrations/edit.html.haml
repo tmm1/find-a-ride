@@ -9,12 +9,12 @@
       .accordion{:id => 'accordion2'}
         .accordion-group
           .accordion-heading
-            %span{:class => "accordion-toggle", :"data-toggle" => "collapse", :"data-parent" => "#accordion2", :href => "#collapseOne"}
+            %span{:class => "accordion-toggle", :"data-toggle" => "collapse", :"data-parent" => "#accordion2", :href => "#personalInfo"}
               %h3 Personal Information
               - if errors_by_accordion && !errors_by_accordion[:personal_info_errors].blank?
                 %span{:class => "accordion_errors", :id => "personal_info"}
                   = pluralize("#{errors_by_accordion[:personal_info_errors].length}", "Error")
-          #collapseOne{:class => "accordion-body collapse in"}
+          #personalInfo{:class => "accordion-body collapse in"}
             .accordion-inner
               .personal_profile
                 = f.input :email, :input_html => { :class => 'text-input', :title => 'Your email'}
@@ -26,24 +26,24 @@
                   = f.errors_on :photo_file_size
         .accordion-group
           .accordion-heading
-            %span{:class => "accordion-toggle", :"data-toggle" => "collapse", :"data-parent" => "#accordion2", :href => "#collapseTwo"}
+            %span{:class => "accordion-toggle", :"data-toggle" => "collapse", :"data-parent" => "#accordion2", :href => "#contactInfo"}
               %h3 Contact/Other Information
               - if errors_by_accordion && !errors_by_accordion[:contact_info_errors].blank?
                 %span{:class => "accordion_errors", :id => "contact_info"}
                   = pluralize("#{errors_by_accordion[:contact_info_errors].length}", "Error")
-          #collapseTwo{:class => "accordion-body collapse"}
+          #contactInfo{:class => "accordion-body collapse"}
             .accordion-inner
               .contact_profile
                 = f.input :mobile, :label => 'Mobile number', :input_html => { :class => 'text-input', :title => 'Your mobile/cell number'}
                 = f.input :landline, :label => 'Landline number', :input_html => { :class => 'text-input', :title => 'Your landline number'}
         .accordion-group
           .accordion-heading
-            %%span{:class => "accordion-toggle", :"data-toggle" => "collapse", :"data-parent" => "#accordion2", :href => "#collapseThree"}
+            %span{:class => "accordion-toggle", :"data-toggle" => "collapse", :"data-parent" => "#accordion2", :href => "#accountInfo"}
               %h3 Account Settings
               - if errors_by_accordion && !errors_by_accordion[:account_setting_errors].blank?
                 %span{:class => "accordion_errors", :id => "account_info"}
                   = pluralize("#{errors_by_accordion[:account_setting_errors].length}", "Error")
-          #collapseThree{:class => "accordion-body collapse"}
+          #accountInfo{:class => "accordion-body collapse"}
             .accordion-inner
               .account_profile
                 = f.input :password, :input_html => { :class => 'text-input', :title => 'leave blank if you don\'t want to change it'}
