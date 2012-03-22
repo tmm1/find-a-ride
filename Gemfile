@@ -6,7 +6,6 @@ gem 'haml', '3.1.2'
 gem 'cancan', '1.6.5'
 gem 'state_machine', '0.9.4'
 gem 'devise'
-gem 'mysql'
 gem 'heroku'
 gem 'will_paginate', '3.0'
 gem "oa-oauth", :require => "omniauth/oauth"
@@ -16,6 +15,9 @@ gem "paperclip", "~> 2.4"
 gem "aws-s3"
 gem "geokit"
 
+group :mysql do
+  gem 'mysql'
+end
 
 group :heroku do
   gem 'pg'
