@@ -22,7 +22,10 @@ $(document).ready(function() {
     });
 
     $(".inactive_input").click(function(e){
-        $('#mymodal').modal('toggle');
+        if ($('.inactive_input').attr("checked"))
+        {
+            $('#mymodal').modal('toggle');
+        }
     });
 
     $("#confirm_yes").click(function(e){
