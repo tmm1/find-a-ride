@@ -13,7 +13,7 @@ class HomeController < ApplicationController
     if contact_email.deliver
       render :text => 'success', :status => 200
     else
-      render :text => 'failed', :success => 500
+      render :text => 'failed', :status => 200
     end
   end
 end

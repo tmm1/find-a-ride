@@ -1,9 +1,7 @@
-#contact{:class => 'modal hide fade'}
+#contact{:class => 'modal hide fade', :url => contact_home_index_url}
   .modal-header
     %h1 Contact Find.a.Ride
   .modal-body
-    .contact-error
-      %p Please fill in all fields
     .form
       %h5 Use this form to submit general feedback or comments about this service.
       = form_tag(contact_home_index_path, :id => 'contact-form') do
@@ -12,7 +10,7 @@
           = hidden_field_tag 'email', current_user.email
         - else
           %label.label Name*
-          = text_field_tag 'name'
+          = text_field_tag 'name'      
           %label.label Email*
           = text_field_tag 'email'
         %label.label This is about
@@ -20,5 +18,8 @@
         %label.label Notes*
         = text_area_tag 'comments'
   .modal-footer
+    .loader{:style => 'display: none;', :class => 'pull-right'}
+      = image_tag('loader.gif')
     = link_to('Submit', '#', :id => 'contact-submit', :class => 'btn btn-primary')
+    
 

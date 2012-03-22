@@ -2,12 +2,12 @@
 	height: 50px;
 }
 .home {
-  .signup-block {
-	h3 {
-	  margin: 25px!important;
-	  text-align: center!important;
+	.signup-block {
+		h3 {
+			margin: 25px!important;
+			text-align: center!important;
+		}
 	}
-  }
 }
 p.inline-errors {
 	margin-top: 0px!important;
@@ -16,8 +16,8 @@ p.inline-errors {
 }
 .carousel {
 	background-color: #dcebda;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
 }
 .carousel-container {
 	margin: 80px 0 80px 0;
@@ -27,24 +27,15 @@ p.inline-errors {
 .footer-image {
 	text-align: center;
 }
-#contact {
-	.contact-error {
-		display: none;
-		p {			
-		  font-size: 13px!important;
-		  color: #cf210b!important;
-		}
-	}
-}
 .accordion-heading {
 	background-color: #D8D8D8;
 	cursor: pointer;
 }
 .accordion-heading h3{
-	color: #2E9AFE;
+	color: ##999;
 }
 .accordion-heading .accordion_errors {
 	color: #cf210b;
-  float: right;
+	float: right;
 	margin: -22px 10px 0 0;
 }
