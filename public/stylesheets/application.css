@@ -14,6 +14,12 @@ p.inline-errors {
 	font-size: 13px!important;
 	color: #cf210b;
 }
+
+#dp3 p.inline-errors {
+  padding: 40px 0 0 0;
+	font-size: 13px!important;
+	color: #cf210b;
+}
 .carousel {
 	background-color: #dcebda;
 	-webkit-border-radius: 4px;
@@ -38,4 +44,8 @@ p.inline-errors {
 	color: #cf210b;
 	float: right;
 	margin: -22px 10px 0 0;
+}
+
+input#ride_request_start_time, input#ride_offer_start_time{
+  width: 100px;
 }

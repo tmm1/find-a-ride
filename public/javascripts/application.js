@@ -3,7 +3,8 @@ $(document).ready(function() {
     rideTime();
     rideDate();
     setTimeout(hideFlashMessages, 3500);
-
+    $('.input-append').datepicker();
+    
     // *** set carousel interval *** //
     $('.carousel').carousel({
         interval: 3500
@@ -163,11 +164,11 @@ function initGeolocation() {
 
 var rideTime = function(){
     $('input.timepicker').timepicker({
-        timeFormat: 'h:mm:ss p',
+        timeFormat: 'h:mm p',
         interval: 30,
         blur: function(time) {
 
-           alert($.fn.timepicker.parseTime('h:mm:ss p',time));
+           alert($.fn.timepicker.parseTime('h:mm p',time));
            
         },
         minTime: new Date
