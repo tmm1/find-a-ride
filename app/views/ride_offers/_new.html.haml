@@ -1,5 +1,6 @@
 .text
-  %h2 Fill in information below to offer a ride
+  %h2 If you are looking to offer a ride to folks, Please fill in the form below and submit. Once done, Folks looking for rides will be able to find you and hook up with you.
+%br
 .hero-unit
   = semantic_form_for @ride_offer, :url => ride_offers_path(@ride_offer) do |f|
     = f.inputs do
