@@ -37,7 +37,7 @@ describe HomeController do
       post 'contact', {:name => 'john emburey', :email => 'john@gmail.com', :about => 'General Feedback', :comments => 'Hey! this is a great site, keep it going!' }
       response.should be_success
       response.body.should == 'success'
-      ActionMailer::Base.deliveries.size.should == 5
+      ActionMailer::Base.deliveries.size.should == 1
     end
   end
 end
