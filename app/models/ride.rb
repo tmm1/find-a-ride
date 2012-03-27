@@ -5,16 +5,15 @@ class Ride < ActiveRecord::Base
   before_create :assign_attribs
   
   validates :orig, :dest, :start_date, :start_time, :presence => true
-  validates :start_time, :time => true, :allow_nil => true
-  validates :orig, :dest, :location => true, :allow_nil => true
+  validates :start_time, :time => true
+  validates :orig, :dest, :location => true
   
   cattr_accessor :orig
   cattr_accessor :dest
   cattr_accessor :start_date
   cattr_accessor :start_time
-  
-  attr_accessor :orig, :dest, :start_date, :start_time
-  attr_accessible :orig, :dest, :start_date, :start_time
+
+  attr_accessible :type, :orig, :dest, :start_date, :start_time, :vehicle
  
   private
 
