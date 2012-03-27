@@ -1,5 +1,9 @@
 class RideRequest < Ride
   belongs_to :requestor, :class_name => 'User', :foreign_key => 'user_id'
+  
+  def self.search(params)
+    
+  end
 end
 
 # == Schema Information

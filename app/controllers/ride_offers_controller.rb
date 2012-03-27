@@ -15,4 +15,7 @@ class RideOffersController < RidesController
     end
   end
   
+  def search
+    
+  end
 end
