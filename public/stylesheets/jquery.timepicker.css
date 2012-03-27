@@ -2,8 +2,8 @@
 .ui-timepicker {
   display: block;
   position: absolute;
-  height: 200px;
-  text-align: center;
+  height: 100px;
+  text-align: left;
   overflow: auto;
   overflow-x: hidden;
   /* IE */
