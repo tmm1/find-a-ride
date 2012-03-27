@@ -1,6 +1,6 @@
 class TimeValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    return if value.nil?
+    return if value.blank?
     begin
       Time.parse(value) 
     rescue

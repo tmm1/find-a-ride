@@ -1,5 +1,8 @@
 class RideOffersController < RidesController 
   before_filter :authenticate_user!
+  
+  def new
+  end
 
   def create
    @ride_offer = current_user.ride_offers.new(params[:ride_offer])
