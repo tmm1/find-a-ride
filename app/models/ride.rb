@@ -1,38 +1,28 @@
 class Ride < ActiveRecord::Base
-  has_one :ride_origin, :class_name => 'Location', :foreign_key => 'origin'
-  has_one :ride_destination, :class_name => 'Location', :foreign_key => 'destination'
+  belongs_to :ride_origin, :class_name => 'Location', :foreign_key => 'origin'
+  belongs_to :ride_destination, :class_name => 'Location', :foreign_key => 'destination'
   
-  before_save :do_ride
-
-
-  validates :orig,:dest,:start_date, :start_time, :presence => true
-  validate :start_is_time?
+  before_create :assign_attribs
+  
+  validates :orig, :dest, :start_date, :start_time, :presence => true
+  validates :start_time, :time => true, :allow_nil => true
+  validates :orig, :dest, :location => true, :allow_nil => true
   
   cattr_accessor :orig
   cattr_accessor :dest
   cattr_accessor :start_date
   cattr_accessor :start_time
-  attr_accessible :type,:orig, :dest, :start_date, :start_time, :vehicle
   
+  attr_accessor :orig, :dest, :start_date, :start_time
+  attr_accessible :orig, :dest, :start_date, :start_time
+ 
   private
 
-  def do_ride
+  def assign_attribs
     self.ride_time = "#{self.start_date} #{self.start_time}".to_datetime
-    self.origin = Location.find_by_name(self.orig).id if self.orig
-    self.destination = Location.find_by_name(self.dest).id if self.dest
+    self.origin = Location.find_by_name(self.orig).id
+    self.destination = Location.find_by_name(self.dest).id
   end
-
-  def start_is_time?
-   begin
-      timeObj = Time.parse(self.start_time)
-      if !timeObj.is_a?(Time)
-        errors.add(:start_time, 'must be a valid time')
-      end
-    rescue
-      errors.add(:start_time, 'must be a valid time')
-    end
-  end
-
 end
 
 # == Schema Information

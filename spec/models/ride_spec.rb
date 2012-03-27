@@ -1,99 +1,58 @@
 require 'spec_helper'
 
 describe Ride do
-   describe "#attributes and methods" do
+  describe "#attributes and methods" do
     it { should validate_presence_of(:orig) }
     it { should validate_presence_of(:dest) }
     it { should validate_presence_of(:start_date) }
     it { should validate_presence_of(:start_time) }
-
-    it { should_not allow_value('teteste').for(:start_time) }
+     
+    it { should allow_value('Madhapur').for(:orig) }
+    it { should allow_value('madhapur').for(:orig) }
+    
+    it { should allow_value('Kondapur').for(:dest) }
+    it { should allow_value('kOndApur').for(:dest) }
+    
     it { should allow_value('1230').for(:start_time)}
-   
-
-    before(:each) do
-      hyd = Factory(:city)
-      mad = Factory(:location, :name => 'Madhapur', :city => hyd)
-      kon = Factory(:location, :name => 'Kondapur', :city => hyd)
-      miy = Factory(:location, :name => 'Miyapur', :city => hyd)
-      @ride_request = Factory(:ride, :orig => mad.name, :dest => kon.name, :start_date =>"2012-03-21" , :start_time => "01:30:00",
-                  :vehicle   =>  "2-Wheeler",
-                  :user_id => Factory(:user).id,
-                  :type =>        "RideRequest" )
-    end
-
-
-    it "should save a valid ride" do
-      @ride_request.ride_time.should == '2012-03-21 01:30:00'
-      @ride_request.save.should be true
-    end
-
-    it "should fail start time validation" do
-       @ride_request.start_time  = ""
-       @ride_request.save.should be false
-       @ride_request.errors.to_a.should include("Start time can't be blank", "Start time must be a valid time")
-    end
-
-    it "should fail orig validation" do
-       @ride_request.orig  = ""
-       @ride_request.save.should be false
-       @ride_request.errors.to_a.should include("Orig can't be blank")
-    end
-
-    it "should fail dest validation" do
-       @ride_request.dest  = ""
-       @ride_request.save.should be false
-       @ride_request.errors.to_a.should include("Dest can't be blank")
-    end
-
-    it "should fail start date validation" do
-       @ride_request.start_date  = ""
-       @ride_request.save.should be false
-       @ride_request.errors.to_a.should include("Start date can't be blank")
-    end
-  end
-
-  describe "ride offer" do
-    before(:each) do
-      hyd = Factory(:city)
-      mad = Factory(:location, :name => 'Madhapur', :city => hyd)
-      kon = Factory(:location, :name => 'Kondapur', :city => hyd)
-      @ride_offer = Factory(:ride, :orig => kon.name, :dest => mad.name, :start_date =>"2012-03-21" , :start_time => "01:30:00",
-                  :vehicle   =>  "2-Wheeler",
-                  :user_id => Factory(:user).id,
-                  :type =>        "RideOffer" )
+    it { should allow_value('2012-03-21 01:30:00').for(:start_time)}
+    
+    it 'should allow only valid values for start time' do
+      ride = Factory.build(:ride)
+      ride.start_time = 'blahblah'
+      ride.valid?.should be false
+      ride.should have(1).errors_on(:start_time)
+      ride.errors[:start_time].should include('is not valid')
     end
     
-    it "should save a valid ride" do
-      @ride_offer.ride_time.should == '2012-03-21 01:30:00'
-      @ride_offer.save.should be true
+    it 'should allow only valid values for origin' do
+      ride = Factory.build(:ride)
+      ride.orig = 'unknown'
+      ride.valid?.should be false
+      ride.should have(1).errors_on(:orig)
+      ride.errors[:orig].should include('is not valid')
     end
-
-    it "should fail start time validation" do
-       @ride_offer.start_time  = ""
-       @ride_offer.save.should be false
-       @ride_offer.errors.to_a.should include("Start time can't be blank", "Start time must be a valid time")
+    
+    it 'should allow only valid values for destination' do
+      ride = Factory.build(:ride)
+      ride.dest = 'unknown'
+      ride.valid?.should be false
+      ride.should have(1).errors_on(:dest)
+      ride.errors[:dest].should include('is not valid')
     end
-
-    it "should fail orig validation" do
-       @ride_offer.orig  = ""
-       @ride_offer.save.should be false
-       @ride_offer.errors.to_a.should include("Orig can't be blank")
+    
+    it 'should assign attributes appropriately for a ride request during creation' do
+      ride_request = RideRequest.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00'})
+      ride_request.ride_origin.should == Location.find_by_name('Madhapur')
+      ride_request.ride_destination.should == Location.find_by_name('Kondapur')
+      ride_request.ride_time.should == "#{ride_request.start_date} #{ride_request.start_time}".to_datetime
     end
-
-    it "should fail dest validation" do
-       @ride_offer.dest  = ""
-       @ride_offer.save.should be false
-       @ride_offer.errors.to_a.should include("Dest can't be blank")
+    
+    it 'should assign attributes appropriately for a ride offer during creation' do
+      ride_offer = RideOffer.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00'})
+      ride_offer.ride_origin.should == Location.find_by_name('Madhapur')
+      ride_offer.ride_destination.should == Location.find_by_name('Kondapur')
+      ride_offer.ride_time.should == "#{ride_offer.start_date} #{ride_offer.start_time}".to_datetime
     end
-
-    it "should fail start date validation" do
-       @ride_offer.start_date  = ""
-       @ride_offer.save.should be false
-       @ride_offer.errors.to_a.should include("Start date can't be blank")
-    end
-  
-
   end
   
 end
