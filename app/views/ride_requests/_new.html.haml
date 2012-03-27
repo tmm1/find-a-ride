@@ -6,7 +6,7 @@
       = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => "orig", :label => "Going from"}
       = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => "dest", :label => "Going to"}
       #dp3{:"data-date-format" => "dd-mm-yyyy", :"data-date" => Time.now.strftime("%d-%m-%Y"), :class => "input-append date"}
-        = f.input :start_date,  :input_html => { :readonly => true, :title => 'Enter the date you are looking for a ride'},  :label => 'What day?', :required => true
+        = f.input :start_date, :input_html => { :readonly => true, :title => 'Enter the date you are looking for a ride', :value => Time.now.strftime("%d-%m-%Y")},  :label => 'What day?', :required => true
         %span
           .add-on
             %i{:class => "icon-th"}
