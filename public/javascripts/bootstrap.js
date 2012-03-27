@@ -1965,6 +1965,14 @@
 		},
 
 		click: function(e) {
+		  var selectedDay = parseInt($(e.target).closest('span, td, th').text(), 10) || '';
+		  var selectedDate = selectedDay+ ' ' +$(".datepicker table tr th.switch:first").text();
+		  var todayDate = new Date();
+		  selectedDate = new Date(selectedDate);
+		  todayDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate(), 0, 0, 0);
+		  if ((selectedDate < todayDate)){
+		    return;
+		  }
 			e.stopPropagation();
 			e.preventDefault();
 			var target = $(e.target).closest('span, td, th');
@@ -2002,8 +2010,10 @@
 							var day = parseInt(target.text(), 10)||1;
 							var month = this.viewDate.getMonth();
 							if (target.is('.old')) {
+							  return;
 								month -= 1;
 							} else if (target.is('.new')) {
+  							return;
 								month += 1;
 							}
 							var year = this.viewDate.getFullYear();
