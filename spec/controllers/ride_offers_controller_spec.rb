@@ -21,7 +21,7 @@ describe RideOffersController do
       sign_in @login_user
       params = Factory.attributes_for(:ride_offer)
       post 'create', :ride_offer => params
-      response.should redirect_to(rides_path)
+      response.should redirect_to(search_ride_requests_path(params))
       ride_offer = assigns(:ride_offer)
       ride_offer.should_not be_nil
       ride_offer.ride_origin.should == Location.find_by_name(params[:orig])

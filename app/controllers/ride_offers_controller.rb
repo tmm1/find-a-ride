@@ -8,7 +8,7 @@ class RideOffersController < RidesController
    @ride_offer = current_user.ride_offers.new(params[:ride_offer])
    respond_to do |format|
       if @ride_offer.save
-        format.html { redirect_to(rides_path, :notice => 'Your offer was put in successfully.') }
+        format.html { redirect_to(search_ride_requests_path(params[:ride_offer]), :notice => 'Yay! Your offer was created successfully.') }
       else
         format.html { render :action => "new" }
       end
@@ -19,7 +19,7 @@ class RideOffersController < RidesController
     results = RideOffer.search(params)
     @paginated_results = results.paginate(:page => params[:page], :per_page => 5)
     respond_to do |format|
-      format.html { render :partial => 'results' }
+      format.html { render 'results' }
     end
   end
 end
