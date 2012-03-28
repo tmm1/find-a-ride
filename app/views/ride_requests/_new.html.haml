@@ -16,7 +16,7 @@
       = f.input :vehicle, :as => :select, :label => 'Vehicle you prefer?', :include_blank => false, :collection => ['4-Wheeler', '2-Wheeler'], :input_html => { :class => 'text-input', :title => 'Enter the type of vehicle you prefer'}
       = f.input :type , :as => :hidden , :value => "RideRequest"
     = f.buttons do
-      = f.commit_button :label => 'Submit'
+      = f.commit_button :label => 'Submit', :button_html => {:class => 'btn btn-primary btn-large'}
 
     
 

@@ -52,5 +52,5 @@
                 = f.input :inactive, :label => 'I want to be inactive', :input_html => {:class => "inactive_input"}
         %br
     = f.buttons do
-      = f.commit_button "Submit"
+      = f.commit_button "Submit", :button_html => {:class => 'btn btn-primary btn-large'}
 = render :partial => "shared/confirm"
