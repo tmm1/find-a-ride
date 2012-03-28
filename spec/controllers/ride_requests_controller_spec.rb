@@ -43,4 +43,30 @@ describe RideRequestsController do
       ride_req.valid?.should be false
     end
   end
+  
+  describe "#search" do
+    before(:all) do
+      RideRequest.destroy_all
+      Factory(:ride_request)
+      Factory(:ride_request)
+    end
+    
+    it "should render the search page with results" do   
+      RideRequest.stub!(:search).and_return(RideRequest.limit(2))
+      sign_in @login_user
+      get 'search', {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => '4-Wheeler'}
+      response.should be_success
+      response.should render_template(:results)
+      assigns(:paginated_results).should have(2).things
+    end
+    
+    it "should render the search page with with no results" do   
+      RideRequest.stub!(:search).and_return(RideRequest.where(:origin => 'nowhere'))
+      sign_in @login_user
+      get 'search', {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => '4-Wheeler'}
+      response.should be_success
+      response.should render_template(:results)
+      assigns(:paginated_results).should have(0).things
+    end
+  end
 end

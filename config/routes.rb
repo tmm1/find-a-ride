@@ -20,14 +20,19 @@ PoolRide::Application.routes.draw do
     end
   end
   
-  resources :rides do
+  resources :rides
+  
+  resources :ride_requests do
     collection do
       get 'search'
     end
   end
   
-  resources :ride_requests 
-  resources :ride_offers
+  resources :ride_offers do
+    collection do
+      get 'search'
+    end
+  end
 
   match '/location_search' => 'application#location_search', :as => :location_search
   match '/geocode_city' => 'application#geocode_city'

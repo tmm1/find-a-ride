@@ -43,4 +43,30 @@ describe RideOffersController do
       ride_offer.valid?.should be false
     end
   end
+
+  describe "#search" do
+    before(:all) do
+      RideOffer.destroy_all
+      Factory(:ride_offer)
+      Factory(:ride_offer)
+    end
+
+    it "should render the search page with results" do   
+      RideOffer.stub!(:search).and_return(RideOffer.limit(2))
+      sign_in @login_user
+      get 'search', {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => '4-Wheeler'}
+      response.should be_success
+      response.should render_template(:results)
+      assigns(:paginated_results).should have(2).things
+    end
+
+    it "should render the search page with with no results" do   
+      RideOffer.stub!(:search).and_return(RideOffer.where(:origin => 'nowhere'))
+      sign_in @login_user
+      get 'search', {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => '4-Wheeler'}
+      response.should be_success
+      response.should render_template(:results)
+      assigns(:paginated_results).should have(0).things
+    end
+  end
 end
