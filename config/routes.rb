@@ -36,7 +36,10 @@ PoolRide::Application.routes.draw do
  
   # The priority is based upon order of creation:
   # first created -> highest priority.
-
+  match "/errors/not_found" => "errors#not_found" , :as => :not_found
+  match "/errors/internal_server_error" =>"errors#internal_server_error" , :as => :internal_server_error
+  match "/errors/method_not_allowed" => "errors#method_not_allowed" , :as => :method_not_allowed
+  match "/errors/unprocessable_entity" => "errors#unprocessable_entity" , :as => :unprocessable_entity
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
