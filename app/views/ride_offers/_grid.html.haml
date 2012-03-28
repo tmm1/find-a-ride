@@ -7,4 +7,4 @@
   %span{:class => 'label label-important'} Note: Ride time considered is a 1 hr window around yours 
   %br
   = render :partial => 'shared/rides_table', :locals => {:results => @paginated_results, :type => :ride_offer}
-  = will_paginate @paginated_results
+  = will_paginate @paginated_results, :renderer => BootstrapLinkRenderer
