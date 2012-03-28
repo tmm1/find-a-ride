@@ -10,6 +10,6 @@
       %td= user_name(result)
       %td= result.ride_origin.name
       %td= result.ride_destination.name
-      %td= result.ride_time.to_s(:long)
+      %td= result.ride_time.strftime('%B %d, %Y %l:%M%p')
       %td= vehicle_type_image(result)
       %td= link_to('Hook up', '#', :class => 'btn btn-medium btn-primary')
