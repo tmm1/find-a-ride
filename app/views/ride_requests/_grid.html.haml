@@ -4,7 +4,7 @@
     = pluralize(@paginated_results.total_entries, 'ride request') 
     matching your criteria. Feel free to hook up.
   %br
-  %span{:class => 'label label-important'} Note: Ride time considered is a 1 hr window around yours 
+  %span{:class => 'label label-important'} Note: Ride time considered is a 1 hr window around your time criteria
   %br
   = render :partial => 'shared/rides_table', :locals => {:results => @paginated_results, :type => :ride_request}
   = will_paginate @paginated_results, :renderer => BootstrapLinkRenderer
