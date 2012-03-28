@@ -2025,6 +2025,7 @@
 								type: 'changeDate',
 								date: this.date
 							});
+							this.picker.hide();
 						}
 						break;
 				}
