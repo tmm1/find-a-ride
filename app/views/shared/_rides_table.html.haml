@@ -1,0 +1,15 @@
+%table{:class => 'table table-striped'}
+  %th Name
+  %th Leaving from
+  %th Going to
+  %th Time
+  %th Vehicle type
+  %th
+  - results.each do |result|
+    %tr
+      %td= user_name(result)
+      %td= result.ride_origin.name
+      %td= result.ride_destination.name
+      %td= result.ride_time.to_s(:long)
+      %td= vehicle_type_image(result)
+      %td= link_to('Hook up', '#', :class => 'btn btn-medium btn-primary')

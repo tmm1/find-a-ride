@@ -19,7 +19,7 @@ class RideOffersController < RidesController
     results = RideOffer.search(params)
     @paginated_results = results.paginate(:page => params[:page], :per_page => 5)
     respond_to do |format|
-      format.html { render 'results' }
+      format.html { render 'rides/results' }
     end
   end
 end
