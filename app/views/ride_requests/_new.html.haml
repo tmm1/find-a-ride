@@ -2,6 +2,8 @@
   %h3 If you are looking to share a ride with other folks, Please fill in the form below and submit. Once done, Folks offering rides will be able to find you and hook up with you.
 %br
 .hero-unit
+  .pull-right
+    %span{:class => 'label label-important'} *Fields are required
   = semantic_form_for @ride_request, :url => ride_requests_path(@ride_request) , :validate => true do |f|
     = f.inputs do
       = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => "orig", :label => "Going from"}

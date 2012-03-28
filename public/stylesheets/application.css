@@ -47,5 +47,5 @@ p.inline-errors {
 }
 
 input#ride_request_start_time, input#ride_offer_start_time{
-  width: 100px;
+  width: 150px;
 }

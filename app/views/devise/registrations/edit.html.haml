@@ -2,6 +2,8 @@
   %h2 Update your profile information here
 %hr
 .hero-unit
+  .pull-right
+    %span{:class => 'label label-important'} *Fields are required
   = semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :multipart => true }) do |f|
     /= devise_error_messages!
     = f.inputs do

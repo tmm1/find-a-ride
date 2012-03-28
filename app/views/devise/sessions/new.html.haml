@@ -2,6 +2,8 @@
   %h2 Sign into Find.a.Ride
 %hr
 .hero-unit
+  .pull-right
+    %span{:class => 'label label-important'} *Fields are required
   = semantic_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
     = f.inputs do
       = f.input :email, :input_html => {:title => 'Enter your account email', :class => 'text-input'}
