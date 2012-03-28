@@ -54,7 +54,8 @@
       = yield
       %hr
       .footer
-        %span{:class => 'badge badge-info'} &copy; Imaginea 2012
+        %a{:href => 'http://www.imaginea.com/labs', :target => '_blank'}
+          %span{:class => 'badge badge-info'} &copy; Imaginea 2012
         .footer-image
           = image_tag('find_a_ride_about.gif', :size => '125x125')
     = render 'shared/contact'
