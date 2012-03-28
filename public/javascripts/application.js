@@ -131,8 +131,10 @@ var resetContactForm = function(toggle) {
 	}
 	$("#contact-submit").show();
 	$('#contact').find('.loader').hide();
-	$('#contact').find('#name').val('');
-	$('#contact').find('#email').val('');
+	if ($('#user_login_status').val() == 'false'){
+	  $('#contact').find('#name').val('');
+	  $('#contact').find('#email').val('');
+	}
 	$('#contact').find('#comments').val('');
 }
 
