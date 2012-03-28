@@ -45,10 +45,29 @@ describe User do
       @user.inactive.should be true
     end
     
+    it 'should return active status' do
+      @user = Factory(:user, :inactive => true)
+      @user.active?.should be false
+      @user.update_attribute :inactive, false
+      @user.active?.should be true
+    end
+    
     it 'should return the phone' do
       @user.mobile = '3012211221'
       @user.landline = '3032211221'
       @user.phone.should == '3012211221'
+    end
+  end
+  
+  describe "#active" do
+    it 'should return all active users' do
+      @active_user1 = Factory(:user)
+      @active_user2 = Factory(:user)
+      @active_user3 = Factory(:user)
+      @inactive_user1 = Factory(:user, :inactive => true)
+      @inactive_user2 = Factory(:user, :inactive => true)
+      User.active.should_not include @inactive_user1
+      User.active.should_not include @inactive_user2
     end
   end
 

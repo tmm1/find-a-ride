@@ -44,14 +44,14 @@ describe Ride do
       ride_request = RideRequest.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00'})
       ride_request.ride_origin.should == Location.find_by_name('Madhapur')
       ride_request.ride_destination.should == Location.find_by_name('Kondapur')
-      ride_request.ride_time.should == "#{ride_request.start_date} #{ride_request.start_time}".to_datetime
+      ride_request.ride_time.should == Helper.to_datetime(ride_request.start_date, ride_request.start_time)
     end
     
     it 'should assign attributes appropriately for a ride offer during creation' do
       ride_offer = RideOffer.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00'})
       ride_offer.ride_origin.should == Location.find_by_name('Madhapur')
       ride_offer.ride_destination.should == Location.find_by_name('Kondapur')
-      ride_offer.ride_time.should == "#{ride_offer.start_date} #{ride_offer.start_time}".to_datetime
+      ride_offer.ride_time.should == Helper.to_datetime(ride_offer.start_date, ride_offer.start_time)
     end
   end
   

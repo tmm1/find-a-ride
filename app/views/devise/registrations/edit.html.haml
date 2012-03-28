@@ -27,7 +27,7 @@
         .accordion-group
           .accordion-heading
             %span{:class => "accordion-toggle", :"data-toggle" => "collapse", :"data-parent" => "#accordion2", :href => "#contactInfo"}
-              %h3 Contact/Other Information
+              %h3 Contact Information
               - if errors_by_accordion && !errors_by_accordion[:contact_info_errors].blank?
                 %span{:class => "accordion_errors", :id => "contact_info"}
                   = pluralize("#{errors_by_accordion[:contact_info_errors].length}", "Error")

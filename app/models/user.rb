@@ -37,6 +37,14 @@ class User < ActiveRecord::Base
   end
   
   alias_method :name, :full_name
+  
+  def active?
+    !self.inactive
+  end
+  
+  def self.active
+    where(:inactive => false)
+  end
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token['extra']['user_hash']

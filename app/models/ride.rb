@@ -18,7 +18,7 @@ class Ride < ActiveRecord::Base
   private
 
   def assign_attribs
-    self.ride_time = "#{self.start_date} #{self.start_time}".to_datetime
+    self.ride_time = Helper.to_datetime(self.start_date, self.start_time)
     self.origin = Location.find_by_name(self.orig).id
     self.destination = Location.find_by_name(self.dest).id
   end
