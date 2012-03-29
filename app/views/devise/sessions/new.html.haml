@@ -11,4 +11,4 @@
       - if devise_mapping.rememberable?
         = f.input :remember_me, :as => :boolean
     = f.buttons do
-      = f.commit_button "Sign in", :button_html => {:class => 'btn btn-primary btn-large'}
+      = f.commit_button "#{%i} Sign in", :button_html => {:class => 'btn btn-primary btn-large'}
