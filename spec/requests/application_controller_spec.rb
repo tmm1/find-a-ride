@@ -14,6 +14,7 @@ describe "Application management" do
     post "/users/sign_in" , :user =>{:email => @login_user.email , :password => "test1234" }  
     get "ride_requests/search" 
     response.status.should eql 500
+    response.should render_template(:internal_server_error)
   end
 
 end
