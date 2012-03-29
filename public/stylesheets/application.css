@@ -34,7 +34,6 @@ p.inline-errors {
 	text-align: center;
 }
 .accordion-heading {
-	background-color: #D8D8D8;
 	cursor: pointer;
 }
 .accordion-heading h3{
@@ -48,4 +47,8 @@ p.inline-errors {
 
 input#ride_request_start_time, input#ride_offer_start_time{
   width: 150px;
+}
+.sign-in-footer {
+	margin-top: 35px;
+	margin-left: 23px;
 }

@@ -12,3 +12,6 @@
         = f.input :remember_me, :as => :boolean
     = f.buttons do
       = f.commit_button "Sign in", :button_html => {:class => 'btn btn-primary btn-large'}
+  .sign-in-footer
+    = link_to('Forgot your password?', users_reset_password_url, :class => 'btn btn-small btn-info')
+    = link_to('Confirm your account', users_confirm_url, :class => 'btn btn-small btn-info')
