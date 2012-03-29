@@ -1,8 +1,8 @@
 .results
   %h2 
-    We found
-    = pluralize(@paginated_results.total_entries, 'ride request') 
-    matching your criteria. Feel free to hook up.
+    Based on the criteria you used, We found
+    = pluralize(@paginated_results.total_entries, 'folk') 
+    looking for a ride. Hook up with them to offer them a ride.
   %br
   %span{:class => 'label label-important'} Note: Ride time considered is a 1 hr window around your time criteria
   %p

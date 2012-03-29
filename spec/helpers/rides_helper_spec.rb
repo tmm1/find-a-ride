@@ -28,4 +28,16 @@ describe RidesHelper do
       helper.vehicle_type_image(ride_request).should == image_tag('2-wheeler.png', :size => '40x40')
     end
   end
+  
+  describe '#humanize time' do
+    it 'should return with today' do
+      helper.humanize_time(Time.now).include?('today').should be true
+    end
+    it 'should return with tomorrow' do
+      helper.humanize_time(Time.now.advance(:days => 1)).include?('tomorrow').should be true
+    end
+    it 'should return with actual date' do
+      helper.humanize_time(Time.now.advance(:days => 3)).should_not be nil
+    end
+  end
 end
