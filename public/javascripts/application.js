@@ -173,9 +173,6 @@ var rideTime = function(){
            alert($.fn.timepicker.parseTime('h:mm p',time));
            
         },
-        minTime: new Date
-     
-        
     });
 }
 
