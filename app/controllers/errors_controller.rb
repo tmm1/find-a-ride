@@ -8,8 +8,8 @@ class ErrorsController < ApplicationController
 
   ERRORS.each do |e|
     define_method e do
-       respond_to do |format|
-        format.html { render e, :status => e }
+      respond_to do |format|
+        format.html { render e, :status => e ,:layout => "errors"}
         format.any { head e }
       end
     end

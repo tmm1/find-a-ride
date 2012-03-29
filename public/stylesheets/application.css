@@ -52,3 +52,15 @@ input#ride_request_start_time, input#ride_offer_start_time{
 	margin-top: 35px;
 	margin-left: 23px;
 }
+.image_align{
+    margin-left:10px;
+    padding-left: 420px;
+}
+.error_heading{
+    text-align:center;
+}
+.error_text_footer{
+    float:left;
+    margin-left:249px;
+}
+
