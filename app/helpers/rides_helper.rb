@@ -11,4 +11,14 @@ module RidesHelper
       image_tag('4-wheeler.png', :size => '30x30')
     end
   end
+  
+  def humanize_time(time)
+    if time.today?
+      time.strftime('today at %l:%M%p')
+    elsif time.to_date == Time.now.advance(:days => 1).to_date
+      time.strftime('tomorrow at %l:%M%p')
+    else
+      time.strftime('%B %d, %Y at %l:%M%p')
+    end
+  end
 end
