@@ -2,9 +2,11 @@
   %h2 Enter the email associated with your Twitter account
 %hr
 .hero-unit
+  .pull-right
+    %span{:class => 'label label-important'} *Fields are required
   = semantic_form_for(@user, :url => register_user_with_twitter_path) do |f|
     = f.inputs do
       = f.input :email
     = f.buttons do
-      = f.commit_button "Submit"
+      = f.commit_button "Submit", :button_html => {:class => 'btn btn-primary btn-large'}
 

@@ -1,4 +1,5 @@
 
+
 # == Schema Information
 #
 # Table name: hook_ups
@@ -8,5 +9,6 @@
 #  contacter_id :integer(4)
 #  created_at   :datetime
 #  updated_at   :datetime
+#  message      :string(3000)
 #
 
