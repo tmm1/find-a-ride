@@ -1,21 +1,19 @@
 require 'spec_helper'
 
 describe "Application management" do
-  it "accessing unknown action and redirects to the not found page" do
+ 
+  it "accessing unknown action and render not found page" do
     get "somthing"
     response.status.should eql 404
+    response.should render_template(:not_found)
   end
 
-  it "ride request other than GET" do
-    params = Factory.attributes_for(:ride_request)
-    get "/rides"
-    @rides = @ride_request
-    response.status.should eql 302
+  it "accessing search with out params and render internal server error page" do
+    @login_user = Factory(:user)
+    @login_user.confirm!
+    post "/users/sign_in" , :user =>{:email => @login_user.email , :password => "test1234" }  
+    get "ride_requests/search" 
+    response.status.should eql 500
   end
 
-  it "Not Acceptable" do
-    get "/location_search" , :q => nil
-    response.status.should eql 406
-  end
-  
 end
