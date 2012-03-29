@@ -40,7 +40,7 @@ describe Ride do
       ride.errors[:dest].should include('is not valid')
     end
     
-    it 'should not allow past time during ride request on same day' do
+    it 'should not allow past times for ride request on the same day' do
       ride = Factory.build(:ride)
       ride.start_date = Time.now.strftime("%d/%m/%Y")
       ride.start_time = (Time.now.-1.hour).strftime("%I:%M %p")

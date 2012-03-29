@@ -50,7 +50,6 @@ input#ride_request_start_time, input#ride_offer_start_time{
 }
 .sign-in-footer {
 	margin-top: 35px;
-	margin-left: 23px;
 }
 .error-image{
     text-align: center;
