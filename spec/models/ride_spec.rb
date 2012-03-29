@@ -45,7 +45,7 @@ describe Ride do
       ride.start_date = Time.now.strftime("%d/%m/%Y")
       ride.start_time = (Time.now.-1.hour).strftime("%I:%M %p")
       ride.valid?.should be false
-      ride.errors[:start_time].should include("can't be the past")
+      ride.errors[:start_time].should include("can't be in the past")
     end    
     
     it 'should assign attributes appropriately for a ride request during creation' do
