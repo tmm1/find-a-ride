@@ -1,2 +1,12 @@
-%div{:class =>"image_align" }
-  = image_tag("500error.png")
+%hr
+%h1.error-center There was a problem processing your request!
+%br
+.error-image
+  = image_tag("500error.png", :size => '200X150')
+%br
+%p
+%h2.error-center
+  %small
+    We have been notified of the problem and we are looking into it. Please refresh the page to see if the problem is just temporary or 
+    = link_to('go back', root_url)
+    to the home page.

@@ -1,2 +1,12 @@
-%div{:class =>"image_align" }
-  = image_tag("404error.png")
+%hr
+%h1.error-center The page you are trying to access could not be found!
+%br
+.error-image
+  = image_tag("404error.png", :size => '200x150')
+%br
+%p
+%h2.error-center
+  %small
+    if you entered the url in by hand, please make sure that it is correct.
+    = link_to('Go back', root_url)
+    to the home page.
