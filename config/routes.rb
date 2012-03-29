@@ -8,9 +8,15 @@ PoolRide::Application.routes.draw do
     get '/users/change_password', :to => 'devise/passwords#edit'
   end
 
-  root :to => 'home#index'
+  
   match '/about' => 'home#about'
   match '/index' => 'home#index'
+
+  authenticated :user do
+    root :to => 'rides#index'
+  end
+  root :to => 'home#index'
+
   
   resources :home do
     collection do
