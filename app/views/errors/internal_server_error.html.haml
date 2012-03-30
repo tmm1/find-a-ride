@@ -7,6 +7,8 @@
 %p
 %h2.error-center
   %small
-    We have been notified of the problem and we are looking into it. Please refresh the page to see if the problem is just temporary or 
+    We have been notified of the problem and we are looking into it. Please refresh the page to see if the problem is just temporary or
     = link_to('go back', root_url)
     to the home page.
+%h3{:class =>"show-exception-text" }= link_to("Show exception", '#exception', "data-toggle" => "modal")
+= render 'shared/exception'

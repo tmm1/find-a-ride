@@ -4,6 +4,8 @@ module ActionDispatch
   class ShowExceptions
     private
       def render_exception_with_template(env, exception)
+        $EXC = exception
+        $TYPE=rescue_responses[exception.class.name]
         body = ErrorsController.action(rescue_responses[exception.class.name]).call(env)
         log_error(exception)
         body

@@ -60,3 +60,7 @@ input#ride_request_start_time, input#ride_offer_start_time{
     margin: 30px;
 }
 
+.show-exception-text{
+   text-align:center;
+}
+

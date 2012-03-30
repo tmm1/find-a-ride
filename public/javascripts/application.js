@@ -16,9 +16,20 @@ $(document).ready(function() {
         placement: 'right',
         trigger: 'focus'
     })
+
+    //*** full-trace dialog ***//
+    $("a#full-trace").click(function(e){
+        $("#fulltrace").show();
+    })
+ 
     
     // *** Confirmation dialog on deactivate user *** //
     $('#mymodal').modal({
+        keyboard: false,
+        show: false
+    });
+    //*** dialog for showing exception ***//
+    $('#exception').modal({
         keyboard: false,
         show: false
     });
@@ -44,53 +55,53 @@ $(document).ready(function() {
     
     // *** Contact form *** //    
     $('#contact').on('show', function () {
-		resetContactForm(true);
-	})
+        resetContactForm(true);
+    })
 
-	$("#contact-submit").click(function(e){
-		$('#contact').find('.inline-errors').remove();
-		var errors = false;
-		var url = $('#contact').attr('url');
-		var name = $('#contact').find('#name');
-		var email = $('#contact').find('#email');
-		var about = $('#contact').find('#about').val();
-		var comments = $('#contact').find('#comments');
-		if (name.val() === '' || name.val() === undefined) {
-			errors = true;
-			name.after("<p class='inline-errors'>can't be blank</p>");
-		}
-		if (email.val() === '' || email.val() === undefined || !isValidEmail(email.val())) {
-			errors = true;
-			email.after("<p class='inline-errors'>can't be blank or invalid</p>");
-		}
-		if (comments.val() === '' || comments.val() === undefined) {
-			errors = true;
-			comments.after("<p class='inline-errors'>can't be blank</p>");
-		}
-		if (!errors) {
-			$("#contact-submit").hide();
-			$('#contact').find('.loader').show();
-			$.ajax({
-				type: 'POST',
-				url: url,
-				data: {
-					name: name.val(),
-					email: email.val(),
-					about: about,
-					comments: comments.val()
-				},
-				success: function(data) {
-					$('#contact').modal('hide');
-					if (data === 'success') {
-					    $('.notice-area').html("<div class='alert alert-success'>Your message has been successfully sent.</div>")	
-					}
-					else {
-						$('.notice-area').html("<div class='alert alert-error'>There was a problem. Please retry later.</div>")
-					}
-					setTimeout(hideFlashMessages, 3500);
-				}
-			});
-		}
+    $("#contact-submit").click(function(e){
+        $('#contact').find('.inline-errors').remove();
+        var errors = false;
+        var url = $('#contact').attr('url');
+        var name = $('#contact').find('#name');
+        var email = $('#contact').find('#email');
+        var about = $('#contact').find('#about').val();
+        var comments = $('#contact').find('#comments');
+        if (name.val() === '' || name.val() === undefined) {
+            errors = true;
+            name.after("<p class='inline-errors'>can't be blank</p>");
+        }
+        if (email.val() === '' || email.val() === undefined || !isValidEmail(email.val())) {
+            errors = true;
+            email.after("<p class='inline-errors'>can't be blank or invalid</p>");
+        }
+        if (comments.val() === '' || comments.val() === undefined) {
+            errors = true;
+            comments.after("<p class='inline-errors'>can't be blank</p>");
+        }
+        if (!errors) {
+            $("#contact-submit").hide();
+            $('#contact').find('.loader').show();
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: {
+                    name: name.val(),
+                    email: email.val(),
+                    about: about,
+                    comments: comments.val()
+                },
+                success: function(data) {
+                    $('#contact').modal('hide');
+                    if (data === 'success') {
+                        $('.notice-area').html("<div class='alert alert-success'>Your message has been successfully sent.</div>")
+                    }
+                    else {
+                        $('.notice-area').html("<div class='alert alert-error'>There was a problem. Please retry later.</div>")
+                    }
+                    setTimeout(hideFlashMessages, 3500);
+                }
+            });
+        }
     });	
 
 });
@@ -120,22 +131,22 @@ function setAppCity(location){
 }
 
 var resetContactForm = function(toggle) {
-	$('#contact').find('.inline-errors').remove();
-	if (toggle) {
-	    $("#contact-submit").show();
-		$('#contact').find('.loader').hide();	
-	}
-	else {
-		$("#contact-submit").hide();
-		$('#contact').find('.loader').show();
-	}
-	$("#contact-submit").show();
-	$('#contact').find('.loader').hide();
-	if ($('#user_login_status').val() == 'false'){
-	  $('#contact').find('#name').val('');
-	  $('#contact').find('#email').val('');
-	}
-	$('#contact').find('#comments').val('');
+    $('#contact').find('.inline-errors').remove();
+    if (toggle) {
+        $("#contact-submit").show();
+        $('#contact').find('.loader').hide();
+    }
+    else {
+        $("#contact-submit").hide();
+        $('#contact').find('.loader').show();
+    }
+    $("#contact-submit").show();
+    $('#contact').find('.loader').hide();
+    if ($('#user_login_status').val() == 'false'){
+        $('#contact').find('#name').val('');
+        $('#contact').find('#email').val('');
+    }
+    $('#contact').find('#comments').val('');
 }
 
 // Note that using Google Gears requires loading the Javascript
@@ -170,7 +181,7 @@ var rideTime = function(){
         interval: 30,
         blur: function(time) {
 
-           alert($.fn.timepicker.parseTime('h:mm p',time));
+            alert($.fn.timepicker.parseTime('h:mm p',time));
            
         },
     });
