@@ -9,7 +9,7 @@
       = f.input :email, :input_html => {:title => 'Enter your account email', :class => 'text-input'}
       = f.input :password, :input_html => {:title => 'Enter the password', :class => 'text-input'}
       - if devise_mapping.rememberable?
-        = f.input :remember_me, :as => :boolean
+        = f.input :remember_me, :as => :boolean,:input_html => {:class => 'remember-me'}
     = f.buttons do
       = f.commit_button "Sign in", :button_html => {:class => 'btn btn-primary btn-large'}
   .sign-in-footer
