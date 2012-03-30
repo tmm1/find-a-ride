@@ -123,6 +123,7 @@ describe User do
     it { should validate_presence_of(:last_name) }
 
     it { should_not allow_value('1230').for(:mobile) }
+    it { should_not allow_value('0123456789').for(:mobile) }
     it { should allow_value('1234567890').for(:mobile)}
     it { should_not allow_value('1230').for(:landline) }
     it { should allow_value('1234567890').for(:landline)}

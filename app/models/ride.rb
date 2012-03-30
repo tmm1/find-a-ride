@@ -5,6 +5,7 @@ class Ride < ActiveRecord::Base
   before_create :assign_attribs
   
   validates :orig, :dest, :start_date, :start_time, :presence => true
+  validates :start_time, :start_date, :date_time => true
   validates :start_time, :time => true
   validates :orig, :dest, :location => true
   

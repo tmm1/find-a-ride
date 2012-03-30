@@ -1,9 +1,9 @@
-%h2 Method not allowed
-%div
-  %h3 We're sorry
-  %p
-    The content that you requested could not be allowed.
-  %p
-    Want to
-    %a{href: root_path} go back to our home page
-    and try again?
+%hr
+%h1.text-center The requested operation could not be completed!
+%br
+%p
+%h2.text-center
+  %small
+    You can try refreshing the page as the problem may be temporary or 
+    = link_to('go back', root_url)
+    to the home page.

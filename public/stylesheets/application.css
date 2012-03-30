@@ -30,11 +30,11 @@ p.inline-errors {
 	padding: 0px;
 	text-align: center;
 }
-.footer-image {
+.footer {
 	text-align: center;
+	margin-bottom: 10px;
 }
 .accordion-heading {
-	background-color: #D8D8D8;
 	cursor: pointer;
 }
 .accordion-heading h3{
@@ -49,3 +49,14 @@ p.inline-errors {
 input#ride_request_start_time, input#ride_offer_start_time{
   width: 150px;
 }
+.sign-in-footer {
+	margin-top: 35px;
+}
+.text-center{
+    text-align: center;
+}
+.error-center{
+    text-align: center;
+    margin: 30px;
+}
+

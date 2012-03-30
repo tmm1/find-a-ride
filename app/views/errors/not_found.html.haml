@@ -1,9 +1,12 @@
-%h2 Not Found
-%div
-  %h3 We're sorry
-  %p
-    The content that you requested could not be found.
-  %p
-    Want to
-    %a{href: root_path} go back to our home page
-    and try again?
+%hr
+%h1.text-center The page you are trying to access could not be found!
+%br
+.text-center
+  = image_tag("404error.png", :size => '200x150')
+%br
+%p
+%h2.text-center
+  %small
+    if you entered the url in by hand, please make sure that it is correct.
+    = link_to('Go back', root_url)
+    to the home page.

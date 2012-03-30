@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe RidesController do
+  render_views
   include Devise::TestHelpers
   before(:all) do
     @login_user = Factory(:user)

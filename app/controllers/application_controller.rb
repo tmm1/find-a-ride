@@ -20,4 +20,12 @@ class ApplicationController < ActionController::Base
     session[:city] = values[-3].strip
     render :text => "success" , :status => 200
   end
+
+ private
+
+  # Overwriting the sign_out redirect path method
+  def after_sign_out_path_for(resource_or_scope)
+    set_flash_message :notice, :signed_out
+    root_path
+  end
 end

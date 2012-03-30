@@ -1,9 +1,16 @@
-%h2 Internal Error
-%div
-  %h3 We're sorry
-  %p
-    The server encountered an internal error or misconfiguration and was unable to complete your request.
-  %p
-    Want to
-    %a{href: root_path} go back to our home page
-    and try again?
+%hr
+%h1.text-center There was a problem processing your request!
+%br
+.text-center
+  = image_tag("500error.png", :size => '200X150')
+%br
+%p
+%h2.text-center
+  %small
+    We have been notified of the problem and we are looking into it. Please refresh the page to see if the problem is just temporary or
+    = link_to('go back', root_url)
+    to the home page.
+%br
+- if Rails.env.development?
+  %h3.text-center= link_to("Show exception information", '#exception', "data-toggle" => "modal", :class =>'btn btn-info btn-large')
+  = render 'shared/exception'
