@@ -1,14 +1,16 @@
 %hr
-%h1.error-center There was a problem processing your request!
+%h1.text-center There was a problem processing your request!
 %br
-.error-image
+.text-center
   = image_tag("500error.png", :size => '200X150')
 %br
 %p
-%h2.error-center
+%h2.text-center
   %small
     We have been notified of the problem and we are looking into it. Please refresh the page to see if the problem is just temporary or
     = link_to('go back', root_url)
     to the home page.
-%h3{:class =>"show-exception-text" }= link_to("Show exception", '#exception', "data-toggle" => "modal")
-= render 'shared/exception'
+%br
+- if Rails.env.development?
+  %h3.text-center= link_to("Show exception information", '#exception', "data-toggle" => "modal", :class =>'btn btn-info btn-large')
+  = render 'shared/exception'

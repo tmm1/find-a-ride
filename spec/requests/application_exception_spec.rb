@@ -5,6 +5,8 @@ describe "application exceptions" do
     get "unknown"
     response.status.should eql 404
     response.should render_template(:not_found)
+    assigns(:exception_message).should be nil
+    assigns(:exception_trace).should be nil
   end
 
   it "should render internal server error page on server error" do
@@ -14,5 +16,7 @@ describe "application exceptions" do
     get "ride_requests/search" 
     response.status.should eql 500
     response.should render_template(:internal_server_error)
+    assigns(:exception_message).should_not be nil
+    assigns(:exception_trace).should_not be nil
   end
 end

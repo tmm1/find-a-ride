@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe HomeController do
+  render_views
   include Devise::TestHelpers
   describe "#about" do
     it "should render about" do

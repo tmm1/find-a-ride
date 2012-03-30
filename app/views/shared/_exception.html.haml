@@ -1,15 +1,14 @@
 #exception{:class => 'modal hide fade'}
   .modal-header
-    %h1 Exceptions
+    %h1 Exception information
   .modal-body
-    %h2 #{$TYPE}
-    %ul
-      %h4 To see full trace click
-      %a{:href => "#" , :id => 'full-trace' } Full trace
-      = render "shared/full-trace"
-  .modal-footer
-    .loader{:style => 'display: none;', :class => 'pull-right'}
-      = image_tag('loader.gif')
+    %h4
+      %small Message
+      %p= @exception_message
+    %h4
+      %small Backtrace
+    %p= @exception_trace
+
     
   
 

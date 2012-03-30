@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe ApplicationController do
+  render_views
   before(:all) do
     hyd = Factory(:city)
     Factory(:location, :name => 'Madhapur', :city => hyd)

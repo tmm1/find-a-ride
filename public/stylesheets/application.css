@@ -52,15 +52,11 @@ input#ride_request_start_time, input#ride_offer_start_time{
 .sign-in-footer {
 	margin-top: 35px;
 }
-.error-image{
+.text-center{
     text-align: center;
 }
 .error-center{
     text-align: center;
     margin: 30px;
-}
-
-.show-exception-text{
-   text-align:center;
 }
 

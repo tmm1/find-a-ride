@@ -8,6 +8,8 @@ class ErrorsController < ApplicationController
 
   ERRORS.each do |e|
     define_method e do
+      @exception_message = params['exception_message']
+      @exception_trace = params['exception_trace']
       respond_to do |format|
         format.html { render e, :status => e }
         format.any { head e }

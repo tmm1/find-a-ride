@@ -4,8 +4,10 @@ module ActionDispatch
   class ShowExceptions
     private
       def render_exception_with_template(env, exception)
-        $EXC = exception
-        $TYPE=rescue_responses[exception.class.name]
+        if rescue_responses[exception.class.name] == :internal_server_error
+          env["action_dispatch.request.parameters"]["exception_message"] = exception.try(:message)
+          env["action_dispatch.request.parameters"]["exception_trace"] = exception.try(:backtrace)
+        end
         body = ErrorsController.action(rescue_responses[exception.class.name]).call(env)
         log_error(exception)
         body
