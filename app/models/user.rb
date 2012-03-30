@@ -19,7 +19,8 @@ class User < ActiveRecord::Base
   devise :omniauthable
 
   validates :first_name, :last_name, :presence => true
-  validates :mobile, :landline, :format => { :with => /^\d{10}$/, :allow_blank => true}
+  validates :landline, :format => { :with => /^\d{10}$/, :allow_blank => true}
+  validates :mobile, :format => { :with => /^[1-9]+\d{9}$/, :allow_blank => true}
   validates :terms, :acceptance => true, :on => :create
   validates_attachment_content_type :photo, :content_type => %w(image/jpeg image/jpg image/png image/gif), :message => 'must be of type jpeg, png or gif', :if => :photo_attached?
   validates_attachment_size :photo, :less_than => 3.megabytes, :message => 'cannot be greater than 3 MB', :if => :photo_attached?
