@@ -8,10 +8,10 @@ class Ride < ActiveRecord::Base
   validates :start_time, :time => true
   validates :orig, :dest, :location => true
   
-  cattr_accessor :orig
-  cattr_accessor :dest
-  cattr_accessor :start_date
-  cattr_accessor :start_time
+  attr_accessor :orig
+  attr_accessor :dest
+  attr_accessor :start_date
+  attr_accessor :start_time
 
   attr_accessible :type, :orig, :dest, :start_date, :start_time, :vehicle
  
