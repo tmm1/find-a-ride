@@ -1,0 +1,10 @@
+.signup-block
+  %h2
+    %small
+      Three ways to get started!
+      = link_to('Sign up here', signup_url)
+      or use your
+      = link_to(image_tag("facebook_logo.jpeg", :size => '30x30'), user_omniauth_authorize_path(:facebook))
+      or
+      = link_to(image_tag("twitter_logo.png", :size => '30x30'), user_omniauth_authorize_path(:twitter))
+      accounts.
