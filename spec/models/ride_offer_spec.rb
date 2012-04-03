@@ -14,6 +14,7 @@ describe RideOffer do
       @ride_offer8 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Jubilee Hills Road No 92', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler')
       @ride_offer9 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Kachiguda Railway Station', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:00:00 pm', :vehicle => 'four_wheeler')
       @ride_offer10 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler')
+      @ride_offer11 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 04:30:00 pm', :vehicle => 'two_wheeler')
       @ride_offer10.offerer.update_attribute(:inactive, true)
     end
 
@@ -39,6 +40,14 @@ describe RideOffer do
       results.should have(1).things
       results.should include @ride_offer7
       results.should_not include [@ride_offer2, @ride_offer3, @ride_offer9, @ride_offer4, @ride_offer5, @ride_offer6, @ride_offer8, @ride_offer1, @ride_offer10]
+    end
+
+    it 'should return results for search criteria 4' do
+      params = {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 04:30:00 pm', :vehicle => 'any'}
+      results = RideOffer.search(params)
+      results.should have(2).things
+      results.should == [@ride_offer6, @ride_offer11]
+      results.should_not include [@ride_offer2, @ride_offer3, @ride_offer9, @ride_offer4, @ride_offer5, @ride_offer7, @ride_offer8, @ride_offer1, @ride_offer10]
     end
 
     it 'should not return results for search criteria 1' do

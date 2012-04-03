@@ -3,7 +3,7 @@
   %th Leaving from
   %th Going to
   %th Time
-  %th Vehicle type
+  %th= 'Vehicle type' if type == :ride_offer
   %th
   - results.each do |result|
     %tr
@@ -11,6 +11,6 @@
       %td= result.ride_origin.name
       %td= result.ride_destination.name
       %td= humanize_time(result.ride_time)
-      %td= vehicle_type_image(result)
+      %td= vehicle_type_image(result) if type == :ride_offer
       %td= link_to('Hook up', '#hooks'+user_info(result).to_s, :class => 'btn btn-medium btn-primary', "data-toggle" => "modal")
     %div{:id => "hooks#{user_info(result)}", :class => 'modal hide hookclass', :url => new_hook_url(:id => user_info(result))}
