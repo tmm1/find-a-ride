@@ -1,10 +1,10 @@
 class HookUp < ActiveRecord::Base 
   belongs_to :contacter, :class_name => 'User'
   belongs_to :contactee, :class_name => 'User'
-  attr_accessor :phone_number
+  attr_accessor :mobile
 
   validates :contactee_id, :contacter_id, :message, :presence => true
-  validates :phone_number, :format => { :with => /^[1-9]+\d{9}$/, :allow_blank => true}
+  validates :mobile, :format => { :with => /^[1-9]+\d{9}$/, :allow_blank => true}
 end
 
 

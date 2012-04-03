@@ -1,18 +1,18 @@
 #hook
   .modal-header
-    %h1 Hook up 
+    %h2 Hook up to share a ride
   .modal-body
     .form
-      %span{:class => 'label label-important hookup-note'} Use this form to submit your hook ups
+      %span{:class => 'label label-important hookup-note'} Please fill in the form and submit
       %p
       = semantic_form_for @hook, :url => hooks_path(@hook) , :validate => true do |f|
         = f.inputs do
-          %li{:class => "string input optional stringish"}
+          %li{:class => "string input optional stringish" , :style=> "padding-bottom: 10px;"}
             %span{:class => " label"} To :
-            %span{:style => "font-size:14px;"}= @contactee.try(:full_name)
+            %span{:style => "font-size: 16.05px;"}= @contactee.try(:full_name)
           = f.input :contactee_id , :as => :hidden , :value => @contactee.try(:id)
           = f.input :contacter_id , :as => :hidden , :value => current_user.id
-          = f.input :phone_number, :input_html => { :title => 'Enter your phone number to contact'}, :label => 'Phone Number (optional)'
+          = f.input :mobile, :input_html => { :title => 'Enter your mobile number to contact'}, :label => 'Mobile (optional)'
           = f.input :message, :as => :text , :input_html => { :rows => 10, :cols => 20 }
   .modal-footer
     .loader{:style => 'display: none;', :class => 'pull-right'}

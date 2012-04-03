@@ -248,7 +248,7 @@ var hooks_submit =  function(){
         var url = $('#new_hook_up').attr('action');       
         var hook_id = $('#hook').find('#hook_up_contactee_id');        
         var message = $('#hook').find('#hook_up_message');
-        var phone = $('#hook').find('#hook_up_phone_number');
+        var phone = $('#hook').find('#hook_up_mobile');
         if (message.val() === '' || message.val() === undefined) {
             errors = true;
             message.after("<p class='inline-errors'>can't be blank</p>");
