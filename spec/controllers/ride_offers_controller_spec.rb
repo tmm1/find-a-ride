@@ -28,7 +28,7 @@ describe RideOffersController do
       ride_offer.ride_origin.should == Location.find_by_name(params[:orig])
       ride_offer.ride_destination.should == Location.find_by_name(params[:dest])
       ride_offer.ride_time.should == "#{params[:start_date]} #{params[:start_time]}".to_datetime
-      ride_offer.vehicle.should == '2-Wheeler'
+      ride_offer.vehicle.should == 'two_wheeler'
     end
 
     it "should fail creating an invalid ride offer" do
@@ -55,7 +55,7 @@ describe RideOffersController do
     it "should render the search page with results" do   
       RideOffer.stub!(:search).and_return(RideOffer.limit(2))
       sign_in @login_user
-      get 'search', {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => '4-Wheeler'}
+      get 'search', {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler'}
       response.should be_success
       response.should render_template(:results)
       assigns(:paginated_results).should have(2).things
@@ -64,7 +64,7 @@ describe RideOffersController do
     it "should render the search page with with no results" do   
       RideOffer.stub!(:search).and_return(RideOffer.where(:origin => 'nowhere'))
       sign_in @login_user
-      get 'search', {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => '4-Wheeler'}
+      get 'search', {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler'}
       response.should be_success
       response.should render_template(:results)
       assigns(:paginated_results).should have(0).things

@@ -19,12 +19,12 @@ describe RidesHelper do
   
   describe '#vehicle type image' do
     it 'should return 4 wheeler type image' do
-      ride_request = Factory(:ride_request, :vehicle => '4-Wheeler')
+      ride_request = Factory(:ride_request, :vehicle => 'four_wheeler')
       helper.vehicle_type_image(ride_request).should == image_tag('4-wheeler.png', :size => '30x30')
     end
     
     it 'should return 2 wheeler type image' do
-      ride_request = Factory(:ride_request, :vehicle => '2-Wheeler')
+      ride_request = Factory(:ride_request, :vehicle => 'two_wheeler')
       helper.vehicle_type_image(ride_request).should == image_tag('2-wheeler.png', :size => '40x40')
     end
   end
@@ -55,6 +55,12 @@ describe RidesHelper do
       name = helper.user_info(ride_offer)
       name.should_not be nil
       name.should == ride_offer.offerer.id
+    end
+  end
+  
+  describe '#vehicle type collection' do
+    it 'should return the collection' do
+      helper.vehicle_type_collection.should == [['Four-Wheeler', 'four_wheeler'], ['Two-Wheeler', 'two_wheeler'], ['I don\'t care', 'any']]
     end
   end
 end

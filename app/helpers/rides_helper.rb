@@ -5,9 +5,9 @@ module RidesHelper
   
   def vehicle_type_image(ride)
     case ride.vehicle
-    when '2-Wheeler' then
+    when 'two_wheeler' then
       image_tag('2-wheeler.png', :size => '40x40')
-    when '4-Wheeler' then
+    when 'four_wheeler' then
       image_tag('4-wheeler.png', :size => '30x30')
     end
   end
@@ -24,5 +24,9 @@ module RidesHelper
 
   def user_info(ride)
     ride.type == 'RideOffer' ? ride.offerer.id : ride.requestor.id
+  end
+  
+  def vehicle_type_collection
+    [['Four-Wheeler', 'four_wheeler'], ['Two-Wheeler', 'two_wheeler'], ['I don\'t care', 'any']]
   end
 end
