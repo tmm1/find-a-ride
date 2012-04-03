@@ -1816,6 +1816,17 @@
 		this.fillMonths();
 		this.update();
 		this.showMode();
+		var temp_date = new Date();
+		if ((temp_date.getDate() > 27 && temp_date.getDate() <= 31)){
+		  this.picker.find('.datepicker-days tbody tr td.active').removeClass('active');
+		  $('.datepicker-days tbody tr td.day').each(function (index){
+		    if($(this).attr('class') == 'day'){
+		      if($(this).text() == new Date().getDate()){
+		        $(this).addClass('active');
+		      }
+		    }
+		  });
+		}
 	};
 
 	Datepicker.prototype = {

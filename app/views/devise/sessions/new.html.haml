@@ -1,7 +1,7 @@
 .text
   %h2 Sign into Find.a.Ride
 %hr
-.hero-unit
+.hero-unit.sign-in
   .pull-right
     %span{:class => 'label label-important'} *Fields are required
   = semantic_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
@@ -16,3 +16,4 @@
     %ul
       %li= link_to('Forgot your password', users_reset_password_url)
       %li= link_to('Confirm your account', users_confirm_url)
+  = render 'shared/signup'
