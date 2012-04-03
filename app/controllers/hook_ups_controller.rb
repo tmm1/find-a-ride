@@ -1,4 +1,4 @@
-class HooksController < ApplicationController
+class HookUpsController < ApplicationController
   before_filter :authenticate_user!
 
   def new

@@ -5,7 +5,7 @@
     .form
       %span{:class => 'label label-important hookup-note'} Please fill in the form and submit
       %p
-      = semantic_form_for @hook, :url => hooks_path(@hook) , :validate => true do |f|
+      = semantic_form_for @hook, :url => hook_ups_path(@hook) , :validate => true do |f|
         = f.inputs do
           %li{:class => "string input optional stringish" , :style=> "padding-bottom: 10px;"}
             %span{:class => " label"} To :

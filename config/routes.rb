@@ -32,7 +32,7 @@ PoolRide::Application.routes.draw do
     end
   end
 
-  resources :hooks
+  resources :hook_ups
   
   resources :ride_requests do
     collection do
