@@ -28,7 +28,7 @@ PoolRide::Application.routes.draw do
   
   resources :rides
 
-  resources :hooks
+  resources :hook_ups
   
   resources :ride_requests do
     collection do

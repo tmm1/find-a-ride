@@ -9,7 +9,6 @@ class Users::OmniauthCallbackController < ApplicationController
     end
   end
 
-
   def twitter
     session[:twitter] = env["omniauth.auth"]["extra"]["user_hash"]["name"]
     if env["omniauth.auth"]["uid"]
@@ -17,11 +16,15 @@ class Users::OmniauthCallbackController < ApplicationController
     end
   end
 
-
   def register_user_with_twitter
-    name = session[:twitter].split(" ")
-    @user = User.find_for_twitter_oauth(params["user"]["email"], name[0], name[1], current_user)
-    sign_in_and_redirect @user, :event => :authentication
+    @user = User.new(params["user"])
+    if !@user.valid? && !@user.errors[:email].blank?
+      render :twitter
+    else
+      name = session[:twitter].split(" ")
+      @user = User.find_for_twitter_oauth(params["user"]["email"], name[0], name[1], current_user)
+      sign_in_and_redirect @user, :event => :authentication
+    end
   end
 
 end

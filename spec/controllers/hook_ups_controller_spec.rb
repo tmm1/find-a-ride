@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe HooksController do
+describe HookUpsController do
   render_views
   include Devise::TestHelpers
   before(:all) do
