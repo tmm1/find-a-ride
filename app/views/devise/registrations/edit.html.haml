@@ -40,7 +40,7 @@
             .accordion-inner
               .contact_profile
                 = f.input :mobile, :label => 'Mobile number', :input_html => { :class => 'text-input', :title => 'Your mobile/cell number'}
-                = f.input :landline, :label => 'Landline number', :input_html => { :class => 'text-input', :title => 'Your landline number'}
+                = f.input :landline, :label => 'Landline number', :input_html => { :class => 'text-input', :title => 'Your landline number', :autocomplete => 'off' }
         .accordion-group
           .accordion-heading
             %span{:class => "accordion-toggle", :"data-toggle" => "collapse", :"data-parent" => "#accordion2", :href => "#accountInfo"}
