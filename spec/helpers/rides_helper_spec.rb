@@ -40,4 +40,21 @@ describe RidesHelper do
       helper.humanize_time(Time.now.advance(:days => 3)).should_not be nil
     end
   end
+
+
+  describe '#user info' do
+    it 'should return user id for the ride request' do
+      ride_request = Factory(:ride_request)
+      name = helper.user_info(ride_request)
+      name.should_not be nil
+      name.should == ride_request.requestor.id
+    end
+
+    it 'should return user id for the ride offer' do
+      ride_offer = Factory(:ride_offer)
+      name = helper.user_info(ride_offer)
+      name.should_not be nil
+      name.should == ride_offer.offerer.id
+    end
+  end
 end

@@ -27,6 +27,8 @@ PoolRide::Application.routes.draw do
   end
   
   resources :rides
+
+  resources :hooks
   
   resources :ride_requests do
     collection do

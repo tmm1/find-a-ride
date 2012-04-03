@@ -21,4 +21,8 @@ module RidesHelper
       time.strftime('%B %d, %Y at %l:%M%p')
     end
   end
+
+  def user_info(ride)
+    ride.type == 'RideOffer' ? ride.offerer.id : ride.requestor.id
+  end
 end

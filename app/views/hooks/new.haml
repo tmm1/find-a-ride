@@ -1,0 +1,23 @@
+#hook
+  .modal-header
+    %h1 Hook up 
+  .modal-body
+    .form
+      %span{:class => 'label label-important hookup-note'} Use this form to submit your hook ups
+      %p
+      = semantic_form_for @hook, :url => hooks_path(@hook) , :validate => true do |f|
+        = f.inputs do
+          %li{:class => "string input optional stringish"}
+            %span{:class => " label"} To :
+            %span{:style => "font-size:14px;"}= @contactee.try(:full_name)
+          = f.input :contactee_id , :as => :hidden , :value => @contactee.try(:id)
+          = f.input :contacter_id , :as => :hidden , :value => current_user.id
+          = f.input :phone_number, :input_html => { :title => 'Enter your phone number to contact'}, :label => 'Phone Number (optional)'
+          = f.input :message, :as => :text , :input_html => { :rows => 10, :cols => 20 }
+  .modal-footer
+    .loader{:style => 'display: none;', :class => 'pull-right'}
+      = image_tag('loader.gif')
+    = link_to('Submit', '#', :id => 'hook-submit', :class => 'btn btn-primary  btn-large')
+
+
+
