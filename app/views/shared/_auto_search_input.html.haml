@@ -5,7 +5,7 @@
 - style = style || ''
 
 - unless form_element.blank?
-  = form_element.input(name, :required => true ,:input_html => {:class => 'ac_input typeahead text-input',"data-provide" => "typeahead", "data-items" => "431", :title => 'Enter the area', :autocomplete => "off"}, :label => label)
+  = form_element.input(name, :required => true ,:input_html => {:class => 'ac_input typeahead text-input',"data-provide" => "typeahead", "data-items" => "431", :title => 'Enter/Choose the area', :autocomplete => "off"}, :label => label)
 - else
   %span= "#{label}"
   = text_field_tag(name, '', :class => 'ac_input autocomplete', :autocomplete => "off", :value => selected_value, :style => style)

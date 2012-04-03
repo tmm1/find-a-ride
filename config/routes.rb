@@ -28,7 +28,7 @@ PoolRide::Application.routes.draw do
   
   resources :rides do
     collection do
-      'search'
+      post 'search'
     end
   end
 

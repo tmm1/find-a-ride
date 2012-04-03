@@ -1,25 +1,26 @@
 %hr
 .text
-  %h2 
-    Search for rides by filling in the criteria below.
-    %br
+  %h1 
+    Search for rides by filling in the necessary criteria below.
+  %br
+  %span{:class => 'label label-important'} Note: Ride time considered for search is a 1 hr window around your time criteria
 %br
 .hero-unit
   .pull-right
     %span{:class => 'label label-important'} *Fields are required
-  = semantic_form_for @ride, :url => ride_offers_path(@ride_offer) do |f|
+  = semantic_form_for @ride, :url => search_rides_path(@ride) do |f|
     = f.inputs do
       = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => "orig", :label => "Going from"}
       = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => "dest", :label => "Going to"}
       #dp3{:"data-date-format" => "dd-mm-yyyy", :"data-date" => Time.now.strftime("%d-%m-%Y"), :class => "input-append date"}
-        = f.input :start_date,  :input_html => { :class => 'text-input' , :readonly => true, :title => 'Choose the date you are looking to offer a ride', :value => Time.now.strftime("%d-%m-%Y")},  :label => 'What date?', :required => true
+        = f.input :start_date,  :input_html => { :class => 'text-input' , :readonly => true, :title => 'Choose the date you are looking for a ride', :value => Time.now.strftime("%d-%m-%Y")},  :label => 'What date?', :required => true
         %span
           .add-on
             %i{:class => "icon-th"}
-      = f.input :start_time, :input_html => { :readonly => true, :class => 'text-input timepicker', :title => 'Choose the time you are looking to offer a ride'}, :label => 'Around what time?' , :required => true
-      = f.input :vehicle, :as => :select, :label => 'What kind of vehicle?', :include_blank => false, :collection => vehicle_type_collection, :input_html => { :class => 'text-input', :title => 'Enter the type of vehicle you have'}
+      = f.input :start_time, :input_html => { :readonly => true, :class => 'text-input timepicker', :title => 'Choose the time you are looking for a ride'}, :label => 'Around what time?' , :required => true
+      = f.input :vehicle, :as => :select, :label => 'What kind of vehicle do you prefer?', :include_blank => false, :collection => vehicle_type_collection, :input_html => { :class => 'text-input', :title => 'Enter the type of vehicle you prefer'}
     = f.buttons do
-      = f.commit_button :label => 'Submit', :button_html => {:class => 'btn btn-primary btn-large'}
+      = f.commit_button :label => 'Search', :button_html => {:class => 'btn btn-primary btn-large'}
 %br
 .text-center
   %h3 
