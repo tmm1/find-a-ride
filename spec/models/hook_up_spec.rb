@@ -7,6 +7,7 @@ describe HookUp do
     it { should validate_presence_of(:message) }
 
     it { should_not allow_value('9247').for(:mobile) }
+    it { should_not allow_value('adadasd').for(:mobile) }
     it { should allow_value('9246567890').for(:mobile)}
   end
 end

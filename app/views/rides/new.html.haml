@@ -1,0 +1,17 @@
+%hr
+= render 'tabs'
+.tab-content
+  - if !params[:type].nil? && params[:type].downcase == 'rideoffer'
+    %div{:class => 'tab-pane fade', :id => 'ride-request'}
+      = render 'ride_requests/new'
+    %div{:class => 'tab-pane fade  active in', :id => 'ride-offer'}
+      = render 'ride_offers/new'
+  - else
+    %div{:class => 'tab-pane fade active in', :id => 'ride-request'}
+      = render 'ride_requests/new'
+    %div{:class => 'tab-pane fade', :id => 'ride-offer'}
+      = render 'ride_offers/new'
+.text-center
+  %h3
+    If you wish to search for a ride, go
+    = link_to('here', rides_path)

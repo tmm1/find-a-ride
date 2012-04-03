@@ -8,12 +8,14 @@ describe RidesController do
     @login_user.confirm!
   end
   
-  describe "#index" do
-    it "should render index" do     
+  describe "#new" do
+    it "should render new" do     
       sign_in @login_user
-      get 'index'
+      get 'new'
       response.should be_success
-      response.should render_template(:index)
+      response.should render_template(:new)
+      assigns(:ride_request).should_not be nil
+      assigns(:ride_offer).should_not be nil
     end
   end
 end

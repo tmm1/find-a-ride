@@ -26,7 +26,11 @@ PoolRide::Application.routes.draw do
     end
   end
   
-  resources :rides
+  resources :rides do
+    collection do
+      'search'
+    end
+  end
 
   resources :hooks
   
