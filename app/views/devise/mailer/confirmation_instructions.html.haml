@@ -1,4 +1,4 @@
 %p
   Welcome #{@resource.full_name}!
 %p You can verify your account through the link below:
-%p= link_to 'Verify my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)
+%p= link_to 'Verify my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token), :class => "btn btn-primary btn-large"

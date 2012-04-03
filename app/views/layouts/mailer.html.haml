@@ -10,12 +10,16 @@
       .navbar-inner
         .container
           %h2
-            %a{:href => root_url, :class => 'brand'} Find.a.Ride
+            %a{:href => root_url, :class => 'brand'}
+              Find.a.Ride
+              %span{:class => 'badge badge-info'} Beta
     .container
       %hr
-      = yield
+      .hero-unit
+        = yield
       %hr
       .footer
-        %b Imaginea Labs. Copyright &copy; 2012, Pramati Technologies Private Limited
+        %a{:href => 'http://www.imaginea.com/labs', :target => '_blank'}
+          %span{:class => 'badge badge-info'} Imaginea Labs. Copyright &copy; 2012, Pramati Technologies Private Limited
 
 
