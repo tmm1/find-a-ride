@@ -42,19 +42,19 @@ describe RidesHelper do
   end
 
 
-  describe '#user info' do
+  describe '#user id' do
     it 'should return user id for the ride request' do
       ride_request = Factory(:ride_request)
-      name = helper.user_info(ride_request)
-      name.should_not be nil
-      name.should == ride_request.requestor.id
+      id = helper.user_id(ride_request)
+      id.should_not be nil
+      id.should == ride_request.requestor.id
     end
 
     it 'should return user id for the ride offer' do
       ride_offer = Factory(:ride_offer)
-      name = helper.user_info(ride_offer)
-      name.should_not be nil
-      name.should == ride_offer.offerer.id
+      id = helper.user_id(ride_offer)
+      id.should_not be nil
+      id.should == ride_offer.offerer.id
     end
   end
   

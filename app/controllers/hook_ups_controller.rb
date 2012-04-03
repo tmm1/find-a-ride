@@ -3,6 +3,9 @@ class HookUpsController < ApplicationController
 
   def new
     @contactee = User.find_by_id(params[:id]) if params[:id]
+    @origin = params[:orig]
+    @dest = params[:dest]
+    @time = params[:time]
     @hook = HookUp.new
     render :layout => false
   end

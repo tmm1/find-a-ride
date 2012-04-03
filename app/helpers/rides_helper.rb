@@ -22,7 +22,7 @@ module RidesHelper
     end
   end
 
-  def user_info(ride)
+  def user_id(ride)
     ride.type == 'RideOffer' ? ride.offerer.id : ride.requestor.id
   end
   

@@ -59,11 +59,9 @@ input#ride_request_start_time, input#ride_offer_start_time{
     text-align: center;
     margin: 30px;
 }
-
 .nav-tabs a:focus {
   outline: none;
 }
-
 .sign-in .signup-block {
   margin: 20px 0 0 25px;
 }
