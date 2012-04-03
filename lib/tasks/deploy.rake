@@ -22,7 +22,7 @@ namespace :deploy do
     run "git tag #{tag_name} master"
 
     puts "\n Pushing..."
-    run "git push github #{tag_name}"
+    run "git push origin #{tag_name}"
     run "git push git@heroku.com:#{PRODUCTION_APP}.git #{tag_name}:master"
 
     puts "\n Migrating..."
