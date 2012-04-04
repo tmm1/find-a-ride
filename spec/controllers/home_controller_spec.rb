@@ -33,6 +33,17 @@ describe HomeController do
       ActionMailer::Base.deliveries.size.should == 1
     end
   end
+
+  describe "#inactive" do
+    it "should render inactive page" do
+      @inactive_user = Factory(:user, :inactive => true)
+      @inactive_user.confirm!
+      sign_in @inactive_user
+      get :inactive
+      response.should be_success
+      response.should render_template(:inactive)
+    end
+  end
 end
 
 

@@ -21,6 +21,10 @@ class ApplicationController < ActionController::Base
     render :text => "success" , :status => 200
   end
 
+  def restrict_inactive_user
+    redirect_to inactive_home_index_path unless current_user.active?
+  end
+
  private
 
   # Overwriting the sign_out redirect path method
