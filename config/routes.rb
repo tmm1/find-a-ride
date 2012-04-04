@@ -22,6 +22,7 @@ PoolRide::Application.routes.draw do
     collection do
       get 'about'
       get 'index'
+      get 'inactive'
       post 'contact'
     end
   end

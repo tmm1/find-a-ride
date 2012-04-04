@@ -22,11 +22,16 @@ module RidesHelper
     end
   end
 
-  def user_info(ride)
+  def user_id(ride)
     ride.type == 'RideOffer' ? ride.offerer.id : ride.requestor.id
   end
   
   def vehicle_type_collection
     [['Four-Wheeler', 'four_wheeler'], ['Two-Wheeler', 'two_wheeler'], ['I don\'t care', 'any']]
+  end
+
+  def user_uuid
+    uuid = UUID.new
+    uuid.generate
   end
 end

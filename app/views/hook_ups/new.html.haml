@@ -1,23 +1,28 @@
-#hook
+#hook-up
   .modal-header
     %h2 Hook up to share a ride
   .modal-body
     .form
-      %span{:class => 'label label-important hookup-note'} Please fill in the form and submit
+      %span{:class => 'label label-important hookup-note'} Please fill in the information below and submit to get in touch
       %p
       = semantic_form_for @hook, :url => hook_ups_path(@hook) , :validate => true do |f|
         = f.inputs do
-          %li{:class => "string input optional stringish" , :style=> "padding-bottom: 10px;"}
-            %span{:class => " label"} To :
-            %span{:style => "font-size: 16.05px;"}= @contactee.try(:full_name)
+          %h3= "To: #{@contactee.try(:full_name)}"
+          %h6= "Going from: #{@origin}"
+          %h6= "Going to: #{@dest}"
+          %h6= "#{@time}"
+          %br
           = f.input :contactee_id , :as => :hidden , :value => @contactee.try(:id)
           = f.input :contacter_id , :as => :hidden , :value => current_user.id
-          = f.input :mobile, :input_html => { :title => 'Enter your mobile number to contact'}, :label => 'Mobile (optional)'
+          = f.input :hookable_id , :as => :hidden , :value => params["#{params[:type]}_id"]
+          = f.input :hookable_type , :as => :hidden , :value => params[:type].classify if params[:type]
+          = f.input :mobile, :input_html => { :title => 'Enter your mobile number to contact' }, :label => 'Mobile number(optional)'
           = f.input :message, :as => :text , :input_html => { :rows => 10, :cols => 20 }
+          = hidden_field_tag 'hook_modal', params[:uuid]
   .modal-footer
     .loader{:style => 'display: none;', :class => 'pull-right'}
       = image_tag('loader.gif')
-    = link_to('Submit', '#', :id => 'hook-submit', :class => 'btn btn-primary  btn-large')
+    = link_to('Submit', '#', :id => 'hook-submit', :class => 'btn btn-primary btn-large')
 
 
 
