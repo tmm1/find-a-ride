@@ -51,8 +51,8 @@
           #accountInfo{:class => "accordion-body collapse"}
             .accordion-inner
               .account_profile
-                = f.input :password, :input_html => { :class => 'text-input', :title => 'leave blank if you don\'t want to change it'}
-                = f.input :password_confirmation, :label => 'Enter password again', :input_html => { :class => 'text-input', :title => 'Confirm password'}
+                = f.input :password, :label => 'New password', :input_html => { :class => 'text-input', :title => 'leave blank if you don\'t want to change it'}
+                = f.input :password_confirmation, :label => 'Enter new password again', :input_html => { :class => 'text-input', :title => 'Confirm password'}
                 %br
                 = f.input :inactive, :label => 'I want to be inactive', :input_html => {:class => "inactive_input remember-me"}
         %br
