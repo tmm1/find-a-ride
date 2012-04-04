@@ -10,7 +10,7 @@ describe ApplicationController do
   end
   describe "#Location Search" do
     it "should return matched locations" do
-      get 'location_search', {:q => 'madh', :city => 'Hyderabad'}
+      get 'location_search', {:q => 'madhapu', :city => 'Hyderabad'}
       assigns[:result].should_not be nil
       assigns[:result].class.should == Array
       assigns[:result].size.should == 1
