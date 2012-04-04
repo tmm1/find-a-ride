@@ -1,8 +1,12 @@
 %hr
-.hero-unit  
-  .home
-    Hey #{current_user.first_name} ,
+.hero-unit
+  .text-center  
+    %h2
+      Hey #{current_user.first_name}!
+      %br
+      %small
+        Since you chose be to inactive, you are not allowed to offer/request rides or search for them either. Please visit the
+        = link_to "edit profile", edit_user_registration_path
+        page to update your account settings.
     %br
-    Since you chose be to inactive in the profile page, you are not allowed to offer, request or search for a ride. Go to 
-    = link_to "Edit Profile", edit_user_registration_path
-    to change your Account Settings.
+    = image_tag('inactive.jpg', :size => '250x250')
