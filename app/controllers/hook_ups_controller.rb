@@ -6,17 +6,27 @@ class HookUpsController < ApplicationController
     @origin = params[:orig]
     @dest = params[:dest]
     @time = params[:time]
-    @hook = HookUp.new
+    @hook = HookUp.new 
     render :layout => false
   end
 
   def create
-   @hook_up = HookUp.new(params[:hook_up])
-    if @hook_up.save
+   @hookable = find_hookable
+   @hook_up = @hookable.hook_ups.build(params[:hook_up]) if @hookable
+   if @hookable && @hook_up.save
       render :text => 'success', :status => 200
     else
       render :text => 'failed', :status => 200
     end
   end
+
+ def find_hookable
+  params.each do |name, value|
+    if name =~ /(.+)_id$/
+      return $1.classify.constantize.find(value)
+    end
+  end
+   nil
+ end
 
 end

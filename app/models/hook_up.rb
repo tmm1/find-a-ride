@@ -1,6 +1,7 @@
 class HookUp < ActiveRecord::Base 
   belongs_to :contacter, :class_name => 'User'
   belongs_to :contactee, :class_name => 'User'
+  belongs_to :hookable, :polymorphic => true
   attr_accessor :mobile
 
   validates :contactee_id, :contacter_id, :message, :presence => true
@@ -12,11 +13,13 @@ end
 #
 # Table name: hook_ups
 #
-#  id           :integer(4)      not null, primary key
-#  contactee_id :integer(4)
-#  contacter_id :integer(4)
-#  created_at   :datetime
-#  updated_at   :datetime
-#  message      :string(3000)
+#  id            :integer(4)      not null, primary key
+#  contactee_id  :integer(4)
+#  contacter_id  :integer(4)
+#  created_at    :datetime
+#  updated_at    :datetime
+#  message       :string(3000)
+#  hookable_id   :integer
+#  hookable_type :string
 #
 

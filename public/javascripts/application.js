@@ -231,7 +231,7 @@ var hookupSubmit =  function(){
         $('#hook-up').find('.inline-errors').remove();
         var errors = false;
         var url = $('#new_hook_up').attr('action');       
-        var hook_id = $('#hook-up').find('#hook_up_contactee_id');        
+        var hook_id = $('#hook-up').find('#hook_modal');
         var message = $('#hook-up').find('#hook_up_message');
         var phone = $('#hook-up').find('#hook_up_mobile');
         if (message.val() === '' || message.val() === undefined) {
