@@ -6,7 +6,7 @@ class HookUpsController < ApplicationController
     @origin = params[:orig]
     @dest = params[:dest]
     @time = params[:time]
-    @hook = HookUp.new
+    @hook = HookUp.new 
     render :layout => false
   end
 
@@ -25,5 +25,4 @@ class HookUpsController < ApplicationController
       render :text => 'failed', :status => 200
     end
   end
-
 end

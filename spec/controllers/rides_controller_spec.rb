@@ -49,4 +49,23 @@ describe RidesController do
       assigns(:ride).should_not be_valid
     end
   end
+
+  describe "for inactive users" do
+    before(:all) do
+      @inactive_user = Factory(:user, :inactive => true)
+      @inactive_user.confirm!
+    end
+
+    [
+      {:action => :new,    :method => :get},
+      {:action => :index,  :method => :get},
+      {:action => :search, :method => :post, :args => {:search_params => Factory.attributes_for(:ride)}}
+    ].each do |method|
+      it "##{method[:action]} should be redirected to HomeController#inactive" do
+        sign_in @inactive_user
+        send method[:method], method[:action], method[:args]
+        response.should redirect_to(inactive_home_index_path)
+      end
+    end
+  end
 end

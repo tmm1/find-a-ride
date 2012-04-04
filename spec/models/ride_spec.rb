@@ -62,6 +62,36 @@ describe Ride do
       ride_offer.ride_time.should == Helper.to_datetime(ride_offer.start_date, ride_offer.start_time)
     end
   end
+
+  describe "#Duplicate record for ride request" do
+    it "should give error for duplicate record" do
+      ride_request1 = RideRequest.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00'})
+      ride_request2 = RideRequest.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00'})
+      ride_request2.errors[:base].should include ("This is an duplicate record try modifying your request criteria.")
+    end
+
+    it "should not give error and create a new record" do
+      ride_request1 = RideRequest.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00'})
+      ride_request2 = RideRequest.create({:orig => 'Madhapur', :dest => 'Begumpet', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00'})
+      ride_request2.errors[:base][0].should == nil
+    end
+
+  end
+
+  describe "#Duplicate record for ride offer" do
+    it "should give error for duplicate record" do
+      ride_offer1 = RideOffer.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00'})
+      ride_offer2 = RideOffer.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00'})
+      ride_offer2.errors[:base].should include ("This is an duplicate record try modifying your request criteria.")
+    end
+
+    it "should not give error and create a new record" do
+      ride_offer1 = RideRequest.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00'})
+      ride_offer2 = RideRequest.create({:orig => 'Madhapur', :dest => 'Begumpet', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00'})
+      ride_offer2.errors[:base][0].should == nil
+    end
+
+  end
   
 end
 

@@ -26,12 +26,21 @@ describe HookUpsController do
   describe "#create" do
     it 'should allow users to hook up successfully' do
       sign_in @login_user
-      params = {:contactee_id => @contactee_user.id, :contacter_id => @login_user.id, :message => 'Hook me up!' }
+      ride = Factory(:ride)
+      params = {:contactee_id => @contactee_user.id, :contacter_id => @login_user.id, :message => 'Hook me up!' , :hookable_type => "RideRequest"  , :hookable_id => ride.id }
       post 'create', :hook_up => params
       response.should be_success
       response.body.should == 'success'
       assigns(:hook_up).should_not be nil
       assigns(:hook_up).message.should == 'Hook me up!'
+    end
+
+    it 'should not allow users to hook up with out a ride' do
+      sign_in @login_user     
+      params = {:contactee_id => @contactee_user.id, :contacter_id => @login_user.id, :message => 'Hook me up!' }
+      post 'create', :hook_up => params
+      response.should be_success
+      response.body.should == 'failed'     
     end
   end
   

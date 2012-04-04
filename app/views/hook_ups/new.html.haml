@@ -14,12 +14,14 @@
           %br
           = f.input :contactee_id , :as => :hidden , :value => @contactee.try(:id)
           = f.input :contacter_id , :as => :hidden , :value => current_user.id
-          = f.input :ride_type , :as => :hidden , :value => params[:type]
           = f.input :ride_orig , :as => :hidden , :value => @origin
           = f.input :ride_dest , :as => :hidden , :value => @dest
           = f.input :ride_time , :as => :hidden , :value => @time
+          = f.input :hookable_id , :as => :hidden , :value => params["#{params[:type]}_id"]
+          = f.input :hookable_type , :as => :hidden , :value => params[:type].classify if params[:type]
           = f.input :mobile, :input_html => {:value => current_user.mobile, :title => 'Enter your mobile number to contact' }, :label => 'Mobile number(optional)'
           = f.input :message, :as => :text , :input_html => { :rows => 10, :cols => 20 }
+          = hidden_field_tag 'hook_modal', params[:uuid]
   .modal-footer
     .loader{:style => 'display: none;', :class => 'pull-right'}
       = image_tag('loader.gif')
