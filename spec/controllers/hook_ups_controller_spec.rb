@@ -24,15 +24,36 @@ describe HookUpsController do
   end
 
   describe "#create" do
-    it 'should allow users to hook up successfully' do
+    it 'should allow the user to hook up successfully' do
       sign_in @login_user
       ride = Factory(:ride)
       params = {:contactee_id => @contactee_user.id, :contacter_id => @login_user.id, :message => 'Hook me up!' , :hookable_type => "RideRequest"  , :hookable_id => ride.id }
-      post 'create', :hook_up => params
+      post 'create', {:hook_up => params}
       response.should be_success
       response.body.should == 'success'
-      assigns(:hook_up).should_not be nil
-      assigns(:hook_up).message.should == 'Hook me up!'
+      hook_up = assigns(:hook_up)
+      hook_up.should_not be nil
+      hook_up.message.should == params[:message]
+      hook_up.contacter.should == User.find(@login_user.id)
+      hook_up.contactee.should == User.find(@contactee_user.id)
+    end
+  end
+  
+  describe "#index" do
+    before(:each) do
+      @hook_up1 = Factory(:hook_up, :contacter_id => @login_user.id)
+      @hook_up2 = Factory(:hook_up, :contacter_id => @login_user.id)
+      @hook_up3 = Factory(:hook_up, :contacter_id => @login_user.id)
+      @hook_up4 = Factory(:hook_up, :contacter_id => @login_user.id)
+      @hook_up5 = Factory(:hook_up, :contacter_id => @login_user.id)
+      @hook_up6 = Factory(:hook_up, :contacter_id => @login_user.id)
+    end
+    it 'should render index' do
+      sign_in @login_user
+      get 'index'
+      response.should be_success
+      response.should render_template(:index)
+      assigns(:recent_hook_ups).should have(5).things
     end
 
     it 'should not allow users to hook up with out a ride' do
