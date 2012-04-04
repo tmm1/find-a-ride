@@ -11,7 +11,12 @@ class RideOffersController < RidesController
       if @ride_offer.save
         format.html { redirect_to(search_ride_requests_path(params[:ride_offer]), :notice => 'Yay! Your offer was created successfully.') }
       else
-        format.html { render :action => "new" }
+        if !@ride_offer.errors[:base].empty?
+          flash[:error] = @ride_offer.errors[:base].first
+          format.html { render :action => "new" }
+        else
+          format.html { render :action => "new"}
+        end
       end
     end
   end
