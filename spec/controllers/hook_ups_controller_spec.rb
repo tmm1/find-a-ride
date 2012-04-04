@@ -27,8 +27,8 @@ describe HookUpsController do
     it 'should allow users to hook up successfully' do
       sign_in @login_user
       ride = Factory(:ride)
-      params = {:contactee_id => @contactee_user.id, :contacter_id => @login_user.id, :message => 'Hook me up!' }
-      post 'create', :hook_up => params , :ride_request_id => ride.id
+      params = {:contactee_id => @contactee_user.id, :contacter_id => @login_user.id, :message => 'Hook me up!' , :hookable_type => "RideRequest"  , :hookable_id => ride.id }
+      post 'create', :hook_up => params
       response.should be_success
       response.body.should == 'success'
       assigns(:hook_up).should_not be nil
