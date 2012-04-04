@@ -12,7 +12,8 @@
             %span{:style => "font-size: 16.05px;"}= @contactee.try(:full_name)
           = f.input :contactee_id , :as => :hidden , :value => @contactee.try(:id)
           = f.input :contacter_id , :as => :hidden , :value => current_user.id
-          = f.input :mobile, :input_html => { :title => 'Enter your mobile number to contact'}, :label => 'Mobile (optional)'
+          = f.input :ride_type , :as => :hidden , :value => params[:type]
+          = f.input :mobile,:input_html => {:value => current_user.mobile, :title => 'Enter your mobile number to contact'}, :label => 'Mobil
           = f.input :message, :as => :text , :input_html => { :rows => 10, :cols => 20 }
   .modal-footer
     .loader{:style => 'display: none;', :class => 'pull-right'}

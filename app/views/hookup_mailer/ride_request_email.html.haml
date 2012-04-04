@@ -1,0 +1,16 @@
+%span= "Hello #{@hook_up.contactee.try(:full_name)}!"
+%br
+%p
+  ="#{@hook_up.contacter.try(:full_name)} who found you on"
+  =link_to('Find-a-Ride', root_url)
+  is looking for a ride. Hook up with him to offer him a ride.
+%p= "Please see below the message from #{@hook_up.contacter.try(:full_name)}:"
+%p
+  %b= @message
+%p= "#{@hook_up.contacter.try(:full_name)}'s contact information is here if you would like to hook up and take this further"
+%b
+  %ul{:style => 'list-style-type: none;'}
+    %li= link_to("#{@hook_up.contacter.email}", "mailto:#{@hook_up.contacter.email}" , :class => "btn btn-primary btn-large")
+    %li= "#{@mobile}"
+%p
+  %b Find-a-Ride Team
