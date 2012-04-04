@@ -11,8 +11,8 @@ class HookUpsController < ApplicationController
   end
 
   def create
-   @hook = HookUp.new(params[:hook_up])
-    if @hook.save
+   @hook_up = HookUp.new(params[:hook_up])
+    if @hook_up.save
       render :text => 'success', :status => 200
     else
       render :text => 'failed', :status => 200

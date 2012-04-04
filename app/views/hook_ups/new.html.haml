@@ -3,14 +3,14 @@
     %h2 Hook up to share a ride
   .modal-body
     .form
-      %span{:class => 'label label-important hookup-note'} Please fill in the information below and submit
+      %span{:class => 'label label-important hookup-note'} Please fill in the information below and submit to get in touch
       %p
       = semantic_form_for @hook, :url => hook_ups_path(@hook) , :validate => true do |f|
         = f.inputs do
           %h3= "To: #{@contactee.try(:full_name)}"
           %h6= "Going from: #{@origin}"
           %h6= "Going to: #{@dest}"
-          %h6= "At: #{@time}"
+          %h6= "#{@time}"
           %br
           = f.input :contactee_id , :as => :hidden , :value => @contactee.try(:id)
           = f.input :contacter_id , :as => :hidden , :value => current_user.id
