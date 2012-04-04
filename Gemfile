@@ -14,6 +14,7 @@ gem "nifty-generators"
 gem "paperclip", "~> 2.4"
 gem "aws-s3"
 gem "geokit"
+gem "uuid"
 
 group :mysql do
   gem 'mysql'

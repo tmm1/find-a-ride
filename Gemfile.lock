@@ -236,4 +236,5 @@ DEPENDENCIES
   rspec-rails (~> 2.4)
   shoulda-matchers
   state_machine (= 0.9.4)
+  uuid
   will_paginate (= 3.0)

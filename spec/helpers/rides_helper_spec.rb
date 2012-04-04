@@ -63,4 +63,11 @@ describe RidesHelper do
       helper.vehicle_type_collection.should == [['Four-Wheeler', 'four_wheeler'], ['Two-Wheeler', 'two_wheeler'], ['I don\'t care', 'any']]
     end
   end
+
+  describe '#user_uuid' do
+    it 'should return user uuid for the divs' do
+      uuid = helper.user_uuid
+      assert  UUID.validate(uuid), 'default'
+    end
+  end
 end
