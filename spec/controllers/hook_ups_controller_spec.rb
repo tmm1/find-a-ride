@@ -46,6 +46,14 @@ describe HookUpsController do
       response.should be_success
       response.body.should == 'failed'     
     end
+    
+    it 'should not allow users to hook up with out a ride' do
+      sign_in @login_user     
+      params = {:contactee_id => @contactee_user.id, :contacter_id => @login_user.id, :message => 'Hook me up!' }
+      post 'create', {:user_id => @login_user.id, :hook_up => params}
+      response.should be_success
+      response.body.should == 'failed'     
+    end
   end
   
   describe "#index" do
@@ -57,6 +65,7 @@ describe HookUpsController do
       @hook_up5 = Factory(:hook_up, :contacter_id => @login_user.id)
       @hook_up6 = Factory(:hook_up, :contacter_id => @login_user.id)
     end
+    
     it 'should render index' do
       sign_in @login_user
       get 'index', {:user_id => @login_user.id}

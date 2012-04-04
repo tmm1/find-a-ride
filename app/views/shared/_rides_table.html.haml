@@ -14,5 +14,4 @@
       %td= humanize_time(result.ride_time)
       %td= vehicle_type_image(result) if type == :ride_offer
       %td= link_to('Hook up', '#hook-up'+uuid, :class => 'btn btn-medium btn-primary', "data-toggle" => "modal")
-=======
     %div{:id => "hook-up#{uuid}", :class => 'modal hide hookclass', :url => new_user_hook_up_url(:user_id => current_user.id, :id => user_id(result), :orig => result.ride_origin.name, :dest => result.ride_destination.name, :time => humanize_time(result.ride_time))}
