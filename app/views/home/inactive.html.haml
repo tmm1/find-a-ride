@@ -1,0 +1,8 @@
+%hr
+.hero-unit  
+  .home
+    Hey #{current_user.first_name} ,
+    %br
+    Since you chose be to inactive in the profile page, you are not allowed to offer, request or search for a ride. Go to 
+    = link_to "Edit Profile", edit_user_registration_path
+    to change your Account Settings.
