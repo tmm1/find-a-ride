@@ -6,7 +6,6 @@ PoolRide::Application.routes.draw do
     get '/users/confirm', :to => 'devise/confirmations#new'
     get '/users/reset_password', :to => 'devise/passwords#new'
     get '/users/change_password', :to => 'devise/passwords#edit'
-    resources :hook_ups
   end
 
   match '/about' => 'home#about'
@@ -42,6 +41,10 @@ PoolRide::Application.routes.draw do
     collection do
       get 'search'
     end
+  end
+  
+  resources :users do
+    resources :hook_ups
   end
 
   match '/location_search' => 'application#location_search', :as => :location_search
