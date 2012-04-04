@@ -1,27 +1,18 @@
 .notice-area {
 	height: 50px;
 }
-.home {
-	.signup-block {
-		h3 {
-			margin: 25px!important;
-			text-align: center!important;
-		}
-	}
-}
 p.inline-errors {
 	margin-top: 0px!important;
 	font-size: 13px!important;
 	color: #cf210b;
 }
-
 #dp3 p.inline-errors {
-  padding: 40px 0 0 0;
+    padding: 40px 0 0 0;
 	font-size: 13px!important;
 	color: #cf210b;
 }
 .carousel {
-	background-color: #dcebda;
+	background-color: #3A87AD;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 }
@@ -29,6 +20,11 @@ p.inline-errors {
 	margin: 80px 0 80px 0;
 	padding: 0px;
 	text-align: center;
+}
+.carousel-inner h2 {
+	font-size: 45px;
+	font-weight: 125;
+	color: #ffffff;
 }
 .footer {
 	text-align: center;
