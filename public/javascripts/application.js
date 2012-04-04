@@ -3,6 +3,7 @@ $(document).ready(function() {
     rideTime();
     rideDate();
     setTimeout(hideFlashMessages, 3500);
+
     $('.input-append').datepicker();
     
     // *** set carousel interval *** //
@@ -28,6 +29,7 @@ $(document).ready(function() {
         keyboard: false,
         show: false
     });
+
     //*** dialog for showing exception ***//
     $('#exception').modal({
         keyboard: false,
@@ -54,19 +56,17 @@ $(document).ready(function() {
     });
     
     // *** Hook up form *** //
-
-    $(".modal.hide.hookclass").on('show',function(){
+    $(".modal.hide.hookclass").on('show', function(){
         var obj =  $(this)
         $.ajax({
                 type: 'GET',
                 url: $(this).attr('url'),
                 success: function(data) {                                  
                         obj.html(data)
-                        hooks_submit(); //hooks handler
+                        hookupSubmit(); //hook-up handler
                 }
             });
     })
-    // *** End Hook up form *** //
   
     // *** Contact form *** //    
     $('#contact').on('show', function () {
@@ -122,29 +122,20 @@ $(document).ready(function() {
 });
 
 
-function hideFlashMessages() {
-    $('.alert').fadeOut(600);
-}
+/** utility methods **/
 
 var isValidEmail = function(email) {
     var email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return email_regex.test(email);
 }
 
+var isValidMobile = function(phone){
+    var phone_regex = /^[1-9]+\d{9}$/;
+    return phone_regex.test(phone);
+}
 
-
-function setAppCity(location){
-    var url = $('#geocode_city_url').val();
-    $.ajax({
-        url: url,
-        data: {
-            lat_long: location.toString()
-        },
-        success: function(data) {
-        },
-        failure : function(){
-        }
-    });
+function hideFlashMessages() {
+    $('.alert').fadeOut(600);
 }
 
 var resetContactForm = function(toggle) {
@@ -235,39 +226,33 @@ var typeaheadSearch = function(){
     });
 }
 
- // *** Hook up form *** //
-var isValidPhoneNumber = function(phone){
-    var phone_regex = /^[1-9]+\d{9}$/;
-    return phone_regex.test(phone);
-}
-
-var hooks_submit =  function(){
+var hookupSubmit =  function(){
       $("#hook-submit").click(function(){       
-        $('#hook').find('.inline-errors').remove();
+        $('#hook-up').find('.inline-errors').remove();
         var errors = false;
         var url = $('#new_hook_up').attr('action');       
-        var hook_id = $('#hook').find('#hook_up_contactee_id');        
-        var message = $('#hook').find('#hook_up_message');
-        var phone = $('#hook').find('#hook_up_mobile');
+        var hook_id = $('#hook-up').find('#hook_up_contactee_id');        
+        var message = $('#hook-up').find('#hook_up_message');
+        var phone = $('#hook-up').find('#hook_up_mobile');
         if (message.val() === '' || message.val() === undefined) {
             errors = true;
             message.after("<p class='inline-errors'>can't be blank</p>");
         }
-        if (phone.val() !== '' && !isValidPhoneNumber(phone.val())) {           
+        if (phone.val() !== '' && !isValidMobile(phone.val())) {           
             errors = true;
             phone.after("<p class='inline-errors'>can't be invalid</p>");
         }
         if (!errors) {
             $("#hook-submit").hide();
-            $('#hook').find('.loader').show();
+            $('#hook-up').find('.loader').show();
             $.ajax({
                 type: 'POST',
                 url: url,
                 data: $("#new_hook_up").serialize(),
                 success: function(data) {
-                    $('#hooks'+hook_id.val()).modal('hide');
+                    $('#hook-up'+hook_id.val()).modal('hide');
                     if (data === 'success') {
-                        $('.notice-area').html("<div class='alert alert-success'>Your hook up has been successfully sent.</div>")
+                        $('.notice-area').html("<div class='alert alert-success'>Thanks! The other user should receive a notification.</div>")
                     }
                     else {
                         $('.notice-area').html("<div class='alert alert-error'>There was a problem. Please retry later.</div>")
@@ -278,7 +263,21 @@ var hooks_submit =  function(){
         }
     });
 }
- // *** End Hook up form *** //
+
+function setAppCity(location){
+    var url = $('#geocode_city_url').val();
+    $.ajax({
+        url: url,
+        data: {
+            lat_long: location.toString()
+        },
+        success: function(data) {
+        },
+        failure : function(){
+        }
+    });
+}
+
 
 // ********* OLD CODE ********* DONT DELETE FOR NOW ***//
 // 

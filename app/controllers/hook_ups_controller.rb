@@ -3,19 +3,22 @@ class HookUpsController < ApplicationController
 
   def new
     @contactee = User.find_by_id(params[:id]) if params[:id]
+    @origin = params[:orig]
+    @dest = params[:dest]
+    @time = params[:time]
     @hook = HookUp.new
     render :layout => false
   end
 
   def create
-   @hook = HookUp.new(params[:hook_up])
+   @hook_up = HookUp.new(params[:hook_up])
    mobile = params[:hook_up][:mobile]
    type = params[:hook_up][:ride_type]
-    if @hook.save
+    if @hook_up.save
       if type == "ride_request"
-        HookupMailer.ride_offer_email(@hook,mobile).deliver
+        HookupMailer.ride_offer_email(@hook_up,mobile).deliver
        else
-        HookupMailer.ride_request_email(@hook,mobile).deliver
+        HookupMailer.ride_request_email(@hook_up,mobile).deliver
       end
       render :text => 'success', :status => 200
     else
