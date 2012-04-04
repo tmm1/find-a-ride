@@ -6,12 +6,17 @@ class RideRequestsController < RidesController
   end
 
   def create
-   @ride_request = current_user.ride_requests.new(params[:ride_request])
+    @ride_request = current_user.ride_requests.new(params[:ride_request])
     respond_to do |format|
       if @ride_request.save
         format.html { redirect_to(search_ride_offers_path(params[:ride_request]), :notice => 'Yay! Your request was created successfully.') }
       else
-        format.html { render :action => "new" }
+        if @ride_request.errors[:base].include?("This is an duplicate record try modifying your request criteria.")
+          flash[:notice] = "This is an duplicate record try modifying your request criteria."
+          format.html { render :action => "new" }
+        else
+          format.html { render :action => "new"}
+        end
       end
     end
   end
