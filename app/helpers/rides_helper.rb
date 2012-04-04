@@ -29,4 +29,9 @@ module RidesHelper
   def vehicle_type_collection
     [['Four-Wheeler', 'four_wheeler'], ['Two-Wheeler', 'two_wheeler'], ['I don\'t care', 'any']]
   end
+
+  def user_uuid
+    uuid = UUID.new
+    uuid.generate
+  end
 end
