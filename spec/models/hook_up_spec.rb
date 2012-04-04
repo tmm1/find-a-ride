@@ -22,5 +22,7 @@ end
 #  created_at   :datetime
 #  updated_at   :datetime
 #  message      :string(3000)
+#  hookable_id  :integer
+#  hookable_type :string
 #
 
