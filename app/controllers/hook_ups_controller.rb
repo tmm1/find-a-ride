@@ -11,14 +11,14 @@ class HookUpsController < ApplicationController
   end
 
   def create
-   @hook_up = HookUp.new(params[:hook_up])
-   mobile = params[:hook_up][:mobile]
-   type = params[:hook_up][:ride_type]
+    @hook_up = HookUp.new(params[:hook_up])
+    mobile = params[:hook_up][:mobile]
+    type = params[:hook_up][:ride_type]
     if @hook_up.save
       if type == "ride_request"
-        HookupMailer.ride_offer_email(@hook_up,mobile).deliver
+        HookupMailer.ride_offerer_email(@hook_up,mobile).deliver
        else
-        HookupMailer.ride_request_email(@hook_up,mobile).deliver
+        HookupMailer.ride_requestor_email(@hook_up,mobile).deliver
       end
       render :text => 'success', :status => 200
     else

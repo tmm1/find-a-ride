@@ -2,11 +2,11 @@ class HookupMailer < ActionMailer::Base
   default :from => "champ@find-a-ride.com"
   layout 'mailer'
 
-  def ride_request_email(hook_up, mobile = nil)
+  def ride_requestor_email(hook_up, mobile = nil)
     setup_hook_up(hook_up,mobile)
   end
 
-  def ride_offer_email(hook_up, mobile = nil)
+  def ride_offerer_email(hook_up, mobile = nil)
     setup_hook_up(hook_up,mobile)
   end
 

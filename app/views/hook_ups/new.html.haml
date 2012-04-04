@@ -15,7 +15,10 @@
           = f.input :contactee_id , :as => :hidden , :value => @contactee.try(:id)
           = f.input :contacter_id , :as => :hidden , :value => current_user.id
           = f.input :ride_type , :as => :hidden , :value => params[:type]
-          = f.input :mobile, :input_html => { :title => 'Enter your mobile number to contact' }, :label => 'Mobile number(optional)'
+          = f.input :ride_orig , :as => :hidden , :value => @origin
+          = f.input :ride_dest , :as => :hidden , :value => @dest
+          = f.input :ride_time , :as => :hidden , :value => @time
+          = f.input :mobile, :input_html => {:value => current_user.mobile, :title => 'Enter your mobile number to contact' }, :label => 'Mobile number(optional)'
           = f.input :message, :as => :text , :input_html => { :rows => 10, :cols => 20 }
   .modal-footer
     .loader{:style => 'display: none;', :class => 'pull-right'}
