@@ -1,7 +1,6 @@
 class Ride < ActiveRecord::Base
-
   include ActiveModel::Validations
-  validates_with DuplicateRideRecordValidator
+  validates_with DuplicateRideValidator
   
   belongs_to :ride_origin, :class_name => 'Location', :foreign_key => 'origin'
   belongs_to :ride_destination, :class_name => 'Location', :foreign_key => 'destination'

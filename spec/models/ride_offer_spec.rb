@@ -11,7 +11,7 @@ describe RideOffer do
       @ride_offer5 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 03:30:00 pm', :vehicle => 'four_wheeler')
       @ride_offer6 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 04:30:00 pm', :vehicle => 'four_wheeler')
       @ride_offer7 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'two_wheeler')
-      @ride_offer8 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Jubilee Hills Road No 92', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler')
+      @ride_offer8 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Jubilee Hills Road No 1', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler')
       @ride_offer9 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Kachiguda Railway Station', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:00:00 pm', :vehicle => 'four_wheeler')
       @ride_offer10 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler')
       @ride_offer11 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 04:30:00 pm', :vehicle => 'two_wheeler')
@@ -27,7 +27,7 @@ describe RideOffer do
     end
 
     it 'should return results for search criteria 2' do
-      params = {:orig => 'Madhapur', :dest => 'Jubilee Hills Road No 92', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler'}
+      params = {:orig => 'Madhapur', :dest => 'Jubilee Hills Road No 1', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler'}
       results = RideOffer.search(params)
       results.should have(1).things
       results.should include @ride_offer8

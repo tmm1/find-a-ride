@@ -25,4 +25,8 @@ class HookUpsController < ApplicationController
       render :text => 'failed', :status => 200
     end
   end
+  
+  def index
+    @recent_hook_ups = HookUp.where(:contacter_id => current_user.id).order('created_at DESC').limit(5)
+  end
 end

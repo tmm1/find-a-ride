@@ -11,8 +11,8 @@ class RideRequestsController < RidesController
       if @ride_request.save
         format.html { redirect_to(search_ride_offers_path(params[:ride_request]), :notice => 'Yay! Your request was created successfully.') }
       else
-        if @ride_request.errors[:base].include?("This is an duplicate record try modifying your request criteria.")
-          flash[:notice] = "This is an duplicate record try modifying your request criteria."
+        if !@ride_request.errors[:base].empty?
+          flash[:error] = @ride_request.errors[:base].first
           format.html { render :action => "new" }
         else
           format.html { render :action => "new"}
