@@ -2,24 +2,69 @@ require 'spec_helper'
 
 describe RideOffer do
   describe "#search" do
+    def get_date
+      @ride_date ||= 2.days.from_now
+      @ride_date.strftime("%d/%b/%Y")
+    end
+
     before(:all) do
       Ride.destroy_all
-      @ride_offer1 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler')
-      @ride_offer2 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler')
-      @ride_offer3 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 02:00:00 pm', :vehicle => 'four_wheeler')
-      @ride_offer4 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 02:30:00 pm', :vehicle => 'four_wheeler')
-      @ride_offer5 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 03:30:00 pm', :vehicle => 'four_wheeler')
-      @ride_offer6 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 04:30:00 pm', :vehicle => 'four_wheeler')
-      @ride_offer7 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'two_wheeler')
-      @ride_offer8 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Jubilee Hills Road No 1', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler')
-      @ride_offer9 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Kachiguda Railway Station', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:00:00 pm', :vehicle => 'four_wheeler')
-      @ride_offer10 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler')
-      @ride_offer11 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 04:30:00 pm', :vehicle => 'two_wheeler')
+      @ride_offer1 = Factory(:ride_offer, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => get_date, :start_time => "#{get_date} 01:30:00 pm"
+      })
+      @ride_offer2 = Factory(:ride_offer, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => get_date, :start_time => "#{get_date} 01:30:00 pm"
+      })
+      @ride_offer3 = Factory(:ride_offer, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => get_date, :start_time => "#{get_date} 02:00:00 pm"
+      })
+      @ride_offer4 = Factory(:ride_offer, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => get_date, :start_time => "#{get_date} 02:30:00 pm"
+      })
+      @ride_offer5 = Factory(:ride_offer, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => get_date, :start_time => "#{get_date} 03:30:00 pm"
+      })
+      @ride_offer6 = Factory(:ride_offer, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => get_date, :start_time => "#{get_date} 04:30:00 pm"
+      })
+      @ride_offer7 = Factory(:ride_offer, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'two_wheeler',
+        :start_date => get_date, :start_time => "#{get_date} 01:30:00 pm"
+      })
+      @ride_offer8 = Factory(:ride_offer, {
+        :orig => 'Madhapur', :dest => 'Jubilee Hills Road No 1', :vehicle => 'four_wheeler',
+        :start_date => get_date, :start_time => "#{get_date} 01:30:00 pm"
+      })
+      @ride_offer9 = Factory(:ride_offer, {
+        :orig => 'Madhapur', :dest => 'Kachiguda Railway Station', :vehicle => 'four_wheeler',
+        :start_date => get_date, :start_time => "#{get_date} 01:00:00 pm"
+      })
+      @ride_offer10 = Factory(:ride_offer, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => get_date, :start_time => "#{get_date} 01:30:00 pm"
+      })
+      @ride_offer11 = Factory(:ride_offer, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'two_wheeler',
+        :start_date => get_date, :start_time => "#{get_date} 04:30:00 pm"
+      })
       @ride_offer10.offerer.update_attribute(:inactive, true)
+
+      @ride_offer12_params = {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => (Time.now - 31.minutes).strftime("%d/%b/%Y"), :start_time => (Time.now - 31.minutes).strftime("%d/%b/%Y %r")
+      }
+      @ride_offer12 = Factory.build(:ride_offer, @ride_offer12_params)
+      @ride_offer12.save(:validate => false) # to save a past ride
     end
 
     it 'should return results for search criteria 1' do
-      params = {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler'}
+      params = {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => get_date, :start_time => "#{get_date} 01:30:00 pm", :vehicle => 'four_wheeler'}
       results = RideOffer.search(params)
       results.should have(3).things
       results.should == [@ride_offer1, @ride_offer2, @ride_offer3]
@@ -27,7 +72,7 @@ describe RideOffer do
     end
 
     it 'should return results for search criteria 2' do
-      params = {:orig => 'Madhapur', :dest => 'Jubilee Hills Road No 1', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler'}
+      params = {:orig => 'Madhapur', :dest => 'Jubilee Hills Road No 1', :start_date => get_date, :start_time => "#{get_date} 01:30:00 pm", :vehicle => 'four_wheeler'}
       results = RideOffer.search(params)
       results.should have(1).things
       results.should include @ride_offer8
@@ -35,7 +80,7 @@ describe RideOffer do
     end
 
     it 'should return results for search criteria 3' do
-      params = {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'two_wheeler'}
+      params = {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => get_date, :start_time => "#{get_date} 01:30:00 pm", :vehicle => 'two_wheeler'}
       results = RideOffer.search(params)
       results.should have(1).things
       results.should include @ride_offer7
@@ -43,7 +88,7 @@ describe RideOffer do
     end
 
     it 'should return results for search criteria 4' do
-      params = {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 04:30:00 pm', :vehicle => 'any'}
+      params = {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => get_date, :start_time => "#{get_date} 04:30:00 pm", :vehicle => 'any'}
       results = RideOffer.search(params)
       results.should have(2).things
       results.should == [@ride_offer6, @ride_offer11]
@@ -51,14 +96,19 @@ describe RideOffer do
     end
 
     it 'should not return results for search criteria 1' do
-      params = {:orig => 'Miyapur', :dest => 'Kothaguda', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'two_wheeler'}
+      params = {:orig => 'Miyapur', :dest => 'Kothaguda', :start_date => get_date, :start_time => "#{get_date} 01:30:00 pm", :vehicle => 'two_wheeler'}
       results = RideOffer.search(params)
       results.should have(0).things
     end
 
     it 'should not return results for search criteria 2' do
-      params = {:orig => 'Madhapur', :dest => 'Miyapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 02:30:00 pm', :vehicle => 'four_wheeler'}
+      params = {:orig => 'Madhapur', :dest => 'Miyapur', :start_date => get_date, :start_time => "#{get_date} 02:30:00 pm", :vehicle => 'four_wheeler'}
       results = RideOffer.search(params)
+      results.should have(0).things
+    end
+
+    it 'should not return results for search criteria 12' do
+      results = RideOffer.search(@ride_offer12_params)
       results.should have(0).things
     end
   end

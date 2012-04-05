@@ -2,24 +2,69 @@ require 'spec_helper'
 
 describe RideRequest do
   describe "#search" do
+    def get_date
+      @ride_date ||= 2.days.from_now
+      @ride_date.strftime("%d/%b/%Y")
+    end
+
     before(:all) do
       Ride.destroy_all
-      @ride_request1 = Factory(:ride_request, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler')
-      @ride_request2 = Factory(:ride_request, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler')
-      @ride_request3 = Factory(:ride_request, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 02:00:00 pm', :vehicle => 'four_wheeler')
-      @ride_request4 = Factory(:ride_request, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 02:30:00 pm', :vehicle => 'four_wheeler')
-      @ride_request5 = Factory(:ride_request, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 03:30:00 pm', :vehicle => 'four_wheeler')
-      @ride_request6 = Factory(:ride_request, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 04:30:00 pm', :vehicle => 'four_wheeler')
-      @ride_request7 = Factory(:ride_request, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'two_wheeler')
-      @ride_request8 = Factory(:ride_request, :orig => 'Madhapur', :dest => 'Miyapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler')
-      @ride_request9 = Factory(:ride_request, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:00:00 pm', :vehicle => 'four_wheeler')
-      @ride_request10 = Factory(:ride_request, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:00:00 pm', :vehicle => 'four_wheeler')
-      @ride_request11 = Factory(:ride_request, :orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 04:30:00 pm', :vehicle => 'any')
+      @ride_request1 = Factory(:ride_request, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => "#{get_date}", :start_time => "#{get_date} 01:30:00 pm"
+      })
+      @ride_request2 = Factory(:ride_request, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => "#{get_date}", :start_time => "#{get_date} 01:30:00 pm"
+      })
+      @ride_request3 = Factory(:ride_request, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => "#{get_date}", :start_time => "#{get_date} 02:00:00 pm"
+      })
+      @ride_request4 = Factory(:ride_request, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => "#{get_date}", :start_time => "#{get_date} 02:30:00 pm"
+      })
+      @ride_request5 = Factory(:ride_request, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => "#{get_date}", :start_time => "#{get_date} 03:30:00 pm"
+      })
+      @ride_request6 = Factory(:ride_request, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => "#{get_date}", :start_time => "#{get_date} 04:30:00 pm"
+      })
+      @ride_request7 = Factory(:ride_request, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'two_wheeler',
+        :start_date => "#{get_date}", :start_time => "#{get_date} 01:30:00 pm"
+      })
+      @ride_request8 = Factory(:ride_request, {
+        :orig => 'Madhapur', :dest => 'Miyapur', :vehicle => 'four_wheeler',
+        :start_date => "#{get_date}", :start_time => "#{get_date} 01:30:00 pm"
+      })
+      @ride_request9 = Factory(:ride_request, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => "#{get_date}", :start_time => "#{get_date} 01:00:00 pm"
+      })
+      @ride_request10 = Factory(:ride_request, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => "#{get_date}", :start_time => "#{get_date} 01:00:00 pm"
+      })
+      @ride_request11 = Factory(:ride_request, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'any',
+        :start_date => "#{get_date}", :start_time => "#{get_date} 04:30:00 pm"
+      })
       @ride_request10.requestor.update_attribute(:inactive, true)
+
+      @ride_request12_params = {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => (Time.now - 31.minutes).strftime("%d/%b/%Y"), :start_time => (Time.now - 31.minutes).strftime("%d/%b/%Y %r")
+      }
+      @ride_request12 = Factory.build(:ride_request, @ride_request12_params)
+      @ride_request12.save(:validate => false) # to save a past ride
     end
 
     it 'should return results for search criteria 1' do
-      params = {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler'}
+      params = {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => "#{get_date}", :start_time => "#{get_date} 01:30:00 pm", :vehicle => 'four_wheeler'}
       results = RideRequest.search(params)
       results.should have(4).things
       results.should == [@ride_request9, @ride_request1, @ride_request2, @ride_request3]
@@ -27,7 +72,7 @@ describe RideRequest do
     end
 
     it 'should return results for search criteria 2' do
-      params = {:orig => 'Madhapur', :dest => 'Miyapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler'}
+      params = {:orig => 'Madhapur', :dest => 'Miyapur', :start_date => "#{get_date}", :start_time => "#{get_date} 01:30:00 pm", :vehicle => 'four_wheeler'}
       results = RideRequest.search(params)
       results.should have(1).things
       results.should include @ride_request8
@@ -35,7 +80,7 @@ describe RideRequest do
     end
 
     it 'should return results for search criteria 3' do
-      params = {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'two_wheeler'}
+      params = {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => "#{get_date}", :start_time => "#{get_date} 01:30:00 pm", :vehicle => 'two_wheeler'}
       results = RideRequest.search(params)
       results.should have(1).things
       results.should include @ride_request7
@@ -43,7 +88,7 @@ describe RideRequest do
     end
     
     it 'should return results for search criteria 4' do
-      params = {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 04:30:00 pm', :vehicle => 'four_wheeler'}
+      params = {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => "#{get_date}", :start_time => "#{get_date} 04:30:00 pm", :vehicle => 'four_wheeler'}
       results = RideRequest.search(params)
       results.should have(2).things
       results.should == [@ride_request6, @ride_request11]
@@ -51,14 +96,19 @@ describe RideRequest do
     end
 
     it 'should not return results for search criteria 1' do
-      params = {:orig => 'Miyapur', :dest => 'Kothaguda', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'two_wheeler'}
+      params = {:orig => 'Miyapur', :dest => 'Kothaguda', :start_date => "#{get_date}", :start_time => "#{get_date} 01:30:00 pm", :vehicle => 'two_wheeler'}
       results = RideRequest.search(params)
       results.should have(0).things
     end
 
     it 'should not return results for search criteria 2' do
-      params = {:orig => 'Madhapur', :dest => 'Miyapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 02:30:00 pm', :vehicle => 'four_wheeler'}
+      params = {:orig => 'Madhapur', :dest => 'Miyapur', :start_date => "#{get_date}", :start_time => "#{get_date} 02:30:00 pm", :vehicle => 'four_wheeler'}
       results = RideRequest.search(params)
+      results.should have(0).things
+    end
+
+    it 'should not return results for search criteria 12' do
+      results = RideRequest.search(@ride_request12_params)
       results.should have(0).things
     end
   end
