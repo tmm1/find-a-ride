@@ -1,12 +1,14 @@
 .text
   %h2 
     Update your profile information here
-    %br
-    %small Ensure your phone numbers are updated as they are essential for this service.
+  %br
+  %span{:class => 'label label-important'} Note: Please have your contact numbers updated as they are crucial to this service
 %hr
 .hero-unit
   .pull-right
     %span{:class => 'label label-important'} *Fields are required
+  %p
+    %br
   = semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :multipart => true }) do |f|
     /= devise_error_messages!
     = f.inputs do

@@ -5,7 +5,7 @@
     .form
       %span{:class => 'label label-important hookup-note'} Please fill in the information below and submit to get in touch
       %p
-      = semantic_form_for @hook, :url => hook_ups_path(@hook) , :validate => true do |f|
+      = semantic_form_for @hook, :url => user_hook_ups_path(current_user, @hook, "#{params[:type]}_id" => params["#{params[:type]}_id"]) , :validate => true do |f|
         = f.inputs do
           %h3= "To: #{@contactee.try(:full_name)}"
           %h6= "Going from: #{@origin}"
@@ -16,7 +16,7 @@
           = f.input :contacter_id , :as => :hidden , :value => current_user.id
           = f.input :hookable_id , :as => :hidden , :value => params["#{params[:type]}_id"]
           = f.input :hookable_type , :as => :hidden , :value => params[:type].classify if params[:type]
-          = f.input :mobile, :input_html => { :title => 'Enter your mobile number to contact' }, :label => 'Mobile number(optional)'
+          = f.input :mobile, :input_html => {:value => current_user.mobile, :title => 'Enter your mobile number to contact' }, :label => 'Mobile number(optional)'
           = f.input :message, :as => :text , :input_html => { :rows => 10, :cols => 20 }
           = hidden_field_tag 'hook_modal', params[:uuid]
   .modal-footer

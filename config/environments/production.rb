@@ -49,5 +49,5 @@ PoolRide::Application.configure do
   
   config.action_mailer.default_url_options = { :host => 'find-a-ride.heroku.com' }
 
-  config.action_mailer.asset_host                 = "http://find-a-ride.heroku.com"
+  config.action_mailer.asset_host = "http://find-a-ride.heroku.com"
 end

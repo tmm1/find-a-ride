@@ -22,7 +22,7 @@
               %span{:class => 'badge badge-info'} Beta
           .nav-collapse
             - if user_signed_in?
-              %ul{:class => 'nav'}
+              %ul{:class => 'nav nav-pills'}
                 = render 'shared/links'
             - else
               %ul{:class => 'nav nav-pills'}
@@ -37,25 +37,26 @@
                     %li= link_to("Confirm account", users_confirm_url)
             - if user_signed_in?
               %ul{:class => 'nav nav-pills pull-right'}
-                %li= user_display_pic(current_user, '24x24') 
                 %li#user{:class => 'dropdown'}
                   %a{:class => 'dropdown-toggle', "data-toggle" => 'dropdown', :href => 'user'} 
                     = "#{current_user.name}"
                     %b.caret
                   %ul{:class => 'dropdown-menu'}
                     %li= link_to("Edit Profile", edit_user_registration_path)
+                    %li= link_to("Recent Hookups", user_hook_ups_path(current_user))
                     %li= link_to("Sign out", destroy_user_session_path, :method => :delete)
             - else
-              %p{:class => 'navbar-text pull-right'}
-                = link_to("Sign in", signin_url)
+              %ul{:class => 'nav nav-pills pull-right'}
+                %li= link_to("Sign in", signin_url)
     .container
       .notice-area
         = render 'shared/flashes'  
       = yield
       %hr
       .footer
-        %a{:href => 'http://www.imaginea.com/labs', :target => '_blank'}
-          %span{:class => 'badge badge-info'} Imaginea Labs. Copyright &copy; 2012, Pramati Technologies Private Limited
+        %h3
+          %a{:href => 'http://www.imaginea.com/labs', :target => '_blank'}
+            %span{:class => 'badge badge-info'} Imaginea Labs. Copyright &copy; 2012, Pramati Technologies Private Limited
     = render 'shared/contact'
 
     
