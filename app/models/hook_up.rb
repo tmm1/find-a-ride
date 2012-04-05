@@ -12,9 +12,9 @@ class HookUp < ActiveRecord::Base
   
   def email_notification
     if self.hookable_type == "RideRequest"
-      HookupMailer.ride_offerer_email(self,self.mobile).deliver
+      HookupMailer.ride_offerer_email(self, self.mobile).deliver
     else
-      HookupMailer.ride_requestor_email(self,self.mobile).deliver
+      HookupMailer.ride_requestor_email(self, self.mobile).deliver
     end
   end
   
