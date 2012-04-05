@@ -1,0 +1,6 @@
+%hr
+.hero-unit
+  - if @recent_hook_ups.empty?
+    = render 'no_hookups'
+  - else
+    = render 'grid'

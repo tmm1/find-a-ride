@@ -8,7 +8,6 @@ PoolRide::Application.routes.draw do
     get '/users/change_password', :to => 'devise/passwords#edit'
   end
 
-  
   match '/about' => 'home#about'
   match '/index' => 'home#index'
 
@@ -17,7 +16,6 @@ PoolRide::Application.routes.draw do
   end
   root :to => 'home#index'
 
-  
   resources :home do
     collection do
       get 'about'
@@ -32,8 +30,6 @@ PoolRide::Application.routes.draw do
       post 'search'
     end
   end
-
-  resources :hook_ups
   
   resources :ride_requests do
     collection do
@@ -45,6 +41,10 @@ PoolRide::Application.routes.draw do
     collection do
       get 'search'
     end
+  end
+  
+  resources :users do
+    resources :hook_ups
   end
 
   match '/location_search' => 'application#location_search', :as => :location_search

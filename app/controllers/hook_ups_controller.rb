@@ -10,12 +10,23 @@ class HookUpsController < ApplicationController
     render :layout => false
   end
 
-  def create  
-   @hook_up = HookUp.new(params[:hook_up])
-   if @hook_up.save
+  def create
+    @hook_up = HookUp.new(params[:hook_up])
+    mobile = params[:hook_up][:mobile]
+    type = params[:hook_up][:ride_type]
+    if @hook_up.save
+      if type == "ride_request"
+        HookupMailer.ride_offerer_email(@hook_up,mobile).deliver
+       else
+        HookupMailer.ride_requestor_email(@hook_up,mobile).deliver
+      end
       render :text => 'success', :status => 200
     else
       render :text => 'failed', :status => 200
     end
+  end
+  
+  def index
+    @recent_hook_ups = HookUp.where(:contacter_id => current_user.id).order('created_at DESC').limit(5)
   end
 end
