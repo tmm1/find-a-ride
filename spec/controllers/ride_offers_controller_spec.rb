@@ -27,7 +27,7 @@ describe RideOffersController do
       ride_offer.should_not be_nil
       ride_offer.ride_origin.should == Location.find_by_name(params[:orig])
       ride_offer.ride_destination.should == Location.find_by_name(params[:dest])
-      ride_offer.ride_time.should == "#{params[:start_date]} #{params[:start_time]}".to_datetime
+      ride_offer.ride_time.should == "#{params[:start_date]} #{params[:start_time]} +0530".to_datetime
       ride_offer.vehicle.should == 'two_wheeler'
     end
 
