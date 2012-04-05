@@ -5,6 +5,7 @@
     .form
       %span{:class => 'label label-important'} Use this form to submit general feedback or comments about this service
       %p
+        %br
       = form_tag(contact_home_index_path, :id => 'contact-form') do
         = hidden_field_tag :user_login_status, user_signed_in?
         - if user_signed_in?
