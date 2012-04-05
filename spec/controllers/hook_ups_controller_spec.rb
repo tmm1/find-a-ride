@@ -36,7 +36,7 @@ describe HookUpsController do
       hook_up.message.should == params[:message]
       hook_up.contacter.should == User.find(@login_user.id)
       hook_up.contactee.should == User.find(@contactee_user.id)
-      hook_up.hookable.should == ride
+      hook_up.hookable.id.should == ride.id
     end
     
     it 'should not allow users to hook up without a ride' do
