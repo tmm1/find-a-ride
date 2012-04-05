@@ -2,4 +2,6 @@
   h.association :contacter, :factory => :user
   h.association :contactee, :factory => :user
   h.message {Faker::Lorem.paragraph}
+  h.hookable_type 'RideRequest'
+  h.association :hookable_id, :factory => :ride
 end

@@ -3,7 +3,7 @@ class HookUp < ActiveRecord::Base
   belongs_to :contactee, :class_name => 'User'
   belongs_to :hookable, :polymorphic => true
 
-  attr_accessor :mobile, :ride_orig, :ride_dest, :ride_time
+  attr_accessor :mobile, :ride_orig, :ride_type, :ride_dest, :ride_time
 
   validates :contactee_id, :contacter_id, :message,:hookable_id,:hookable_type, :presence => true
   validates :mobile, :format => { :with => /^[1-9]+\d{9}$/, :allow_blank => true}
