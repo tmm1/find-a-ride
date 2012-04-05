@@ -46,16 +46,17 @@
                     %li= link_to("Recent Hookups", user_hook_ups_path(current_user))
                     %li= link_to("Sign out", destroy_user_session_path, :method => :delete)
             - else
-              %p{:class => 'navbar-text pull-right'}
-                = link_to("Sign in", signin_url)
+              %ul{:class => 'nav nav-pills pull-right'}
+                %li= link_to("Sign in", signin_url)
     .container
       .notice-area
         = render 'shared/flashes'  
       = yield
       %hr
       .footer
-        %a{:href => 'http://www.imaginea.com/labs', :target => '_blank'}
-          %span{:class => 'badge badge-info'} Imaginea Labs. Copyright &copy; 2012, Pramati Technologies Private Limited
+        %h3
+          %a{:href => 'http://www.imaginea.com/labs', :target => '_blank'}
+            %span{:class => 'badge badge-info'} Imaginea Labs. Copyright &copy; 2012, Pramati Technologies Private Limited
     = render 'shared/contact'
 
     

@@ -1,5 +1,6 @@
 class HookUpsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :restrict_inactive_user
 
   def new
     @contactee = User.find_by_id(params[:id]) if params[:id]

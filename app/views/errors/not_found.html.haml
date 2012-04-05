@@ -1,12 +1,13 @@
 %hr
-%h1.text-center The page you are trying to access could not be found!
-%br
-.text-center
-  = image_tag("404error.png", :size => '200x150')
-%br
-%p
-%h2.text-center
-  %small
-    if you entered the url in by hand, please make sure that it is correct.
-    = link_to('Go back', root_url)
-    to the home page.
+.hero-unit
+  %h2.text-center The page you are trying to access could not be found!
+  %br
+  .text-center
+    = image_tag("404error.png", :size => '200x150')
+  %br
+  %p
+  %h2.text-center
+    %small
+      if you entered the url in by hand, please make sure that it is correct.
+      = link_to('Go back', root_url)
+      to the home page.
