@@ -1981,7 +1981,7 @@
 		  var todayDate = new Date();
 		  selectedDate = new Date(selectedDate);
 		  todayDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate(), 0, 0, 0);
-		  if ((selectedDate < todayDate)){
+		  if (selectedDay != '' && (selectedDate < todayDate)){
 		    return;
 		  }
 			e.stopPropagation();
