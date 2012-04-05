@@ -43,6 +43,16 @@ describe RideOffersController do
       ride_offer.should_not be_nil
       ride_offer.valid?.should be false
     end
+
+    it "should fail creating a  duplicate record" do
+      sign_in @login_user
+      params1 = Factory.attributes_for(:ride_offer)
+      post 'create', :ride_offer => params1
+      params2 = Factory.attributes_for(:ride_offer)
+      post 'create', :ride_offer => params2
+      ride_offer = assigns(:ride_offer)
+      ride_offer.errors.first.should include("Oops. You already put in one with similar criteria!")
+    end
   end
 
   describe "#search" do

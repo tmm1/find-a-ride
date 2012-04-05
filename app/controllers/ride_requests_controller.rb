@@ -12,7 +12,7 @@ class RideRequestsController < RidesController
         format.html { redirect_to(search_ride_offers_path(params[:ride_request]), :notice => 'Yay! Your request was created successfully.') }
       else
         if !@ride_request.errors[:base].empty?
-          flash[:error] = @ride_request.errors[:base].first
+          flash.now[:error] = @ride_request.errors[:base].first
           format.html { render :action => "new" }
         else
           format.html { render :action => "new"}

@@ -64,34 +64,46 @@ describe Ride do
   end
 
   describe "#duplicate validation for ride request" do
+    before(:each) do
+      Ride.destroy_all
+    end
+
     it "should fail with the duplicate error" do
-      ride_request1 = RideRequest.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00'})
-      ride_request2 = RideRequest.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00'})
+      ride_request1 = RideRequest.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideRequest"})
+      ride_request2 = RideRequest.new({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideRequest"})
       ride_request2.should_not be_valid
       ride_request2.errors[:base].should include ("Oops. You already put in one with similar criteria!")
     end
 
     it "should successfully create a ride request" do
-      ride_request1 = RideRequest.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00'})
-      ride_request2 = RideRequest.create({:orig => 'Madhapur', :dest => 'Begumpet', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00'})
-      #ride_request2.should be_valid TODO: fix
+      ride_request1 = RideRequest.create({:orig => 'Madhapur', :dest => 'Begumpet', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideRequest"})
+      ride_request2 = RideRequest.new({:orig => 'Madhapur', :dest => 'Addagutta', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideRequest"})
+      ride_request2.should be_valid
+      ride_request2.errors.full_messages.should eql([])
+
     end
 
   end
 
   describe "#duplicate validation for ride offer" do
+    before(:each) do
+      Ride.destroy_all
+    end
     it "should fail with the duplicate error" do
-      ride_offer1 = RideOffer.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00'})
-      ride_offer2 = RideOffer.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00'})
+      ride_offer1 = RideOffer.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideOffer"})
+      ride_offer2 = RideOffer.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideOffer"})
       ride_offer2.should_not be_valid
       ride_offer2.errors[:base].should include ("Oops. You already put in one with similar criteria!")
     end
 
     it "should successfully create a ride offer" do
-      ride_offer1 = RideOffer.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00'})
-      ride_offer2 = RideOffer.create({:orig => 'Madhapur', :dest => 'Begumpet', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00'})
-      #ride_offer2.should be_valid TODO: fix
+      ride_offer1 = RideOffer.create({:orig => 'Madhapur', :dest => 'Begumpet', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideOffer"})
+      ride_offer2 = RideOffer.new({:orig => 'Madhapur', :dest => 'Addagutta', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideOffer"})
+      ride_offer2.should be_valid
+      ride_offer2.errors.full_messages.should eql([])
+
     end
+   
   end
   
 end

@@ -1,12 +1,12 @@
 module HookUpsHelper
   def self.formatted_ride_time(time)
     return if time.blank?
-    ride_time = time
-    ride_time = time.split('at')
-    if time.include?('today') || time.include?('tomorrow')
-      ride_time = ride_time[1].strip+ ' '+ride_time[0].strip+'.'
+    if time.today?
+      ride_time = time.strftime('%l:%M%p today.')
+    elsif time.to_date == Time.now.advance(:days => 1).to_date
+      ride_time = time.strftime('%l:%M%p tomorrow.')
     else
-      ride_time = ride_time[1].strip+ ' on '+ride_time[0].strip+'.'
+      ride_time = time.strftime('%l:%M%p on %B %d, %Y.')
     end
     ride_time
   end

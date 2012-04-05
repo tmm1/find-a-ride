@@ -2,12 +2,12 @@
 %br
 %p
   ="Via Find-a-Ride, I realised that you are looking to offer a ride from "
-  %b #{@hook_up.ride_orig} 
+  %b #{@hook_up.hookable.ride_origin.name} 
   to 
-  %b #{@hook_up.ride_dest} 
-  around at 
+  %b #{@hook_up.hookable.ride_destination.name} 
+  around  
   %b
-    = HookUpsHelper.formatted_ride_time(@hook_up.ride_time)
+    = HookUpsHelper.formatted_ride_time(@hook_up.hookable.ride_time)
 %p
   %b= @message
 %p= "My contact information is here if you would like to hook up and take this further"
