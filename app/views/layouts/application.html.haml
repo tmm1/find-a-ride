@@ -22,7 +22,7 @@
               %span{:class => 'badge badge-info'} Beta
           .nav-collapse
             - if user_signed_in?
-              %ul{:class => 'nav'}
+              %ul{:class => 'nav nav-pills'}
                 = render 'shared/links'
             - else
               %ul{:class => 'nav nav-pills'}
@@ -37,7 +37,6 @@
                     %li= link_to("Confirm account", users_confirm_url)
             - if user_signed_in?
               %ul{:class => 'nav nav-pills pull-right'}
-                %li= user_display_pic(current_user, '24x24') 
                 %li#user{:class => 'dropdown'}
                   %a{:class => 'dropdown-toggle', "data-toggle" => 'dropdown', :href => 'user'} 
                     = "#{current_user.name}"
