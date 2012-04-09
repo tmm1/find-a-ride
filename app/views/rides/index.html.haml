@@ -17,7 +17,7 @@
           .add-on
             %i{:class => "icon-th"}
       = f.input :start_time, :input_html => { :readonly => true, :class => 'text-input timepicker', :title => 'Choose the time you are looking for a ride'}, :label => 'Around what time?' , :required => true
-      = f.input :vehicle, :as => :select, :label => 'What kind of vehicle do you prefer?', :include_blank => false, :collection => vehicle_type_collection, :input_html => { :class => 'text-input', :title => 'Enter the type of vehicle you prefer'}
+      = f.input :vehicle, :as => :select, :label => 'What kind of vehicle do you prefer?', :include_blank => false, :collection => vehicle_type_collection, :input_html => { :class => 'text-input', :title => 'Enter the type of vehicle you prefer'}, :required => true
     = f.buttons do
       = f.commit_button :label => 'Search', :button_html => {:class => 'btn btn-primary btn-large'}
 %br

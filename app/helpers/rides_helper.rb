@@ -12,11 +12,15 @@ module RidesHelper
     end
   end
   
+  def payment_desc(ride)
+    ride.type == 'RideOffer' ? "Expects #{ride.payment} in return" : "Can pay #{ride.payment} in return"
+  end
+  
   def humanize_time(time)
     if time.today?
-      time.strftime('today at %l:%M%p')
+      time.strftime('Today at %l:%M%p')
     elsif time.to_date == Time.now.advance(:days => 1).to_date
-      time.strftime('tomorrow at %l:%M%p')
+      time.strftime('Tomorrow at %l:%M%p')
     else
       time.strftime('%B %d, %Y at %l:%M%p')
     end
