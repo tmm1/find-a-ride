@@ -13,4 +13,10 @@ class HomeController < ApplicationController
       render :text => 'failed', :status => 200
     end
   end
+
+  def inactive
+    if current_user.inactive
+      flash.now[:notice]="Your account was updated successfully"
+    end
+  end
 end
