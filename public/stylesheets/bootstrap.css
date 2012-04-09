@@ -23,10 +23,10 @@ section {
 }
 audio,
 canvas,
-video {
-    display: inline-block;
-    *display: inline;
-    *zoom: 1;
+video {.nav-tabs > li > a
+       display: inline-block;
+       *display: inline;
+       *zoom: 1;
 }
 audio:not([controls]) {
     display: none;
@@ -2559,7 +2559,7 @@ input[type="submit"].btn.btn-mini {
     line-height: 14px;
 }
 .nav-tabs {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #3A87AD;
 }
 .nav-tabs > li {
     margin-bottom: -1px;
@@ -2568,19 +2568,19 @@ input[type="submit"].btn.btn-mini {
     padding-top: 8px;
     padding-bottom: 8px;
     line-height: 20px;
-    border: 1px solid transparent;
+/*    border: 1px solid transparent;*/
     -webkit-border-radius: 4px 4px 0 0;
     -moz-border-radius: 4px 4px 0 0;
     border-radius: 4px 4px 0 0;
 }
 .nav-tabs > li > a:hover {
-    border-color: #eeeeee #eeeeee #dddddd;
+/*    border-color: #eeeeee #eeeeee #dddddd;*/
 }
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover {
     color: #555555;
     background-color: #ffffff;
-    border: 1px solid #ddd;
+    border: 1px solid #3A87AD;
     border-bottom-color: transparent;
     cursor: default;
 }
@@ -4353,23 +4353,24 @@ div.subnav.subnav-fixed .nav > li.active > a:hover {
 }
 .nav-tabs,
 .nav-tabs.nav-stacked > li > a {
-    border-color: transparent;
+/*    border-color: transparent;*/
 }
 .nav-tabs > li > a {
     background-color: #45515f;
     color: #ece9d7;
+
 }
 .nav-tabs li.active > a,
 .nav-tabs li.active > a:hover,
 .nav-tabs.nav-stacked > li.active > a:hover {
     color: #ffffff;
     background-color: #e36b23;
-    border-color: transparent;
+/*    border-color: transparent;*/
 }
 .nav-tabs li > a:hover,
 .nav-tabs.nav-stacked > li > a:hover {
     background-color: #5a6a7d;
-    border-color: transparent;
+/*    border-color: transparent;*/
 }
 .nav-pills > li > a {
     color: #ece9d7;
