@@ -12,6 +12,7 @@ class RideRequest < Ride
   end
 end
 
+
 # == Schema Information
 #
 # Table name: rides
@@ -26,5 +27,7 @@ end
 #  type        :string(255)
 #  created_at  :datetime
 #  updated_at  :datetime
+#  payment     :string(255)
+#  notes       :string(3000)
 #
 

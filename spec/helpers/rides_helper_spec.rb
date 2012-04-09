@@ -63,6 +63,12 @@ describe RidesHelper do
       helper.vehicle_type_collection.should == [['Four-Wheeler', 'four_wheeler'], ['Two-Wheeler', 'two_wheeler'], ['I don\'t care', 'any']]
     end
   end
+  
+  describe '#payment type collection' do
+    it 'should return the collection' do
+      helper.payment_type_collection(['pay', 'nothing']).should == [['pay', 'cash'], ['nothing', 'none']]
+    end
+  end
 
   describe '#user_uuid' do
     it 'should return user uuid for the divs' do

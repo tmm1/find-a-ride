@@ -29,6 +29,21 @@ module RidesHelper
   def vehicle_type_collection
     [['Four-Wheeler', 'four_wheeler'], ['Two-Wheeler', 'two_wheeler'], ['I don\'t care', 'any']]
   end
+  
+  def payment_type_collection(payment_options=[])
+    return [cash, none] if payment_options.empty?
+    coll = []
+    payment_options.each_with_index do |v, i|
+      case i
+      when 0
+        coll << [v, 'cash']
+      when 1
+        coll << [v, 'none']
+      else
+      end
+    end
+    return coll
+  end
 
   def user_uuid
     uuid = UUID.new
