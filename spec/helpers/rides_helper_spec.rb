@@ -17,6 +17,18 @@ describe RidesHelper do
     end    
   end
   
+  describe '#payment desc' do
+    it 'should return for ride offer' do
+      ride_offer = Factory(:ride_offer, :payment => 'cash')
+      helper.payment_desc(ride_offer).should == 'Expects cash in return'
+    end
+    
+    it 'should return for ride request' do
+      ride_request = Factory(:ride_request, :payment => 'nothing')
+      helper.payment_desc(ride_request).should == 'Can pay nothing in return'
+    end
+  end
+  
   describe '#vehicle type image' do
     it 'should return 4 wheeler type image' do
       ride_request = Factory(:ride_request, :vehicle => 'four_wheeler')
@@ -31,10 +43,10 @@ describe RidesHelper do
   
   describe '#humanize time' do
     it 'should return with today' do
-      helper.humanize_time(Time.now).include?('today').should be true
+      helper.humanize_time(Time.now).include?('Today').should be true
     end
     it 'should return with tomorrow' do
-      helper.humanize_time(Time.now.advance(:days => 1)).include?('tomorrow').should be true
+      helper.humanize_time(Time.now.advance(:days => 1)).include?('Tomorrow').should be true
     end
     it 'should return with actual date' do
       helper.humanize_time(Time.now.advance(:days => 3)).should_not be nil
@@ -61,6 +73,12 @@ describe RidesHelper do
   describe '#vehicle type collection' do
     it 'should return the collection' do
       helper.vehicle_type_collection.should == [['Four-Wheeler', 'four_wheeler'], ['Two-Wheeler', 'two_wheeler'], ['I don\'t care', 'any']]
+    end
+  end
+  
+  describe '#payment type collection' do
+    it 'should return the collection' do
+      helper.payment_type_collection(['pay', 'nothing']).should == [['pay', 'cash'], ['nothing', 'none']]
     end
   end
 

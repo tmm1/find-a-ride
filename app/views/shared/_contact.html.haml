@@ -3,7 +3,7 @@
     %h1 Contact Find.a.Ride
   .modal-body
     .form
-      %span{:class => 'label label-important'} Use this form to submit general feedback or comments about this service
+      %span{:class => 'label label-important'} Ask us a question or leave feedback about the service
       %p
         %br
       = form_tag(contact_home_index_path, :id => 'contact-form') do
@@ -17,8 +17,8 @@
           %label.label Email*
           = text_field_tag 'email'
         %label.label This is about
-        = select_tag 'about', options_for_select(['General Feedback', 'Issues', 'Other'])
-        %label.label Notes*
+        = select_tag 'about', options_for_select(['General Feedback', 'Issues', 'Questions', 'Other'])
+        %label.label
         = text_area_tag 'comments'
   .modal-footer
     .loader{:style => 'display: none;', :class => 'pull-right'}

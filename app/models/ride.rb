@@ -17,7 +17,7 @@ class Ride < ActiveRecord::Base
   attr_accessor :start_date
   attr_accessor :start_time
 
-  attr_accessible :type, :orig, :dest, :start_date, :start_time, :vehicle
+  attr_accessible :type, :orig, :dest, :start_date, :start_time, :vehicle, :payment, :notes
  
   private
 
@@ -27,6 +27,7 @@ class Ride < ActiveRecord::Base
     self.destination = Location.find_by_name(self.dest).id
   end
 end
+
 
 # == Schema Information
 #
@@ -42,5 +43,7 @@ end
 #  type        :string(255)
 #  created_at  :datetime
 #  updated_at  :datetime
+#  payment     :string(255)
+#  notes       :string(3000)
 #
 

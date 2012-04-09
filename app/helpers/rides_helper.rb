@@ -12,11 +12,15 @@ module RidesHelper
     end
   end
   
+  def payment_desc(ride)
+    ride.type == 'RideOffer' ? "Expects #{ride.payment} in return" : "Can pay #{ride.payment} in return"
+  end
+  
   def humanize_time(time)
     if time.today?
-      time.strftime('today at %l:%M%p')
+      time.strftime('Today at %l:%M%p')
     elsif time.to_date == Time.now.advance(:days => 1).to_date
-      time.strftime('tomorrow at %l:%M%p')
+      time.strftime('Tomorrow at %l:%M%p')
     else
       time.strftime('%B %d, %Y at %l:%M%p')
     end
@@ -28,6 +32,21 @@ module RidesHelper
   
   def vehicle_type_collection
     [['Four-Wheeler', 'four_wheeler'], ['Two-Wheeler', 'two_wheeler'], ['I don\'t care', 'any']]
+  end
+  
+  def payment_type_collection(payment_options=[])
+    return [cash, none] if payment_options.empty?
+    coll = []
+    payment_options.each_with_index do |v, i|
+      case i
+      when 0
+        coll << [v, 'cash']
+      when 1
+        coll << [v, 'none']
+      else
+      end
+    end
+    return coll
   end
 
   def user_uuid

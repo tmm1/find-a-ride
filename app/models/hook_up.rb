@@ -21,6 +21,7 @@ class HookUp < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: hook_ups
@@ -31,7 +32,7 @@ end
 #  created_at    :datetime
 #  updated_at    :datetime
 #  message       :string(3000)
-#  hookable_id   :integer
-#  hookable_type :string
+#  hookable_id   :integer(4)
+#  hookable_type :string(255)
 #
 

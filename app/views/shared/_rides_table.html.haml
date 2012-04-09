@@ -5,6 +5,7 @@
   %th Time
   %th= 'Vehicle type' if type == :ride_offer
   %th
+  %th
   - results.each do |result|
     - uuid = user_uuid
     %tr
@@ -13,5 +14,6 @@
       %td= result.ride_destination.name
       %td= humanize_time(result.ride_time)
       %td= vehicle_type_image(result) if type == :ride_offer
+      %td= payment_desc(result)
       %td= link_to('Hook up', '#hook-up'+uuid, :class => 'btn btn-medium btn-primary', "data-toggle" => "modal")
     %div{:id => "hook-up#{uuid}", :class => 'modal hide hookclass', :url => new_user_hook_up_url(:user_id => current_user.id, :id => user_id(result), :orig => result.ride_origin.name, :dest => result.ride_destination.name, :time => humanize_time(result.ride_time), :type => type, "#{type}_id" => result.id , :uuid => uuid)}

@@ -5,4 +5,6 @@ Factory.define :ride do |r|
   r.start_time "10/12/2012 01:30:00"
   r.vehicle     "two_wheeler"
   r.type        "RideRequest"
+  r.payment "cash"
+  r.notes "nothing much"
 end
