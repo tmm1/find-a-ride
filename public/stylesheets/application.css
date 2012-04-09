@@ -43,7 +43,7 @@ p.inline-errors {
 	margin: -22px 10px 0 0;
 }
 
-input#ride_request_start_time, input#ride_offer_start_time{
+input#ride_request_start_time, input#ride_offer_start_time, input#ride_start_time{
   width: 150px;
 }
 .sign-in-footer {
