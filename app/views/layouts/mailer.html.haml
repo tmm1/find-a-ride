@@ -7,7 +7,7 @@
     = stylesheet_link_tag 'bootstrap.css'
     = stylesheet_link_tag 'mailer.css'
   %body
-    %table{:cellspacing => '0', :cellpadding => '0', :style => "background-color:#2a333c;color:#ece9d7;"}
+    %table{:cellspacing => '0', :cellpadding => '0', :width => '100%', :style => "background-color:#2a333c;color:#ece9d7;"}
       %tr
         %td
           .navbar
@@ -19,10 +19,8 @@
       %tr
         %td
           .container
-            %hr
             .hero-unit
               = yield
-            %hr
             .footer
               %a{:href => 'http://www.imaginea.com/labs', :target => '_blank'}
                 %span{:class => 'badge badge-info'} Imaginea Labs. Copyright &copy; 2012, Pramati Technologies Private Limited

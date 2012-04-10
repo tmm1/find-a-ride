@@ -1,0 +1,17 @@
+- if params["from"].eql? 'create'
+  .no-results
+    %h2
+      %small
+        Based on the criteria you used for your request, We found no one offering a ride at the moment. You can try searching again later.
+    %br
+    .text-center
+      %h2
+        %small
+          = link_to('Go back', new_ride_request_path, :class => 'btn btn-info btn-large')
+- elsif params["from"].eql? 'search' 
+  .no-results
+    %h2
+      %small
+        Based on the search criteria you used, We found no one offering a ride at the moment. You can try searching again later or you can 
+        = link_to('post a request', new_ride_request_path, :class => 'btn btn-info btn-large')
+        for a ride.

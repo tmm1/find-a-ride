@@ -1,19 +1,24 @@
-%span= "Hello #{@hook_up.contactee.try(:full_name)}!"
+%p= "Hello #{@hook_up.contactee.try(:full_name)},"
 %br
-%p
-  ="Via OnTheWay, I realised that you are looking for a ride from "
+
+%p.hookup-msg
+  I want to request you a ride from
   %b #{@hook_up.hookable.ride_origin.name} 
   to 
   %b #{@hook_up.hookable.ride_destination.name} 
-  around  
+  at around  
   %b 
     = HookUpsHelper.formatted_ride_time(@hook_up.hookable.ride_time)
-%p
-  %b= @message
-%p= "My contact information is here if you would like to hook up and take this further"
-%p{:style => 'list-style-type: none;'}
-  %p{:style => 'font-weight: bold;'}= link_to("#{@hook_up.contacter.email}", "mailto:#{@hook_up.contacter.email}" , :class => "btn btn-primary btn-large")
-  %p= "#{@mobile}"
 %br
-%p{:style => 'font-size: 18px;'}
-  %b Thanks
+
+%p.hookup-contact-info
+  My contact info:
+  %br
+  = link_to("#{@hook_up.contacter.email}", "mailto:#{@hook_up.contacter.email}", :class => 'blue-underline')
+  %br
+  %b= "#{@mobile}"
+%br
+
+%p.hookup-msg-addl= @message
+
+%p{:style => 'font-size: 18px;'} Thanks

@@ -80,9 +80,7 @@ describe Ride do
       ride_request2 = RideRequest.new({:orig => 'Madhapur', :dest => 'Addagutta', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideRequest"})
       ride_request2.should be_valid
       ride_request2.errors.full_messages.should eql([])
-
     end
-
   end
 
   describe "#duplicate validation for ride offer" do
@@ -101,9 +99,21 @@ describe Ride do
       ride_offer2 = RideOffer.new({:orig => 'Madhapur', :dest => 'Addagutta', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideOffer"})
       ride_offer2.should be_valid
       ride_offer2.errors.full_messages.should eql([])
-
     end
-   
+  end
+  
+  describe "#type methods" do
+    it 'should return true for RideRequest type' do
+      ride = Factory(:ride_request)
+      ride.request?.should be true
+      ride.offer?.should be false
+    end
+    
+    it 'should return true for RideOffer type' do
+      ride = Factory(:ride_offer)
+      ride.offer?.should be true
+      ride.request?.should be false
+    end
   end
   
 end

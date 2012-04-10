@@ -88,4 +88,16 @@ describe RidesHelper do
       assert  UUID.validate(uuid), 'default'
     end
   end
+  
+  describe '#hookup label' do
+    it 'should return offer for ride request' do
+      ride_request = Factory(:ride_request)
+      helper.hookup_label(ride_request).should == 'Offer'
+    end
+
+    it 'should return request for ride offer' do
+      ride_offer = Factory(:ride_offer)
+      helper.hookup_label(ride_offer).should == 'Request'
+    end
+  end
 end

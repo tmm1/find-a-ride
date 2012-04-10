@@ -1,6 +1,6 @@
 module RidesHelper
   def user_name(ride)
-    ride.type == 'RideOffer' ? ride.offerer.try(:full_name) : ride.requestor.try(:full_name)
+    ride.offer? ? ride.offerer.try(:full_name) : ride.requestor.try(:full_name)
   end
   
   def vehicle_type_image(ride)
@@ -13,7 +13,7 @@ module RidesHelper
   end
   
   def payment_desc(ride)
-    ride.type == 'RideOffer' ? "Expects #{ride.payment} in return" : "Can pay #{ride.payment} in return"
+    ride.offer? ? "Expects #{ride.payment} in return" : "Can pay #{ride.payment} in return"
   end
   
   def humanize_time(time)
@@ -25,9 +25,13 @@ module RidesHelper
       time.strftime('%B %d, %Y at %l:%M%p')
     end
   end
+  
+  def hookup_label(ride)
+    ride.offer? ? 'Request' : 'Offer'
+  end
 
   def user_id(ride)
-    ride.type == 'RideOffer' ? ride.offerer.id : ride.requestor.id
+    ride.offer? ? ride.offerer.id : ride.requestor.id
   end
   
   def vehicle_type_collection
