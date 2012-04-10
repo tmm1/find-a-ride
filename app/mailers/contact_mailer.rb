@@ -1,5 +1,5 @@
 class ContactMailer < ActionMailer::Base
-  default :from => "no-reply@find-a-ride.com"
+  default :from => "no-reply@ontheway.com"
   layout 'mailer'
   
   def contact_email(info)
