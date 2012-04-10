@@ -5,7 +5,10 @@ $(document).ready(function() {
     setTimeout(hideFlashMessages, 3500);
 
     $('.input-append').datepicker();
-
+    
+    $('.result-popover').popover({
+      title: 'Additional Info'
+    });
 
     // *** set carousel interval *** //
     $('.carousel').carousel({
