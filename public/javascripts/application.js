@@ -5,7 +5,11 @@ $(document).ready(function() {
     setTimeout(hideFlashMessages, 3500);
 
     $('.input-append').datepicker();
-    
+
+    $('#user_inactive').popover({
+        title: "Inactive causes",
+        content: "<span>Please be aware that as an inactive user</span> <ol><li>You will have limited access to features on this site</li><li>The ride requests or offers that you might have posted will not be searchable</li></ol>"
+    });
     // *** set carousel interval *** //
     $('.carousel').carousel({
         interval: 3500
