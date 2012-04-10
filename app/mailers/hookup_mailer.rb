@@ -1,5 +1,5 @@
 class HookupMailer < ActionMailer::Base
-  default :from => "no-reply@find-a-ride.com"
+  default :from => "no-reply@ontheway.com"
   layout 'mailer'
 
   def ride_requestor_email(hook_up, mobile = nil)

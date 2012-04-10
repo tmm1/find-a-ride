@@ -43,6 +43,17 @@ describe HomeController do
       response.should be_success
       response.should render_template(:inactive)
     end
+
+
+    it "should render inactive page with the flash message" do
+      @inactive_user = Factory(:user, :inactive => true)
+      @inactive_user.confirm!
+      sign_in @inactive_user
+      get :inactive
+      response.should be_success
+      response.should render_template(:inactive)
+      request.flash[:notice].should == "Your account was updated successfully"
+    end
   end
 end
 
