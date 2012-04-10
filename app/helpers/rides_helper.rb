@@ -46,7 +46,7 @@ module RidesHelper
       when 0
         coll << [v, 'cash']
       when 1
-        coll << [v, 'none']
+        coll << [v, 'nothing']
       else
       end
     end

@@ -1,4 +1,5 @@
 class HookupMailer < ActionMailer::Base
+  helper :hook_ups
   default :from => "no-reply@ontheway.com"
   layout 'mailer'
 
@@ -16,5 +17,4 @@ class HookupMailer < ActionMailer::Base
     @mobile = mobile
     mail(:to => @hook_up.contactee.email, :from => @hook_up.contacter.email, :subject => 'Message from OnTheWay user')
   end
-
 end

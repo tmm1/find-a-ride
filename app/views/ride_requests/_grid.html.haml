@@ -1,10 +1,9 @@
 .results
   %h2 
-    Based on the criteria you used, We found
+    Based on the criteria you used for your offer, We found
     = pluralize(@paginated_results.total_entries, 'dude') 
-    looking for a ride. Hook up with them to offer them a ride.
+    looking for a ride.
   %br
-  %span{:class => 'label label-important'} Note: Ride time considered for search is a 1 hr window around your time criteria giving you a better chance of hitching a ride.
   %p
   = render :partial => 'shared/rides_table', :locals => {:results => @paginated_results, :type => :ride_request}
   = will_paginate @paginated_results, :renderer => BootstrapLinkRenderer
