@@ -1886,6 +1886,9 @@
 		},
 
 		update: function(){
+		  if($('#today_date').val() && $('#today_date').val() != undefined){
+		    this.element.data('date', $('#today_date').val());
+		  }
 			this.date = DPGlobal.parseDate(
 				this.isInput ? this.element.prop('value') : this.element.data('date'),
 				this.format
