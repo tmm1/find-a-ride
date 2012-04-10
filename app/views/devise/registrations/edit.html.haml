@@ -42,6 +42,7 @@
             .accordion-inner
               .contact_profile
                 = f.input :mobile, :label => 'Mobile number', :input_html => { :class => 'text-input', :title => 'Your mobile/cell number'}
+                = f.input :mobile_status , :as => :hidden , :value => true
                 = f.input :landline, :label => 'Landline number', :input_html => { :class => 'text-input', :title => 'Your landline number', :autocomplete => 'off' }
         .accordion-group
           .accordion-heading

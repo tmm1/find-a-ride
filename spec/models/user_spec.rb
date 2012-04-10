@@ -194,6 +194,32 @@ describe User do
       match.should ==  User.find_by_email(@email)
     end
   end
+
+  describe "#mobile number validations" do
+    before(:all) do
+      @user = Factory(:user)
+    end
+
+    it "should fail if no mobile number" do
+      @user.mobile_status = "true"
+      @user.mobile = ""
+      @user.save.should be false
+      @user.errors.to_a.should include("Mobile can't be blank")
+    end
+
+    it "should create new user through Facebook Connect " do
+      @user.mobile_status = "false"
+      @user.mobile = ""
+      @user.save.should be true      
+    end
+
+    it "should fail updation if no mobile number" do
+      @user.update_attributes({:mobile => "", :mobile_status => "true"})
+      @user.save.should be false
+      @user.errors.to_a.should include("Mobile can't be blank")
+    end
+  end
+  
 end
 
 
