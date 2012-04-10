@@ -7,20 +7,27 @@ class User < ActiveRecord::Base
   has_many :ride_offers
   has_many :ride_requests
   has_many :hook_ups
+
+  attr_accessor :mobile_status
+
   
+
   has_attached_file :photo, :styles => { :thumb => "100x100>" },
     :storage => :s3,
     :s3_credentials => "#{Rails.root.to_s}/config/s3.yml",
     :path => "/:style/:id/:filename"
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :mobile, :landline, :first_name, :last_name, :terms, :photo, :photo_content_type, :photo_file_size, :inactive
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :mobile, :landline, :first_name, :last_name, :terms, :photo, :photo_content_type, :photo_file_size, :inactive,:mobile_status
 
   devise :omniauthable
 
-  validates :first_name, :last_name, :presence => true
+  validates :first_name, :last_name , :presence => true
+  validates :mobile , :presence => true,  :if => :normal_signup?
   validates :landline, :format => { :with => /^\d{10}$/, :allow_blank => true}
   validates :mobile, :format => { :with => /^[1-9]+\d{9}$/, :allow_blank => true}
+  
+  
   validates :terms, :acceptance => true, :on => :create
   validates_attachment_content_type :photo, :content_type => %w(image/jpeg image/jpg image/png image/gif), :message => 'must be of type jpeg, png or gif', :if => :photo_attached?
   validates_attachment_size :photo, :less_than => 3.megabytes, :message => 'cannot be greater than 3 MB', :if => :photo_attached?
@@ -47,7 +54,7 @@ class User < ActiveRecord::Base
     where(:inactive => false)
   end
 
-  def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
+  def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)    
     data = access_token['extra']['user_hash']
     if user = User.find_by_email(data["email"])
       user
@@ -57,7 +64,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.find_for_twitter_oauth(email, first_name, last_name, signed_in_resource=nil)
+  def self.find_for_twitter_oauth(email, first_name, last_name, signed_in_resource=nil)    
     if user = User.find_by_email(email)
       user
     else 
@@ -73,6 +80,11 @@ class User < ActiveRecord::Base
   def phone
     self.mobile || self.landline
   end
+
+  def normal_signup?   
+    self.mobile_status == "true"  
+  end
+  
 end
 
 
