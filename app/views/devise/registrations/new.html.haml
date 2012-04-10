@@ -13,7 +13,7 @@
       = f.input :mobile_status , :as => :hidden , :value => true
       = f.input :password, :input_html => {:title => 'Enter a secret password', :class => 'text-input'}
       = f.input :password_confirmation, :input_html => {:title => 'Confirm your password', :class => 'text-input'}
-      = f.input :terms, :as => :boolean,:input_html => {:class => 'terms-and-conds'}, :label => "By Signing up, you agree to the <a data-toggle=\"modal\" href=\"#terms\">terms and conditions</a> of Find.a.Ride".html_safe
+      = f.input :terms, :as => :boolean,:input_html => {:class => 'terms-and-conds'}, :label => "By Signing up, you agree to the <a data-toggle=\"modal\" href=\"#terms\">terms and conditions</a> of OnTheWay".html_safe
     = f.buttons do
       = f.commit_button "Sign me up", :button_html => {:class => 'btn btn-primary btn-large'}
 = render 'shared/tos'

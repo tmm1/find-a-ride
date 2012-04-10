@@ -14,7 +14,7 @@ class HookupMailer < ActionMailer::Base
     @hook_up = hook_up
     @message = hook_up.message
     @mobile = mobile
-    mail(:to => @hook_up.contactee.email, :from => @hook_up.contacter.email, :subject => 'Message from Find.a.ride user')
+    mail(:to => @hook_up.contactee.email, :from => @hook_up.contacter.email, :subject => 'Message from OnTheWay user')
   end
 
 end

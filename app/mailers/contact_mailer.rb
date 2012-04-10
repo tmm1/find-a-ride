@@ -4,6 +4,6 @@ class ContactMailer < ActionMailer::Base
   
   def contact_email(info)
     @info = info
-    mail(:to => ADMIN_EMAIL, :subject => 'Message from Find.a.ride user')
+    mail(:to => ADMIN_EMAIL, :subject => 'Message from OnTheWay user')
   end
 end
