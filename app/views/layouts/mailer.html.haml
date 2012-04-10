@@ -5,21 +5,26 @@
     = stylesheet_link_tag 'application.css', :media => 'screen, projection'
     = stylesheet_link_tag 'print.css', :media => 'print'
     = stylesheet_link_tag 'bootstrap.css'
+    = stylesheet_link_tag 'mailer.css'
   %body
-    .navbar
-      .navbar-inner
-        .container
-          %h2
-            %a{:href => root_url, :class => 'brand'}
-              Find.a.Ride
-              %span{:class => 'badge badge-info'} Beta
-    .container
-      %hr
-      .hero-unit
-        = yield
-      %hr
-      .footer
-        %a{:href => 'http://www.imaginea.com/labs', :target => '_blank'}
-          %span{:class => 'badge badge-info'} Imaginea Labs. Copyright &copy; 2012, Pramati Technologies Private Limited
-
+    %table{:cellspacing => '0', :cellpadding => '0', :style => "background-color:#2a333c;color:#ece9d7;"}
+      %tr
+        %td
+          .navbar
+            .navbar-inner
+              .container
+                %h2
+                  %a{:href => root_url, :class => 'brand'}
+                    Find.a.Ride
+                    %span{:class => 'badge badge-info'} Beta
+      %tr
+        %td
+          .container
+            %hr
+            .hero-unit
+              = yield
+            %hr
+            .footer
+              %a{:href => 'http://www.imaginea.com/labs', :target => '_blank'}
+                %span{:class => 'badge badge-info'} Imaginea Labs. Copyright &copy; 2012, Pramati Technologies Private Limited
 

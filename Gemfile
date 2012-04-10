@@ -15,6 +15,8 @@ gem "paperclip", "~> 2.4"
 gem "aws-s3"
 gem "geokit"
 gem "uuid"
+gem "hpricot", "0.8.6"
+gem "premailer-rails3", "1.1.0"
 
 group :mysql do
   gem 'mysql'
