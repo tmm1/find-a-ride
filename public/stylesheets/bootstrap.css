@@ -4699,7 +4699,7 @@ footer.footer {
     border-radius: 4px;
 }
 .datepicker td.day:hover {
-    background: #eeeeee;
+    background: #6a6a6a;
     cursor: pointer;
 }
 .datepicker td.old, .datepicker td.new {

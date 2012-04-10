@@ -3,7 +3,7 @@
     %h2
       %small
         Two ways to get started!
-        = link_to('Sign up here', signup_url)
+        = link_to('Sign up', signup_url, :class => 'btn btn-info btn-medium')
         or use your
-        = link_to('Facebook', user_omniauth_authorize_path(:facebook))
+        = link_to('Facebook', user_omniauth_authorize_path(:facebook), :class => 'btn btn-info btn-medium')
         account.
