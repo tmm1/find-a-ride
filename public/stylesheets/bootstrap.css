@@ -3516,11 +3516,18 @@ input[type="submit"].btn.btn-mini {
     -webkit-background-clip: padding-box;
     -moz-background-clip: padding-box;
     background-clip: padding-box;
+    color: #000000;
 }
 .popover-content p,
 .popover-content ul,
 .popover-content ol {
     margin-bottom: 0;
+}
+.popover-content ol{
+    list-style-type: lower-alpha;
+}
+.popover-content span {
+    font-weight: bold;
 }
 .thumbnails {
     margin-left: -20px;
@@ -4699,7 +4706,7 @@ footer.footer {
     border-radius: 4px;
 }
 .datepicker td.day:hover {
-    background: #eeeeee;
+    background: #6a6a6a;
     cursor: pointer;
 }
 .datepicker td.old, .datepicker td.new {
