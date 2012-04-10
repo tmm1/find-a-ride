@@ -13,7 +13,7 @@
       = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => "orig", :label => "I am going from"}
       = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => "dest", :label => "I am going to"}
       #dp3{:"data-date-format" => "dd-mm-yyyy", :"data-date" => Time.now.strftime("%d-%m-%Y"), :class => "input-append date"}
-        = f.input :start_date,  :input_html => { :class => 'text-input' , :readonly => true, :title => 'Choose the date you are looking for a ride', :value => Time.now.strftime("%d-%m-%Y")},  :label => 'What date?', :required => true
+        = f.input :start_date,  :input_html => { :class => 'text-input' , :readonly => true, :title => 'Choose the date you are looking for a ride', :value => Time.zone.now.strftime("%d-%m-%Y")},  :label => 'What date?', :required => true
         %span
           .add-on
             %i{:class => "icon-th"}
@@ -28,5 +28,4 @@
   = link_to('Post a ride offer', new_ride_offer_path, :class => 'btn btn-info btn-large')
 
 
-   
 
