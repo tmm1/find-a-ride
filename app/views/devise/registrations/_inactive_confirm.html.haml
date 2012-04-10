@@ -1,0 +1,15 @@
+%div{:id => "mymodal" , :class => "fade modal", :style => "display:none"}
+  %div{:class => "modal-header"}
+    %span{:class => "label label-important"} Please note:
+  %p{:class => "modal-body inactive_confirm" }
+    Please be aware that as an inactive user
+  %div{:class => "modal-body"}
+    %ol{:style => "list-style-type: lower-alpha;"}
+      %li You will have limited access to features on this site
+      %li The ride requests or offers that you might have posted will not be searchable
+  %div{:class => "modal-body"}
+    %h3 Are you sure you want to do this?
+  %div{:class => "modal-footer"}
+    #buttons
+      %a{:href => "#" , :id => 'confirm_yes', :class => "btn btn-primary" } Yes
+      %a{:href => "#" , :id => 'confirm_no', :class => "btn" } No

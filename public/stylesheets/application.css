@@ -63,3 +63,4 @@ input#ride_request_start_time, input#ride_offer_start_time, input#ride_start_tim
   margin: 20px 0 0 25px;
 }
 
+.inactive_confirm{ margin-bottom:-17px;}
