@@ -10,7 +10,7 @@
       = f.input :first_name, :input_html => {:title => 'Enter your first name', :class => 'text-input'}
       = f.input :last_name, :input_html => {:title => 'Enter your last name', :class => 'text-input'}
       = f.input :mobile, :required => true ,:input_html => {:title => 'Enter your mobile number', :class => 'text-input'}
-      = f.input :mobile_status , :as => :hidden , :value => true
+      = f.input :mobile_required, :as => :hidden, :value => true
       = f.input :password, :input_html => {:title => 'Enter a secret password', :class => 'text-input'}
       = f.input :password_confirmation, :input_html => {:title => 'Confirm your password', :class => 'text-input'}
       = f.input :terms, :as => :boolean, :input_html => {:class => 'terms-and-conds'}, :label => "By Signing up, you agree to the <a data-toggle=\"modal\" href=\"#terms\">terms and conditions</a> of OnTheWay".html_safe
