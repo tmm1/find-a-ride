@@ -18,7 +18,7 @@ describe User do
       @user.update_with_password({:password => 'changeme!',:password_confirmation => 'changeme!'})
       @user.password.should == 'changeme!'
     end
-    
+
     it "should update user info without password" do
       @user.update_with_password({:first_name => 'Devise!'})
       @user.first_name.should == 'Devise!'
@@ -30,35 +30,54 @@ describe User do
       @user.last_name.should == 'Devise Last Name'
       @user.password.should == 'changemeagain!'
     end
-    
+
     it "should return the full name of the user" do
       @user.full_name.should == 'Testio Rockio'
     end
-    
+
     it "should use full name alias method for name of the user" do
       @user.name.should == @user.full_name
     end
-    
+
     it "should update inactive attribute successfully" do
       @user.update_attributes({:inactive => 1})
       @user.save.should be true
       @user.inactive.should be true
     end
-    
+
     it 'should return active status' do
       @user = Factory(:user, :inactive => true)
       @user.active?.should be false
       @user.update_attribute :inactive, false
       @user.active?.should be true
     end
-    
+
     it 'should return the phone' do
       @user.mobile = '3012211221'
       @user.landline = '3032211221'
       @user.phone.should == '3012211221'
     end
+
+    describe "#mobile validation" do
+      before(:all) do
+        @user = Factory(:user)
+      end
+
+      it "should fail if mobile number is required and is not provided" do
+        @user.mobile_required = 'true'
+        @user.mobile = ""
+        @user.should_not be_valid
+        @user.errors.to_a.should include("Mobile can't be blank")
+      end
+
+      it "should not fail if mobile number is not required and is not provided" do
+        @user.mobile_required = 'false'
+        @user.mobile = ""
+        @user.should be_valid
+      end
+    end
   end
-  
+
   describe "#active" do
     it 'should return all active users' do
       @active_user1 = Factory(:user)
@@ -97,7 +116,7 @@ describe User do
       @user.photo.url.include?("http://s3.amazonaws.com/find-a-ride-test/original/#{@user.id}/#{@user.photo_file_name}").should be true
     end
   end
-  
+
   describe "#save" do
     before(:all) do
       @user = Factory.build(:user)
@@ -137,7 +156,7 @@ describe User do
     it { should allow_mass_assignment_of(:mobile) }
     it { should allow_mass_assignment_of(:landline) }
     it { should allow_mass_assignment_of(:terms) }
-    
+
     it { should_not allow_mass_assignment_of(:encrypted_password)}
     it { should_not allow_mass_assignment_of(:reset_password_token)}
     it { should_not allow_mass_assignment_of(:reset_password_sent_at)}
@@ -159,7 +178,7 @@ describe User do
       @email = Faker::Internet.email
       @user1 = Factory(:user, :first_name  => 'amar', :last_name => 'singh', :email => @email)
     end
-    
+
     it "should not create a duplicate user if the user is already in the system" do
       match = User.find_for_twitter_oauth(@email, 'amar', 'singh', nil)
       match.should == @user1
@@ -194,32 +213,6 @@ describe User do
       match.should ==  User.find_by_email(@email)
     end
   end
-
-  describe "#mobile number validations" do
-    before(:all) do
-      @user = Factory(:user)
-    end
-
-    it "should fail if no mobile number" do
-      @user.mobile_status = "true"
-      @user.mobile = ""
-      @user.save.should be false
-      @user.errors.to_a.should include("Mobile can't be blank")
-    end
-
-    it "should create new user through Facebook Connect " do
-      @user.mobile_status = "false"
-      @user.mobile = ""
-      @user.save.should be true      
-    end
-
-    it "should fail updation if no mobile number" do
-      @user.update_attributes({:mobile => "", :mobile_status => "true"})
-      @user.save.should be false
-      @user.errors.to_a.should include("Mobile can't be blank")
-    end
-  end
-  
 end
 
 

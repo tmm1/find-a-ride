@@ -8,9 +8,7 @@ class User < ActiveRecord::Base
   has_many :ride_requests
   has_many :hook_ups
 
-  attr_accessor :mobile_status
-
-  
+  attr_accessor :mobile_required
 
   has_attached_file :photo, :styles => { :thumb => "100x100>" },
     :storage => :s3,
@@ -18,12 +16,12 @@ class User < ActiveRecord::Base
     :path => "/:style/:id/:filename"
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :mobile, :landline, :first_name, :last_name, :terms, :photo, :photo_content_type, :photo_file_size, :inactive,:mobile_status
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :mobile, :landline, :first_name, :last_name, :terms, :photo, :photo_content_type, :photo_file_size, :inactive, :mobile_required
 
   devise :omniauthable
 
   validates :first_name, :last_name , :presence => true
-  validates :mobile , :presence => true,  :if => :normal_signup?
+  validates :mobile , :presence => true,  :if => Proc.new {|user| user.mobile_required == 'true'}
   validates :landline, :format => { :with => /^\d{10}$/, :allow_blank => true}
   validates :mobile, :format => { :with => /^[1-9]+\d{9}$/, :allow_blank => true}
   
@@ -80,11 +78,6 @@ class User < ActiveRecord::Base
   def phone
     self.mobile || self.landline
   end
-
-  def normal_signup?   
-    self.mobile_status == "true"  
-  end
-  
 end
 
 
