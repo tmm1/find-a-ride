@@ -15,7 +15,7 @@ class RidesController < ApplicationController
     @ride = Ride.new(params[:ride])
     respond_to do |format|
       if @ride.valid?
-        format.html { redirect_to(search_ride_offers_path(params[:ride])) }
+        format.html { redirect_to(search_ride_offers_path(params[:ride].merge({:from => :search}))) }
       else
         format.html { render :action => 'index' }
       end

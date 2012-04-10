@@ -1,0 +1,6 @@
+.hero-unit
+  - if @paginated_results.empty?
+    = render 'no_results'
+  - else
+    = render 'grid'
+

@@ -34,7 +34,7 @@ describe RidesController do
       sign_in @login_user
       search_params = Factory.attributes_for(:ride)
       post 'search', {:ride => search_params}
-      response.should redirect_to(search_ride_offers_path(search_params))
+      response.should redirect_to(search_ride_offers_path(search_params.merge({:from => :search})))
       assigns(:ride).should be_valid
     end
     

@@ -18,6 +18,14 @@ class Ride < ActiveRecord::Base
   attr_accessor :start_time
 
   attr_accessible :type, :orig, :dest, :start_date, :start_time, :vehicle, :payment, :notes
+  
+  def request?
+    type.eql? 'RideRequest'
+  end
+  
+  def offer?
+    type.eql? 'RideOffer'
+  end
  
   private
 
