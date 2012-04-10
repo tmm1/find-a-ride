@@ -15,8 +15,6 @@ gem "paperclip", "~> 2.4"
 gem "aws-s3"
 gem "geokit"
 gem "uuid"
-gem "hpricot", "0.8.6"
-gem "premailer-rails3", "1.1.0"
 
 group :mysql do
   gem 'mysql'
@@ -32,6 +30,8 @@ group :development do
   gem 'letter_opener'
   gem "awesome_print"
   gem 'active_reload'
+  gem "hpricot", "0.8.6"
+  gem "premailer-rails3", "1.1.0"
 end
 
 group :test do
@@ -40,4 +40,9 @@ group :test do
   gem 'faker', '0.3.1'
   gem "shoulda-matchers"
   gem 'mocha', '0.9.10'
+end
+
+group :production do
+  gem "hpricot", "0.8.6"
+  gem "premailer-rails3", "1.1.0"
 end
