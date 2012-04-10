@@ -1,6 +1,6 @@
 .text
   %h1 
-    Search for a ride by filling in the necessary criteria below.
+    Search for a ride by filling in the necessary criteria below
   %br
   %span{:class => 'label label-important'} Note: Ride time considered for search is a 1 hr window around your time criteria giving you a better chance of hitching a ride.
   %p
@@ -21,6 +21,11 @@
       = f.input :vehicle, :as => :select, :label => 'The kind of vehicle I prefer?', :include_blank => false, :collection => vehicle_type_collection, :input_html => { :class => 'text-input', :title => 'Enter the type of vehicle you prefer'}, :required => true
     = f.buttons do
       = f.commit_button :label => 'Search', :button_html => {:class => 'btn btn-primary btn-large'}
+.text-center
+  %h2
+    %small
+      If you are willing to offer a ride, You can 
+  = link_to('Post a ride offer', new_ride_offer_path, :class => 'btn btn-info btn-large')
 
 
    

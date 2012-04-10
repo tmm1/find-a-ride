@@ -1,6 +1,4 @@
 .no-results
   %h2 
-    Based on the criteria you used, We found no rides at the moment. Please try searching later or try putting in a 
-    = link_to('request.', new_ride_path)
-  %br
-  %span{:class => 'label label-important'} Note: If you have created a request or offer in the system, other users can still find you and hook up with you.
+    Based on the criteria you used, We found no rides at the moment. Please try searching later or put in a 
+    = link_to('request for a ride', new_ride_path, :class => 'btn btn-info btn-large')
