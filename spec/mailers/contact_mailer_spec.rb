@@ -19,7 +19,7 @@ describe ContactMailer do
 
     it 'should deliver the email with the correct info' do
       email = ContactMailer.contact_email(@info).deliver
-      email.subject.should == 'Message from Find.a.ride user' 
+      email.subject.should == 'Message from OnTheWay user' 
       email.to.should == [ADMIN_EMAIL]
       email.body.include?("#{@info[:name]}").should be_true
       email.body.include?("#{@info[:email]}").should be_true

@@ -20,7 +20,7 @@ describe HookupMailer do
     it 'should deliver the email with the correct info' do
       @hook_up.mobile = '9999988888'
       email = HookupMailer.ride_requestor_email(@hook_up,@hook_up.mobile).deliver
-      email.subject.should == 'Message from Find.a.ride user'
+      email.subject.should == 'Message from OnTheWay user'
       email.to.should == [@hook_up.contactee.email]
       email.body.include?("#{@hook_up[:message]}").should be_true
       email.body.include?("#{@hook_up[:mobile]}").should be_true
@@ -38,7 +38,7 @@ describe HookupMailer do
     end
     it 'should deliver the email with the correct info' do
       email = HookupMailer.ride_offerer_email(@hook_up,@hook_up.mobile).deliver
-      email.subject.should == 'Message from Find.a.ride user'
+      email.subject.should == 'Message from OnTheWay user'
       email.to.should == [@hook_up.contactee.email]
       email.body.include?("#{@hook_up[:message]}").should be_true
     end
