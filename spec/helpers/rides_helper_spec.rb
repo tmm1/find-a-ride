@@ -78,7 +78,7 @@ describe RidesHelper do
   
   describe '#payment type collection' do
     it 'should return the collection' do
-      helper.payment_type_collection(['pay', 'nothing']).should == [['pay', 'cash'], ['nothing', 'none']]
+      helper.payment_type_collection(['pay', 'empty']).should == [['pay', 'cash'], ['empty', 'nothing']]
     end
   end
 
