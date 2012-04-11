@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    var inactive_chkbox = false;
     typeaheadSearch();
     rideTime();
     rideDate();
@@ -41,24 +42,30 @@ $(document).ready(function() {
     });
 
     $(".inactive_input").click(function(e){
-        if ($('.inactive_input').attr("checked"))
-        {
+        if ($('.inactive_input').attr("checked")) {
             $('#mymodal').modal('toggle');
+        } else {
+          inactive_chkbox = false;  
         }
     });
 
     $('#mymodal').on('hide', function(){
-         $('.inactive_input').attr("checked", null);
+      if (!inactive_chkbox) {
+        $('.inactive_input').attr("checked", null);
+        inactive_chkbox = false;
+      }
     })
 
     $("#confirm_yes").click(function(e){
         e.preventDefault();
+        inactive_chkbox = true;
         $('.inactive_input').attr("checked", "checked");
         $('#mymodal').modal('toggle');
     });
 
     $("#confirm_no").click(function(e){
         e.preventDefault();
+        inactive_chkbox = false;
         $('.inactive_input').attr("checked", null);
         $('#mymodal').modal('toggle');
     });
