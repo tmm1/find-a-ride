@@ -11,6 +11,6 @@ module HookUpsHelper
   end
   
   def header_text(type)
-    type.eql?('RideOffer') ? 'Offer a ride to' : 'Request a ride from'
+    type.eql?('ride_offer') ? 'Request a ride from' : 'Offer a ride to' 
   end
 end

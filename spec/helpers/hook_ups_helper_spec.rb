@@ -15,10 +15,10 @@ describe HookUpsHelper do
   
   describe '#header_text' do
     it 'should return for RideRequest type' do
-      helper.header_text('RideRequest').should == 'Request a ride from'
+      helper.header_text('ride_request').should == 'Offer a ride to'
     end
     it 'should return for RideOffer type' do
-      helper.header_text('RideOffer').should == 'Offer a ride to'
+      helper.header_text('ride_offer').should == 'Request a ride from'
     end
   end
 end
