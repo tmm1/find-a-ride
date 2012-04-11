@@ -107,14 +107,14 @@ describe User do
       @user.errors.to_a.should include("Photo file size cannot be greater than 3 MB")
     end
 
-    it "should save attachment successfully" do
-      @user.photo = File.new("spec/data/sample.png")
-      @user.save.should be true
-      @user.photo_content_type.should == "image/png"
-      @user.photo_file_size.should < 3.megabytes
-      @user.photo_file_name.should == "sample.png"
-      @user.photo.url.include?("http://s3.amazonaws.com/find-a-ride-test/original/#{@user.id}/#{@user.photo_file_name}").should be true
-    end
+    # it "should save attachment successfully" do note: COMMENTED TO AVOID  BLOATING S3 STORAGE SIZE
+    #       @user.photo = File.new("spec/data/sample.png")
+    #       @user.save.should be true
+    #       @user.photo_content_type.should == "image/png"
+    #       @user.photo_file_size.should < 3.megabytes
+    #       @user.photo_file_name.should == "sample.png"
+    #       @user.photo.url.include?("http://s3.amazonaws.com/find-a-ride-test/original/#{@user.id}/#{@user.photo_file_name}").should be true
+    #     end
   end
 
   describe "#save" do
