@@ -15,6 +15,7 @@ gem "paperclip", "~> 2.4"
 gem "aws-s3"
 gem "geokit"
 gem "uuid"
+gem "thin"
 
 group :mysql do
   gem 'mysql'
