@@ -64,3 +64,12 @@ input#ride_request_start_time, input#ride_offer_start_time, input#ride_start_tim
 }
 
 .inactive_confirm{ margin-bottom:-17px;}
+
+#ride-payment-info {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+#ride-additional-info {
+  font-size: 12px;
+}

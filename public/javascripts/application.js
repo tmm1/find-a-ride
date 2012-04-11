@@ -7,7 +7,7 @@ $(document).ready(function() {
     $('.input-append').datepicker();
     
     $('.result-popover').popover({
-      title: 'Additional Info'
+      title: 'Other Information'
     });
 
     // *** set carousel interval *** //

@@ -12,8 +12,11 @@ module RidesHelper
     end
   end
   
-  def payment_desc(ride)
-    ride.offer? ? "Expects #{ride.payment} in return" : "Can pay #{ride.payment} in return"
+  def other_info_content(ride)
+    payment_details = ride.offer? ? "Expects #{ride.payment} in return" : "Can pay #{ride.payment} in return"
+    content = '<span id="ride-payment-info">'+payment_details+'</span>'
+    content = content + '<br />' + '<span id="ride-additional-info">'+ride.notes+'</span>' if !ride.notes.blank?
+    content
   end
   
   def humanize_time(time)
