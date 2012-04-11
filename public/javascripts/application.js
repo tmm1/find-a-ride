@@ -47,6 +47,10 @@ $(document).ready(function() {
         }
     });
 
+    $('#mymodal').on('hide', function(){
+         $('.inactive_input').attr("checked", null);
+    })
+
     $("#confirm_yes").click(function(e){
         e.preventDefault();
         $('.inactive_input').attr("checked", "checked");
