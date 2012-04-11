@@ -10,10 +10,11 @@ class User < ActiveRecord::Base
 
   attr_accessor :mobile_required
 
-  has_attached_file :photo, :styles => { :thumb => "100x100>" },
-    :storage => :s3,
-    :s3_credentials => "#{Rails.root.to_s}/config/s3.yml",
-    :path => "/:style/:id/:filename"
+  has_attached_file :photo, 
+                    :styles => { :thumb => "100x100#" },
+                    :storage => :s3,
+                    :s3_credentials => "#{Rails.root.to_s}/config/s3.yml",
+                    :path => "/:style/:id/:filename"
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :mobile, :landline, :first_name, :last_name, :terms, :photo, :photo_content_type, :photo_file_size, :inactive, :mobile_required
