@@ -138,7 +138,6 @@ $(document).ready(function() {
 
 
     /**  invite friend submit **/
-
     $("#invites_submit").click(function(e){
         e.preventDefault();
         var errors = false;

@@ -19,7 +19,7 @@ describe ContactMailer do
 
     it 'should deliver the email with the correct info' do
       email = ContactMailer.contact_email(@info).deliver
-      email.subject.should == 'Message from OnTheWay user' 
+      email.subject.should == 'Feedback/Questions on OnTheWay' 
       email.to.should == [ADMIN_EMAIL]
       email.body.include?("#{@info[:name]}").should be_true
       email.body.include?("#{@info[:email]}").should be_true
@@ -28,22 +28,23 @@ describe ContactMailer do
     end
   end
 
-  describe '#referral email' do
+  describe '#invite email' do
     before(:each) do
       @sender = Factory(:user)
-      @recipient = {:name => 'john emburey', :email => 'john@gmail.com'}
+      @recipients = ['john@gmail.com', 'jim@yahoo.com']
       ActionMailer::Base.deliveries.clear
     end
 
-    it 'should deliver the email successfully' do
-      email = ContactMailer.referral_email(@sender, @recipient).deliver
+    it 'should deliver the emails successfully' do
+      email = ContactMailer.invite_email(@sender, @recipients).deliver
       ActionMailer::Base.deliveries.size.should == 1
     end
 
-    it 'should deliver the email with the correct info' do
-      email = ContactMailer.referral_email(@sender, @recipient).deliver
-      email.subject.should == 'Invite to OnTheWay'
-      email.to.should == [@recipient[:email]]
+    it 'should deliver the emails with the correct info' do
+      email = ContactMailer.invite_email(@sender, @recipients).deliver
+      email.subject.should == 'Invitation to join OnTheWay'
+      email.from.should == [@sender.email]
+      email.to.should have(2).things
       email.body.include?('Sign up').should be_true
       email.body.include?(@sender.full_name).should be_true
       email.body.include?(@sender.email).should be_true

@@ -17,16 +17,18 @@ describe InvitesController do
   end
 
   describe "#send_invite" do
-    it "should render success text and email count should increase by 1" do
+    before(:all) do
+      ActionMailer::Base.delivery_method = :test
+      ActionMailer::Base.perform_deliveries = true
+      ActionMailer::Base.deliveries.clear
+    end
+    
+    it "should send the invite email to the provided email list" do
       sign_in @login_user
-      email_count = ActionMailer::Base.deliveries.size
-      xhr :post ,:send_invite , {:email => "reshu@gmail.com, reshuban@gmail.com", :user_id =>@login_user.id}
-      ActionMailer::Base.deliveries.size.should == email_count+1
+      xhr :post, :send_invite, {:email => "reshu@gmail.com, reshuban@gmail.com", :user_id => @login_user.id}
+      ActionMailer::Base.deliveries.size.should == 1
       response.should be_success
       response.body.should == 'success'
     end
-
   end
-
-
 end

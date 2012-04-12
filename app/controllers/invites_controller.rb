@@ -5,9 +5,8 @@ class InvitesController < ApplicationController
   end
 
   def send_invite
-    emails = params[:email].split(",")
-    ContactMailer.referral_email(current_user, {:email => emails}).deliver
+    invitees = params[:email].split(",")
+    ContactMailer.invite_email(current_user, invitees).deliver
     render :text => 'success', :status => 200
   end
-  
 end
