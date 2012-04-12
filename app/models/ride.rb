@@ -11,6 +11,7 @@ class Ride < ActiveRecord::Base
   validates :start_time, :start_date, :date_time => true
   validates :start_time, :time => true
   validates :orig, :dest, :location => true
+  validates_length_of :notes, :maximum => 300
   
   attr_accessor :orig
   attr_accessor :dest
