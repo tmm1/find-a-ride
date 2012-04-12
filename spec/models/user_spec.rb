@@ -6,8 +6,11 @@ describe User do
     it { should validate_presence_of(:last_name) }
 
     it { should_not allow_value('1230').for(:mobile) }
+    it { should_not allow_value('123456789000').for(:mobile)}
+    it { should_not allow_value('dadd122112').for(:mobile)}
     it { should allow_value('1234567890').for(:mobile)}
     it { should_not allow_value('1230').for(:landline) }
+    it { should_not allow_value('dasdas44a').for(:landline) }
     it { should allow_value('1234567890').for(:landline)}
 
     before(:each) do

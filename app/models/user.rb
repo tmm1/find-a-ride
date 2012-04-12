@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name , :presence => true
   validates :mobile , :presence => true,  :if => Proc.new {|user| user.mobile_required == 'true'}
   validates :landline, :format => { :with => /^\d{10}$/, :allow_blank => true}
-  validates :mobile, :format => { :with => /^[1-9]+\d{9}$/, :allow_blank => true}
+  validates :mobile, :format => { :with => /^[1-9]\d{9}$/, :allow_blank => true}
   
   
   validates :terms, :acceptance => true, :on => :create
