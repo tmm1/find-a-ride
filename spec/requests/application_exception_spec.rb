@@ -11,7 +11,6 @@ describe "application exceptions" do
 
   it "should render internal server error page on server error" do
     @login_user = Factory(:user)
-    @login_user.confirm!
     post "/users/sign_in", :user =>{:email => @login_user.email , :password => "test1234" }
     get "ride_requests/search" 
     response.status.should eql 500

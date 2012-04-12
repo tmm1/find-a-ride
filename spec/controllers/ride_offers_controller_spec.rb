@@ -5,7 +5,6 @@ describe RideOffersController do
   include Devise::TestHelpers
   before(:all) do
     @login_user = Factory(:user)
-    @login_user.confirm!
   end
 
   describe "#new" do
@@ -20,7 +19,7 @@ describe RideOffersController do
   describe "#create" do
     it "should successfully create a new ride offer" do
       sign_in @login_user
-      params = Factory.attributes_for(:ride_offer)
+      params = Factory.attributes_for(:ride_offer, :vehicle => 'two_wheeler')
       post 'create', :ride_offer => params
       response.should redirect_to(search_ride_requests_path(params))
       ride_offer = assigns(:ride_offer)
@@ -44,13 +43,12 @@ describe RideOffersController do
       ride_offer.valid?.should be false
     end
 
-    it "should fail creating a  duplicate record" do
+    it "should fail creating a duplicate ride offer" do
       sign_in @login_user
-      params1 = Factory.attributes_for(:ride_offer)
-      post 'create', :ride_offer => params1
-      params2 = Factory.attributes_for(:ride_offer)
-      post 'create', :ride_offer => params2
+      RideOffer.create(RideOffer.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideOffer"})).should_not be nil
+      post 'create', :ride_offer => {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideOffer"}
       ride_offer = assigns(:ride_offer)
+      ride_offer.valid?.should be false
       ride_offer.errors.first.should include("Oops. You already put in one with similar criteria!")
     end
   end
@@ -84,9 +82,7 @@ describe RideOffersController do
   describe "for inactive users" do
     before(:all) do
       @inactive_user = Factory(:user, :inactive => true)
-      @inactive_user.confirm!
     end
-
     [
       {:action => :new,    :method => :get},
       {:action => :create, :method => :post, :args => {:ride_offer    => Factory.attributes_for(:ride_offer)}},

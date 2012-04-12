@@ -115,7 +115,7 @@ describe Ride do
       ride.request?.should be false
     end
   end
-  
+
 end
 
 
