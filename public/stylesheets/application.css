@@ -5,14 +5,16 @@ p.inline-errors {
 	margin-top: 0px!important;
 	font-size: 13px!important;
 	color: #cf210b;
-        float: right;
-        margin-right: 91px;
+        display: inline;        
+        margin-left: 2%;
+        vertical-align: top;
 }
 
 p.terms_cond_error{    
-    float: right;
+    display: block;
     margin-top: -26px;
-    margin-right: 74px;
+    -moz-margin-start: 74% !important;
+    margin-left: 69%;
     font-size: 13px!important;
     color: #cf210b;
 }
