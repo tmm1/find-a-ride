@@ -6,8 +6,11 @@ describe User do
     it { should validate_presence_of(:last_name) }
 
     it { should_not allow_value('1230').for(:mobile) }
+    it { should_not allow_value('123456789000').for(:mobile)}
+    it { should_not allow_value('dadd122112').for(:mobile)}
     it { should allow_value('1234567890').for(:mobile)}
     it { should_not allow_value('1230').for(:landline) }
+    it { should_not allow_value('dasdas44a').for(:landline) }
     it { should allow_value('1234567890').for(:landline)}
 
     before(:each) do
@@ -107,14 +110,14 @@ describe User do
       @user.errors.to_a.should include("Photo file size cannot be greater than 3 MB")
     end
 
-    it "should save attachment successfully" do
-      @user.photo = File.new("spec/data/sample.png")
-      @user.save.should be true
-      @user.photo_content_type.should == "image/png"
-      @user.photo_file_size.should < 3.megabytes
-      @user.photo_file_name.should == "sample.png"
-      @user.photo.url.include?("http://s3.amazonaws.com/find-a-ride-test/original/#{@user.id}/#{@user.photo_file_name}").should be true
-    end
+    # it "should save attachment successfully" do note: COMMENTED TO AVOID  BLOATING S3 STORAGE SIZE
+    #       @user.photo = File.new("spec/data/sample.png")
+    #       @user.save.should be true
+    #       @user.photo_content_type.should == "image/png"
+    #       @user.photo_file_size.should < 3.megabytes
+    #       @user.photo_file_name.should == "sample.png"
+    #       @user.photo.url.include?("http://s3.amazonaws.com/find-a-ride-test/original/#{@user.id}/#{@user.photo_file_name}").should be true
+    #     end
   end
 
   describe "#save" do

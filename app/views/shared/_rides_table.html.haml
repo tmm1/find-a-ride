@@ -8,14 +8,13 @@
   %th
   - results.each do |result|
     - uuid = user_uuid
-    - pop_class = result.notes.blank? ? '' : 'result-popover'
-    %tr{:id => "hook-up-popover#{uuid}", :class => pop_class, "data-content" => result.notes}
+    %tr{:id => "hook-up-popover#{uuid}", :class => 'result-popover', "data-content" => other_info_content(result)}
       %td= user_name(result)
       %td= result.ride_origin.name
       %td= result.ride_destination.name
       %td= humanize_time(result.ride_time)
       %td= vehicle_type_image(result) if type == :ride_offer
-      %td= payment_desc(result)
-      %td= link_to(hookup_label(result), '#hook-up'+uuid, :class => 'btn btn-medium btn-primary', "data-toggle" => "modal")
-    %div{:id => "hook-up#{uuid}", :class => 'modal hide hookclass', :url => new_user_hook_up_url(:user_id => current_user.id, :id => user_id(result), :orig => result.ride_origin.name, :dest => result.ride_destination.name, :time => humanize_time(result.ride_time), :type => type, "#{type}_id" => result.id , :uuid => uuid)}
+      %td
+      %td= link_to(hookup_label(result), '#hook-up-'+uuid, :class => 'btn btn-medium btn-primary', "data-toggle" => "modal")
+    %div{:id => "hook-up-#{uuid}", :class => 'modal hide hookclass', :url => new_user_hook_up_url(:user_id => current_user.id, :id => user_id(result), :orig => result.ride_origin.name, :dest => result.ride_destination.name, :time => humanize_time(result.ride_time), :type => type, "#{type}_id" => result.id , :uuid => uuid)}
 

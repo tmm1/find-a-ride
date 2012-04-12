@@ -22,6 +22,7 @@ end
 
 group :heroku do
   gem 'pg'
+  gem "rmagick"
 end
 
 group :development do

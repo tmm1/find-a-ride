@@ -17,15 +17,19 @@ describe RidesHelper do
     end    
   end
   
-  describe '#payment desc' do
-    it 'should return for ride offer' do
+  describe '#Other info with payment desc' do
+    it 'should return payment/other info for ride offer' do
       ride_offer = Factory(:ride_offer, :payment => 'cash')
-      helper.payment_desc(ride_offer).should == 'Expects cash in return'
+      helper.other_info_content(ride_offer).include?('Expects cash in return')
+      ride_offer.notes = 'additional information'
+      helper.other_info_content(ride_offer).include?('additional information')
     end
     
-    it 'should return for ride request' do
+    it 'should return payment/other info for ride request' do
       ride_request = Factory(:ride_request, :payment => 'nothing')
-      helper.payment_desc(ride_request).should == 'Can pay nothing in return'
+      helper.other_info_content(ride_request).include?('Can pay nothing in return')
+      ride_request.notes = 'other information'
+      helper.other_info_content(ride_request).include?('other information')
     end
   end
   
@@ -78,7 +82,7 @@ describe RidesHelper do
   
   describe '#payment type collection' do
     it 'should return the collection' do
-      helper.payment_type_collection(['pay', 'nothing']).should == [['pay', 'cash'], ['nothing', 'none']]
+      helper.payment_type_collection(['pay', 'empty']).should == [['pay', 'cash'], ['empty', 'nothing']]
     end
   end
 

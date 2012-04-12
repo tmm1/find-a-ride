@@ -184,6 +184,7 @@ GEM
     rdoc (3.9.3)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rmagick (2.13.1)
     rspec (2.6.0)
       rspec-core (~> 2.6.0)
       rspec-expectations (~> 2.6.0)
@@ -247,6 +248,7 @@ DEPENDENCIES
   pg
   premailer-rails3 (= 1.1.0)
   rails (= 3.0.10)
+  rmagick
   rspec-rails (~> 2.4)
   shoulda-matchers
   state_machine (= 0.9.4)

@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    var inactive_chkbox = false;
     typeaheadSearch();
     rideTime();
     rideDate();
@@ -7,7 +8,7 @@ $(document).ready(function() {
     $('.input-append').datepicker();
     
     $('.result-popover').popover({
-        title: 'Additional Info'
+        title: 'Other Information'
     });
 
     // *** set carousel interval *** //
@@ -41,24 +42,30 @@ $(document).ready(function() {
     });
 
     $(".inactive_input").click(function(e){
-        if ($('.inactive_input').attr("checked"))
-        {
+        if ($('.inactive_input').attr("checked")) {
             $('#mymodal').modal('toggle');
+        } else {
+            inactive_chkbox = false;
         }
     });
 
     $('#mymodal').on('hide', function(){
-        $('.inactive_input').attr("checked", null);
+        if (!inactive_chkbox) {
+            $('.inactive_input').attr("checked", null);
+            inactive_chkbox = false;
+        }
     })
 
     $("#confirm_yes").click(function(e){
         e.preventDefault();
+        inactive_chkbox = true;
         $('.inactive_input').attr("checked", "checked");
         $('#mymodal').modal('toggle');
     });
 
     $("#confirm_no").click(function(e){
         e.preventDefault();
+        inactive_chkbox = false;
         $('.inactive_input').attr("checked", null);
         $('#mymodal').modal('toggle');
     });
@@ -280,7 +287,7 @@ var hookupSubmit =  function(){
         $('#hook-up').find('.inline-errors').remove();
         var errors = false;
         var url = $('#new_hook_up').attr('action');       
-        var hook_id = $('#hook-up').find('#hook_modal');
+        var hook_id = $('#hook-up').find('#hook_up_uniq_id').val();
         var message = $('#hook-up').find('#hook_up_message');
         var phone = $('#hook-up').find('#hook_up_mobile');
         if (message.val() === '' || message.val() === undefined) {
@@ -299,7 +306,8 @@ var hookupSubmit =  function(){
                 url: url,
                 data: $("#new_hook_up").serialize(),
                 success: function(data) {
-                    $('#hook-up'+hook_id.val()).modal('hide');
+                    console.log($('#hook-up-'+hook_id));
+                    $('#hook-up-'+hook_id).modal('hide');
                     if (data === 'success') {
                         $('.notice-area').html("<div class='alert alert-success'>Thanks! The other user should receive a notification.</div>")
                     }

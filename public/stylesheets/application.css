@@ -5,6 +5,18 @@ p.inline-errors {
 	margin-top: 0px!important;
 	font-size: 13px!important;
 	color: #cf210b;
+        display: inline;        
+        margin-left: 2%;
+        vertical-align: top;
+}
+
+p.terms_cond_error{    
+    display: block;
+    margin-top: -26px;
+    -moz-margin-start: 74% !important;
+    margin-left: 69%;
+    font-size: 13px!important;
+    color: #cf210b;
 }
 #dp3 p.inline-errors {
     padding: 40px 0 0 0;
@@ -64,3 +76,12 @@ input#ride_request_start_time, input#ride_offer_start_time, input#ride_start_tim
 }
 
 .inactive_confirm{ margin-bottom:-17px;}
+
+#ride-payment-info {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+#ride-additional-info {
+  font-size: 12px;
+}
