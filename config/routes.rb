@@ -47,6 +47,15 @@ PoolRide::Application.routes.draw do
     resources :hook_ups
   end
 
+  resources :users do
+    resources :invite do
+      collection do
+        get 'invite'
+        get 'send_invites'
+      end
+    end
+  end
+
   match '/location_search' => 'application#location_search', :as => :location_search
   match '/geocode_city' => 'application#geocode_city'
   match '/twitter' => 'users/omniauth_callback#twitter'
