@@ -7,6 +7,8 @@ $(document).ready(function() {
 
     $('.input-append').datepicker();
     
+    $('#contact-form textarea#comments').placeHeld();
+    
     $('.result-popover').popover({
       title: 'Other Information'
     });
