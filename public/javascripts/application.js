@@ -147,18 +147,20 @@ $(document).ready(function() {
         $('#invite1').find('.inline-errors').remove();
         var a1 = new Array();
         a1= email.val().split(",");
-        if (email.val() == '' || !AreValidEmail(a1)) {
+        var token = $("input[name=authenticity_token]").val();      
+        if (email.val() === '' && !AreValidEmail(a1)) {
             errors = true;
             email.after("<p class='inline-errors'>can't be blank or invalid</p>");
         }
         if (!errors) {
             $.ajax({
                 type: 'POST',
-                url: url,
+                url: url,                
                 data: {
-                    email: email.val()
+                    email: email.val(),
+                    authenticity_token: token
                 },
-                success: function(data) {
+                success: function(data) {                    
                     if (data === 'success') {
                         $('.notice-area').html("<div class='alert alert-success'>Your invitation has been sent!</div>")
                     }
