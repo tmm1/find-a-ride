@@ -7,7 +7,7 @@ $(document).ready(function() {
     $('.input-append').datepicker();
     
     $('.result-popover').popover({
-      title: 'Additional Info'
+        title: 'Additional Info'
     });
 
     // *** set carousel interval *** //
@@ -48,7 +48,7 @@ $(document).ready(function() {
     });
 
     $('#mymodal').on('hide', function(){
-         $('.inactive_input').attr("checked", null);
+        $('.inactive_input').attr("checked", null);
     })
 
     $("#confirm_yes").click(function(e){
@@ -67,13 +67,13 @@ $(document).ready(function() {
     $(".modal.hide.hookclass").on('show', function(){
         var obj =  $(this)
         $.ajax({
-                type: 'GET',
-                url: $(this).attr('url'),
-                success: function(data) {                                  
-                        obj.html(data)
-                        hookupSubmit(); //hook-up handler
-                }
-            });
+            type: 'GET',
+            url: $(this).attr('url'),
+            success: function(data) {
+                obj.html(data)
+                hookupSubmit(); //hook-up handler
+            }
+        });
     })
   
     // *** Contact form *** //    
@@ -125,7 +125,40 @@ $(document).ready(function() {
                 }
             });
         }
-    });	
+    });
+
+
+    /**  invite friend submit **/
+
+    $("#invite_submit").click(function(e){
+        var errors = false;
+        var url = $('#invite_url').attr('value');
+        var email = $('#invite1').find('#invite_email');
+        $('#invite1').find('.inline-errors').remove();
+        var a1 = new Array();
+        a1= email.val().split(",");
+        if (email.val() == '' || !AreValidEmail(a1)) {
+            errors = true;
+            email.after("<p class='inline-errors'>can't be blank or invalid</p>");
+        }
+        if (!errors) {
+            $.ajax({
+                type: 'GET',
+                url: url,
+                data: {
+                    email: email.val()
+                },
+                success: function(data) {
+                    if (data === 'success') {
+                        $('.notice-area').html("<div class='alert alert-success'>Your invitation has been sent!</div>")
+                    }
+                    setTimeout(hideFlashMessages, 3500);
+                }
+            });
+        }
+        
+    });
+
 
 });
 
@@ -135,6 +168,14 @@ $(document).ready(function() {
 var isValidEmail = function(email) {
     var email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return email_regex.test(email);
+}
+
+var AreValidEmail = function(email) {
+    var email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    for(var i=0; i<email.length; i++) {
+        return email_regex.test(email[i]);
+    }
+    
 }
 
 var isValidMobile = function(phone){
@@ -235,7 +276,7 @@ var typeaheadSearch = function(){
 }
 
 var hookupSubmit =  function(){
-      $("#hook-submit").click(function(){       
+    $("#hook-submit").click(function(){
         $('#hook-up').find('.inline-errors').remove();
         var errors = false;
         var url = $('#new_hook_up').attr('action');       
