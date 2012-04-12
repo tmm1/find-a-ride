@@ -5,12 +5,25 @@ class HookUp < ActiveRecord::Base
 
   attr_accessor :mobile
   
-  after_create :email_notification
+  after_create :notify_contactee
+  after_create :set_state
 
   validates :contactee_id, :contacter_id, :message, :hookable_id, :hookable_type, :presence => true
-  validates :mobile, :format => { :with => /^[1-9]+\d{9}$/, :allow_blank => true}
+  validates :mobile, :format => { :with => /^[1-9]\d{9}$/, :allow_blank => true}
   
-  def email_notification
+  state_machine :state, :initial => :none do
+    event :request do
+      transition :none => :requested
+    end 
+    event :offer do
+      transition :none => :offered
+    end
+    event :close do
+      transition [:requested, :offered] => :closed
+    end
+  end
+  
+  def notify_contactee
     if self.hookable_type == "RideRequest"
       HookupMailer.ride_offerer_email(self, self.mobile).deliver
     else
@@ -18,6 +31,11 @@ class HookUp < ActiveRecord::Base
     end
   end
   
+  private
+  
+  def set_state
+    self.hookable_type.eql?('RideRequest') ? self.offer : self.request
+  end
 end
 
 

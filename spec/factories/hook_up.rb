@@ -1,6 +1,7 @@
-Factory.define :hook_up do |h|
-  h.association :contacter, :factory => :user
-  h.association :contactee, :factory => :user
-  h.association :hookable, :factory => :ride_request
+Factory.define :hook_up do |h| #TODO: fix this messiness.
+  h.contacter_id User.last.id
+  h.contactee_id User.first.id
+  h.hookable_id Ride.last.id
+  h.hookable_type Ride.last.type
   h.message {Faker::Lorem.sentence}
 end

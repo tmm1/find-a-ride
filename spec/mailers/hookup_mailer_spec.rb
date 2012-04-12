@@ -5,12 +5,12 @@ describe HookupMailer do
   before(:all) do
     ActionMailer::Base.delivery_method = :test
     ActionMailer::Base.perform_deliveries = true
-    @hook_up = Factory(:hook_up)
   end
   
   describe '#ride requestor hook-up email' do
     before(:each) do
-      @hook_up.hookable_type = "RideRequest"
+      @hook_up = Factory.build(:hook_up, :contacter => Factory(:user), :contactee => Factory(:user), :hookable => Factory(:ride_request))
+      @hook_up.save
       ActionMailer::Base.deliveries.clear
     end
     it 'should deliver the email successfully' do
@@ -29,7 +29,8 @@ describe HookupMailer do
   
   describe '#ride offerer hook-up email' do
     before(:each) do
-      @hook_up.hookable_type = "RideOffer"
+      @hook_up = Factory.build(:hook_up, :contacter => Factory(:user), :contactee => Factory(:user), :hookable => Factory(:ride_offer))
+      @hook_up.save
       ActionMailer::Base.deliveries.clear
     end
     it 'should deliver the email successfully' do

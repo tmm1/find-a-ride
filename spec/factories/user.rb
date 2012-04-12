@@ -5,4 +5,5 @@ Factory.define :user do |f|
   f.password 'test1234'
   f.password_confirmation 'test1234'
   f.mobile '8091221221'
+  f.after_create { |u| u.confirm! }
 end

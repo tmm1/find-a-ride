@@ -139,11 +139,11 @@ $(document).ready(function() {
 
     /**  invite friend submit **/
 
-    $("#invite_submit").click(function(e){
+    $("#invites_submit").click(function(e){
         e.preventDefault();
         var errors = false;
-        var url = $('#invite_url').attr('value');
-        var email = $('#invite1').find('#invite_email');
+        var url = $('#invites_url').attr('value');
+        var email = $('#invite1').find('#invites_email');
         $('#invite1').find('.inline-errors').remove();
         var a1 = new Array();
         a1= email.val().split(",");
@@ -153,7 +153,7 @@ $(document).ready(function() {
         }
         if (!errors) {
             $.ajax({
-                type: 'GET',
+                type: 'POST',
                 url: url,
                 data: {
                     email: email.val()

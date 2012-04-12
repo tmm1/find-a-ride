@@ -48,10 +48,9 @@ PoolRide::Application.routes.draw do
   end
 
   resources :users do
-    resources :invite do
+    resources :invites do
       collection do
-        get 'invite'
-        get 'send_invites'
+        post 'send_invite'
       end
     end
   end

@@ -19,7 +19,7 @@
         %label.label This is about
         = select_tag 'about', options_for_select(['General Feedback', 'Issues', 'Questions', 'Other'])
         %label.label
-        = text_area_tag 'comments', nil, :placeholder => 'You can use this space to reach out to us about any concerns, feedback or comments you might have or ask us a question about the service'
+        = text_area_tag 'comments', nil, :placeholder => 'Use this space to reach out to us about any concerns, feedback or comments you might have or ask us a question about the service'
   .modal-footer
     .loader{:style => 'display: none;', :class => 'pull-right'}
       = image_tag('loader.gif')

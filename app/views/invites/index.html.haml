@@ -1,8 +1,9 @@
 .text
-  %h2
-    Invite friends to OnTheWay
+  %h1
+    You can invite your friends to use OnTheWay. There are three ways.
+%br
 .hero-unit
-  = semantic_form_for 'invite',  :url => "#", :html => {:method => :get} do |f|
+  = semantic_form_for 'invites',  :url => "#", :html => {:method => :post} do |f|
     = f.inputs do
       .accordion{:id => "accordion2"}
         .accordion-group
@@ -11,22 +12,22 @@
               %h3 Via Email
           #invite1{:class => "accordion-body collapse in"}
             .accordion-inner
-              = f.input :email, :label => "Email addresses", :input_html => { :class => 'text-input', :title => 'Ensure comma seperated email ids.'}
-              = f.input :url, :as => :hidden , :value => send_invites_user_invite_index_path(current_user)
+              = f.input :email, :label => "Email addresses", :input_html => { :class => 'text-input', :title => 'Enter a comma-seperated list of emails'}
+              = f.input :url, :as => :hidden , :value => send_invite_user_invites_path(current_user)
         .accordion-group
           .accordion-heading
             %span{:href => "#invite2", :class => "accordion-toggle", :"data-parent"=> "#accordion2", :"data-toggle"=> "collapse" }
               %h3 Via Gmail
           #invite2{:class => "accordion-body collapse"}
             .accordion-inner
-              %p invite friends through Gmail
+              %p Invite friends via Gmail
         .accordion-group
           .accordion-heading
             %span{:href => "#invite3", :class => "accordion-toggle", :"data-parent"=> "#accordion2", :"data-toggle"=> "collapse" }
               %h3 Via Facebook
           #invite3{:class => "accordion-body collapse"}
             .accordion-inner
-              %p invite friends through Facebook
+              %p Invite friends via Facebook
       %br
       = f.buttons do
         = f.commit_button "Invite", :button_html => {:class => 'btn btn-primary btn-large'}

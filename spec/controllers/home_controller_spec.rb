@@ -37,7 +37,6 @@ describe HomeController do
   describe "#inactive" do
     it "should render inactive page" do
       @inactive_user = Factory(:user, :inactive => true)
-      @inactive_user.confirm!
       sign_in @inactive_user
       get :inactive
       response.should be_success
@@ -47,7 +46,6 @@ describe HomeController do
 
     it "should render inactive page with the flash message" do
       @inactive_user = Factory(:user, :inactive => true)
-      @inactive_user.confirm!
       sign_in @inactive_user
       get :inactive
       response.should be_success

@@ -40,9 +40,9 @@ describe Ride do
       ride.errors[:dest].should include('is not valid')
     end
     
-    it 'should not allow additional info with >300 chars' do
+    it 'should not allow additional info with greater than 300 chars' do
       ride = Factory.build(:ride)
-      ride.notes = Faker::Lorem.sentence(80)
+      ride.notes = 'a'*301
       ride.valid?.should be false
       ride.should have(1).errors_on(:notes)
     end
@@ -122,7 +122,7 @@ describe Ride do
       ride.request?.should be false
     end
   end
-  
+
 end
 
 

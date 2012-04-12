@@ -205,7 +205,7 @@ GEM
     rubyzip (0.9.4)
     shoulda-matchers (1.0.0.beta3)
     spoon (0.0.1)
-    state_machine (0.9.4)
+    state_machine (1.0.0)
     systemu (2.2.0)
     term-ansicolor (1.0.7)
     thor (0.14.6)
@@ -251,6 +251,6 @@ DEPENDENCIES
   rmagick
   rspec-rails (~> 2.4)
   shoulda-matchers
-  state_machine (= 0.9.4)
+  state_machine (= 1.0)
   uuid
   will_paginate (= 3.0)
