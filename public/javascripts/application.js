@@ -140,6 +140,7 @@ $(document).ready(function() {
     /**  invite friend submit **/
 
     $("#invite_submit").click(function(e){
+        e.preventDefault();
         var errors = false;
         var url = $('#invite_url').attr('value');
         var email = $('#invite1').find('#invite_email');
