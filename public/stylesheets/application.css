@@ -3,8 +3,8 @@
 }
 p.inline-errors {
 	margin-top: 0px!important;
-	font-size: 14px!important;
-	color: #eb321d;
+	font-size: 15px!important;
+	color: #b94a48;
     display: inline;        
     margin-left: 2%;
     vertical-align: top;
@@ -15,13 +15,13 @@ p.terms_cond_error{
     margin-top: -26px;
     -moz-margin-start: 74% !important;
     margin-left: 69%;
-    font-size: 14px!important;
-    color: #eb321d;
+    font-size: 15px!important;
+    color: #b94a48;
 }
 #dp3 p.inline-errors {
     padding: 40px 0 0 0;
-	font-size: 14px!important;
-	color: #eb321d;
+	font-size: 15px!important;
+	color: #b94a48;
 }
 .carousel {
 	background-color: #3A87AD;
