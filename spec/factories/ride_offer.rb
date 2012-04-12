@@ -5,6 +5,6 @@ Factory.define :ride_offer do |r|
   r.start_time "10/12/2012 01:30:00"
   r.vehicle     ["two_wheeler", "four_wheeler"].sample
   r.payment ["cash", "nothing"].sample
-  r.notes "nothing much"
+  r.notes Faker::Lorem.sentence(2)
   r.association :offerer, :factory => :user
 end

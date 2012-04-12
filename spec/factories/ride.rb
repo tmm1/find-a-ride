@@ -6,5 +6,5 @@ Factory.define :ride do |r|
   r.vehicle     ["two_wheeler", "four_wheeler"].sample
   r.type        ["RideRequest", "RideOffer"].sample
   r.payment ["cash", "nothing"].sample
-  r.notes "nothing much"
+  r.notes Faker::Lorem.sentence(2)
 end

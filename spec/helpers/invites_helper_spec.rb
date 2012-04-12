@@ -10,6 +10,6 @@ require 'spec_helper'
 #     end
 #   end
 # end
-describe InviteHelper do
+describe InvitesHelper do
   
 end

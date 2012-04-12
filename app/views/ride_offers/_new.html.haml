@@ -19,7 +19,7 @@
       = f.input :start_time, :input_html => { :readonly => true, :class => 'text-input timepicker', :title => 'Choose the time you are looking to offer a ride'}, :label => 'Around what time?' , :required => true
       = f.input :vehicle, :as => :select, :label => 'The vehicle I have', :include_blank => false, :collection => vehicle_type_collection.slice(0..1), :input_html => { :class => 'text-input', :title => 'Enter the type of vehicle you have'}, :required => true
       = f.input :payment, :as => :select, :label => 'In return, I expect to get', :include_blank => false, :collection => payment_type_collection(['Cash', 'Nothing']), :input_html => { :class => 'text-input', :title => 'What are you expecting in return?'}, :required => true
-      = f.input :notes, :as => :text, :label => 'Any additional information', :input_html => { :class => 'text-input', :title => 'Anything else you would like to add?', :placeholder => 'You can use this space to convey a litte more detail about your offer like specific address, pick up or drop off points, specific time of pick up or drop off etc'}
+      = f.input :notes, :as => :text, :label => 'Any additional information', :input_html => { :class => 'text-input', :title => 'Anything else you would like to add? (Max of 300 chars)', :placeholder => 'Use this space to convey a litte more detail about your offer like specific address, pick up or drop off points, specific time of pick up etc'}
       = f.input :type , :as => :hidden , :value => "RideOffer"
     = f.buttons do
       = f.commit_button :label => 'Submit', :button_html => {:class => 'btn btn-primary btn-large'}
