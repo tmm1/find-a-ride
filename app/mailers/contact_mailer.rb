@@ -8,7 +8,8 @@ class ContactMailer < ActionMailer::Base
   end
 
   def invite_email(sender, recipients)
-    @sender, @recipients = sender, recipients
+    @sender = sender
+    @recipients = recipients.collect {|r| r.strip}
     mail(:from => @sender.email, :to => @recipients, :subject => 'Invitation to join OnTheWay')
   end
 end

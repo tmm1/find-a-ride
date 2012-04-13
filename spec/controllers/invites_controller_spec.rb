@@ -25,7 +25,7 @@ describe InvitesController do
     
     it "should send the invite email to the provided email list" do
       sign_in @login_user
-      xhr :post, :send_invite, {:email => "reshu@gmail.com, reshuban@gmail.com", :user_id => @login_user.id}
+      xhr :post, :send_invite, {:email_list => ["reshu@gmail.com, reshuban@gmail.com"], :user_id => @login_user.id}
       ActionMailer::Base.deliveries.size.should == 1
       response.should be_success
       response.body.should == 'success'

@@ -5,8 +5,8 @@ class InvitesController < ApplicationController
   end
 
   def send_invite
-    invitees = params[:email].split(",")
-    ContactMailer.invite_email(current_user, invitees).deliver
+    #TODO: consider sending out individual emails (and not a single one) for privacy sake
+    ContactMailer.invite_email(current_user, params[:email_list]).deliver
     render :text => 'success', :status => 200
   end
 end
