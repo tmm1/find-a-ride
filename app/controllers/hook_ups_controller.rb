@@ -21,6 +21,6 @@ class HookUpsController < ApplicationController
   end
   
   def index
-    @recent_hook_ups = HookUp.where(:contacter_id => current_user.id).order('created_at DESC').limit(5)
+    @recent_hook_ups = current_user.aggregrated_recent_hook_ups
   end
 end

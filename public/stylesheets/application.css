@@ -89,7 +89,10 @@ input#ride_request_start_time, input#ride_offer_start_time, input#ride_start_tim
     font-weight: bold;
     font-size: 12px;
 }
-
 #ride-additional-info {
     font-size: 12px;
 }
+h5.hook-up-activity { 
+	color: #ECE9D7!important;
+}
+

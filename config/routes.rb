@@ -10,6 +10,7 @@ PoolRide::Application.routes.draw do
 
   match '/about' => 'home#about'
   match '/index' => 'home#index'
+  match '/users/:user_id/recent' => 'hook_ups#index', :as => :recent
 
   authenticated :user do
     root :to => 'rides#index'
