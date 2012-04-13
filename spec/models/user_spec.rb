@@ -225,7 +225,7 @@ describe User do
       @ride2 = Factory(:ride_offer)
       @ride3 = Factory(:ride_request)
       @hook_up1 = Factory(:hook_up, :contacter => @user1, :contactee => @user2, :hookable => @ride1)
-      @hook_up2 = Factory(:hook_up, :contacter => @user1, :contactee => @user2, :hookable => @ride1)
+      @hook_up2 = Factory(:hook_up, :contacter => @user1, :contactee => @user2, :hookable => @ride2)
       @hook_up3 = Factory(:hook_up, :contacter => @user2, :contactee => @user1, :hookable => @ride3)
     end
     

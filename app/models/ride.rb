@@ -27,7 +27,7 @@ class Ride < ActiveRecord::Base
   def offer?
     type.eql? 'RideOffer'
   end
- 
+  
   private
 
   def assign_attribs

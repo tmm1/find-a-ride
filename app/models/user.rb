@@ -2,8 +2,6 @@ class User < ActiveRecord::Base
   include ActiveModel::Validations
   
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
-  has_many :user_locations
-  has_many :locations, :through => :user_locations
   has_many :ride_offers
   has_many :ride_requests
   has_many :hook_ups_as_contacter, :class_name => 'HookUp', :foreign_key => 'contacter_id'
@@ -55,6 +53,11 @@ class User < ActiveRecord::Base
   def aggregrated_recent_hook_ups(limit=5)
     (self.hook_ups_as_contacter.order('created_at DESC') + self.hook_ups_as_contactee.order('created_at DESC')).sort_by(&:created_at).reverse.first(limit)
   end
+  
+  # def hooked_up?(ride)
+  #   if ride.offer?
+  #     self.hook_ups_as_contacter.where(:state => 'requested')
+  # end
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)    
     data = access_token['extra']['user_hash']
