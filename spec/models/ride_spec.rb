@@ -40,6 +40,13 @@ describe Ride do
       ride.errors[:dest].should include('is not valid')
     end
     
+    it 'should not allow additional info with greater than 300 chars' do
+      ride = Factory.build(:ride)
+      ride.notes = 'a'*301
+      ride.valid?.should be false
+      ride.should have(1).errors_on(:notes)
+    end
+    
     it 'should not allow past times for ride request on the same day' do
       ride = Factory.build(:ride)
       ride.start_date = Time.now.strftime("%d/%m/%Y")
@@ -115,7 +122,7 @@ describe Ride do
       ride.request?.should be false
     end
   end
-  
+
 end
 
 

@@ -4,11 +4,12 @@ class ContactMailer < ActionMailer::Base
   
   def contact_email(info)
     @info = info
-    mail(:to => ADMIN_EMAIL, :subject => 'Message from OnTheWay user')
+    mail(:to => ADMIN_EMAIL, :subject => 'Feedback/Questions on OnTheWay')
   end
 
-  def referral_email(sender, recipient)
-    @sender, @recipient = sender, recipient
-    mail(:from => @sender.email, :to => @recipient[:email], :subject => 'Invite to OnTheWay')
+  def invite_email(sender, recipients)
+    @sender = sender
+    @recipients = recipients.collect {|r| r.strip}
+    mail(:from => @sender.email, :to => @recipients, :subject => 'Invitation to join OnTheWay')
   end
 end

@@ -117,7 +117,7 @@ describe User do
     #       @user.photo_file_size.should < 3.megabytes
     #       @user.photo_file_name.should == "sample.png"
     #       @user.photo.url.include?("http://s3.amazonaws.com/find-a-ride-test/original/#{@user.id}/#{@user.photo_file_name}").should be true
-    #     end
+    # end
   end
 
   describe "#save" do
@@ -214,6 +214,25 @@ describe User do
       match = User.find_for_facebook_oauth(@user_info, nil)
       match.should_not == @user1
       match.should ==  User.find_by_email(@email)
+    end
+  end
+  
+  describe "aggregrated recent hook ups" do
+    before(:all) do
+      @user1 = Factory(:user)
+      @user2 = Factory(:user)
+      @ride1 = Factory(:ride_request)
+      @ride2 = Factory(:ride_offer)
+      @ride3 = Factory(:ride_request)
+      @hook_up1 = Factory(:hook_up, :contacter => @user1, :contactee => @user2, :hookable => @ride1)
+      @hook_up2 = Factory(:hook_up, :contacter => @user1, :contactee => @user2, :hookable => @ride1)
+      @hook_up3 = Factory(:hook_up, :contacter => @user2, :contactee => @user1, :hookable => @ride3)
+    end
+    
+    it 'should return the recent hook ups for the user' do
+      list = @user1.aggregrated_recent_hook_ups
+      list.should have(3).things
+      list.should == [@hook_up3, @hook_up2, @hook_up1]
     end
   end
 end

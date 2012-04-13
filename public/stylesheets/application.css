@@ -3,13 +3,25 @@
 }
 p.inline-errors {
 	margin-top: 0px!important;
-	font-size: 13px!important;
-	color: #cf210b;
+	font-size: 15px!important;
+	color: #b94a48;
+    display: inline;        
+    margin-left: 2%;
+    vertical-align: top;
+}
+
+p.terms_cond_error{    
+    display: block;
+    margin-top: -26px;
+    -moz-margin-start: 74% !important;
+    margin-left: 69%;
+    font-size: 15px!important;
+    color: #b94a48;
 }
 #dp3 p.inline-errors {
     padding: 40px 0 0 0;
-	font-size: 13px!important;
-	color: #cf210b;
+	font-size: 15px!important;
+	color: #b94a48;
 }
 .carousel {
 	background-color: #3A87AD;
@@ -31,12 +43,15 @@ p.inline-errors {
 	margin-bottom: 10px;
 	margin-top: 150px;
 }
+
 .accordion-heading {
 	cursor: pointer;
 }
+
 .accordion-heading h3{
 	color: ##999;
 }
+
 .accordion-heading .accordion_errors {
 	color: #cf210b;
 	float: right;
@@ -46,34 +61,40 @@ p.inline-errors {
 input#ride_request_start_time, input#ride_offer_start_time, input#ride_start_time{
   width: 150px;
 }
+
 .sign-in-footer {
 	margin-top: 35px;
 }
+
 .text-center{
     text-align: center;
 }
+
 .error-center{
     text-align: center;
     margin: 30px;
 }
+
 .nav-tabs a:focus {
-  outline: none;
-}
-.sign-in .signup-block {
-  margin: 20px 0 0 25px;
+    outline: none;
 }
 
-.inactive_confirm{ margin-bottom:-17px;}
+.sign-in .signup-block {
+    margin: 20px 0 0 25px;
+}
+
+.inactive_confirm { margin-bottom:-17px;}
 
 #ride-payment-info {
-  font-weight: bold;
-  font-size: 12px;
+    font-weight: bold;
+    font-size: 12px;
 }
-
 #ride-additional-info {
-  font-size: 12px;
+    font-size: 12px;
 }
-
+h5.hook-up-activity { 
+	color: #ECE9D7!important;
+}
 
 .ride-list .delete-ride-cell {
   width: 102px;

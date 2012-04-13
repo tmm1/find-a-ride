@@ -5,7 +5,6 @@ describe RidesController do
   include Devise::TestHelpers
   before(:all) do
     @login_user = Factory(:user)
-    @login_user.confirm!
   end
 
   describe "#new" do
@@ -53,7 +52,6 @@ describe RidesController do
   describe "#inactive users" do
     before(:all) do
       @inactive_user = Factory(:user, :inactive => true)
-      @inactive_user.confirm!
     end
 
     [

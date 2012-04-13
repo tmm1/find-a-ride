@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
   has_many :locations, :through => :user_locations
   has_many :ride_offers
   has_many :ride_requests
-  has_many :hook_ups
+  has_many :hook_ups_as_contacter, :class_name => 'HookUp', :foreign_key => 'contacter_id'
+  has_many :hook_ups_as_contactee, :class_name => 'HookUp', :foreign_key => 'contactee_id'
 
   attr_accessor :mobile_required
 
@@ -25,8 +26,6 @@ class User < ActiveRecord::Base
   validates :mobile , :presence => true,  :if => Proc.new {|user| user.mobile_required == 'true'}
   validates :landline, :format => { :with => /^\d{10}$/, :allow_blank => true}
   validates :mobile, :format => { :with => /^[1-9]\d{9}$/, :allow_blank => true}
-  
-  
   validates :terms, :acceptance => true, :on => :create
   validates_attachment_content_type :photo, :content_type => %w(image/jpeg image/jpg image/png image/gif), :message => 'must be of type jpeg, png or gif', :if => :photo_attached?
   validates_attachment_size :photo, :less_than => 3.megabytes, :message => 'cannot be greater than 3 MB', :if => :photo_attached?
@@ -51,6 +50,10 @@ class User < ActiveRecord::Base
   
   def self.active
     where(:inactive => false)
+  end
+  
+  def aggregrated_recent_hook_ups(limit=5)
+    (self.hook_ups_as_contacter.order('created_at DESC') + self.hook_ups_as_contactee.order('created_at DESC')).sort_by(&:created_at).reverse.first(limit)
   end
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)    

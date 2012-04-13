@@ -7,7 +7,6 @@ describe HookUpsController do
   before(:all) do
     @login_user = Factory(:user)
     @contactee_user = Factory(:user)
-    @login_user.confirm!
   end
   
   describe "#new" do
@@ -27,7 +26,7 @@ describe HookUpsController do
     it 'should allow the user to hook up successfully' do
       sign_in @login_user
       ride = Factory(:ride)
-      params = {:contactee_id => @contactee_user.id, :contacter_id => @login_user.id, :message => 'Hook me up!', :hookable_type => "RideRequest", :hookable_id => ride.id}
+      params = {:contactee_id => @contactee_user.id, :contacter_id => @login_user.id, :message => 'Hook me up!', :hookable => ride}
       post 'create', {:user_id => @login_user.id, :hook_up => params}
       response.should be_success
       response.body.should == 'success'
@@ -58,12 +57,13 @@ describe HookUpsController do
   
   describe "#index" do
     before(:each) do
-      @hook_up1 = Factory(:hook_up, :contacter_id => @login_user.id)
-      @hook_up2 = Factory(:hook_up, :contacter_id => @login_user.id)
-      @hook_up3 = Factory(:hook_up, :contacter_id => @login_user.id)
-      @hook_up4 = Factory(:hook_up, :contacter_id => @login_user.id)
-      @hook_up5 = Factory(:hook_up, :contacter_id => @login_user.id)
-      @hook_up6 = Factory(:hook_up, :contacter_id => @login_user.id)
+      ride = Factory(:ride)
+      @hook_up1 = HookUp.create({:contactee_id => @contactee_user.id, :contacter_id => @login_user.id, :message => 'Hook me up!', :hookable => ride})
+      @hook_up2 = HookUp.create({:contactee_id => @login_user.id, :contacter_id => @contactee_user.id, :message => 'Hook me up!', :hookable => ride})
+      @hook_up3 = HookUp.create({:contactee_id => @contactee_user.id, :contacter_id => @login_user.id, :message => 'Hook me up!', :hookable => ride})
+      @hook_up4 = HookUp.create({:contactee_id => @contactee_user.id, :contacter_id => @login_user.id, :message => 'Hook me up!', :hookable => ride})
+      @hook_up5 = HookUp.create({:contactee_id => @contactee_user.id, :contacter_id => @login_user.id, :message => 'Hook me up!', :hookable => ride})
+      @hook_up6 = HookUp.create({:contactee_id => @login_user.id, :contacter_id => @contactee_user.id, :message => 'Hook me up!', :hookable => ride})
     end
     
     it 'should render index' do
@@ -74,5 +74,4 @@ describe HookUpsController do
       assigns(:recent_hook_ups).should have(5).things
     end
   end
-  
 end

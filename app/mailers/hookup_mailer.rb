@@ -18,3 +18,4 @@ class HookupMailer < ActionMailer::Base
     mail(:to => @hook_up.contactee.email, :from => @hook_up.contacter.email, :subject => 'Message from OnTheWay user')
   end
 end
+   
