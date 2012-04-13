@@ -1,6 +1,7 @@
 class RideOffer < Ride
   belongs_to :offerer, :class_name => 'User', :foreign_key => 'user_id'
   has_many :hook_ups, :as => :hookable
+  
   def self.search(params)
     orig = Location.find_by_name(params[:orig])
     dest = Location.find_by_name(params[:dest])

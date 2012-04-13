@@ -9,10 +9,14 @@
   - results.each do |result|
     - uuid = user_uuid
     %tr{:id => "hook-up-popover#{uuid}", :class => 'result-popover', "data-content" => other_info_content(result)}
-      %td= user_name(result)
-      %td= result.ride_origin.name
-      %td= result.ride_destination.name
-      %td= humanize_time(result.ride_time)
+      %td
+        %h5.table-text= user_name(result)
+      %td
+        %h5.table-text= result.ride_origin.name
+      %td
+        %h5.table-text= result.ride_destination.name
+      %td
+        %h5.table-text= humanize_time(result.ride_time)
       %td= vehicle_type_image(result) if type == :ride_offer
       %td
       %td= link_to(hookup_label(result), '#hook-up-'+uuid, :class => 'btn btn-medium btn-primary', "data-toggle" => "modal")

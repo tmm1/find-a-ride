@@ -7,4 +7,5 @@ Factory.define :ride_request do |r|
   r.payment ["cash", "nothing"].sample
   r.notes Faker::Lorem.sentence(2)
   r.association :requestor, :factory => :user
+  r.type 'RideRequest'
 end

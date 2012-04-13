@@ -31,6 +31,14 @@ class HookUp < ActiveRecord::Base
     end
   end
   
+  def self.requested
+    where(:state => 'requested')
+  end
+  
+  def self.offered
+    where(:state => 'offered')
+  end
+  
   private
   
   def set_state

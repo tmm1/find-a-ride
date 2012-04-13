@@ -22,7 +22,7 @@ describe HookUp do
       ride = Factory(:ride)
       @params = {:contactee_id => contactee_user.id, :contacter_id => user.id, :message => 'Hook me up!', :hookable => ride}
     end
- 
+
     it 'should set the state as offered if hookable is a ride request' do
       @params[:hookable_type] = 'RideRequest'
       hook_up = HookUp.create(@params)
@@ -61,6 +61,28 @@ describe HookUp do
       ActionMailer::Base.deliveries.size.should == 1
     end
   end
+
+  # describe "#requested/offered" do
+  #   before(:all) do
+  #     HookUp.destroy_all
+  #     Ride.destroy_all
+  #     user = Factory(:user)
+  #     contactee_user = Factory(:user)
+  #     ride = Factory(:ride)
+  #     @hook_up1 = HookUp.create({:contactee_id => contactee_user.id, :contacter_id => user.id, :message => 'Hook me up!', :hookable_id => ride.id, :hookable_type => 'RideOffer'})
+  #     @hook_up2 = HookUp.create({:contactee_id => contactee_user.id, :contacter_id => user.id, :message => 'Hook me up!', :hookable_id => ride.id, :hookable_type => 'RideRequest'})
+  #   end
+  #   
+  #   it 'should return requested' do
+  #     HookUp.requested.should have(1).things
+  #     HookUp.requested.should == [@hook_up2]
+  #   end
+  #   
+  #   it 'should return offered' do
+  #     HookUp.offered.should have(1).things
+  #     HookUp.offered.should == [@hook_up1]
+  #   end
+  # end
 end
 
 
