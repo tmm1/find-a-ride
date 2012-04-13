@@ -77,6 +77,25 @@ describe RideRequestsController do
       response.should render_template(:results)
       assigns(:paginated_results).should have(0).things
     end
+
+    it "ajax request should render the search page with results" do
+      RideRequest.stub!(:search).and_return(RideRequest.limit(2))
+      sign_in @login_user
+      xhr 'get', 'search', {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler',:page =>"1"}
+      response.should be_success
+      response.should render_template(:grid)
+      assigns(:paginated_results).should have(2).things
+    end
+
+    it "ajax request should render the search page with no results" do
+      RideRequest.stub!(:search).and_return(RideRequest.limit(2))
+      sign_in @login_user
+      xhr 'get', 'search', {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler',:page =>"2"}
+      response.should be_success
+      response.should render_template(:grid)
+      assigns(:paginated_results).should have(0).things
+    end
+
   end
 
   describe "for inactive users" do
