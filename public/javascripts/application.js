@@ -134,6 +134,69 @@ $(document).ready(function() {
         }
     });	
 
+
+    /* *************************** Delete Ride *********************************** */
+    function initDeleteRideHandlers() {
+      $(".tab-content .disabled").popover({title: "Cannot Delete"});
+
+      $(".delete-ride").click(function(e) {
+        e.preventDefault();
+        var matches = $(this).attr('id').match(/(\d+)$/),
+            rideId = matches[1];
+        $(this).hide();
+        $("#confirm-delete-" + rideId).show();
+      });
+
+      $(".yes, .no", ".confirm-delete").click(function(e) {
+        e.preventDefault();
+
+        var matches = $(this).parent().attr("id").match(/(\d+)$/),
+            rideId = matches[1];
+
+        // clicked "Sure?"
+        if($(this).hasClass("yes")) {
+
+          var url = $("#delete-ride-" + rideId).attr('href');
+
+          var matches = $("#delete-ride-" + rideId).closest("div.tab-pane")
+                          .find(".pagination .active a").attr("href").match(/(\w+)=(\d+)$/),
+              key = matches[1],
+              value = matches[2],
+              dataArray = {};
+
+          // adjusting the page number
+          if((parseInt(value) > 1) &&
+            ($("#delete-ride-" + rideId).closest("div.tab-pane").find(".delete-ride-cell").size() == 1)) {
+            value = parseInt(value) - 1;
+          }
+
+          dataArray[key] = value;
+
+          $.ajax({
+            type: 'DELETE', url: url, data: dataArray,
+            beforeSend: function() {
+              $("#delete-ride-" + rideId).hide();
+              $("#confirm-delete-" + rideId).hide();
+              $("#ride-loader-" + rideId).show();
+            },
+            complete: function() {
+              $("#ride-loader-" + rideId).hide();
+              $("#delete-ride-" + rideId).show();
+            }
+          });
+        }
+        // clicked "No"
+        else {
+          $("#confirm-delete-" + rideId).hide();
+          $("#delete-ride-" + rideId).show();
+        }
+      });
+    }
+
+    $(".tab-content").ajaxComplete(initDeleteRideHandlers);
+    initDeleteRideHandlers();
+    /* *************************** Delete Ride *********************************** */
+
 });
 
 

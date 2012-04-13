@@ -27,6 +27,14 @@ class Ride < ActiveRecord::Base
     type.eql? 'RideOffer'
   end
  
+  def deletable?
+    ride_time < Time.now
+  end
+
+  def owner?(u)
+    user_id == u.id
+  end
+
   private
 
   def assign_attribs

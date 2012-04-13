@@ -45,6 +45,11 @@ PoolRide::Application.routes.draw do
   
   resources :users do
     resources :hook_ups
+    resources :rides do
+      collection do
+        get 'list'
+      end
+    end
   end
 
   match '/location_search' => 'application#location_search', :as => :location_search

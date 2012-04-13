@@ -1,0 +1,12 @@
+%ul{:class => 'nav nav-tabs'}
+  %li.active
+    %a{:href => '#ride-requests', 'data-toggle' => 'tab'} Requests
+  %li
+    %a{:href => '#ride-offers', 'data-toggle' => 'tab'} Offers
+
+.hero-unit
+  .tab-content.ride-list
+    %div#ride-requests{:class => 'tab-pane fade active in'}
+      = render 'ride_requests'
+    %div#ride-offers{:class => 'tab-pane fade'}
+      = render 'ride_offers'

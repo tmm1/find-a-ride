@@ -73,3 +73,24 @@ input#ride_request_start_time, input#ride_offer_start_time, input#ride_start_tim
 #ride-additional-info {
   font-size: 12px;
 }
+
+
+.ride-list .delete-ride-cell {
+  width: 102px;
+}
+
+.ride-list .delete-ride-cell .delete-ride,
+.ride-list .delete-ride-cell .disabled {
+  float: right;
+}
+
+.ride-list .delete-ride-cell .confirm-delete {
+  display: none;
+  float: right;
+}
+
+.ride-list .delete-ride-cell .ride-loader {
+  display: none;
+  min-height: 28px;
+  float: right;
+}

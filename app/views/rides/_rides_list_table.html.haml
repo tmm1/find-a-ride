@@ -1,0 +1,13 @@
+%table{:class => 'table table-striped'}
+  %th Leaving from
+  %th Going to
+  %th Time
+  %th
+  - rides.each do |ride|
+    - uuid = user_uuid
+    %tr{:id => "ride-cell-#{ride.id}"}
+      %td= ride.ride_origin.name
+      %td= ride.ride_destination.name
+      %td= humanize_time(ride.ride_time)
+      %td.delete-ride-cell
+        = ride_delete_button(ride)
