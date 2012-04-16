@@ -2,7 +2,7 @@ module RidesHelper
   def user_name(ride)
     ride.offer? ? ride.offerer.try(:full_name) : ride.requestor.try(:full_name)
   end
-  
+
   def vehicle_type_image(ride)
     case ride.vehicle
     when 'two_wheeler' then
@@ -11,14 +11,18 @@ module RidesHelper
       image_tag('4-wheeler.png', :size => '30x30')
     end
   end
-  
-  def other_info_content(ride)
-    payment_details = ride.offer? ? "Expects #{ride.payment} payment in return for the ride" : "Can pay #{ride.payment} in return for the ride"
-    content = '<span id="ride-payment-info">'+payment_details+'</span>'
-    content = content + '<br />' + '<span id="ride-additional-info">'+ride.notes+'</span>' if !ride.notes.blank?
-    content
-  end
-  
+
+  def other_info_content(ride, hooked_up=false)
+    unless hooked_up
+      payment_details = ride.offer? ? "Expects #{ride.payment} payment in return for the ride" : "Can pay #{ride.payment} in return for the ride"
+      content = '<span id="ride-payment-info">'+payment_details+'</span>'
+      content = content + '<br />' + '<span id="ride-additional-info">'+ride.notes+'</span>' if !ride.notes.blank?
+      content
+    else
+      'Ah, It looks like you already might be in touch with this user!'
+    end
+  end 
+
   def humanize_time(time)
     if time.today?
       time.strftime('Today at %l:%M%p')
@@ -28,7 +32,7 @@ module RidesHelper
       time.strftime('%B %d, %Y at %l:%M%p')
     end
   end
-  
+
   def hookup_label(ride)
     ride.offer? ? 'Request' : 'Offer'
   end
@@ -36,11 +40,11 @@ module RidesHelper
   def user_id(ride)
     ride.offer? ? ride.offerer.id : ride.requestor.id
   end
-  
+
   def vehicle_type_collection
     [['Four-Wheeler', 'four_wheeler'], ['Two-Wheeler', 'two_wheeler'], ['I don\'t care', 'any']]
   end
-  
+
   def payment_type_collection(payment_options=[])
     return [cash, none] if payment_options.empty?
     coll = []

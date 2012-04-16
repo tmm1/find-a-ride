@@ -196,7 +196,7 @@ $(document).ready(function() {
 
     /* *************************** Delete Ride *********************************** */
     function initDeleteRideHandlers() {
-      $(".tab-content .disabled").popover({title: "Cannot Delete"});
+      $(".tab-content .disabled").popover({title: "Please Note"});
 
       $(".delete-ride").click(function(e) {
         e.preventDefault();
