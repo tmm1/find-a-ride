@@ -10,4 +10,13 @@
       %td= ride.ride_destination.name
       %td= humanize_time(ride.ride_time)
       %td.delete-ride-cell
-        = ride_delete_button(ride)
+        - if ride.deletable?
+          %a.btn.btn-primary.delete-ride{:id => "delete-ride-#{ride.id}", :href => user_ride_path(current_user, ride)}
+            Delete
+          %div.confirm-delete{:id => "confirm-delete-#{ride.id}"}
+            %a.yes.btn.btn-success{:href => '#'} Sure?
+            %a.no.btn.btn-danger{:href => "#"} No
+          %div.ride-loader{:id => "ride-loader-#{ride.id}"}
+            - image_tag('loader.gif')
+        - else
+          %span.btn.btn-primary.disabled{"data-content" => "This cannot be deleted as it is pending."} Delete
