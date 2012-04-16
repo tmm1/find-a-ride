@@ -68,27 +68,33 @@ describe HookUp do
     end
   end
 
-  # describe "#requested/offered" do
-  #   before(:all) do
-  #     HookUp.destroy_all
-  #     Ride.destroy_all
-  #     user = Factory(:user)
-  #     contactee_user = Factory(:user)
-  #     ride = Factory(:ride)
-  #     @hook_up1 = HookUp.create({:contactee_id => contactee_user.id, :contacter_id => user.id, :message => 'Hook me up!', :hookable_id => ride.id, :hookable_type => 'RideOffer'})
-  #     @hook_up2 = HookUp.create({:contactee_id => contactee_user.id, :contacter_id => user.id, :message => 'Hook me up!', :hookable_id => ride.id, :hookable_type => 'RideRequest'})
-  #   end
-  #   
-  #   it 'should return requested' do
-  #     HookUp.requested.should have(1).things
-  #     HookUp.requested.should == [@hook_up2]
-  #   end
-  #   
-  #   it 'should return offered' do
-  #     HookUp.offered.should have(1).things
-  #     HookUp.offered.should == [@hook_up1]
-  #   end
-  # end
+  describe "#requested/offered/unclosed" do
+    before(:all) do
+      HookUp.destroy_all
+      Ride.destroy_all
+      user = Factory(:user)
+      contactee_user = Factory(:user)
+      ride = Factory(:ride)
+      @hook_up1 = HookUp.create({:contactee_id => contactee_user.id, :contacter_id => user.id, :message => 'Hook me up!', :hookable_id => ride.id, :hookable_type => 'RideRequest'})
+      @hook_up2 = HookUp.create({:contactee_id => contactee_user.id, :contacter_id => user.id, :message => 'Hook me up!', :hookable_id => ride.id, :hookable_type => 'RideOffer'})
+    end
+    
+    it 'should return requested' do
+      HookUp.requested.should have(1).things
+      HookUp.requested.should == [@hook_up2]
+    end
+    
+    it 'should return offered' do
+      HookUp.offered.should have(1).things
+      HookUp.offered.should == [@hook_up1]
+    end
+    
+    it 'should return unclosed' do
+      HookUp.unclosed.should have(2).things
+      HookUp.unclosed.should include @hook_up1
+      HookUp.unclosed.should include @hook_up2
+    end
+  end
 end
 
 

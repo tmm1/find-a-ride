@@ -41,6 +41,10 @@ class HookUp < ActiveRecord::Base
     where(:state => 'offered')
   end
   
+  def self.unclosed
+    where(:state => ['requested', 'offered'])
+  end
+  
   private
   
   def set_state

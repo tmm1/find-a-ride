@@ -23,6 +23,6 @@ class HookUpsController < ApplicationController
   end
   
   def index
-    @recent_hook_ups = current_user.aggregrated_recent_hook_ups
+    @recent_hook_ups = current_user.aggregrated_hook_ups
   end
 end

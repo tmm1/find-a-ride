@@ -50,14 +50,13 @@ class User < ActiveRecord::Base
     where(:inactive => false)
   end
   
-  def aggregrated_recent_hook_ups(limit=5)
+  def aggregrated_hook_ups(limit=5)
     (self.hook_ups_as_contacter.order('created_at DESC') + self.hook_ups_as_contactee.order('created_at DESC')).sort_by(&:created_at).reverse.first(limit)
   end
   
-  # def hooked_up?(ride)
-  #   if ride.offer?
-  #     self.hook_ups_as_contacter.where(:state => 'requested')
-  # end
+  def hooked_up_for_ride?(ride)
+    self.hook_ups_as_contacter.unclosed.collect{|h| h.hookable_id}.include?(ride.id) || self.hook_ups_as_contactee.unclosed.collect{|h| h.hookable_id}.include?(ride.id) 
+  end
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)    
     data = access_token['extra']['user_hash']

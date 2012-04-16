@@ -176,7 +176,7 @@ describe User do
 
   end
 
-  describe "twitter oauth" do
+  describe "#twitter oauth" do
     before(:all) do
       @email = Faker::Internet.email
       @user1 = Factory(:user, :first_name  => 'amar', :last_name => 'singh', :email => @email)
@@ -196,7 +196,7 @@ describe User do
     end
   end
 
-  describe "facebook oauth" do
+  describe "#facebook oauth" do
     before(:all) do
       @email = Faker::Internet.email
       @user1 = Factory(:user, :first_name  => 'ask', :last_name => 'singh', :email => @email)
@@ -217,7 +217,7 @@ describe User do
     end
   end
   
-  describe "aggregrated recent hook ups" do
+  describe "#aggregrated hook ups" do
     before(:all) do
       @user1 = Factory(:user)
       @user2 = Factory(:user)
@@ -230,9 +230,43 @@ describe User do
     end
     
     it 'should return the recent hook ups for the user' do
-      list = @user1.aggregrated_recent_hook_ups
+      list = @user1.aggregrated_hook_ups
       list.should have(3).things
       list.should == [@hook_up3, @hook_up2, @hook_up1]
+    end
+  end
+  
+  describe "#hooked up?" do
+    before(:all) do
+      @user1 = Factory(:user)
+      @user2 = Factory(:user)
+      @user3 = Factory(:user)
+      @ride1 = Factory(:ride_request)
+      @ride2 = Factory(:ride_offer)
+      @ride3 = Factory(:ride_request)
+      @ride4 = Factory(:ride_offer)
+      @hook_up1 = Factory(:hook_up, :contacter => @user1, :contactee => @user2, :hookable => @ride1)
+      @hook_up2 = Factory(:hook_up, :contacter => @user1, :contactee => @user2, :hookable => @ride2)
+      @hook_up3 = Factory(:hook_up, :contacter => @user2, :contactee => @user1, :hookable => @ride3)
+      @hook_up4 = Factory(:hook_up, :contacter => @user1, :contactee => @user3, :hookable => @ride4)
+    end
+    
+    it 'should return true for hooked up?' do
+      @user1.hooked_up_for_ride?(@ride1).should be true
+      @user2.hooked_up_for_ride?(@ride1).should be true
+      @user1.hooked_up_for_ride?(@ride2).should be true
+      @user2.hooked_up_for_ride?(@ride2).should be true
+      @user1.hooked_up_for_ride?(@ride3).should be true
+      @user2.hooked_up_for_ride?(@ride3).should be true
+      @user1.hooked_up_for_ride?(@ride4).should be true
+      @user3.hooked_up_for_ride?(@ride4).should be true
+    end
+    
+    it 'should return false for hooked up?' do
+      @hook_up4.close
+      @user2.hooked_up_for_ride?(@ride4).should be false
+      @user3.hooked_up_for_ride?(@ride4).should be false
+      @user1.hooked_up_for_ride?(@ride4).should be false
     end
   end
 end
