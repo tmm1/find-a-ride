@@ -14,7 +14,7 @@ module RidesHelper
 
   def other_info_content(ride, hooked_up=false)
     unless hooked_up
-      payment_details = ride.offer? ? "Expects #{ride.payment} payment in return for the ride" : "Can pay #{ride.payment} in return for the ride"
+      payment_details = ride.offer? ? "Expects #{ride.payment} in return for the ride" : "Can pay #{ride.payment} in return for the ride"
       content = '<span id="ride-payment-info">'+payment_details+'</span>'
       content = content + '<br />' + '<span id="ride-additional-info">'+ride.notes+'</span>' if !ride.notes.blank?
       content

@@ -20,7 +20,7 @@ describe RidesHelper do
   describe '#Other info with payment desc' do
     it 'should return payment/other info for ride offer' do
       ride_offer = Factory(:ride_offer, :payment => 'cash')
-      helper.other_info_content(ride_offer).include?('Expects cash payment in return for the ride')
+      helper.other_info_content(ride_offer).include?('Expects cash in return for the ride')
       ride_offer.notes = 'additional information'
       helper.other_info_content(ride_offer).include?('additional information')
     end

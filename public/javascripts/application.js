@@ -5,13 +5,12 @@ $(document).ready(function() {
     rideDate();
     setTimeout(hideFlashMessages, 3500);
 
-
     $('.input-append').datepicker();
     
     $('#contact-form textarea#comments').placeHeld();
     
     $('.result-popover').popover({
-        title: 'Other Information'
+        title: 'Please note'
     });
 
     // *** set carousel interval *** //
@@ -123,6 +122,7 @@ $(document).ready(function() {
 	        }
 	    });
 	}
+	
     // *** Contact modal *** //    
     $('#contact').on('show', function () {
         resetContactForm(true);
@@ -194,9 +194,10 @@ $(document).ready(function() {
 	}
 
 
-    /* *************************** Delete Ride *********************************** */
+    //* Delete Ride *//
+
     function initDeleteRideHandlers() {
-      $(".tab-content .disabled").popover({title: "Please Note"});
+      $(".tab-content .disabled").popover({title: "Please note"});
 
       $(".delete-ride").click(function(e) {
         e.preventDefault();
@@ -254,7 +255,8 @@ $(document).ready(function() {
 
     $(".tab-content").ajaxComplete(initDeleteRideHandlers);
     initDeleteRideHandlers();
-    /* *************************** Delete Ride *********************************** */
+
+    //*  Delete Ride  *//
 
 });
 
