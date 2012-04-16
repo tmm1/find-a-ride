@@ -123,6 +123,67 @@ describe Ride do
     end
   end
 
+  describe "#deletable? check" do
+    def get_date(day = :past)
+      ride_date ||= day.eql?(:past) ? 2.days.ago : 2.days.from_now
+      ride_date.strftime("%d/%b/%Y")
+    end
+
+    before(:all) do
+      @contacter = Factory(:user)
+    end
+
+    it "should return true for a past ride with no hook_ups" do
+      ride = Factory(:ride_offer, :user_id => @contacter.id, :start_date => get_date(:past), :start_date => "#{get_date(:past)} 01:30:00")
+      ride.deletable?.should be_true
+    end
+
+    it "should return true for a future ride with no hook_ups" do
+      ride = Factory(:ride_offer, :user_id => @contacter.id, :start_date => get_date(:future), :start_date => "#{get_date(:future)} 02:30:00")
+      ride.deletable?.should be_true
+    end
+
+    it "should return true for a past ride with all closed hook_ups" do
+      ride = Factory(:ride_request, :user_id => @contacter.id, :start_date => get_date(:past), :start_date => "#{get_date(:past)} 02:30:00")
+      hook_up1 = Factory(:hook_up, :contacter => @contacter, :hookable => ride)
+      hook_up2 = Factory(:hook_up, :contacter => @contacter, :hookable => ride)
+      hook_up1.close
+      hook_up2.close
+      ride.deletable?.should be_true
+    end
+
+    it "should return false for a past ride with an unclosed hook_up" do
+      ride = Factory(:ride_request, :user_id => @contacter.id, :start_date => get_date(:past), :start_date => "#{get_date(:past)} 02:30:00")
+      hook_up1 = Factory(:hook_up, :contacter => @contacter, :hookable => ride)
+      hook_up2 = Factory(:hook_up, :contacter => @contacter, :hookable => ride)
+      hook_up2.close
+      ride.deletable?.should be_false
+    end
+
+    it "should return false for a future ride with an unclosed hook_up" do
+      ride = Factory(:ride_offer, :user_id => @contacter.id, :start_date => get_date(:future), :start_date => "#{get_date(:future)} 04:30:00")
+      hook_up1 = Factory(:hook_up, :contacter => @contacter, :hookable => ride)
+      hook_up2 = Factory(:hook_up, :contacter => @contacter, :hookable => ride)
+      hook_up1.close
+      ride.deletable?.should be_false
+    end
+  end
+
+  describe "#owner? check" do
+    before(:each) do
+      @user = Factory(:user)
+      @ride = Factory(:ride, :user_id => @user.id) 
+    end
+
+    it "should return true for its owner" do
+      @ride.owner?(@user).should be_true
+    end
+
+    it "should return false for any other user" do
+      user2 = Factory(:user)
+      @ride.owner?(user2).should be_false
+    end
+  end
 end
 
 

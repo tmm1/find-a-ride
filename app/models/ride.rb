@@ -29,11 +29,12 @@ class Ride < ActiveRecord::Base
   end
  
   def deletable?
-    ride_time < Time.now
+    ((ride_time < Time.now) and (HookUp.where(:hookable_id => id).empty? or HookUp.where(:hookable_id => id).not_closed.empty?)) or
+      HookUp.where(:hookable_id => id).empty?
   end
 
   def owner?(u)
-    user_id == u.id
+    user_id.eql? u.id
   end
 
   private

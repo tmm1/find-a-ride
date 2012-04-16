@@ -14,6 +14,12 @@ describe HookUp do
     it { should allow_value('1234567890').for(:mobile)}
   end
 
+  describe "#scopes" do
+    it "should return hook_ups which are not closed" do
+      HookUp.not_closed.where_values.should == ["state != 'closed'"]
+    end
+  end
+
   describe '#state of hookup' do
     before(:each) do
       Ride.destroy_all

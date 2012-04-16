@@ -11,6 +11,8 @@ class HookUp < ActiveRecord::Base
   validates :contactee_id, :contacter_id, :message, :hookable_id, :hookable_type, :presence => true
   validates :mobile, :format => { :with => /^[1-9]\d{9}$/, :allow_blank => true}
   
+  scope :not_closed, where("state != ?", :closed)
+
   state_machine :state, :initial => :none do
     event :request do
       transition :none => :requested
