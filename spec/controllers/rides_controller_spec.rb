@@ -66,4 +66,48 @@ describe RidesController do
       end
     end
   end
+
+  describe "#destroy" do
+    before(:each) do
+      @ride = Factory(:ride_offer, :offerer => @login_user)
+      sign_in @login_user
+    end
+
+    def do_delete(options = {})
+      xhr :delete, :destroy, :user_id => @login_user.id, :id => @ride.id
+    end
+
+    it "should destroy a ride successfully" do
+      lambda { do_delete }.should change(Ride, :count).by(-1)
+      assigns[:ride].should eql(@ride)
+      flash.now[:notice].should eql("Your ride was deleted successfully.")
+      response.content_type.should eql(Mime::JS.to_s)
+    end
+
+    it "if something goes wrong, output flash error messages" do
+      hook_up = Factory(:hook_up, :contactee => @login_user, :hookable => @ride)
+      lambda { do_delete }.should_not change(Ride, :count)
+      assigns[:ride].should eql(@ride)
+      response.content_type.should eql(Mime::JS.to_s)
+      flash.now[:error].should eql("Your ride was not deleted.")
+    end
+  end
+
+  describe "#list" do
+    before(:all) do
+      RideOffer.destroy_all
+      RideRequest.destroy_all
+      @ride_offer1 = Factory(:ride_offer, :offerer => @login_user, :orig => Location.last.name)
+      @ride_offer2 = Factory(:ride_offer, :offerer => @login_user, :orig => Location.first.name)
+    end
+
+    it "should list the ride_requests and ride_offers" do
+      sign_in @login_user
+      get :list, :user_id => @login_user.id
+      response.should be_success
+      response.should render_template(:list)
+      assigns[:ride_offers].should have(2).things
+      assigns[:ride_requests].should have(0).things
+    end
+  end
 end
