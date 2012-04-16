@@ -2,13 +2,13 @@
 %br
 
 %p.hookup-msg
-  I want to request you a ride from
+  I would like to request you a ride from
   %b 
     #{@hook_up.hookable.try(:ride_origin).try(:name)} 
-    to 
+  to 
   %b 
     #{@hook_up.hookable.try(:ride_destination).try(:name)} 
-    at around  
+  at around  
   %b 
     = formatted_ride_time(@hook_up.hookable.try(:ride_time))
 %br
