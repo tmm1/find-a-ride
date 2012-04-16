@@ -308,7 +308,6 @@ $(document).ready(function() {
         }
         
     });	
-});
 
 /** utility methods **/
 
