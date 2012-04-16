@@ -1,6 +1,9 @@
 class RideOffer < Ride
   belongs_to :offerer, :class_name => 'User', :foreign_key => 'user_id'
-  has_many :hook_ups, :as => :hookable
+  has_many :hook_ups, :as => :hookable, :finder_sql => Proc.new {
+    %|SELECT `hook_ups`.* FROM `hook_ups`
+    WHERE (`hook_ups`.hookable_id = '#{self.id}' AND `hook_ups`.hookable_type = 'RideOffer')|
+  }
   
   def self.search(params)
     orig = Location.find_by_name(params[:orig])

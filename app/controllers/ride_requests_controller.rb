@@ -2,6 +2,8 @@ class RideRequestsController < RidesController
   before_filter :authenticate_user!
   before_filter :restrict_inactive_user
   
+  authorize_resource
+
   def new
   end
 

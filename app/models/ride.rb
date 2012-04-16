@@ -29,12 +29,11 @@ class Ride < ActiveRecord::Base
   end
  
   def deletable?
-    ((ride_time < Time.now) and (HookUp.where(:hookable_id => id).empty? or HookUp.where(:hookable_id => id).not_closed.empty?)) or
-      HookUp.where(:hookable_id => id).empty?
+    hook_ups.empty? or hook_ups.none? {|hu| !hu.closed?}
   end
 
-  def owner?(u)
-    user_id.eql? u.id
+  def humanize_type
+    self.class.to_s.underscore.humanize.downcase
   end
 
   private

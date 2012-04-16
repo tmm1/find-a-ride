@@ -2,6 +2,8 @@ class RidesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :restrict_inactive_user
 
+  authorize_resource
+
   def index
     @ride = Ride.new
   end
@@ -28,11 +30,14 @@ class RidesController < ApplicationController
 
   def destroy
     @ride = Ride.find(params[:id])
-    @ride.destroy if @ride.deletable? and @ride.owner?(current_user)
-    flash.now[:notice] = "Your ride was deleted successfully."
-  rescue
-    flash.now[:error] = "You ride was not deleted"
-  ensure
+    ride_type = @ride.class.to_s.underscore.gsub(/_/, '')
+    if @ride.deletable? and can?(:delete, @ride)
+      @ride.destroy
+      flash.now[:success] = "Your #{@ride.humanize_type} was deleted successfully."
+    else
+      flash.now[:error] = "Your #{@ride.humanize_type} was not deleted."
+    end
+
     get_rides
     respond_to do |format|
       format.js { render :action => :list }
