@@ -80,7 +80,7 @@ describe RidesController do
       sign_in @login_user
       lambda { do_delete }.should change(Ride, :count).by(-1)
       assigns[:ride].should eql(@ride)
-      flash.now[:success].should eql("Your #{@ride.humanize_type} was deleted successfully.")
+      flash.now[:success].should eql("The #{@ride.humanize_type} was deleted successfully")
       response.content_type.should eql(Mime::JS.to_s)
     end
 
@@ -90,7 +90,7 @@ describe RidesController do
       lambda { do_delete(:user_id => user.id) }.should_not change(Ride, :count)
       assigns[:ride].should eql(@ride)
       response.content_type.should eql(Mime::JS.to_s)
-      flash.now[:error].should eql("Your #{@ride.humanize_type} was not deleted.")
+      flash.now[:error].should eql("The #{@ride.humanize_type} was not deleted")
     end
   end
 

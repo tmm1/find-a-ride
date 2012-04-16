@@ -33,9 +33,9 @@ class RidesController < ApplicationController
     ride_type = @ride.class.to_s.underscore.gsub(/_/, '')
     if @ride.deletable? and can?(:delete, @ride)
       @ride.destroy
-      flash.now[:success] = "Your #{@ride.humanize_type} was deleted successfully."
+      flash.now[:success] = "The #{@ride.humanize_type} was deleted successfully"
     else
-      flash.now[:error] = "Your #{@ride.humanize_type} was not deleted."
+      flash.now[:error] = "The #{@ride.humanize_type} was not deleted"
     end
 
     get_rides
