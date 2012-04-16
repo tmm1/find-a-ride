@@ -5,10 +5,7 @@ $(document).ready(function() {
     rideDate();
     setTimeout(hideFlashMessages, 3500);
 
-    $(".pagination a").live("click", function() {      
-        $.getScript(this.href);
-           return false;
-        });
+
     $('.input-append').datepicker();
     
     $('#contact-form textarea#comments').placeHeld();
