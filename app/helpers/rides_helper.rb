@@ -60,26 +60,4 @@ module RidesHelper
     uuid = UUID.new
     uuid.generate
   end
-
-  def ride_delete_button(ride)
-    content = ''
-    if ride.deletable?
-      content << link_to( "Delete", user_ride_path(current_user, ride),
-        :class => 'btn btn-primary delete-ride', :id => "delete-ride-#{ride.id}"
-      )
-      content << content_tag(:div, :class => "confirm-delete", :id => "confirm-delete-#{ride.id}") do
-        content_tag(:a, "Sure?", :href => "#", :class => "yes btn btn-success") +
-        "&nbsp;".html_safe +
-        content_tag(:a, "No", :href => "#", :class => "no btn btn-danger")
-      end
-      content << content_tag(:div, :class => "ride-loader", :id => "ride-loader-#{ride.id}") do
-        image_tag('loader.gif')
-      end
-    else
-      content << content_tag(:span, "Delete",
-        :class => "btn btn-primary disabled", "data-content" => "This cannot be deleted as it is pending."
-      )
-    end
-    content.html_safe
-  end
 end
