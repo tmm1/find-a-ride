@@ -22,7 +22,7 @@
             .accordion-inner
               = hidden_field_tag 'contact_type', 'via_gmail'
               = f.input :gmail_email, :label => "Email addresses", :input_html => { :class => 'text-input', :title => 'Comma-seperated list of emails'}
-              %span{:class => 'btn btn-primary btn-large', :href => '#import-gmail-contacts', :id => 'gmail-contacts-button', "data-toggle" => "modal"} get Gmail contacts              
+              %span{:class => 'btn btn-primary btn-large', :href => '#import-gmail-contacts', :id => 'gmail-contacts-button', "data-toggle" => "modal"} Invite your Gmail Contacts
         .accordion-group
           .accordion-heading
             %span{:href => "#invite3", :class => "accordion-toggle", :"data-parent"=> "#accordion2", :"data-toggle"=> "collapse" }
