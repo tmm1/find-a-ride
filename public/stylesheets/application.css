@@ -112,6 +112,16 @@ h5.table-text {
 
 .ride-list .delete-ride-cell .ride-loader {
   display: none;
-  min-height: 28px;
+  position: relative;
   float: right;
+  min-height: 28px;
+  width: 62px;
+}
+
+.ride-list .delete-ride-cell .ride-loader img {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  margin-top: -5px;
+  margin-right: -8px;
 }
