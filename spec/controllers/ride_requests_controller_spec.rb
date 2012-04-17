@@ -5,7 +5,6 @@ describe RideRequestsController do
   include Devise::TestHelpers
   before(:all) do
     @login_user = Factory(:user)
-    @login_user.confirm!
   end
 
   describe "#new" do
@@ -20,7 +19,7 @@ describe RideRequestsController do
   describe "#create" do
     it "should successfully create a new ride request" do
       sign_in @login_user
-      params = Factory.attributes_for(:ride_request)
+      params = Factory.attributes_for(:ride_request, :vehicle => 'four_wheeler')
       post 'create', :ride_request => params
       response.should redirect_to(search_ride_offers_path(params.merge({:from => :create})))
       ride_req = assigns(:ride_request)
@@ -44,13 +43,12 @@ describe RideRequestsController do
       ride_req.valid?.should be false
     end
 
-    it "should fail creating a duplicate record" do
+    it "should fail creating a duplicate ride request" do
       sign_in @login_user
-      params1 = Factory.attributes_for(:ride_request)
-      post 'create', :ride_request => params1
-      params2 = Factory.attributes_for(:ride_request)
-      post 'create', :ride_request => params2
+      RideRequest.create({:orig => 'Madhapur', :dest => 'Begumpet', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideRequest"}).should_not be nil
+      post 'create', :ride_request => {:orig => 'Madhapur', :dest => 'Begumpet', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideRequest"}
       ride_request = assigns(:ride_request)
+      ride_request.valid?.should be false
       ride_request.errors.first.should include("Oops. You already put in one with similar criteria!")
     end
   end
@@ -79,12 +77,30 @@ describe RideRequestsController do
       response.should render_template(:results)
       assigns(:paginated_results).should have(0).things
     end
+
+    it "ajax request should render the search page with results" do
+      RideRequest.stub!(:search).and_return(RideRequest.limit(2))
+      sign_in @login_user
+      xhr 'get', 'search', {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler',:page =>"1"}
+      response.should be_success
+      response.should render_template(:grid)
+      assigns(:paginated_results).should have(2).things
+    end
+
+    it "ajax request should render the search page with no results" do
+      RideRequest.stub!(:search).and_return(RideRequest.limit(2))
+      sign_in @login_user
+      xhr 'get', 'search', {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '12/Jan/2012', :start_time => '12/Jan/2012 01:30:00 pm', :vehicle => 'four_wheeler',:page =>"2"}
+      response.should be_success
+      response.should render_template(:grid)
+      assigns(:paginated_results).should have(0).things
+    end
+
   end
 
   describe "for inactive users" do
     before(:all) do
       @inactive_user = Factory(:user, :inactive => true)
-      @inactive_user.confirm!
     end
 
     [

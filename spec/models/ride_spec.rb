@@ -40,6 +40,13 @@ describe Ride do
       ride.errors[:dest].should include('is not valid')
     end
     
+    it 'should not allow additional info with greater than 300 chars' do
+      ride = Factory.build(:ride)
+      ride.notes = 'a'*301
+      ride.valid?.should be false
+      ride.should have(1).errors_on(:notes)
+    end
+    
     it 'should not allow past times for ride request on the same day' do
       ride = Factory.build(:ride)
       ride.start_date = Time.now.strftime("%d/%m/%Y")
@@ -115,7 +122,54 @@ describe Ride do
       ride.request?.should be false
     end
   end
-  
+
+  describe "#deletable? check" do
+    def get_date(day = :past)
+      ride_date ||= day.eql?(:past) ? 2.days.ago : 2.days.from_now
+      ride_date.strftime("%d/%b/%Y")
+    end
+
+    before(:all) do
+      @contacter = Factory(:user)
+    end
+
+    it "should return true for a past ride with no hook_ups" do
+      ride = Factory(:ride_offer, :user_id => @contacter.id, :start_date => get_date(:past), :start_date => "#{get_date(:past)} 01:30:00")
+      ride.deletable?.should be_true
+    end
+
+    it "should return true for a future ride with no hook_ups" do
+      ride = Factory(:ride_offer, :user_id => @contacter.id, :start_date => get_date(:future), :start_date => "#{get_date(:future)} 02:30:00")
+      ride.deletable?.should be_true
+    end
+
+    it "should return true for a past ride with all closed hook_ups" do
+      ride = Factory(:ride_request, :user_id => @contacter.id, :start_date => get_date(:past), :start_date => "#{get_date(:past)} 02:30:00")
+      hook_up1 = Factory(:hook_up, :contacter => @contacter, :hookable => ride, :hookable_type => "RideRequest")
+      hook_up2 = Factory(:hook_up, :contacter => @contacter, :hookable => ride, :hookable_type => "RideRequest")
+      hook_up1.close
+      hook_up2.close
+      ride.deletable?.should be_true
+    end
+
+    it "should return false for a past ride with an unclosed hook_up" do
+      ride = Factory(:ride_request, :user_id => @contacter.id, :start_date => get_date(:past), :start_date => "#{get_date(:past)} 02:30:00")
+      hook_up1 = Factory(:hook_up, :contacter => @contacter, :hookable => ride, :hookable_type => "RideRequest")
+      hook_up2 = Factory(:hook_up, :contacter => @contacter, :hookable => ride, :hookable_type => "RideRequest")
+      hook_up1.request
+      hook_up2.close
+      ride.deletable?.should be_false
+    end
+  end
+
+  describe "#humanize_type" do
+    it "should return correct humanized type" do
+      ride_request, ride_offer = Factory(:ride_request), Factory(:ride_offer)
+      ride_request.humanize_type.should eql("ride request")
+      ride_offer.humanize_type.should eql("ride offer")
+    end
+  end
+
 end
 
 

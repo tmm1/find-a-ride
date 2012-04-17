@@ -2,13 +2,15 @@
 %br
 
 %p.hookup-msg
-  I want to request you a ride from
-  %b #{@hook_up.hookable.ride_origin.name} 
+  I would like to request you a ride from
+  %b 
+    #{@hook_up.hookable.try(:ride_origin).try(:name)} 
   to 
-  %b #{@hook_up.hookable.ride_destination.name} 
+  %b 
+    #{@hook_up.hookable.try(:ride_destination).try(:name)} 
   at around  
   %b 
-    = formatted_ride_time(@hook_up.hookable.ride_time)
+    = formatted_ride_time(@hook_up.hookable.try(:ride_time))
 %br
 
 %p.hookup-contact-info
@@ -21,4 +23,5 @@
 
 %p.hookup-msg-addl= @message
 
-%p{:style => 'font-size: 18px;'} Thanks
+%p{:style => 'font-size: 18px;'} Thanks -
+%p= "#{@hook_up.contacter.try(:full_name)}"

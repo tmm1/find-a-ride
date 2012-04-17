@@ -1,0 +1,25 @@
+%table{:class => 'table table-striped'}
+  %th Leaving from
+  %th Going to
+  %th Time
+  %th
+  - rides.each do |ride|
+    - uuid = user_uuid
+    %tr{:id => "ride-cell-#{ride.id}"}
+      %td
+        %h5.table-text= ride.try(:ride_origin).try(:name)
+      %td
+        %h5.table-text= ride.try(:ride_destination).try(:name)
+      %td
+        %h5.table-text= humanize_time(ride.try(:ride_time))
+      %td.delete-ride-cell
+        - if ride.deletable?
+          %a.btn.btn-primary.delete-ride{:id => "delete-ride-#{ride.id}", :href => user_ride_path(current_user, ride)}
+            Delete
+          %div.confirm-delete{:id => "confirm-delete-#{ride.id}"}
+            %a.yes.btn.btn-success{:href => '#'} Sure?
+            %a.no.btn.btn-danger{:href => "#"} No
+          %div.ride-loader{:id => "ride-loader-#{ride.id}"}
+            - image_tag('loader.gif')
+        - else
+          %span.btn.btn-primary.disabled{"data-content" => "This cannot be deleted since it is still pending."} Delete

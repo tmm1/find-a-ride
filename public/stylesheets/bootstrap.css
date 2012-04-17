@@ -3487,7 +3487,7 @@ input[type="submit"].btn.btn-mini {
 }
 .popover-inner {
     padding: 3px;
-    width: 180px;
+    width: 205px;
     overflow: hidden;
     background: #000000;
     background: rgba(0, 0, 0, 0.8);
@@ -4805,7 +4805,7 @@ footer.footer {
     height: 16px;
 }
 
-.terms-and-conds {float: left;margin-right: 5px !important;margin-top: 5px !important;}
+.terms-and-conds {float: left;margin-right: 5px !important;margin-top: 1px !important;}
 .remember-me{float: left; margin-right: 5px !important;margin-top: 2px !important;}
 .hookup-note {margin: 0 0 9px 25px;}
 

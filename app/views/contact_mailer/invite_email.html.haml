@@ -1,0 +1,15 @@
+%p= "Hey there!"
+%br
+%p
+  = link_to('OnTheWay', root_url, :class => 'blue-underline')
+  is a service that helps folks who want to share rides contact each other &amp; mutually arrange for traveling together. Travelers looking for a ride can post a request and search for folks who can offer them a ride. Folks who want to share their vehicle can similarly post an offer and connect with people who are looking for a ride. I think you might find it useful.
+%p
+  = link_to "Sign up", signup_url(:referrer => @sender.email), :class => 'blue-underline'
+  to get started and be OnTheWay.
+%br
+%p{:style => 'font-size: 18px;'}
+  Thanks -
+  %br
+  = @sender.full_name
+  %br
+  = @sender.email

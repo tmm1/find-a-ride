@@ -1,0 +1,12 @@
+- unless params[:ride_request_page].nil?
+  :plain
+    $('#ride-requests').html("#{escape_javascript(render 'ride_requests')}")
+
+- else
+  :plain
+    $('#ride-offers').html('#{escape_javascript(render 'ride_offers')}')
+
+- if params[:action] == 'destroy'
+  :plain
+    $('.notice-area').html('#{escape_javascript(render 'shared/flashes')}');
+    setTimeout(hideFlashMessages, 3500);

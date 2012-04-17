@@ -11,6 +11,7 @@ class Ride < ActiveRecord::Base
   validates :start_time, :start_date, :date_time => true
   validates :start_time, :time => true
   validates :orig, :dest, :location => true
+  validates_length_of :notes, :maximum => 300
   
   attr_accessor :orig
   attr_accessor :dest
@@ -27,6 +28,14 @@ class Ride < ActiveRecord::Base
     type.eql? 'RideOffer'
   end
  
+  def deletable?
+    hook_ups.empty? or hook_ups.none? {|hu| !hu.closed?}
+  end
+
+  def humanize_type
+    self.class.to_s.underscore.humanize.downcase
+  end
+
   private
 
   def assign_attribs

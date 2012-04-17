@@ -6,4 +6,4 @@
   %br
   %p
   = render :partial => 'shared/rides_table', :locals => {:results => @paginated_results, :type => :ride_request}
-  = will_paginate @paginated_results, :renderer => BootstrapLinkRenderer
+  = will_paginate @paginated_results, :renderer => RemoteLinkRenderer

@@ -13,4 +13,12 @@ module HookUpsHelper
   def header_text(type)
     type.eql?('ride_offer') ? 'Request a ride from' : 'Offer a ride to' 
   end
+  
+  def activity_text(hook_up, user)
+    if hook_up.hookable.request?
+      hook_up.contacter.eql?(user) ? "You offered #{hook_up.contactee.try(:full_name)} a ride" : "#{hook_up.contacter.try(:full_name)} offered you a ride"
+    elsif hook_up.hookable.offer?
+      hook_up.contacter.eql?(user) ? "You requested #{hook_up.contactee.try(:full_name)} a ride" : "#{hook_up.contacter.try(:full_name)} requested you a ride"
+    end
+  end
 end

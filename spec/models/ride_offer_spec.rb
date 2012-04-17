@@ -91,7 +91,8 @@ describe RideOffer do
       params = {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => get_date, :start_time => "#{get_date} 04:30:00 pm", :vehicle => 'any'}
       results = RideOffer.search(params)
       results.should have(2).things
-      results.should == [@ride_offer6, @ride_offer11]
+      results.should include @ride_offer6
+      results.should include @ride_offer11
       results.should_not include [@ride_offer2, @ride_offer3, @ride_offer9, @ride_offer4, @ride_offer5, @ride_offer7, @ride_offer8, @ride_offer1, @ride_offer10]
     end
 

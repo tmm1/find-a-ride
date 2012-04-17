@@ -10,8 +10,8 @@ en:
         other: ''
   devise:
     sessions:
-      signed_in: 'You have signed into Find.a.Ride'
-      signed_out: 'You have signed out of Find.a.Ride'
+      signed_in: 'You have signed into OnTheWay'
+      signed_out: 'You have signed out of OnTheWay'
     failure:
       already_authenticated: 'You are already signed in!'
       unconfirmed: 'You have to verify your account using the email that was sent to you.'
@@ -33,7 +33,7 @@ en:
       updated: 'Your account was successfully updated'
     mailer:
       confirmation_instructions:
-        subject: 'Find-a-Ride account verification'
+        subject: 'OnTheWay account verification'
       reset_password_instructions:
-        subject: 'Find-a-Ride password reset'
+        subject: 'OnTheWay password reset'
 

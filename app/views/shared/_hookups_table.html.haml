@@ -1,13 +1,13 @@
 %table{:class => 'table table-striped'}
-  %th Name
-  %th Going from
-  %th Going to
-  %th Time
   - hook_ups.each do |h|
     %tr
-      %td= h.contactee.full_name
-      %td= h.hookable.ride_origin.name
-      %td= h.hookable.ride_destination.name
-      %td= h.hookable.ride_time.strftime('%B %d, %Y at %l:%M%p')
-
-
+      %td
+        %h5.table-text
+          = activity_text(h, current_user)
+          from
+          %span="#{h.hookable.ride_origin.name}"
+          to 
+          %span="#{h.hookable.ride_destination.name}"
+          for travel around
+          %span="#{h.hookable.ride_time.strftime('%B %d, %Y %l:%M%p')}"
+      %td= link_to('Rate the experience', '#', :class => 'btn btn-medium btn-primary')

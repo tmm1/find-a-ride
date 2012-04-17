@@ -2,6 +2,8 @@ class HookUpsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :restrict_inactive_user
 
+  authorize_resource
+
   def new
     @contactee = User.find_by_id(params[:id]) if params[:id]
     @origin = params[:orig]
@@ -21,6 +23,6 @@ class HookUpsController < ApplicationController
   end
   
   def index
-    @recent_hook_ups = HookUp.where(:contacter_id => current_user.id).order('created_at DESC').limit(5)
+    @recent_hook_ups = current_user.aggregrated_hook_ups
   end
 end

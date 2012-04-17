@@ -1,14 +1,19 @@
 class RideRequest < Ride
   belongs_to :requestor, :class_name => 'User', :foreign_key => 'user_id'
-  has_many :hook_ups, :as => :hookable
+
+  has_many :hook_ups, :as => :hookable, :finder_sql => Proc.new {
+    %|SELECT `hook_ups`.* FROM `hook_ups`
+    WHERE (`hook_ups`.hookable_id = '#{self.id}' AND `hook_ups`.hookable_type = 'RideRequest')|
+  }
+
   def self.search(params)
     orig = Location.find_by_name(params[:orig])
     dest = Location.find_by_name(params[:dest])
     ride_time = Helper.to_datetime(params[:start_date], params[:start_time])
     time_range = ([ride_time - 30.minutes, Time.now].max)..(ride_time + 30.minutes)
     active_requestors = User.active.select(:id)
-    params[:vehicle] = ['any'] << params[:vehicle]
-    RideRequest.where(:origin => orig.id, :destination => dest.id, :vehicle => params[:vehicle], :ride_time => time_range, :user_id => active_requestors).order('ride_time ASC')
+    vehicle_types = ['any'] << params[:vehicle]
+    RideRequest.where(:origin => orig.id, :destination => dest.id, :vehicle => vehicle_types, :ride_time => time_range, :user_id => active_requestors).order('ride_time ASC')
   end
 end
 

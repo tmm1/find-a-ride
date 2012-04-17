@@ -10,6 +10,7 @@ PoolRide::Application.routes.draw do
 
   match '/about' => 'home#about'
   match '/index' => 'home#index'
+  match '/users/:user_id/recent' => 'hook_ups#index', :as => :recent
 
   authenticated :user do
     root :to => 'rides#index'
@@ -45,6 +46,19 @@ PoolRide::Application.routes.draw do
   
   resources :users do
     resources :hook_ups
+    resources :rides do
+      collection do
+        get 'list'
+      end
+    end
+  end
+
+  resources :users do
+    resources :invites do
+      collection do
+        post 'send_invite'
+      end
+    end
   end
 
   match '/location_search' => 'application#location_search', :as => :location_search

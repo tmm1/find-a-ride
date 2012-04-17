@@ -2,6 +2,8 @@ class RideOffersController < RidesController
   before_filter :authenticate_user!
   before_filter :restrict_inactive_user
   
+  authorize_resource
+
   def new
   end
 
@@ -26,6 +28,7 @@ class RideOffersController < RidesController
     @paginated_results = results.paginate(:page => params[:page], :per_page => 5)
     respond_to do |format|
       format.html { render 'results' }
+      format.js {}
     end
   end
 end
