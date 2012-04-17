@@ -31,4 +31,21 @@ describe InvitesController do
       response.body.should == 'success'
     end
   end
+
+  describe "#get_gmail_contacts" do
+    it "should not fetch gmail contacts" do
+      sign_in @login_user
+      get 'get_gmail_contacts', { :login => "contactsuser@gmail.com", :password => "import123", :user_id => @login_user.id }
+      assigns[:all_contacts].should be_nil
+      assigns[:error_msg].should == "Username or password are incorrect"
+    end
+
+    it "should fetch gmail contacts successfully" do
+      sign_in @login_user
+      get 'get_gmail_contacts', { :login => "contactsuser@gmail.com", :password => "importcontacts", :user_id => @login_user.id }
+      assigns[:error_msg].should == ""
+      assigns[:all_contacts].should_not be_empty
+    end
+  end
+
 end

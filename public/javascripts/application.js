@@ -193,7 +193,6 @@ $(document).ready(function() {
 	    $('#contact').find('#comments').val('');
 	}
 
-
     //* Delete Ride *//
 
     function initDeleteRideHandlers() {
@@ -258,30 +257,131 @@ $(document).ready(function() {
 
     //*  Delete Ride  *//
 
-});
+  /** Fetch gmail contacts **/
+
+  $("#gmail-contacts-button").click(function(e){
+    e.preventDefault();
+    $('#import-gmail-contacts').find('.inline-errors').remove();
+    $("#gmail_userid").val('');
+    $("#gmail_password").val('');
+  });
+
+  $("#fetch-gmail-contacts").click(function(e){
+    e.preventDefault();
+    $('#import-gmail-contacts').find('.inline-errors').remove();
+    var email = $("#gmail_userid");
+    var password = $("#gmail_password");
+    var url = $('#invite2').attr('data-service-url');
+    if (email.val() === '' || password.val() === ''){
+      if (email.val() === ''){
+        email.after("<p class='inline-errors'>can't be blank</p>");
+      }
+      if (password.val() === ''){
+        password.after("<p class='inline-errors'>can't be blank</p>");
+      }
+    }
+   else{
+     $("#fetch-gmail-contacts").hide();
+     $("#import-gmail-contacts").find('.loader').show();
+     $.ajax({
+       type: 'GET',
+       url: url,
+       data: {
+         login: email.val(),
+         password: password.val()
+       },
+       success: function(data) {
+         $("#import-gmail-contacts").find('.loader').hide();
+         $("#fetch-gmail-contacts").show();
+         if (data.error_msg != '' && data.error_msg != undefined){
+           password.after("<p class='inline-errors'><br />"+data.error_msg+"</p>");
+         }
+         else{
+           $("#add-contacts").click(function(e){
+             e.preventDefault();
+             var selected_gmail_contacts = '';
+             var tot_checked = $("input:checkbox[name=contact_list]:checked").length;
+             var i = 1;
+             if ($("input:checkbox[name=contact_list]:checked").length > 0) {
+               $("input:checkbox[name=contact_list]:checked").each(function(){
+                 if (i < tot_checked) {
+                   selected_gmail_contacts = selected_gmail_contacts + $(this).attr('id') + ',';
+                 } else {
+                   selected_gmail_contacts = selected_gmail_contacts + $(this).attr('id');
+                 }
+                 i += 1;
+               });
+               $("#invites_gmail_email").val(selected_gmail_contacts);
+             }
+             $("#gmail-contacts").modal('hide');
+           });
+         }
+       }
+     });
+   }
+  });
+
+  /** Fetch gmail contacts **/
 
     /** Invite friend via email **/
     $("#invites_submit").click(function(e){
         e.preventDefault();
         valid = false;
         $('#invite1').find('.inline-errors').remove();
+        $('#invite2').find('.inline-errors').remove();
+        $('#invite3').find('.inline-errors').remove();
         var url = $('form').attr('action');
-        var emails = $('#invite1').find('#invites_email');
+        var contacts_type = $('.accordion-body.in').find("#contact_type").val();
+        var emails;
+        var passwords;
+        if (contacts_type == 'via_email') {
+          emails = $('#invite1').find('#invites_email');
+        }
+        else if (contacts_type == 'via_gmail') {
+          emails = $('#invite2').find('#invites_gmail_email');
+          passwords = $('#invite2').find('#invites_gmail_password');
+        }
+        else if (contacts_type == 'via_facebook') {
+        }
         var token = $("input[name=authenticity_token]").val();   
-        if (emails.val() === '') {
-            emails.after("<p class='inline-errors'>can't be blank</p>");
+        if (emails.val() === '' || (passwords && passwords.val() === '') ) {
+            if (emails.val() === ''){
+              emails.after("<p class='inline-errors'>can't be blank</p>");
+            }
+            if (passwords && passwords.val() === ''){
+              passwords.after("<p class='inline-errors'>can't be blank</p>");
+            }
         }
         else {
-	        var email_list = emails.val().split(",");
-	        for(var i=0; i<email_list.length; i++) {
-		      if (isValidEmail(email_list[i])) {
-			     valid = true;
-		      }
-		      else { 
-			     valid = false;
-			     emails.after("<p class='inline-errors'>can't be invalid</p>");
-			     break;
-			  }
+          var email_list;
+          if (contacts_type == 'via_email') {
+            email_list = emails.val().split(",");
+            for(var i=0; i<email_list.length; i++) {
+              if (isValidEmail(email_list[i])) {
+                valid = true;
+              } else {
+                valid = false;
+                emails.after("<p class='inline-errors'>can't be invalid</p>");
+                break;
+              }
+            }
+	        } else if (contacts_type == 'via_gmail'){
+	          if ($("#invites_gmail_email").val() === ''){
+	            valid=false;
+	          } else {
+              valid=true;
+              email_list = $("#invites_gmail_email").val().split(",");
+              for(var i=0; i<email_list.length; i++) {
+                if (isValidEmail(email_list[i])) {
+                  valid = true;
+                } else {
+                  valid = false;
+                  emails.after("<p class='inline-errors'>can't be invalid</p>");
+                  break;
+                }
+              }
+	          }
+	        } else if (contacts_type == 'via_facebook'){
 	        }
         }
         if (valid) {
@@ -308,6 +408,7 @@ $(document).ready(function() {
         
     });	
 
+});
 /** utility methods **/
 
 var isValidEmail = function(email) {
