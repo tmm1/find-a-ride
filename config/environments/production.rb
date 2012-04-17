@@ -51,4 +51,14 @@ PoolRide::Application.configure do
 
   config.action_mailer.asset_host = "http://on-the-way.herokuapp.com"
   config.action_controller.asset_host = "http://on-the-way.herokuapp.com"
+  
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'heroku.com'
+  }
+  ActionMailer::Base.delivery_method = :smtp
 end
