@@ -29,4 +29,10 @@ describe ErrorsController do
       response.should render_template(:unprocessable_entity)
     end
   end
+  describe "access denied" do
+    it 'should render access denied page' do
+      get 'access_denied'
+      response.should render_template(:access_denied)
+    end
+  end
 end

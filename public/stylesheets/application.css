@@ -9,12 +9,9 @@ p.inline-errors {
     margin-left: 2%;
     vertical-align: top;
 }
-
 p.terms_cond_error{    
-    display: block;
-    margin-top: -26px;
-    -moz-margin-start: 74% !important;
-    margin-left: 69%;
+    display: inline;
+    margin-left: 2%;
     font-size: 15px!important;
     color: #b94a48;
 }
@@ -25,6 +22,8 @@ p.terms_cond_error{
 }
 .carousel {
 	background-color: #3A87AD;
+	filter: alpha(opacity=50);
+	opacity: 0.5;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 }
@@ -124,6 +123,10 @@ h5.table-text {
   right: 50%;
   margin-top: -5px;
   margin-right: -8px;
+}
+
+#user_terms_input label {
+  display: inline-block;
 }
 
 #pageNavPosition {
