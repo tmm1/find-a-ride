@@ -37,7 +37,8 @@
             - if user_signed_in?
               %ul{:class => 'nav nav-pills pull-right'}
                 %li#user{:class => 'dropdown'}
-                  %a{:class => 'dropdown-toggle', "data-toggle" => 'dropdown', :href => 'user'} 
+                  %a{:class => 'dropdown-toggle', "data-toggle" => 'dropdown', :href => 'user'}
+                    = user_display_pic(current_user, '50x50')
                     = "#{current_user.name}"
                     %b.caret
                   %ul{:class => 'dropdown-menu'}

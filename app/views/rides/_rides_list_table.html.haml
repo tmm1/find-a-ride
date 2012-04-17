@@ -20,6 +20,6 @@
             %a.yes.btn.btn-success{:href => '#'} Sure?
             %a.no.btn.btn-danger{:href => "#"} No
           %div.ride-loader{:id => "ride-loader-#{ride.id}"}
-            - image_tag('loader.gif')
+            = image_tag('loader.gif')
         - else
           %span.btn.btn-primary.disabled{"data-content" => "This cannot be deleted since it is still pending."} Delete
