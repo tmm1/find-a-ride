@@ -197,7 +197,7 @@ $(document).ready(function() {
     //* Delete Ride *//
 
     function initDeleteRideHandlers() {
-      $(".tab-content .disabled").popover({title: "Please note"});
+      $(".ride-list .disabled").popover({title: "Please note"});
 
       $(".delete-ride").click(function(e) {
         e.preventDefault();
@@ -253,7 +253,7 @@ $(document).ready(function() {
       });
     }
 
-    $(".tab-content").ajaxComplete(initDeleteRideHandlers);
+    $(".ride-list").ajaxComplete(initDeleteRideHandlers);
     initDeleteRideHandlers();
 
     //*  Delete Ride  *//
