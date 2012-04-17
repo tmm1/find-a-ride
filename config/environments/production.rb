@@ -47,8 +47,8 @@ PoolRide::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   
-  config.action_mailer.default_url_options = { :host => 'find-a-ride.heroku.com' }
+  config.action_mailer.default_url_options = { :host => 'on-the-way.herokuapp.com' }
 
-  config.action_mailer.asset_host = "http://find-a-ride.heroku.com"
-  config.action_controller.asset_host = "http://find-a-ride.heroku.com"
+  config.action_mailer.asset_host = "http://on-the-way.herokuapp.com"
+  config.action_controller.asset_host = "http://on-the-way.herokuapp.com"
 end
