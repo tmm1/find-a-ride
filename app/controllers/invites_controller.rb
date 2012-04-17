@@ -6,8 +6,12 @@ class InvitesController < ApplicationController
 
   def send_invite
     #TODO: consider sending out individual emails (and not a single one) for privacy sake
-    ContactMailer.invite_email(current_user, params[:email_list]).deliver
-    render :text => 'success', :status => 200
+    if !params[:email_list].empty?
+      ContactMailer.invite_email(current_user, params[:email_list]).deliver
+      render :text => 'success', :status => 200
+    else
+      render :text => 'failed', :status => 200
+    end
   end
 
   def get_gmail_contacts
