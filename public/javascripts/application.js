@@ -346,7 +346,7 @@ $(document).ready(function() {
 /** Fetch gmail contacts **/
 
 var gmail_contacts = function(){
-  $("#fetch-gmail-contacts").click(function(e){
+  $("#fetch-gmail-contacts").unbind('click').bind('click', function(e){
     e.preventDefault();
     $('#import-gmail-contacts').find('.inline-errors').remove();
     var email = $("#gmail_userid");
