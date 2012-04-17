@@ -1,3 +1,16 @@
+GIT
+  remote: https://github.com/agentrock/contacts
+  revision: 1396bef975e3d8cce883f65b2bac9620f3e4532f
+  specs:
+    contacts (1.2.4)
+      json (>= 1.1.1)
+
+GIT
+  remote: https://github.com/agentrock/gdata.git
+  revision: 271d0b49d7dbe97b16969f06104f3e91022c40bc
+  specs:
+    gdata (1.1.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -56,6 +69,7 @@ GEM
     erubis (2.6.6)
       abstract (>= 1.0.0)
     eventmachine (0.12.10)
+    eventmachine (0.12.10-java)
     factory_girl (2.0.5)
     factory_girl_rails (1.1.0)
       factory_girl (~> 2.0.0)
@@ -79,6 +93,8 @@ GEM
     hpricot (0.8.6-java)
     htmlentities (4.3.1)
     i18n (0.5.0)
+    json (1.6.6)
+    json (1.6.6-java)
     launchy (2.0.5)
       addressable (~> 2.2.6)
     launchy (2.0.5-java)
@@ -236,10 +252,12 @@ DEPENDENCIES
   awesome_print
   aws-s3
   cancan (= 1.6.5)
+  contacts!
   devise
   factory_girl_rails
   faker (= 0.3.1)
   formtastic (= 2.0)
+  gdata!
   geokit
   haml (= 3.1.2)
   heroku

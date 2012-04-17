@@ -15,7 +15,8 @@ gem "paperclip", "~> 2.4"
 gem "aws-s3"
 gem "geokit"
 gem "uuid"
-gem "contacts"
+gem "contacts", :git => 'https://github.com/agentrock/contacts'
+gem 'gdata', git: 'https://github.com/agentrock/gdata.git'
 gem "thin"
 
 group :mysql do
