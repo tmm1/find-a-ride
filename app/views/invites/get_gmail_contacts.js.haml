@@ -1,0 +1,4 @@
+:plain
+  $("#import-gmail-contacts").modal('hide');
+  $("#gmail-contacts").modal('show');
+  $("#gmail-contacts").html("#{escape_javascript(render :partial => 'gmail_contacts_list', :locals => {:all_contacts => @all_contacts})}");

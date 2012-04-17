@@ -57,6 +57,7 @@ PoolRide::Application.routes.draw do
     resources :invites do
       collection do
         post 'send_invite'
+        get 'get_gmail_contacts'
       end
     end
   end
