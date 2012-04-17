@@ -1,4 +1,4 @@
-#import-gmail-contacts{:class => 'modal hide fade'}
+#import-modal
   .modal-header
     %h2 Fill in your Gmail account information
   .modal-body
@@ -12,3 +12,31 @@
     %br
     %span{:class => 'btn btn-primary btn-large', :id => 'fetch-gmail-contacts'} Submit
 
+#contacts-modal{:style => 'display:none;'}
+  .modal-header
+    %span{:style => 'font-size: 14px; color: #E36B23'}
+      %h2 Your Gmail Contacts:
+  .modal-body
+    %span
+    #list_of_contacts
+      %table{:id => "fetched_gmail_contacts_list", :width => "100%"}
+        -all_contacts.each do |contact|
+          %tr
+            %td
+              %input{:type=>"checkbox", :name=>"contact_list", :id => contact}
+            %td
+              = contact
+
+      #pageNavPosition
+
+    %br
+    .loader{:style => 'display: none; float:right;'}
+      = image_tag('loader.gif')
+
+  .modal-footer
+    %span{:class => 'btn btn-primary btn-large', :id => 'invite-gmail-contacts'} Invite
+
+  %script{:type => "text/javascript"}
+    var pager = new Pager('fetched_gmail_contacts_list', 10, 'pager', 'pageNavPosition');
+    pager.init();
+    pager.showPage(1);

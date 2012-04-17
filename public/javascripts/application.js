@@ -3,6 +3,7 @@ $(document).ready(function() {
     typeaheadSearch();
     rideTime();
     rideDate();
+    gmail_contacts();
     setTimeout(hideFlashMessages, 3500);
 
     $('.input-append').datepicker();
@@ -257,71 +258,15 @@ $(document).ready(function() {
 
     //*  Delete Ride  *//
 
-  /** Fetch gmail contacts **/
-
   $("#gmail-contacts-button").click(function(e){
-    e.preventDefault();
     $('#import-gmail-contacts').find('.inline-errors').remove();
+    $("#import-gmail-contacts").find('.loader').hide();
     $("#gmail_userid").val('');
     $("#gmail_password").val('');
+    $("#import-modal").show();
+    $("#contacts-modal").hide();
+    gmail_contacts();
   });
-
-  $("#fetch-gmail-contacts").click(function(e){
-    e.preventDefault();
-    $('#import-gmail-contacts').find('.inline-errors').remove();
-    var email = $("#gmail_userid");
-    var password = $("#gmail_password");
-    var url = $('#invite2').attr('data-service-url');
-    if (email.val() === '' || password.val() === ''){
-      if (email.val() === ''){
-        email.after("<p class='inline-errors'>can't be blank</p>");
-      }
-      if (password.val() === ''){
-        password.after("<p class='inline-errors'>can't be blank</p>");
-      }
-    }
-   else{
-     $("#fetch-gmail-contacts").hide();
-     $("#import-gmail-contacts").find('.loader').show();
-     $.ajax({
-       type: 'GET',
-       url: url,
-       data: {
-         login: email.val(),
-         password: password.val()
-       },
-       success: function(data) {
-         $("#import-gmail-contacts").find('.loader').hide();
-         $("#fetch-gmail-contacts").show();
-         if (data.error_msg != '' && data.error_msg != undefined){
-           password.after("<p class='inline-errors'><br />"+data.error_msg+"</p>");
-         }
-         else{
-           $("#add-contacts").click(function(e){
-             e.preventDefault();
-             var selected_gmail_contacts = '';
-             var tot_checked = $("input:checkbox[name=contact_list]:checked").length;
-             var i = 1;
-             if ($("input:checkbox[name=contact_list]:checked").length > 0) {
-               $("input:checkbox[name=contact_list]:checked").each(function(){
-                 if (i < tot_checked) {
-                   selected_gmail_contacts = selected_gmail_contacts + $(this).attr('id') + ',';
-                 } else {
-                   selected_gmail_contacts = selected_gmail_contacts + $(this).attr('id');
-                 }
-                 i += 1;
-               });
-               $("#invites_gmail_email").val(selected_gmail_contacts);
-             }
-             $("#gmail-contacts").modal('hide');
-           });
-         }
-       }
-     });
-   }
-  });
-
-  /** Fetch gmail contacts **/
 
     /** Invite friend via email **/
     $("#invites_submit").click(function(e){
@@ -386,30 +331,84 @@ $(document).ready(function() {
         }
         if (valid) {
 	        $("#invites_submit").hide();
-            $('.inputs').find('.loader').show();
-            $.ajax({
-                type: 'POST',
-                url: url,                
-                data: {
-                    email_list: email_list,
-                    authenticity_token: token
-                },
-                success: function(data) {                    
-                    if (data === 'success') {
-                        $('.notice-area').html("<div class='alert alert-success'>Thanks! Your invite was successfully sent.</div>")
-                        setTimeout(hideFlashMessages, 3500);
-                    }
-                    $("#invites_submit").show();
-		            $('.inputs').find('.loader').hide();
-		            emails.val('');
-                }
-            });
+          $('.inputs').find('.loader').show();
+          send_email_invites(email_list, token, url);
+          $('.inputs').find('.loader').hide();
+          $("#invites_submit").show();
+          emails.val('');
         }
         
     });	
 
 });
 /** utility methods **/
+
+/** Fetch gmail contacts **/
+
+var gmail_contacts = function(){
+  $("#fetch-gmail-contacts").click(function(e){
+    e.preventDefault();
+    $('#import-gmail-contacts').find('.inline-errors').remove();
+    var email = $("#gmail_userid");
+    var password = $("#gmail_password");
+    var url = $('#invite2').attr('data-service-url');
+    if (email.val() === '' || password.val() === ''){
+      if (email.val() === ''){
+        email.after("<p class='inline-errors'>can't be blank</p>");
+      }
+      if (password.val() === ''){
+        password.after("<p class='inline-errors'>can't be blank</p>");
+      }
+    }
+   else{
+     $("#fetch-gmail-contacts").hide();
+     $("#import-gmail-contacts").find('.loader').show();
+     $.ajax({
+       type: 'GET',
+       url: url,
+       data: {
+         login: email.val(),
+         password: password.val()
+       },
+       success: function(data) {
+         $("#import-gmail-contacts").find('.loader').hide();
+         if (data.error_msg != '' && data.error_msg != undefined){
+           $("#fetch-gmail-contacts").show();
+           password.after("<p class='inline-errors'><br />"+data.error_msg+"</p>");
+         }
+         else{
+           $("#invite-gmail-contacts").click(function(e){
+             e.preventDefault();
+             $("#invite-gmail-contacts").hide();
+             $("#import-gmail-contacts").find('.loader').show();
+             var selected_gmail_contacts = '';
+             var tot_checked = $("input:checkbox[name=contact_list]:checked").length;
+             var i = 1;
+             if ($("input:checkbox[name=contact_list]:checked").length > 0) {
+               $("input:checkbox[name=contact_list]:checked").each(function(){
+                 if (i < tot_checked) {
+                   selected_gmail_contacts = selected_gmail_contacts + $(this).attr('id') + ',';
+                 } else {
+                   selected_gmail_contacts = selected_gmail_contacts + $(this).attr('id');
+                 }
+                 i += 1;
+               });
+               var email_list = selected_gmail_contacts.split(',');
+               var token = $("input[name=authenticity_token]").val();
+               var url = $('form').attr('action');
+               send_email_invites(email_list, token, url);
+             }
+             setTimeout(function(){
+               $("#import-gmail-contacts").find('.loader').hide();
+               $("#import-gmail-contacts").modal('hide');
+             }, 1000);
+           });
+         }
+       }
+     });
+   }
+  });
+}
 
 var isValidEmail = function(email) {
     var email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -419,6 +418,24 @@ var isValidEmail = function(email) {
 var isValidMobile = function(phone){
     var phone_regex = /^[1-9]\d{9}$/;
     return phone_regex.test(phone.trim());
+}
+
+
+function send_email_invites(email_list, token, url) {
+  $.ajax({
+    type: 'POST',
+    url: url,
+    data: {
+      email_list: email_list,
+      authenticity_token: token
+    },
+    success: function(data) {
+      if (data === 'success') {
+        $('.notice-area').html("<div class='alert alert-success'>Thanks! Your invite was successfully sent.</div>");
+        setTimeout(hideFlashMessages, 3500);
+      }
+    }
+  });
 }
 
 function hideFlashMessages() {
