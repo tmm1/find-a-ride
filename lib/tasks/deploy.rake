@@ -9,13 +9,13 @@ def confirm(message)
 end
 
 namespace :deploy do
-  PRODUCTION_APP = 'find-a-ride'
-  PRODUCTION_BUNDLE = 'find-a-ride-bundle'
-  desc "Deploy to Production"
-  task :production do
+  STAGING_APP = 'on-the-way'
+  STAGING_BUNDLE = 'on-the-way-bundle'
+  desc "Deploy to Staging"
+  task :staging do
     iso_date = Time.now.strftime('%Y-%m-%dT%H%M%S')
 
-    confirm('This will deploy Find-a-Ride to production. Are you sure?')
+    confirm('This will deploy OnTheWay to staging. Are you sure?')
 
     tag_name = "heroku-#{iso_date}"
     puts "\n Tagging as #{tag_name}..."
@@ -23,24 +23,24 @@ namespace :deploy do
 
     puts "\n Pushing..."
     run "git push origin #{tag_name}"
-    run "git push git@heroku.com:#{PRODUCTION_APP}.git #{tag_name}:master"
+    run "git push git@heroku.com:#{STAGING_APP}.git #{tag_name}:master"
 
     puts "\n Migrating..."
-    run "heroku rake db:migrate --app #{PRODUCTION_APP}"
-    run "heroku rake db:seed --app #{PRODUCTION_APP}"
+    run "heroku rake db:migrate --app #{STAGING_APP}"
+    run "heroku rake db:seed --app #{STAGING_APP}"
 
-    puts "\n Deployment process completed"
+    puts "\n Deployment to staging completed"
   end
 end
 
 namespace :db do
-  PRODUCTION_APP = 'find-a-ride'
-  desc 'Migrate and Seed the Production Database'
-  task :production  do
-    confirm('This will drop, migrate and seed your production database. Are you sure?')
-    run "heroku pg:reset SHARED_DATABASE_URL --confirm #{PRODUCTION_APP}"
-    run "heroku rake db:migrate --app #{PRODUCTION_APP}"
-    run "heroku rake db:seed --app #{PRODUCTION_APP}"
+  PRODUCTION_APP = 'on-the-way'
+  desc 'Migrate and Seed the staging database'
+  task :staging  do
+    confirm('This will drop, migrate and seed your staging database. Are you sure?')
+    run "heroku pg:reset SHARED_DATABASE_URL --confirm #{STAGING_APP}"
+    run "heroku run rake db:migrate --app #{STAGING_APP}"
+    run "heroku run rake db:seed --app #{STAGING_APP}"
     puts "\n migrations ran completely"
   end
 end

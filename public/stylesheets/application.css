@@ -127,3 +127,10 @@ h5.table-text {
 #user_terms_input label {
   display: inline-block;
 }
+
+#pageNavPosition {
+  background-color: #2A333C;
+  padding-left: 150px;
+  font-size: 16px;
+  cursor: pointer;
+}

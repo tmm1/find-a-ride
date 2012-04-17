@@ -12,25 +12,31 @@
               %h3 Via Email
           #invite1{:class => "accordion-body collapse in"}
             .accordion-inner
+              = hidden_field_tag 'contact_type', 'via_email'
               = f.input :email, :label => "Email addresses", :input_html => { :class => 'text-input', :title => 'Enter a comma-seperated list of emails'}
         .accordion-group
           .accordion-heading
             %span{:href => "#invite2", :class => "accordion-toggle", :"data-parent"=> "#accordion2", :"data-toggle"=> "collapse" }
               %h3 Via Gmail
-          #invite2{:class => "accordion-body collapse"}
+          #invite2{:class => "accordion-body collapse", "data-service-url" => get_gmail_contacts_user_invites_url(current_user)}
             .accordion-inner
-              %p Invite friends via Gmail
+              = hidden_field_tag 'contact_type', 'via_gmail'
+              = f.input :gmail_email, :label => "Email addresses", :input_html => { :class => 'text-input', :title => 'Comma-seperated list of emails'}
+              %span{:class => 'btn btn-primary btn-large', :href => '#import-gmail-contacts', :id => 'gmail-contacts-button', "data-toggle" => "modal"} Invite your Gmail Contacts
         .accordion-group
           .accordion-heading
             %span{:href => "#invite3", :class => "accordion-toggle", :"data-parent"=> "#accordion2", :"data-toggle"=> "collapse" }
               %h3 Via Facebook
           #invite3{:class => "accordion-body collapse"}
             .accordion-inner
+              = hidden_field_tag 'contact_type', 'via_facebook'
               %p Invite friends via Facebook
       %br
       .loader{:style => 'display: none;'}
         = image_tag('loader.gif')
       = f.buttons do
         = f.commit_button "Invite", :button_html => {:class => 'btn btn-primary btn-large'}
-    
 
+  = render('import_gmail_contacts')
+
+#gmail-contacts{:class => 'modal hide fade'}
