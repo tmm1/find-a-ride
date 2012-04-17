@@ -16,6 +16,7 @@ gem "aws-s3"
 gem "geokit"
 gem "uuid"
 gem "contacts"
+gem "thin"
 
 group :mysql do
   gem 'mysql'

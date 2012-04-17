@@ -1,8 +1,10 @@
-.text
-  %h2 
-    List of ride offers you put in
 - unless @ride_offers.empty?
+  .text
+    %h2
+      List of ride offers you put in
   = render :partial => 'rides_list_table', :locals => {:rides => @ride_offers, :type => :ride_offer}
   = will_paginate @ride_offers, :params => {:controller => :rides, :action => :list, :user_id => current_user.id}, :param_name => :ride_offer_page, :renderer => RemoteLinkRenderer
 - else
-  You have no ride offers at the moment.
+  .text
+    %h2
+      You haven't put in any
