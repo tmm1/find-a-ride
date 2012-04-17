@@ -8,7 +8,11 @@ module ActionDispatch
           env["action_dispatch.request.parameters"]["exception_message"] = exception.try(:message)
           env["action_dispatch.request.parameters"]["exception_trace"] = exception.try(:backtrace)
         end
-        body = ErrorsController.action(rescue_responses[exception.class.name]).call(env)
+        if exception.class.name == 'CanCan::AccessDenied'
+          body = ErrorsController.action(:access_denied).call(env)
+        else
+          body = ErrorsController.action(rescue_responses[exception.class.name]).call(env)
+        end
         log_error(exception)
         body
       rescue

@@ -1,0 +1,12 @@
+.hero-unit
+  %h2.text-center You are not authorized to access this page!
+  %br
+  .text-center
+    = image_tag("access_denied_error.png", :size => '200x150')
+  %br
+  %p
+  %h2.text-center
+    %small
+      Please
+      = link_to('go back', root_url)
+      to the home page.
