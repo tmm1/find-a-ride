@@ -11,10 +11,8 @@ p.inline-errors {
 }
 
 p.terms_cond_error{    
-    display: block;
-    margin-top: -26px;
-    -moz-margin-start: 74% !important;
-    margin-left: 69%;
+    display: inline;
+    margin-left: 2%;
     font-size: 15px!important;
     color: #b94a48;
 }
@@ -124,4 +122,8 @@ h5.table-text {
   right: 50%;
   margin-top: -5px;
   margin-right: -8px;
+}
+
+#user_terms_input label {
+  display: inline-block;
 }
