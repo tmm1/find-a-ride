@@ -197,7 +197,7 @@ $(document).ready(function() {
     //* Delete Ride *//
 
     function initDeleteRideHandlers() {
-      $(".ride-list .disabled").popover({title: "Please note"});
+      $(".ride-list .delete-ride-cell .disabled").popover({title: "Please note"});
 
       $(".delete-ride").click(function(e) {
         e.preventDefault();
