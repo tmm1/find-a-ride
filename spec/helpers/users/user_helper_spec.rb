@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Users::UserHelper do
+describe Users::UsersHelper do
 
   # it 'should return personal info error count' do
   #   user = Factory(:user)
