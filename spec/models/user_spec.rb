@@ -93,6 +93,20 @@ describe User do
     end
   end
 
+  describe "#other active" do
+    it 'should return all the active users other than logged in user' do
+      @active_user1 = Factory(:user)
+      @active_user2 = Factory(:user)
+      @active_user3 = Factory(:user)
+      @inactive_user1 = Factory(:user, :inactive => true)
+      @inactive_user2 = Factory(:user, :inactive => true)
+      User.other_active(@active_user1.id).should_not include @inactive_user1
+      User.other_active(@active_user1.id).should_not include @inactive_user2
+      User.other_active(@active_user1.id).should_not include @active_user1
+      User.other_active(@active_user1.id).should include @active_user2
+    end
+  end
+
   describe "#profile picture" do
     before(:all) do
       @user = Factory(:user)

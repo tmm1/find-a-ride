@@ -11,7 +11,7 @@ class RideRequest < Ride
     dest = Location.find_by_name(params[:dest])
     ride_time = Helper.to_datetime(params[:start_date], params[:start_time])
     time_range = ([ride_time - 30.minutes, Time.now].max)..(ride_time + 30.minutes)
-    active_requestors = User.active.select(:id)
+    active_requestors = User.other_active(params[:user_id]).select(:id)
     vehicle_types = ['any'] << params[:vehicle]
     RideRequest.where(:origin => orig.id, :destination => dest.id, :vehicle => vehicle_types, :ride_time => time_range, :user_id => active_requestors).order('ride_time ASC')
   end

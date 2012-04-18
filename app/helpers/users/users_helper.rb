@@ -1,4 +1,4 @@
-module Users::UserHelper
+module Users::UsersHelper
   def errors_by_accordion_type(user_errors)
     return {} if user_errors.blank?
     personal_info_errors = []

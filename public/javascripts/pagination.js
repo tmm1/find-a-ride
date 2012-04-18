@@ -27,19 +27,19 @@ this.showPage = function (pageNumber) {
     }
     var oldPageAnchor = document.getElementById(this.pagerName + 'pg' + this.currentPage);
     if (oldPageAnchor != null) {
-        oldPageAnchor.className = 'pg-normal';
+        oldPageAnchor.className = '';
     }
     this.currentPage = pageNumber;
     var newPageAnchor = document.getElementById(this.pagerName + 'pg' + this.currentPage);
     if (newPageAnchor != null) {
-        newPageAnchor.className = 'pg-selected';
+        newPageAnchor.className = 'active';
     }
     var from = (pageNumber - 1) * itemsPerPage + 1;
     var to = from + itemsPerPage - 1;
     this.showRecords(from, to);
 
-    var pgNext = document.getElementById(this.pagerName + 'pgNext');
-    var pgPrev = document.getElementById(this.pagerName + 'pgPrev');
+    var pgNext = document.getElementById('next_page');
+    var pgPrev = document.getElementById('previous_page');
 
     if (pgNext != null) {
         if (this.currentPage == this.pages) pgNext.style.display = 'none';
@@ -83,26 +83,29 @@ this.showPageNav = function (start) {
         var index = 0;
         this.numbers = new Array(10);
 
-        var pagerHtml = ' ';
+        var pagerHtml = '<ul>';
         if (this.pages > 2) {
-            pagerHtml += '<span id="' + this.pagerName + 'pgPrev" onclick="' + this.pagerName + '.prev();" class="pg-normal"> << Prev </span>';
+            pagerHtml += '<li>'
+            pagerHtml += '<a class="prev previous_page" onclick="' + this.pagerName + '.prev();" class="">← Prev</a></li>';
         }
         for (var page = start; page <= loopEnd; page++) {
             if (page > this.pages) {
                 break;
             }
             this.numbers[index] = page;
-            pagerHtml += '<span id="' + this.pagerName + 'pg' + page + '" class="pg-normal" onclick="' + this.pagerName + '.showPage(' + page + ');">' + page + '</span>';
+            pagerHtml += '<li>';
+            pagerHtml += '<a id="' + this.pagerName + 'pg' + page + '" class="" onclick="' + this.pagerName + '.showPage(' + page + ');">' + page + '</a></li>';
             if (page != loopEnd) {
                 pagerHtml += '   ';
             }
             index++;
         }
         page--;
-        if (this.pages > page) {
-            pagerHtml += '<span class="regularDataBlue">...</span>';
-        }
-        pagerHtml += '<span id="' + this.pagerName + 'pgNext" onclick="' + this.pagerName + '.next();" class="pg-normal"> Next >></span>';
+        /*if (this.pages > page) {
+            pagerHtml += '<li class="regularDataBlue">...</li>';
+        }*/
+        pagerHtml += '<li>';
+        pagerHtml += '<a class="next next_page" onclick="' + this.pagerName + '.next();" class="">Next →</a></li>';
         element.innerHTML = pagerHtml;
     }
 }
