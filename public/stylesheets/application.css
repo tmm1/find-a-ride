@@ -20,6 +20,13 @@ p.terms_cond_error{
 	font-size: 15px!important;
 	color: #b94a48;
 }
+#dp3 li {
+  display: inline-block;
+}
+#dp3 .add-on {
+  float: none;
+  margin: -14px 0 0 -4px;
+}
 .carousel {
 	background-color: #3A87AD;
 	filter: alpha(opacity=50);
