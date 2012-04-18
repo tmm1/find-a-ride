@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :ride_requests
   has_many :hook_ups_as_contacter, :class_name => 'HookUp', :foreign_key => 'contacter_id'
   has_many :hook_ups_as_contactee, :class_name => 'HookUp', :foreign_key => 'contactee_id'
+  has_many :sent_alerts, :class_name => 'Alert', :foreign_key => 'sender_id'
+  has_many :received_alerts, :class_name => 'Alert', :foreign_key => 'receiver_id'
 
   attr_accessor :mobile_required
 

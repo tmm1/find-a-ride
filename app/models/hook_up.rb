@@ -54,6 +54,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: hook_ups
@@ -66,5 +67,6 @@ end
 #  message       :string(3000)
 #  hookable_id   :integer(4)
 #  hookable_type :string(255)
+#  state         :string(255)
 #
 

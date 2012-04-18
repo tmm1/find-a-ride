@@ -12,6 +12,9 @@ describe HookUp do
     it { should_not allow_value('123456789000').for(:mobile)}
     it { should_not allow_value('dadd122112').for(:mobile)}
     it { should allow_value('1234567890').for(:mobile)}
+    
+    it { should belong_to(:contacter), :class_name => 'User'}
+    it { should belong_to(:contactee), :class_name => 'User'}
   end
 
   describe "#scopes" do
@@ -98,6 +101,7 @@ describe HookUp do
 end
 
 
+
 # == Schema Information
 #
 # Table name: hook_ups
@@ -110,5 +114,6 @@ end
 #  message       :string(3000)
 #  hookable_id   :integer(4)
 #  hookable_type :string(255)
+#  state         :string(255)
 #
 

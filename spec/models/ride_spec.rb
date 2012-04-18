@@ -16,6 +16,9 @@ describe Ride do
     it { should allow_value('1230').for(:start_time)}
     it { should allow_value('2012-03-21 01:30:00').for(:start_time)}
     
+    it { should belong_to(:ride_origin), :class_name => 'Location', :foreign_key => 'origin'}
+    it { should belong_to(:ride_destination), :class_name => 'Location', :foreign_key => 'destination'}
+    
     it 'should allow only valid values for start time' do
       ride = Factory.build(:ride)
       ride.start_time = 'blahblah'
