@@ -10,32 +10,32 @@
     .loader.pull-left{:style => 'display: none;'}
       = image_tag('loader.gif')
     %br
-    %span{:class => 'btn btn-primary btn-large pull-left', :id => 'fetch-gmail-contacts'} Submit
+    #fetch-gmail-contacts{:class => 'btn btn-primary btn-large pull-left'}
+      Submit
 
 #contacts-modal{:style => 'display:none;'}
   .modal-header
     %h1 Your Gmail Contacts
   .modal-body
-    %span
-    #list_of_contacts
-      %table{:id => "fetched_gmail_contacts_list", :width => "100%"}
-        -all_contacts.each do |contact|
-          %tr
-            %td
-              %input{:type=>"checkbox", :name=>"contact_list", :id => contact}
-            %td
-              = contact
-
-      #pageNavPosition
-
+    %table{:id => "fetched_gmail_contacts_list"}
+      -all_contacts.each do |contact|
+        %tr
+          %td
+          %td
+            %input{:type=>"checkbox", :name=>"contact_list", :id => contact}
+          %td
+            = contact
+    %br
+    #pagination
     %br
     .loader.pull-left{:style => 'display: none;'}
       = image_tag('loader.gif')
-
+  #no-selection-error
   .modal-footer
-    %span{:class => 'btn btn-primary btn-large pull-left', :id => 'invite-gmail-contacts'} Invite
+    #invite-gmail-contacts{:class => 'btn btn-primary btn-large pull-left'}
+      Invite
 
   %script{:type => "text/javascript"}
-    var pager = new Pager('fetched_gmail_contacts_list', 10, 'pager', 'pageNavPosition');
+    var pager = new Pager('fetched_gmail_contacts_list', 10, 'pager', 'pagination');
     pager.init();
     pager.showPage(1);

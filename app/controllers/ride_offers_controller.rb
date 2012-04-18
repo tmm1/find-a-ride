@@ -23,7 +23,8 @@ class RideOffersController < RidesController
     end
   end
   
-  def search
+  def search   
+    params.deep_merge!(:user_id => current_user.id) if params
     results = RideOffer.search(params)
     @paginated_results = results.paginate(:page => params[:page], :per_page => 5)
     respond_to do |format|
