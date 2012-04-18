@@ -30,7 +30,7 @@
           #invite3{:class => "accordion-body collapse"}
             .accordion-inner
               = hidden_field_tag 'contact_type', 'via_facebook'
-              %p Invite friends via Facebook
+              = render :partial => "facebook_invite"
       %br
       .loader{:style => 'display: none;'}
         = image_tag('loader.gif')

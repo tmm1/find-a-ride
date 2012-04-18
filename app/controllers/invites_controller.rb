@@ -30,4 +30,8 @@ class InvitesController < ApplicationController
     end
   end
 
+  def facebook_invite_response
+    flash.now[:notice]="Thanks! Your invite was successfully sent."
+  end
+
 end
