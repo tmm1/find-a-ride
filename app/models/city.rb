@@ -1,6 +1,7 @@
 class City < ActiveRecord::Base
   has_many :locations
 end
+
 # == Schema Information
 #
 # Table name: cities

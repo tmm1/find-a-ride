@@ -30,7 +30,6 @@ group :heroku do
 end
 
 group :development do
-  gem "rspec-rails", "~> 2.4"
   gem 'annotate', '2.4.0'
   gem 'letter_opener'
   gem "awesome_print"
