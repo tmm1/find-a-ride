@@ -279,9 +279,7 @@ $(document).ready(function() {
         var contacts_type = $('.accordion-body.in').find("#contact_type").val();
         var emails;
         var passwords;
-        if (contacts_type == 'via_email') {
-          emails = $('#invite1').find('#invites_email');
-        }
+        emails = $('#invite1').find('#invites_email');
         var token = $("input[name=authenticity_token]").val();   
         if (emails.val() === '' || (passwords && passwords.val() === '') ) {
             if (emails.val() === ''){
@@ -292,19 +290,16 @@ $(document).ready(function() {
             }
         }
         else {
-          var email_list;
-          if (contacts_type == 'via_email') {
-            email_list = emails.val().split(",");
-            for(var i=0; i<email_list.length; i++) {
-              if (isValidEmail(email_list[i])) {
-                valid = true;
-              } else {
-                valid = false;
-                emails.after("<p class='inline-errors'>can't be invalid</p>");
-                break;
-              }
+          email_list = emails.val().split(",");
+          for(var i=0; i<email_list.length; i++) {
+            if (isValidEmail(email_list[i])) {
+              valid = true;
+            } else {
+              valid = false;
+              emails.after("<p class='inline-errors'>can't be invalid</p>");
+              break;
             }
-	        }
+          }
         }
         if (valid) {
 	        $("#invites_submit").hide();
