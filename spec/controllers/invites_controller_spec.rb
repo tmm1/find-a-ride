@@ -55,4 +55,14 @@ describe InvitesController do
     end
   end
 
+  describe "#facebook invite " do
+    it "should send invitation to facebook friends" do
+      sign_in @login_user
+      get "facebook_invite_response", {}
+      response.should be_success
+      response.should render_template(:facebook_invite)
+      response.flash[:notice].should == "Thanks! Your invite was successfully sent."
+    end
+  end
+
 end

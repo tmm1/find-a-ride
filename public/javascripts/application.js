@@ -279,15 +279,7 @@ $(document).ready(function() {
         var contacts_type = $('.accordion-body.in').find("#contact_type").val();
         var emails;
         var passwords;
-        if (contacts_type == 'via_email') {
-          emails = $('#invite1').find('#invites_email');
-        }
-        else if (contacts_type == 'via_gmail') {
-          emails = $('#invite2').find('#invites_gmail_email');
-          passwords = $('#invite2').find('#invites_gmail_password');
-        }
-        else if (contacts_type == 'via_facebook') {
-        }
+        emails = $('#invite1').find('#invites_email');
         var token = $("input[name=authenticity_token]").val();   
         if (emails.val() === '' || (passwords && passwords.val() === '') ) {
             if (emails.val() === ''){
@@ -298,44 +290,26 @@ $(document).ready(function() {
             }
         }
         else {
-          var email_list;
-          if (contacts_type == 'via_email') {
-            email_list = emails.val().split(",");
-            for(var i=0; i<email_list.length; i++) {
-              if (isValidEmail(email_list[i])) {
-                valid = true;
-              } else {
-                valid = false;
-                emails.after("<p class='inline-errors'>can't be invalid</p>");
-                break;
-              }
+          email_list = emails.val().split(",");
+          for(var i=0; i<email_list.length; i++) {
+            if (isValidEmail(email_list[i])) {
+              valid = true;
+            } else {
+              valid = false;
+              emails.after("<p class='inline-errors'>can't be invalid</p>");
+              break;
             }
-	        } else if (contacts_type == 'via_gmail'){
-	          if ($("#invites_gmail_email").val() === ''){
-	            valid=false;
-	          } else {
-              valid=true;
-              email_list = $("#invites_gmail_email").val().split(",");
-              for(var i=0; i<email_list.length; i++) {
-                if (isValidEmail(email_list[i])) {
-                  valid = true;
-                } else {
-                  valid = false;
-                  emails.after("<p class='inline-errors'>can't be invalid</p>");
-                  break;
-                }
-              }
-	          }
-	        } else if (contacts_type == 'via_facebook'){
-	        }
+          }
         }
         if (valid) {
 	        $("#invites_submit").hide();
           $('.inputs').find('.loader').show();
           send_email_invites(email_list, token, url);
-          $('.inputs').find('.loader').hide();
-          $("#invites_submit").show();
-          emails.val('');
+          setTimeout(function(){
+            $('.inputs').find('.loader').hide();
+            $("#invites_submit").show();
+            emails.val('');
+          }, 1000);
         }
         
     });	
@@ -379,12 +353,13 @@ var gmail_contacts = function(){
          else{
            $("#invite-gmail-contacts").click(function(e){
              e.preventDefault();
-             $("#invite-gmail-contacts").hide();
-             $("#import-gmail-contacts").find('.loader').show();
+             $('#import-gmail-contacts').find('.inline-errors').remove();
              var selected_gmail_contacts = '';
              var tot_checked = $("input:checkbox[name=contact_list]:checked").length;
              var i = 1;
              if ($("input:checkbox[name=contact_list]:checked").length > 0) {
+               $("#invite-gmail-contacts").hide();
+               $("#import-gmail-contacts").find('.loader').show();
                $("input:checkbox[name=contact_list]:checked").each(function(){
                  if (i < tot_checked) {
                    selected_gmail_contacts = selected_gmail_contacts + $(this).attr('id') + ',';
@@ -397,11 +372,13 @@ var gmail_contacts = function(){
                var token = $("input[name=authenticity_token]").val();
                var url = $('form').attr('action');
                send_email_invites(email_list, token, url);
+               setTimeout(function(){
+                 $("#import-gmail-contacts").find('.loader').hide();
+                 $("#import-gmail-contacts").modal('hide');
+               }, 1000);
+             } else {
+               $("#no-selection-error").append("<p class='inline-errors'> No email addresses selected </p>");
              }
-             setTimeout(function(){
-               $("#import-gmail-contacts").find('.loader').hide();
-               $("#import-gmail-contacts").modal('hide');
-             }, 1000);
            });
          }
        }

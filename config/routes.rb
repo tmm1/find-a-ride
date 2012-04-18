@@ -62,6 +62,7 @@ PoolRide::Application.routes.draw do
     end
   end
 
+  match '/facebook_invite' => 'invites#facebook_invite_response', :as => :facebook_invite
   match '/location_search' => 'application#location_search', :as => :location_search
   match '/geocode_city' => 'application#geocode_city'
   match '/twitter' => 'users/omniauth_callback#twitter'
