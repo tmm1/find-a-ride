@@ -3,7 +3,8 @@ class ErrorsController < ApplicationController
     :internal_server_error,
     :not_found,
     :method_not_allowed,
-    :unprocessable_entity
+    :unprocessable_entity,
+    :access_denied
   ].freeze
 
   ERRORS.each do |e|

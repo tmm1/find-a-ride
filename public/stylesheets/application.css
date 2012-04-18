@@ -9,7 +9,6 @@ p.inline-errors {
     margin-left: 2%;
     vertical-align: top;
 }
-
 p.terms_cond_error{    
     display: inline;
     margin-left: 2%;
@@ -30,6 +29,8 @@ p.terms_cond_error{
 }
 .carousel {
 	background-color: #3A87AD;
+	filter: alpha(opacity=50);
+	opacity: 0.5;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 }
@@ -104,17 +105,14 @@ h5.table-text {
 .ride-list .delete-ride-cell {
   width: 102px;
 }
-
 .ride-list .delete-ride-cell .delete-ride,
 .ride-list .delete-ride-cell .disabled {
   float: right;
 }
-
 .ride-list .delete-ride-cell .confirm-delete {
   display: none;
   float: right;
 }
-
 .ride-list .delete-ride-cell .ride-loader {
   display: none;
   position: relative;
@@ -122,7 +120,6 @@ h5.table-text {
   min-height: 28px;
   width: 62px;
 }
-
 .ride-list .delete-ride-cell .ride-loader img {
   position: absolute;
   top: 50%;
@@ -130,11 +127,9 @@ h5.table-text {
   margin-top: -5px;
   margin-right: -8px;
 }
-
 #user_terms_input label {
   display: inline-block;
 }
-
 #pageNavPosition {
   background-color: #2A333C;
   padding-left: 150px;

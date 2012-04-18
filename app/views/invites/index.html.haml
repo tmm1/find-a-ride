@@ -21,7 +21,7 @@
           #invite2{:class => "accordion-body collapse", "data-service-url" => get_gmail_contacts_user_invites_url(current_user)}
             .accordion-inner
               = hidden_field_tag 'contact_type', 'via_gmail'
-              = f.input :gmail_email, :label => "Email addresses", :input_html => { :class => 'text-input', :title => 'Comma-seperated list of emails'}
+              =# f.input :gmail_email, :label => "Email addresses", :input_html => { :class => 'text-input', :title => 'Comma-seperated list of emails'}
               %span{:class => 'btn btn-primary btn-large', :href => '#import-gmail-contacts', :id => 'gmail-contacts-button', "data-toggle" => "modal"} Invite your Gmail Contacts
         .accordion-group
           .accordion-heading
@@ -37,6 +37,6 @@
       = f.buttons do
         = f.commit_button "Invite", :button_html => {:class => 'btn btn-primary btn-large'}
 
-  = render('import_gmail_contacts')
-
-#gmail-contacts{:class => 'modal hide fade'}
+#import-gmail-contacts{:class => 'modal hide fade'}
+  = render :partial => 'import_gmail_contacts', :locals => { :all_contacts => [] }
+  

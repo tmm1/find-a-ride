@@ -1,6 +1,6 @@
 .modal-header
-  %span{:style => 'font-size: 14px; color: #E36B23'}
-    Your Gamil Contacts:
+  %h1
+    Your Gmail contacts
 .modal-body
   %span
   #list_of_contacts
@@ -15,7 +15,7 @@
 #pageNavPosition
 
 .modal-footer
-  %span{:class => 'btn btn-primary btn-large', :id => 'add-contacts'} Add Contacts
+  %span{:class => 'btn btn-primary btn-large pull-left', :id => 'add-contacts'} Invite
   
 %script{:type => "text/javascript"}
   var pager = new Pager('fetched_gmail_contacts_list', 10, 'pager', 'pageNavPosition');

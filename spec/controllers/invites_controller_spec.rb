@@ -30,6 +30,13 @@ describe InvitesController do
       response.should be_success
       response.body.should == 'success'
     end
+
+    it "should send the failure status when no emails in the list" do
+      sign_in @login_user
+      xhr :post,  :send_invite, {:email_list => [],:user_id => @login_user.id}
+      response.should be_success
+      response.body.should == 'failed'
+    end
   end
 
   describe "#get_gmail_contacts" do
