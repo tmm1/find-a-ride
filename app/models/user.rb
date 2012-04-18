@@ -49,6 +49,11 @@ class User < ActiveRecord::Base
   def self.active
     where(:inactive => false)
   end
+
+  # Active users other than logged in user
+  def self.other_active(id)
+    where("inactive = :inactive AND id != :id", :inactive => false , :id => id)
+  end
   
   def aggregrated_hook_ups(limit=5)
     (self.hook_ups_as_contacter.order('created_at DESC') + self.hook_ups_as_contactee.order('created_at DESC')).sort_by(&:created_at).reverse.first(limit)
