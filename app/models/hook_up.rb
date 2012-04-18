@@ -1,4 +1,12 @@
 class HookUp < ActiveRecord::Base 
+
+  default_scope lambda {
+    joins("INNER JOIN `rides` ON `rides`.`id` = `hook_ups`.`hookable_id`").where("`rides`.`expires_on` >= ?", Date.today)
+  }
+
+  # DynamicDefaultScoping to be included after default_scope
+  include DynamicDefaultScoping
+
   belongs_to :contacter, :class_name => 'User'
   belongs_to :contactee, :class_name => 'User'
   belongs_to :hookable, :polymorphic => true
