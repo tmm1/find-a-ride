@@ -12,7 +12,6 @@
               %h3 Via Email
           #invite1{:class => "accordion-body collapse in"}
             .accordion-inner
-              = hidden_field_tag 'contact_type', 'via_email'
               = f.input :email, :label => "Email addresses", :input_html => { :class => 'text-input', :title => 'Enter a comma-seperated list of emails'}
               .loader{:style => 'display: none;'}
                 = image_tag('loader.gif')
@@ -24,7 +23,6 @@
               %h3 Via Gmail
           #invite2{:class => "accordion-body collapse", "data-service-url" => get_gmail_contacts_user_invites_url(current_user)}
             .accordion-inner
-              = hidden_field_tag 'contact_type', 'via_gmail'
               .invite-gmail-button{:class => 'btn btn-info', :href => '#import-gmail-contacts', :id => 'gmail-contacts-button', "data-toggle" => "modal"}
                 %p Invite your Gmail Contacts
         .accordion-group
@@ -33,7 +31,6 @@
               %h3 Via Facebook
           #invite3{:class => "accordion-body collapse"}
             .accordion-inner
-              = hidden_field_tag 'contact_type', 'via_facebook'
               %p Invite friends via Facebook
 
 #import-gmail-contacts{:class => 'modal hide fade'}
