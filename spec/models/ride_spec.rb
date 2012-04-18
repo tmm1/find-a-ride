@@ -1,6 +1,15 @@
 require 'spec_helper'
 
 describe Ride do
+
+  def get_date(time)
+    time.strftime("%d/%m/%Y")
+  end
+
+  def get_time(time)
+    time.strftime("%d/%m/%Y %r")
+  end
+
   describe "#attributes and methods" do
     it { should validate_presence_of(:orig) }
     it { should validate_presence_of(:dest) }
@@ -56,7 +65,7 @@ describe Ride do
     end    
     
     it 'should assign attributes appropriately for a ride request during creation' do
-      ride_request = RideRequest.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00'})
+      ride_request = RideRequest.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => get_date(2.days.from_now), :start_time => get_time(2.days.from_now)})
       ride_request.ride_origin.should == Location.find_by_name('Madhapur')
       ride_request.ride_destination.should == Location.find_by_name('Kondapur')
       ride_request.ride_time.should == Helper.to_datetime(ride_request.start_date, ride_request.start_time)
@@ -70,21 +79,39 @@ describe Ride do
     end
   end
 
+  describe "#scopes" do
+    it 'default_scope should ignore expired rides' do
+      Ride.scoped.where_values.should eql(["`rides`.`expires_on` >= '#{Date.today}'"])
+    end
+  end
+
   describe "#duplicate validation for ride request" do
     before(:each) do
       Ride.destroy_all
     end
 
     it "should fail with the duplicate error" do
-      ride_request1 = RideRequest.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideRequest"})
-      ride_request2 = RideRequest.new({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideRequest"})
+      ride_request1 = RideRequest.create({
+        :orig => 'Madhapur', :dest => 'Kondapur', :type=>"RideRequest",
+        :start_date => get_date(2.days.from_now), :start_time => get_time(2.days.from_now)
+      })
+      ride_request2 = RideRequest.new({
+        :orig => 'Madhapur', :dest => 'Kondapur', :type=>"RideRequest",
+        :start_date => get_date(2.days.from_now), :start_time => get_time(2.days.from_now)
+      })
       ride_request2.should_not be_valid
       ride_request2.errors[:base].should include ("Oops. You already put in one with similar criteria!")
     end
 
     it "should successfully create a ride request" do
-      ride_request1 = RideRequest.create({:orig => 'Madhapur', :dest => 'Begumpet', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideRequest"})
-      ride_request2 = RideRequest.new({:orig => 'Madhapur', :dest => 'Addagutta', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideRequest"})
+      ride_request1 = RideRequest.create({
+        :orig => 'Madhapur', :dest => 'Begumpet', :type=>"RideRequest",
+        :start_date => get_date(2.days.from_now), :start_time => get_time(2.days.from_now)
+      })
+      ride_request2 = RideRequest.new({
+        :orig => 'Madhapur', :dest => 'Addagutta', :type=>"RideRequest",
+        :start_date => get_date(2.days.from_now), :start_time => get_time(2.days.from_now)
+      })
       ride_request2.should be_valid
       ride_request2.errors.full_messages.should eql([])
     end
@@ -95,15 +122,27 @@ describe Ride do
       Ride.destroy_all
     end
     it "should fail with the duplicate error" do
-      ride_offer1 = RideOffer.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideOffer"})
-      ride_offer2 = RideOffer.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideOffer"})
+      ride_offer1 = RideOffer.create({
+        :orig => 'Madhapur', :dest => 'Kondapur', :type=>"RideOffer",
+        :start_date => get_date(2.days.from_now), :start_time => get_time(2.days.from_now)
+      })
+      ride_offer2 = RideOffer.create({
+        :orig => 'Madhapur', :dest => 'Kondapur', :type=>"RideOffer",
+        :start_date => get_date(2.days.from_now), :start_time => get_time(2.days.from_now)
+      })
       ride_offer2.should_not be_valid
       ride_offer2.errors[:base].should include ("Oops. You already put in one with similar criteria!")
     end
 
     it "should successfully create a ride offer" do
-      ride_offer1 = RideOffer.create({:orig => 'Madhapur', :dest => 'Begumpet', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideOffer"})
-      ride_offer2 = RideOffer.new({:orig => 'Madhapur', :dest => 'Addagutta', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideOffer"})
+      ride_offer1 = RideOffer.create({
+        :orig => 'Madhapur', :dest => 'Begumpet', :type=>"RideOffer",
+        :start_date => get_date(2.days.from_now), :start_time => get_time(2.days.from_now)
+      })
+      ride_offer2 = RideOffer.new({
+        :orig => 'Madhapur', :dest => 'Addagutta', :type=>"RideOffer",
+        :start_date => get_date(2.days.from_now), :start_time => get_time(2.days.from_now)
+      })
       ride_offer2.should be_valid
       ride_offer2.errors.full_messages.should eql([])
     end
@@ -124,27 +163,22 @@ describe Ride do
   end
 
   describe "#deletable? check" do
-    def get_date(day = :past)
-      ride_date ||= day.eql?(:past) ? 2.days.ago : 2.days.from_now
-      ride_date.strftime("%d/%b/%Y")
-    end
-
     before(:all) do
       @contacter = Factory(:user)
     end
 
     it "should return true for a past ride with no hook_ups" do
-      ride = Factory(:ride_offer, :user_id => @contacter.id, :start_date => get_date(:past), :start_date => "#{get_date(:past)} 01:30:00")
+      ride = Factory(:ride_offer, :user_id => @contacter.id, :start_date => get_date(2.days.ago), :start_date => "#{get_date(2.days.ago)} 01:30:00")
       ride.deletable?.should be_true
     end
 
     it "should return true for a future ride with no hook_ups" do
-      ride = Factory(:ride_offer, :user_id => @contacter.id, :start_date => get_date(:future), :start_date => "#{get_date(:future)} 02:30:00")
+      ride = Factory(:ride_offer, :user_id => @contacter.id, :start_date => get_date(2.days.from_now), :start_date => "#{get_date(2.days.from_now)} 02:30:00")
       ride.deletable?.should be_true
     end
 
     it "should return true for a past ride with all closed hook_ups" do
-      ride = Factory(:ride_request, :user_id => @contacter.id, :start_date => get_date(:past), :start_date => "#{get_date(:past)} 02:30:00")
+      ride = Factory(:ride_request, :user_id => @contacter.id, :start_date => get_date(2.days.ago), :start_date => "#{get_date(2.days.ago)} 02:30:00")
       hook_up1 = Factory(:hook_up, :contacter => @contacter, :hookable => ride, :hookable_type => "RideRequest")
       hook_up2 = Factory(:hook_up, :contacter => @contacter, :hookable => ride, :hookable_type => "RideRequest")
       hook_up1.close
@@ -153,7 +187,7 @@ describe Ride do
     end
 
     it "should return false for a past ride with an unclosed hook_up" do
-      ride = Factory(:ride_request, :user_id => @contacter.id, :start_date => get_date(:past), :start_date => "#{get_date(:past)} 02:30:00")
+      ride = Factory(:ride_request, :user_id => @contacter.id, :start_date => get_date(2.days.ago), :start_date => "#{get_date(2.days.ago)} 02:30:00")
       hook_up1 = Factory(:hook_up, :contacter => @contacter, :hookable => ride, :hookable_type => "RideRequest")
       hook_up2 = Factory(:hook_up, :contacter => @contacter, :hookable => ride, :hookable_type => "RideRequest")
       hook_up1.request

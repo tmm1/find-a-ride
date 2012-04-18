@@ -2,6 +2,11 @@ class Ride < ActiveRecord::Base
   include ActiveModel::Validations
   validates_with DuplicateRideValidator
   
+  default_scope lambda { where("`rides`.`expires_on` >= ?", Date.today) }
+
+  # DynamicDefaultScoping to be included after default_scope
+  include DynamicDefaultScoping
+
   belongs_to :ride_origin, :class_name => 'Location', :foreign_key => 'origin'
   belongs_to :ride_destination, :class_name => 'Location', :foreign_key => 'destination'
   
@@ -42,6 +47,7 @@ class Ride < ActiveRecord::Base
     self.ride_time = Helper.to_datetime(self.start_date, self.start_time)
     self.origin = Location.find_by_name(self.orig).id
     self.destination = Location.find_by_name(self.dest).id
+    self.expires_on = self.ride_time.to_date + 15.days
   end
 end
 
