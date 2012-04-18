@@ -7,15 +7,14 @@
     %label.label Password*
     = password_field_tag 'gmail_password'
     %br
-    .loader{:style => 'display: none;'}
+    .loader.pull-left{:style => 'display: none;'}
       = image_tag('loader.gif')
     %br
-    %span{:class => 'btn btn-primary btn-large', :id => 'fetch-gmail-contacts'} Submit
+    %span{:class => 'btn btn-primary btn-large pull-left', :id => 'fetch-gmail-contacts'} Submit
 
 #contacts-modal{:style => 'display:none;'}
   .modal-header
-    %span{:style => 'font-size: 14px; color: #E36B23'}
-      %h2 Your Gmail Contacts:
+    %h1 Your Gmail Contacts
   .modal-body
     %span
     #list_of_contacts
@@ -30,11 +29,11 @@
       #pageNavPosition
 
     %br
-    .loader{:style => 'display: none; float:right;'}
+    .loader.pull-left{:style => 'display: none;'}
       = image_tag('loader.gif')
 
   .modal-footer
-    %span{:class => 'btn btn-primary btn-large', :id => 'invite-gmail-contacts'} Invite
+    %span{:class => 'btn btn-primary btn-large pull-left', :id => 'invite-gmail-contacts'} Invite
 
   %script{:type => "text/javascript"}
     var pager = new Pager('fetched_gmail_contacts_list', 10, 'pager', 'pageNavPosition');
