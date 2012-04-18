@@ -13,10 +13,10 @@
       = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => "orig", :label => "I am going from"}
       = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => "dest", :label => "I am going to"}
       #dp3{:"data-date-format" => "dd-mm-yyyy", :"data-date" => Time.now.strftime("%d-%m-%Y"), :class => "input-append date"}
+        /= f.input :start_date,  :input_html => { :class => 'text-input' , :readonly => true, :title => 'Choose the date you are looking for a ride', :value => Time.zone.now.strftime("%d-%m-%Y")},  :label => 'What date?', :required => true
         = f.input :start_date,  :input_html => { :class => 'text-input' , :readonly => true, :title => 'Choose the date you are looking for a ride', :value => Time.zone.now.strftime("%d-%m-%Y")},  :label => 'What date?', :required => true
-        %span
-          .add-on
-            %i{:class => "icon-th"}
+        .add-on
+          %i{:class => "icon-th"}
       = f.input :start_time, :input_html => { :readonly => true, :class => 'text-input timepicker', :title => 'Choose the time you are looking for a ride'}, :label => 'Around what time?' , :required => true
       = f.input :vehicle, :as => :select, :label => 'The kind of vehicle I prefer?', :include_blank => false, :collection => vehicle_type_collection, :input_html => { :class => 'text-input', :title => 'Enter the type of vehicle you prefer'}, :required => true
     = f.buttons do
