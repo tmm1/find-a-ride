@@ -1,5 +1,9 @@
-.hero-unit
-  - if @recent_hook_ups.empty?
+- if @recent_hook_ups.empty?
+  .hero-unit
     = render 'no_hookups'
-  - else
+- else
+  %h2 
+    Your recent activity specific to requesting or offering rides
+  %br
+  .hero-unit
     = render 'grid'
