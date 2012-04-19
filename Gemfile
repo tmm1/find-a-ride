@@ -19,6 +19,7 @@ gem "contacts", :git => 'https://github.com/agentrock/contacts'
 gem 'gdata', git: 'https://github.com/agentrock/gdata.git'
 gem "thin"
 gem "dynamic_default_scoping"
+gem "friendly_id"
 
 group :mysql do
   gem 'mysql'
