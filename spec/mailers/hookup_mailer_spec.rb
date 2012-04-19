@@ -21,9 +21,7 @@ describe HookupMailer do
       @hook_up.mobile = '9999988888'
       email = HookupMailer.ride_requestor_email(@hook_up,@hook_up.mobile).deliver
       email.subject.should == 'Message from OnTheWay user'
-      email.to.should == [@hook_up.contactee.email]
-      puts "==============================="
-      puts email.body
+      email.to.should == [@hook_up.contactee.email]     
       email.body.include?("#{@hook_up[:message]}").should be_true
       email.body.include?("#{@hook_up[:mobile]}").should be_true
       email.body.raw_source.should_not include "landline:"
