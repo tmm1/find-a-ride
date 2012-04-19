@@ -3,6 +3,10 @@ class HomeController < ApplicationController
   end
   
   def index
+    puts '2222222222222'+params.inspect
+    if params["signed_request"]
+      puts '4444444444444444'
+    end
   end
   
   def contact

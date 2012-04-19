@@ -31,7 +31,10 @@ class InvitesController < ApplicationController
   end
 
   def facebook_invite_response
-    flash.now[:notice]="Thanks! Your invite was successfully sent."
+    puts "sssssssssssssss"+response.inspect
+    puts "sssssssssssssss"+params.inspect
+    flash[:success]="Thanks! Your invite was successfully sent."
+    redirect_to(user_invites_path(current_user))
   end
 
 end

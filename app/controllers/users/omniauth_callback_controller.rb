@@ -1,5 +1,7 @@
 class Users::OmniauthCallbackController < ApplicationController
   def facebook
+    puts "111111111111"+params.inspect
+    puts "111111111111"+env["omniauth.auth"].inspect
     @user = User.find_for_facebook_oauth(env["omniauth.auth"], current_user)
     if @user && @user.persisted?
       sign_in_and_redirect @user, :event => :authentication
