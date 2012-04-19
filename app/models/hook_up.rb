@@ -58,7 +58,7 @@ class HookUp < ActiveRecord::Base
   end
   
   def create_alert
-
+    self.build_alert({:sender => self.contacter, :receiver => self.contactee, :message => self.message})
   end
 end
 
