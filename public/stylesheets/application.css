@@ -40,7 +40,7 @@ p.terms_cond_error{
     text-align: center;
 }
 .carousel-inner h2 {
-    font-size: 45px;
+    font-size: 40px;
     font-weight: 125;
     color: #ffffff;
 }
@@ -160,7 +160,6 @@ h5.table-text {
   margin-top: 10px;
 
 }
-
 #terms.modal {
   width: 660px;
 }
@@ -172,4 +171,6 @@ h5.table-text {
 }
 .hookclass .modal-body {
   max-height: none;
+#no-contacts {
+ text-align: center;
 }

@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe RideOffer do
+  describe '#attributes and associations' do
+    it { should belong_to(:offerer), :class_name => 'User', :foreign_key => 'user_id' }
+    it { should have_many(:hook_ups), :as => :hookable}
+  end
+  
   describe "#search" do
     def get_date
       @ride_date ||= 2.days.from_now

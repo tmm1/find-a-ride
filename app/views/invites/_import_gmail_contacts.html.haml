@@ -1,6 +1,8 @@
 #import-modal
   .modal-header
     %h2 Fill in your Gmail account information
+    %br
+    %span{:class => 'label label-important'} Contacts retrieval may not work if 2-step authentication is enabled
   .modal-body
     %label.label Email*
     = text_field_tag 'gmail_userid'
@@ -14,28 +16,36 @@
       Submit
 
 #contacts-modal{:style => 'display:none;'}
-  .modal-header
-    %h1 Your Gmail Contacts
-  .modal-body
-    %table{:id => "fetched_gmail_contacts_list"}
-      -all_contacts.each do |contact|
-        %tr
-          %td
-          %td
-            %input{:type=>"checkbox", :name=>"contact_list", :id => contact}
-          %td
-            = contact
-    %br
-    #pagination
-    %br
-    .loader.pull-left{:style => 'display: none;'}
-      = image_tag('loader.gif')
-  #no-selection-error
-  .modal-footer
-    #invite-gmail-contacts{:class => 'btn btn-primary btn-large pull-left'}
-      Invite
+  - if !all_contacts.blank?
+    .modal-header
+      %h1 Your Gmail Contacts
+    .modal-body
+      %table{:id => "fetched_gmail_contacts_list"}
+        - all_contacts.each do |contact|
+          %tr
+            %td
+            %td
+              %input{:type=>"checkbox", :name=>"contact_list", :id => contact}
+            %td
+              = contact
+      %br
+      #pagination
+      %br
+      .loader.pull-left{:style => 'display: none;'}
+        = image_tag('loader.gif')
+    #no-selection-error
+    .modal-footer
+      #invite-gmail-contacts{:class => 'btn btn-primary btn-large pull-left'}
+        Invite
 
-  %script{:type => "text/javascript"}
-    var pager = new Pager('fetched_gmail_contacts_list', 10, 'pager', 'pagination');
-    pager.init();
-    pager.showPage(1);
+    %script{:type => "text/javascript"}
+      var pager = new Pager('fetched_gmail_contacts_list', 10, 'pager', 'pagination');
+      pager.init();
+      pager.showPage(1);
+  - else
+    .modal-header
+    .modal-body
+      %h2
+        #no-contacts
+          %small Looks like you don't have any gmail contacts
+    .modal-footer

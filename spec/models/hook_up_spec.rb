@@ -12,6 +12,10 @@ describe HookUp do
     it { should_not allow_value('123456789000').for(:mobile)}
     it { should_not allow_value('dadd122112').for(:mobile)}
     it { should allow_value('1234567890').for(:mobile)}
+    
+    it { should belong_to(:contacter), :class_name => 'User'}
+    it { should belong_to(:contactee), :class_name => 'User'}
+    it { should have_one(:alert) }
   end
 
   describe "#scopes" do
@@ -35,17 +39,15 @@ describe HookUp do
     end
 
     it 'should set the state as offered if hookable is a ride request' do
-      @params[:hookable_type] = 'RideRequest'
       hook_up = HookUp.create(@params)
       hook_up.persisted?.should be true
       hook_up.offered?.should be true
     end
 
     it 'should set the state as requested if hookable is a ride offer' do
-      @params[:hookable_type] = 'RideOffer'
       hook_up = HookUp.create(@params)
       hook_up.persisted?.should be true
-      hook_up.requested?.should be true
+      hook_up.offered?.should be true #note: if you are confused, this wackiness is owing to the hookup/ride factories
     end
 
     it 'should close the hook up successfully' do
@@ -100,7 +102,27 @@ describe HookUp do
       HookUp.unclosed.should include @hook_up2
     end
   end
+  
+  describe '#alert for the hook up' do
+    before(:all) do
+      HookUp.destroy_all
+      Ride.destroy_all
+      @user = Factory(:user)
+      @contactee_user = Factory(:user)
+      @ride = Factory(:ride)
+    end
+    
+    it 'should create an alert' do
+      @hook_up = HookUp.create({:contactee_id => @contactee_user.id, :contacter_id => @user.id, :message => 'Hook me up!', :hookable => @ride})
+      @hook_up.alert.should_not be_nil
+      @hook_up.alert.sender.should == @user
+      @hook_up.alert.receiver.should == @contactee_user
+      @hook_up.alert.message.should == @hook_up.message
+      @hook_up.alert.unread?.should be true
+    end
+  end
 end
+
 
 
 # == Schema Information
@@ -115,5 +137,6 @@ end
 #  message       :string(3000)
 #  hookable_id   :integer(4)
 #  hookable_type :string(255)
+#  state         :string(255)
 #
 

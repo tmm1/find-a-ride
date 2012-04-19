@@ -12,12 +12,19 @@ describe User do
     it { should_not allow_value('1230').for(:landline) }
     it { should_not allow_value('dasdas44a').for(:landline) }
     it { should allow_value('1234567890').for(:landline)}
+    
+    it { should have_many(:ride_offers) }
+    it { should have_many(:ride_requests) }
+    it { should have_many(:hook_ups_as_contacter), :class_name => 'HookUp', :foreign_key => 'contacter_id' }
+    it { should have_many(:hook_ups_as_contactee), :class_name => 'HookUp', :foreign_key => 'contactee_id' }
+    it { should have_many(:sent_alerts), :class_name => 'Alert', :foreign_key => 'sender_id' }
+    it { should have_many(:received_alerts), :class_name => 'Alert', :foreign_key => 'receiver_id' }
 
     before(:each) do
       @user = Factory(:user, :first_name => 'testio', :last_name => 'rockio')
     end
 
-    it "should reset passowrd with new password" do
+    it "should reset password with new password" do
       @user.update_with_password({:password => 'changeme!',:password_confirmation => 'changeme!'})
       @user.password.should == 'changeme!'
     end
