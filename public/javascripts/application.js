@@ -201,6 +201,8 @@ $(document).ready(function() {
 
       $(".delete-ride").click(function(e) {
         e.preventDefault();
+        $(".delete-ride").show();
+        $(".confirm-delete").hide();
         var matches = $(this).attr('id').match(/(\d+)$/),
             rideId = matches[1];
         $(this).hide();
