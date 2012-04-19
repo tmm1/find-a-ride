@@ -15,17 +15,14 @@ class InvitesController < ApplicationController
   end
 
   def get_gmail_contacts
-    @error_msg = ''
     begin
-      @all_contacts = FetchContacts.get_gmail_contacts(params[:login], params[:password])
-    rescue Exception => ex
-      @error_msg = (ex.message.include?("Username")) ? ex.message : "Have some problem fetching your Contacts, please try again."
-    end
-    respond_to do |wants|
-      if @error_msg != ''
-        wants.json { render :json => { :error_msg => @error_msg } }
-      else
+      @gmail_contacts = ContactsService.fetch_gmail_contacts(params[:login], params[:password]) || []
+      respond_to do |wants|
         wants.js {}
+      end
+    rescue Exception => ex
+      respond_to do |wants|
+        wants.json { render :json => { :error_msg => ex.message } }
       end
     end
   end

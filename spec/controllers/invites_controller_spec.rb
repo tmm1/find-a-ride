@@ -40,28 +40,36 @@ describe InvitesController do
   end
 
   describe "#get_gmail_contacts" do
-    it "should not fetch gmail contacts" do
+    it "should fail fetching gmail contacts" do
       sign_in @login_user
-      get 'get_gmail_contacts', { :login => "contactsuser@gmail.com", :password => "import123", :user_id => @login_user.id }
-      assigns[:all_contacts].should be_nil
-      assigns[:error_msg].should == "Username or password are incorrect"
+      get 'get_gmail_contacts', { :login => "contactsuser@gmail.com", :password => "wrongpwd", :user_id => @login_user.id, :format => :js }
+      response.should have_content_type 'text/javascript'
+      assigns[:gmail_contacts].should be nil
     end
-
-    it "should fetch gmail contacts successfully" do
+    
+    it "should fetch no gmail contacts" do
       sign_in @login_user
-      get 'get_gmail_contacts', { :login => "contactsuser@gmail.com", :password => "importcontacts", :user_id => @login_user.id }
-      assigns[:error_msg].should == ""
-      assigns[:all_contacts].should_not be_empty
+      get 'get_gmail_contacts', { :login => "onthewaytester@gmail.com", :password => "0ntheway", :user_id => @login_user.id, :format => :js }
+      response.should have_content_type 'text/javascript'
+      assigns[:gmail_contacts].should be_empty
+    end
+    
+    it "should fetch all gmail contacts successfully" do
+      sign_in @login_user
+      get 'get_gmail_contacts', { :login => "contactsuser@gmail.com", :password => "importcontacts", :user_id => @login_user.id, :format => :js }
+      response.should have_content_type 'text/javascript'
+      assigns[:gmail_contacts].should_not be_empty
+      assigns[:gmail_contacts].should have(1).things
     end
   end
 
-  describe "#facebook invite " do
+  describe "#facebook invite" do
     it "should send invitation to facebook friends" do
       sign_in @login_user
       get "facebook_invite_response", {}
       response.should be_success
       response.should render_template(:facebook_invite)
-      response.flash[:notice].should == "Thanks! Your invite was successfully sent."
+      request.flash[:notice].should == "Thanks! Your invite was successfully sent."
     end
   end
 

@@ -1,4 +1,4 @@
 :plain
-  $("#import-gmail-contacts").html("#{escape_javascript(render :partial => 'import_gmail_contacts', :locals => {:all_contacts => @all_contacts})}");
+  $("#import-gmail-contacts").html("#{escape_javascript(render :partial => 'import_gmail_contacts', :locals => {:all_contacts => @gmail_contacts})}");
   $("#import-modal").toggle();
   $("#contacts-modal").toggle();
