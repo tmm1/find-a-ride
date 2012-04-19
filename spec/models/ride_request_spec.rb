@@ -116,7 +116,7 @@ describe RideRequest do
       results.should have(0).things
     end
 
-    it 'should not return results for search criteria 12' do
+    it 'should not return results for search criteria 3' do
       results = RideRequest.search(@ride_request12_params)
       results.should have(0).things
     end

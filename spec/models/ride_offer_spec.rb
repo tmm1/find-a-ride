@@ -116,7 +116,7 @@ describe RideOffer do
       results.should have(0).things
     end
 
-    it 'should not return results for search criteria 12' do
+    it 'should not return results for search criteria 3' do
       results = RideOffer.search(@ride_offer12_params)
       results.should have(0).things
     end
