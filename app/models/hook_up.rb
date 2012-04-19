@@ -10,11 +10,13 @@ class HookUp < ActiveRecord::Base
   belongs_to :contacter, :class_name => 'User'
   belongs_to :contactee, :class_name => 'User'
   belongs_to :hookable, :polymorphic => true
+  has_one :alert
 
   attr_accessor :mobile
   
   after_create :notify_contactee
   after_create :set_state
+  after_create :create_alert
 
   validates :contactee_id, :contacter_id, :message, :hookable_id, :hookable_type, :presence => true
   validates :mobile, :format => { :with => /^[1-9]\d{9}$/, :allow_blank => true}
@@ -33,14 +35,6 @@ class HookUp < ActiveRecord::Base
     end
   end
   
-  def notify_contactee
-    if self.hookable_type == "RideRequest"
-      HookupMailer.ride_offerer_email(self, self.mobile).deliver
-    else
-      HookupMailer.ride_requestor_email(self, self.mobile).deliver
-    end
-  end
-  
   def self.requested
     where(:state => 'requested')
   end
@@ -56,7 +50,15 @@ class HookUp < ActiveRecord::Base
   private
   
   def set_state
-    self.hookable_type.eql?('RideRequest') ? self.offer : self.request
+    self.hookable.try(:request?) ? self.offer : self.request
+  end
+  
+  def notify_contactee
+    self.hookable.try(:request?) ? HookupMailer.ride_offerer_email(self, self.mobile).deliver : HookupMailer.ride_requestor_email(self, self.mobile).deliver
+  end
+  
+  def create_alert
+
   end
 end
 

@@ -1,6 +1,9 @@
 class Alert < ActiveRecord::Base
   belongs_to :sender, :class_name => 'User'
   belongs_to :receiver, :class_name => 'User'
+  belongs_to :hook_up
+  
+  validates :hook_up_id, :sender_id, :receiver_id, :presence => true
   
   state_machine :state, :initial => :unread do
     event :read do

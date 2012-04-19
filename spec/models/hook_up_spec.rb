@@ -15,6 +15,7 @@ describe HookUp do
     
     it { should belong_to(:contacter), :class_name => 'User'}
     it { should belong_to(:contactee), :class_name => 'User'}
+    it { should have_one(:alert) }
   end
 
   describe "#scopes" do
@@ -38,17 +39,15 @@ describe HookUp do
     end
 
     it 'should set the state as offered if hookable is a ride request' do
-      @params[:hookable_type] = 'RideRequest'
       hook_up = HookUp.create(@params)
       hook_up.persisted?.should be true
       hook_up.offered?.should be true
     end
 
     it 'should set the state as requested if hookable is a ride offer' do
-      @params[:hookable_type] = 'RideOffer'
       hook_up = HookUp.create(@params)
       hook_up.persisted?.should be true
-      hook_up.requested?.should be true
+      hook_up.offered?.should be true
     end
 
     it 'should close the hook up successfully' do

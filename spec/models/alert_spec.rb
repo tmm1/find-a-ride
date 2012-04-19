@@ -2,8 +2,13 @@ require 'spec_helper'
 
 describe Alert do
   describe '#attributes and associations' do
+    it { should validate_presence_of(:sender_id) }
+    it { should validate_presence_of(:receiver_id) }
+    it { should validate_presence_of(:hook_up_id) }
+    
     it { should belong_to(:sender), :class_name => 'User' }
     it { should belong_to(:receiver), :class_name => 'User' }
+    it { should belong_to(:hook_up) }
   end
   
   describe '#state transitions' do
