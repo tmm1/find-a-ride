@@ -48,6 +48,10 @@ describe User do
     it "should use full name alias method for name of the user" do
       @user.name.should == @user.full_name
     end
+    
+    it "should return the hyphenized name of the user" do
+      @user.hyphenized_name.should == 'testio-rockio'
+    end
 
     it "should update inactive attribute successfully" do
       @user.update_attributes({:inactive => 1})

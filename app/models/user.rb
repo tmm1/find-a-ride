@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :hyphenized_name
+  
   include ActiveModel::Validations
   
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
@@ -10,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :received_alerts, :class_name => 'Alert', :foreign_key => 'receiver_id'
 
   attr_accessor :mobile_required
+  attr_reader :underscored_name
 
   has_attached_file :photo, 
                     :styles => { :thumb => "100x100#" },
@@ -40,6 +44,10 @@ class User < ActiveRecord::Base
   
   def full_name
     "#{self.first_name.capitalize} #{self.last_name.capitalize}"
+  end
+  
+  def hyphenized_name
+    "#{self.first_name.try(:downcase)}-#{self.last_name.try(:downcase)}"
   end
   
   alias_method :name, :full_name

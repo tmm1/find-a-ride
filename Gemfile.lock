@@ -84,6 +84,7 @@ GEM
     ffi (1.0.11-java)
     formtastic (2.0.0)
       rails (~> 3.0)
+    friendly_id (4.0.4)
     geokit (1.6.0)
     haml (3.1.2)
     heroku (2.9.0)
@@ -260,6 +261,7 @@ DEPENDENCIES
   factory_girl_rails
   faker (= 0.3.1)
   formtastic (= 2.0)
+  friendly_id
   gdata!
   geokit
   haml (= 3.1.2)
