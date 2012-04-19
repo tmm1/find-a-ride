@@ -160,3 +160,16 @@ h5.table-text {
   margin-top: 10px;
 
 }
+
+#terms.modal {
+  width: 660px;
+}
+#terms.modal .modal-body {
+  max-height: none;
+}
+.hookclass {
+  width: 580px;
+}
+.hookclass .modal-body {
+  max-height: none;
+}
