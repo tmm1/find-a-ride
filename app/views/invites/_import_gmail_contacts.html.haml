@@ -2,8 +2,7 @@
   .modal-header
     %h2 Fill in your Gmail account information
     %br
-    .label-important
-      Contacts retrieval may not work if 2-step authentication is enabled
+    %span{:class => 'label label-important'} Contacts retrieval may not work if 2-step authentication is enabled
   .modal-body
     %label.label Email*
     = text_field_tag 'gmail_userid'
