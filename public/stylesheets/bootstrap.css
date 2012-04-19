@@ -1,5 +1,13 @@
-@import url(https://fonts.googleapis.com/css?family=Oswald);
-@import url(https://fonts.googleapis.com/css?family=Noticia+Text);
+@font-face {
+   font-family: Graduate;
+   src: url("/fonts/Graduate-Regular.ttf");
+}
+
+@font-face {
+   font-family: RussoOne;
+   src: url("/fonts/RussoOne-Regular.ttf");
+}
+
 /*!
  * Bootstrap v2.0.2
  *
@@ -134,7 +142,7 @@ textarea {
 }
 body {
     margin: 0;
-    font-family: Georgia, Utopia, Palatino, 'Palatino Linotype', serif;
+    font-family: 'RussoOne';
     font-size: 15px;
     line-height: 20px;
     color: #ece9d7;
@@ -324,7 +332,7 @@ a:hover {
 }
 p {
     margin: 0 0 10px;
-    font-family: Georgia, Utopia, Palatino, 'Palatino Linotype', serif;
+    font-family: 'RussoOne';
     font-size: 15px;
     line-height: 20px;
 }
@@ -345,7 +353,7 @@ h4,
 h5,
 h6 {
     margin: 0;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Graduate', sans-serif;
     font-weight: bold;
     color: #e36b23;
     text-rendering: optimizelegibility;
@@ -608,7 +616,7 @@ input,
 button,
 select,
 textarea {
-    font-family: Georgia, Utopia, Palatino, 'Palatino Linotype', serif;
+    font-family: 'RussoOne';
 }
 label {
     display: block;
@@ -3518,7 +3526,7 @@ input[type="submit"].btn.btn-mini {
 .popover-content {
     padding: 14px;
     background-color: #ffffff;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Graduate', sans-serif;
     -webkit-border-radius: 0 0 3px 3px;
     -moz-border-radius: 0 0 3px 3px;
     border-radius: 0 0 3px 3px;
@@ -4021,7 +4029,7 @@ h3 small,
 h4 small,
 h5 small,
 h6 small {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Graduate', sans-serif;
     color: #e36b23;
     text-shadow: -1px 1px 0 #612c0c;
 }
@@ -4463,7 +4471,7 @@ input,
 button,
 select,
 textarea {
-    font-family: 'Noticia Text', serif;
+    font-family: 'RussoOne';
 }
 legend {
     border-bottom: none;
