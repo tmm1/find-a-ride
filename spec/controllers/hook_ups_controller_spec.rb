@@ -12,13 +12,14 @@ describe HookUpsController do
   describe "#new" do
     it "should render new" do  
       sign_in @login_user
-      get 'new', {:user_id => @login_user.id, :id => @contactee_user.id, :orig => 'Madhapur', :dest => 'Kondapur', :time => 2.days.ago.to_s(:short)}
+      time = 2.days.ago.to_s(:short)
+      get 'new', {:user_id => @login_user.id, :id => @contactee_user.id, :orig => 'Madhapur', :dest => 'Kondapur', :time => time}
       response.should be_success
       response.should render_template(:new)
       assigns(:contactee).should == @contactee_user
       assigns(:origin).should == 'Madhapur'
       assigns(:dest).should == 'Kondapur'
-      assigns(:time).should == 2.days.ago.to_s(:short)
+      assigns(:time).should == time
     end
   end
 

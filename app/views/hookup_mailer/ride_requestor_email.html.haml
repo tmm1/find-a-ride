@@ -18,7 +18,10 @@
   %br
   = link_to("#{@hook_up.contacter.email}", "mailto:#{@hook_up.contacter.email}", :class => 'blue-underline')
   %br
-  %b= "#{@mobile}"
+  %b= "mobile: #{@mobile}"
+  - if !@hook_up.contacter.landline.blank?
+    %br
+    %b= "landline: #{@hook_up.contacter.landline}"
 %br
 
 %p.hookup-msg-addl= @message
