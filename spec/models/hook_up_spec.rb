@@ -31,26 +31,30 @@ describe HookUp do
 
   describe '#state of hookup' do
     before(:each) do
+      HookUp.destroy_all
       Ride.destroy_all
-      user = Factory(:user)
-      contactee_user = Factory(:user)
-      ride = Factory(:ride)
-      @params = {:contactee_id => contactee_user.id, :contacter_id => user.id, :message => 'Hook me up!', :hookable => ride}
+      @user = Factory(:user)
+      @contactee_user = Factory(:user)
+      @ride_request = RideRequest.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => 2.days.from_now.to_s, :start_time => '10:30pm'})
+      @ride_offer = RideOffer.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => 2.days.from_now.to_s, :start_time => '10:30pm'})
     end
 
     it 'should set the state as offered if hookable is a ride request' do
+      @params = {:contactee_id => @contactee_user.id, :contacter_id => @user.id, :message => 'Hook me up!', :hookable => @ride_request}
       hook_up = HookUp.create(@params)
       hook_up.persisted?.should be true
       hook_up.offered?.should be true
     end
 
     it 'should set the state as requested if hookable is a ride offer' do
+      @params = {:contactee_id => @contactee_user.id, :contacter_id => @user.id, :message => 'Hook me up!', :hookable => @ride_offer}
       hook_up = HookUp.create(@params)
       hook_up.persisted?.should be true
-      hook_up.offered?.should be true #note: if you are confused, this wackiness is owing to the hookup/ride factories
+      hook_up.requested?.should be true #note: if you are confused, this wackiness is owing to the hookup/ride factories
     end
 
     it 'should close the hook up successfully' do
+      @params = {:contactee_id => @contactee_user.id, :contacter_id => @user.id, :message => 'Hook me up!', :hookable => @ride_request}
       hook_up = HookUp.create(@params)
       hook_up.close
       hook_up.closed?.should be true
@@ -59,6 +63,7 @@ describe HookUp do
 
   describe "#hookup email" do
     before(:all) do
+      HookUp.destroy_all
       Ride.destroy_all
       ActionMailer::Base.delivery_method = :test
       ActionMailer::Base.perform_deliveries = true
@@ -81,9 +86,10 @@ describe HookUp do
       Ride.destroy_all
       user = Factory(:user)
       contactee_user = Factory(:user)
-      ride = Factory(:ride)
-      @hook_up1 = HookUp.create({:contactee_id => contactee_user.id, :contacter_id => user.id, :message => 'Hook me up!', :hookable_id => ride.id, :hookable_type => 'RideRequest'})
-      @hook_up2 = HookUp.create({:contactee_id => contactee_user.id, :contacter_id => user.id, :message => 'Hook me up!', :hookable_id => ride.id, :hookable_type => 'RideOffer'})
+      ride_request = RideRequest.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => 2.days.from_now.to_s, :start_time => '10:30pm'})
+      ride_offer = RideOffer.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => 2.days.from_now.to_s, :start_time => '10:30pm'})
+      @hook_up1 = HookUp.create({:contactee_id => contactee_user.id, :contacter_id => user.id, :message => 'Hook me up!', :hookable => ride_request})
+      @hook_up2 = HookUp.create({:contactee_id => contactee_user.id, :contacter_id => user.id, :message => 'Hook me up!', :hookable => ride_offer})
     end
     
     it 'should return requested' do
