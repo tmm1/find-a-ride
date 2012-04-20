@@ -1,5 +1,12 @@
 .notice-area {
     height: 50px;
+    text-align: center;
+}
+.notice-area .alert {
+  width: auto;
+  min-width: 470px;
+  font-size: 18px;
+  display: inline-block;
 }
 p.inline-errors {
     margin-top: 0px!important;
