@@ -1,7 +1,7 @@
 class HookUp < ActiveRecord::Base 
 
   default_scope lambda {
-    joins("INNER JOIN `rides` ON `rides`.`id` = `hook_ups`.`hookable_id`").where("`rides`.`expires_on` >= ?", Date.today)
+    joins("INNER JOIN rides ON rides.id = hook_ups.hookable_id").where("rides.expires_on >= ?", Date.today)
   }
 
   # DynamicDefaultScoping to be included after default_scope

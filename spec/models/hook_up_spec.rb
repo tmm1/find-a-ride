@@ -20,8 +20,8 @@ describe HookUp do
 
   describe "#scopes" do
     it "default_scope should ignore hook_ups of expired rides" do
-      HookUp.scoped.joins_values.should eql(["INNER JOIN `rides` ON `rides`.`id` = `hook_ups`.`hookable_id`"])
-      HookUp.scoped.where_values.should eql(["`rides`.`expires_on` >= '#{Date.today}'"])
+      HookUp.scoped.joins_values.should eql(["INNER JOIN rides ON rides.id = hook_ups.hookable_id"])
+      HookUp.scoped.where_values.should eql(["rides.expires_on >= '#{Date.today}'"])
     end
 
     it "should return hook_ups which are not closed" do
