@@ -1,10 +1,12 @@
 $(document).ready(function() {
-    var inactive_chkbox = false;
+    var user_inactive_check = false;
+	var pusher_channel = null;
     typeaheadSearch();
     rideTime();
     rideDate();
-    gmail_contacts();
-    setTimeout(hideFlashMessages, 3500);
+    gmailContacts();
+    initializePusher();
+	setTimeout(hideFlashMessages, 3500);
 
     $('.input-append').datepicker();
     
@@ -24,12 +26,12 @@ $(document).ready(function() {
         title: $('.text-input').attr('title'),
         placement: 'right',
         trigger: 'focus'
-    })
+    });
 
     //*** full-trace dialog ***//
     $("a#full-trace").click(function(e){
         $("#fulltrace").show();
-    })
+    });
  
     
     // *** Confirmation dialog on deactivate user *** //
@@ -48,32 +50,32 @@ $(document).ready(function() {
         if ($('.inactive_input').attr("checked")) {
             $('#mymodal').modal('toggle');
         } else {
-            inactive_chkbox = false;
+            user_inactive_check = false;
         }
     });
 
     $('#mymodal').on('hide', function(){
-        if (!inactive_chkbox) {
+        if (!user_inactive_check) {
             $('.inactive_input').attr("checked", null);
-            inactive_chkbox = false;
+            user_inactive_check = false;
         }
     })
 
     $("#confirm_yes").click(function(e){
         e.preventDefault();
-        inactive_chkbox = true;
+        user_inactive_check = true;
         $('.inactive_input').attr("checked", "checked");
         $('#mymodal').modal('toggle');
     });
 
     $("#confirm_no").click(function(e){
         e.preventDefault();
-        inactive_chkbox = false;
+        user_inactive_check = false;
         $('.inactive_input').attr("checked", null);
         $('#mymodal').modal('toggle');
     });
     
-    // *** Hook up modal *** //
+    /*** Hook up modal ***/
     $(".modal.hide.hookclass").on('show', function(){
         var obj =  $(this)
         $.ajax({
@@ -84,8 +86,8 @@ $(document).ready(function() {
                 hookupSubmit(); //hook-up handler
             }
         });
-    })
-     
+    });
+
     var hookupSubmit =  function(){
 	    $("#hook-submit").click(function(){
 	        $('#hook-up').find('.inline-errors').remove();
@@ -124,7 +126,7 @@ $(document).ready(function() {
 	    });
 	}
 	
-    // *** Contact modal *** //    
+    /*** Contact modal ***/    
     $('#contact').on('show', function () {
         resetContactForm(true);
     })
@@ -194,8 +196,7 @@ $(document).ready(function() {
 	    $('#contact').find('#comments').val('');
 	}
 
-    //* Delete Ride *//
-
+    /** Delete Ride **/
     function initDeleteRideHandlers() {
       $(".ride-list .delete-ride-cell .disabled").popover({title: "Please note"});
 
@@ -258,7 +259,7 @@ $(document).ready(function() {
     $(".ride-list").ajaxComplete(initDeleteRideHandlers);
     initDeleteRideHandlers();
 
-    //*  Delete Ride  *//
+    /**  Delete Ride  **/
 
   $("#gmail-contacts-button").click(function(e){
     $('#import-gmail-contacts').find('.inline-errors').remove();
@@ -267,7 +268,7 @@ $(document).ready(function() {
     $("#gmail_password").val('');
     $("#import-modal").show();
     $("#contacts-modal").hide();
-    gmail_contacts();
+    gmailContacts();
   });
 
     /** Invite friend via email **/
@@ -316,89 +317,100 @@ $(document).ready(function() {
         
     });	
 
-});
-/** utility methods **/
-
-/** Fetch gmail contacts **/
-
-var gmail_contacts = function(){
-  $("#fetch-gmail-contacts").unbind('click').bind('click', function(e){
-    e.preventDefault();
-    $('#import-gmail-contacts').find('.inline-errors').remove();
-    var email = $("#gmail_userid");
-    var password = $("#gmail_password");
-    var url = $('#invite2').attr('data-service-url');
-    if (email.val() === '' || password.val() === ''){
-      if (email.val() === ''){
-        email.after("<p class='inline-errors'>can't be blank</p>");
-      }
-      if (password.val() === ''){
-        password.after("<p class='inline-errors'>can't be blank</p>");
-      }
+    /** Fetch gmail contacts **/
+	function gmailContacts(){
+	  $("#fetch-gmail-contacts").unbind('click').bind('click', function(e){
+	    e.preventDefault();
+	    $('#import-gmail-contacts').find('.inline-errors').remove();
+	    var email = $("#gmail_userid");
+	    var password = $("#gmail_password");
+	    var url = $('#invite2').attr('data-service-url');
+	    if (email.val() === '' || password.val() === ''){
+	      if (email.val() === ''){
+	        email.after("<p class='inline-errors'>can't be blank</p>");
+	      }
+	      if (password.val() === ''){
+	        password.after("<p class='inline-errors'>can't be blank</p>");
+	      }
+	    }
+	   else{
+	     $("#fetch-gmail-contacts").hide();
+	     $("#import-gmail-contacts").find('.loader').show();
+	     $.ajax({
+	       type: 'GET',
+	       url: url,
+	       data: {
+	         login: email.val(),
+	         password: password.val()
+	       },
+	       success: function(data) {
+	         $("#import-gmail-contacts").find('.loader').hide();
+	         if (data.error_msg != '' && data.error_msg != undefined){
+	           $("#fetch-gmail-contacts").show();
+	           password.after("<p class='inline-errors'><br />"+data.error_msg+"</p>");
+	         }
+	         else{
+	           $("#invite-gmail-contacts").click(function(e){
+	             e.preventDefault();
+	             $('#import-gmail-contacts').find('.inline-errors').remove();
+	             var selected_gmail_contacts = '';
+	             var tot_checked = $("input:checkbox[name=contact_list]:checked").length;
+	             var i = 1;
+	             if ($("input:checkbox[name=contact_list]:checked").length > 0) {
+	               $("#invite-gmail-contacts").hide();
+	               $("#import-gmail-contacts").find('.loader').show();
+	               $("input:checkbox[name=contact_list]:checked").each(function(){
+	                 if (i < tot_checked) {
+	                   selected_gmail_contacts = selected_gmail_contacts + $(this).attr('id') + ',';
+	                 } else {
+	                   selected_gmail_contacts = selected_gmail_contacts + $(this).attr('id');
+	                 }
+	                 i += 1;
+	               });
+	               var email_list = selected_gmail_contacts.split(',');
+	               var token = $("input[name=authenticity_token]").val();
+	               var url = $('form').attr('action');
+	               send_email_invites(email_list, token, url);
+	               setTimeout(function(){
+	                 $("#import-gmail-contacts").find('.loader').hide();
+	                 $("#import-gmail-contacts").modal('hide');
+	               }, 1000);
+	             } else {
+	               $("#no-selection-error").append("<p class='inline-errors'> No email addresses selected </p>");
+	             }
+	           });
+	         }
+	       }
+	     });
+	   }
+	  });
+	}
+	
+	/*** alert notifications using pusher ***/
+    function initializePusher() {
+		if (pusher_channel === null || pusher_channel === undefined) {
+			var pusher = new Pusher($('#pusher-app-key').val()); 
+			pusher_channel = pusher.subscribe($('#pusher-channel').val());
+		}
     }
-   else{
-     $("#fetch-gmail-contacts").hide();
-     $("#import-gmail-contacts").find('.loader').show();
-     $.ajax({
-       type: 'GET',
-       url: url,
-       data: {
-         login: email.val(),
-         password: password.val()
-       },
-       success: function(data) {
-         $("#import-gmail-contacts").find('.loader').hide();
-         if (data.error_msg != '' && data.error_msg != undefined){
-           $("#fetch-gmail-contacts").show();
-           password.after("<p class='inline-errors'><br />"+data.error_msg+"</p>");
-         }
-         else{
-           $("#invite-gmail-contacts").click(function(e){
-             e.preventDefault();
-             $('#import-gmail-contacts').find('.inline-errors').remove();
-             var selected_gmail_contacts = '';
-             var tot_checked = $("input:checkbox[name=contact_list]:checked").length;
-             var i = 1;
-             if ($("input:checkbox[name=contact_list]:checked").length > 0) {
-               $("#invite-gmail-contacts").hide();
-               $("#import-gmail-contacts").find('.loader').show();
-               $("input:checkbox[name=contact_list]:checked").each(function(){
-                 if (i < tot_checked) {
-                   selected_gmail_contacts = selected_gmail_contacts + $(this).attr('id') + ',';
-                 } else {
-                   selected_gmail_contacts = selected_gmail_contacts + $(this).attr('id');
-                 }
-                 i += 1;
-               });
-               var email_list = selected_gmail_contacts.split(',');
-               var token = $("input[name=authenticity_token]").val();
-               var url = $('form').attr('action');
-               send_email_invites(email_list, token, url);
-               setTimeout(function(){
-                 $("#import-gmail-contacts").find('.loader').hide();
-                 $("#import-gmail-contacts").modal('hide');
-               }, 1000);
-             } else {
-               $("#no-selection-error").append("<p class='inline-errors'> No email addresses selected </p>");
-             }
-           });
-         }
-       }
-     });
-   }
-  });
-}
 
-var isValidEmail = function(email) {
+	pusher_channel.bind($('#pusher-event').val(), function(data) {
+	  if ($('#pusher-receiver').val() === data.user_id) {
+		$('#alert-badge').html(data.message);
+	  }
+	});
+});
+
+/** utility methods **/
+function isValidEmail(email) {
     var email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return email_regex.test(email.trim());
 }
 
-var isValidMobile = function(phone){
+function isValidMobile(phone){
     var phone_regex = /^[1-9]\d{9}$/;
     return phone_regex.test(phone.trim());
 }
-
 
 function send_email_invites(email_list, token, url) {
   $.ajax({
@@ -447,7 +459,7 @@ function initGeolocation() {
     }
 }
 
-var rideTime = function(){
+function rideTime(){
     $('input.timepicker').timepicker({
         timeFormat: 'h:mm p',
         interval: 30,
@@ -459,7 +471,7 @@ var rideTime = function(){
     });
 }
 
-var rideDate = function(){
+function rideDate(){
     $( "input.datepicker" ).datepicker({
         nextText: '',
         prevText: '',
@@ -468,13 +480,13 @@ var rideDate = function(){
     });
 }
 
-var rideOriginDest = function(){
+function rideOriginDest(){
     $("#ride_request_orig").live("change",function(){
         $("#ride_request_dest").val("");
     });
 }
 
-var typeaheadSearch = function(){
+function typeaheadSearch(){
     $('.typeahead').typeahead({
         source: function (typeahead, query) {
             return  $.ajax({

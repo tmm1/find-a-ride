@@ -34,6 +34,10 @@ PoolRide::Application.configure do
   config.active_support.deprecation = :stderr
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  
+  PUSHER_CHANNEL = 'ontheway_test'
+  PUSHER_EVENT = 'user_alert_test'
+  
   FACEBOOK_DIRECT_URL = 'https://www.facebook.com/dialog/apprequests?app_id=250325615010342&message=Invitation%20to%20join%20OnTheWay%20app!&redirect_uri=http://localhost:3000/facebook_invite'
 
 end

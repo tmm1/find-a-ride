@@ -26,6 +26,10 @@ PoolRide::Application.configure do
   config.action_mailer.delivery_method = :letter_opener
   
   Paperclip.options[:command_path] = '/usr/local/bin/identify'
+  
+  PUSHER_CHANNEL = 'ontheway_dev'
+  PUSHER_EVENT = 'user_alert_dev'
+  
   FACEBOOK_DIRECT_URL = 'https://www.facebook.com/dialog/apprequests?app_id=250325615010342&message=Invitation%20to%20join%20OnTheWay%20app!&redirect_uri=http://localhost:3000/facebook_invite'
 end
 

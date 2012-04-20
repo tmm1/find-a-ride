@@ -99,6 +99,10 @@ class User < ActiveRecord::Base
   def phone
     self.mobile || self.landline
   end
+  
+  def unread_alerts
+    self.received_alerts.unread
+  end
 end
 
 
