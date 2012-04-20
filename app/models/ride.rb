@@ -2,7 +2,7 @@ class Ride < ActiveRecord::Base
   include ActiveModel::Validations
   validates_with DuplicateRideValidator
   
-  default_scope lambda { where("`rides`.`expires_on` >= ?", Date.today) }
+  default_scope lambda { where("rides.expires_on >= ?", Date.today) }
 
   # DynamicDefaultScoping to be included after default_scope
   include DynamicDefaultScoping
