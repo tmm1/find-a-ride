@@ -5,10 +5,30 @@ class Alert < ActiveRecord::Base
   
   validates :hook_up_id, :sender_id, :receiver_id, :presence => true
   
+  after_create :generate_pusher_notification
+  
   state_machine :state, :initial => :unread do
     event :read do
       transition :unread => :read
     end 
+  end
+  
+  def self.read
+    where(:state => 'read')
+  end
+  
+  def self.unread
+    where(:state => 'unread')
+  end
+  
+  private
+  
+  def generate_pusher_notification
+    begin
+      Pusher[PUSHER_CHANNEL].trigger!(PUSHER_EVENT, {:user_id => self.receiver.id.to_s, :message => self.receiver.unread_alerts.size})
+    rescue Pusher::Error => ex
+      Rails.logger.error "#{ex.message}: #{ex.backtrace}"
+    end
   end
 end
 

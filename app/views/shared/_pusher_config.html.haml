@@ -1,0 +1,4 @@
+%input{:type => 'hidden', :id => 'pusher-app-key', :value => Pusher.key}
+%input{:type => 'hidden', :id => 'pusher-channel', :value => PUSHER_CHANNEL}
+%input{:type => 'hidden', :id => 'pusher-event', :value => PUSHER_EVENT}
+%input{:type => 'hidden', :id => 'pusher-receiver', :value => current_user.try(:id)}

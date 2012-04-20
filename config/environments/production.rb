@@ -50,8 +50,14 @@ PoolRide::Application.configure do
   config.action_mailer.default_url_options = { :host => 'on-the-way.herokuapp.com' }
 
   config.action_mailer.asset_host = "http://on-the-way.herokuapp.com"
+  
   config.action_controller.asset_host = "http://on-the-way.herokuapp.com"
+  
   FACEBOOK_DIRECT_URL = 'https://www.facebook.com/dialog/apprequests?app_id=250325615010342&message=Invitation%20to%20join%20OnTheWay%20app!&redirect_uri=http://on-the-way.herokuapp.com/facebook_invite'
+  
+  PUSHER_CHANNEL = 'ontheway_prod'
+  PUSHER_EVENT = 'user_alert_prod'
+  
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
     :port           => '587',

@@ -20,6 +20,9 @@ gem 'gdata', git: 'https://github.com/agentrock/gdata.git'
 gem "thin"
 gem "dynamic_default_scoping"
 gem "friendly_id"
+gem 'pusher'
+gem 'pusher-client'
+gem 'em-http-request'
 
 group :mysql do
   gem 'mysql'

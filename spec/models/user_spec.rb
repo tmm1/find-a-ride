@@ -294,6 +294,30 @@ describe User do
       @user1.hooked_up_for_ride?(@ride4).should be false
     end
   end
+
+  describe '#unread_alerts' do
+    before(:all) do
+      Alert.destroy_all
+      @user1 = Factory(:user)
+      @user2 = Factory(:user)
+      @ride1 = Factory(:ride_request)
+      @ride2 = Factory(:ride_offer)
+      @ride3 = Factory(:ride_request)
+      @ride4 = Factory(:ride_offer)
+      @hook_up1 = Factory(:hook_up, :contacter => @user1, :contactee => @user2, :hookable => @ride1)
+      @hook_up2 = Factory(:hook_up, :contacter => @user1, :contactee => @user2, :hookable => @ride2)
+      @hook_up3 = Factory(:hook_up, :contacter => @user1, :contactee => @user2, :hookable => @ride3)
+      @hook_up4 = Factory(:hook_up, :contacter => @user1, :contactee => @user2, :hookable => @ride4)
+    end
+    
+    it 'should return the unread alerts for user' do
+      @user2.unread_alerts.should have(4).things
+      @user2.unread_alerts.should include @hook_up1.alert
+      @user2.unread_alerts.should include @hook_up2.alert
+      @user2.unread_alerts.should include @hook_up3.alert
+      @user2.unread_alerts.should include @hook_up4.alert
+    end
+  end
 end
 
 
