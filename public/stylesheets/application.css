@@ -158,19 +158,19 @@ h5.table-text {
   margin-top: 10px;
   margin-left: 250px;
   margin-top: 10px;
-
 }
-#terms.modal {
-  width: 660px;
-}
-#terms.modal .modal-body {
-  max-height: none;
+#terms {
+  width: 720px;
+  margin-left: -361px;
 }
 .hookclass {
-  width: 580px;
+  width: 592px;
+  margin-left: -297px;
 }
-.hookclass .modal-body {
-  max-height: none;
+#import-gmail-contacts {
+  width: 583px;
+  margin-left: -293px;
+}
 #no-contacts {
  text-align: center;
 }
