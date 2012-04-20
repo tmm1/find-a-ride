@@ -98,8 +98,15 @@ describe RidesController do
     before(:all) do
       RideOffer.destroy_all
       RideRequest.destroy_all
-      @ride_offer1 = Factory(:ride_offer, :offerer => @login_user, :orig => Location.last.name)
-      @ride_offer2 = Factory(:ride_offer, :offerer => @login_user, :orig => Location.first.name)
+      RideOffer.record_timestamps = false
+      locs = Location.limit(6).select(:name).map(&:name)
+      @ride_offer1 = Factory(:ride_offer, :offerer => @login_user, :orig => locs[0], :dest => locs[1], :created_at => 3.days.ago)
+      @ride_offer2 = Factory(:ride_offer, :offerer => @login_user, :orig => locs[2], :dest => locs[3], :created_at => 1.day.ago)
+      @ride_offer3 = Factory(:ride_offer, :offerer => @login_user, :orig => locs[4], :dest => locs[5], :created_at => 2.days.ago)
+    end
+
+    after(:all) do
+      RideOffer.record_timestamps = true
     end
 
     it "should list the ride_requests and ride_offers" do
@@ -107,8 +114,9 @@ describe RidesController do
       get :list, :user_id => @login_user.id
       response.should be_success
       response.should render_template(:list)
-      assigns[:ride_offers].should have(2).things
       assigns[:ride_requests].should have(0).things
+      assigns[:ride_offers].should have(3).things
+      assigns[:ride_offers].should == [@ride_offer2, @ride_offer3, @ride_offer1]
     end
   end
 end
