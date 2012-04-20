@@ -49,6 +49,20 @@ this.showPage = function (pageNumber) {
         if (this.currentPage == 1) pgPrev.style.display = 'none';
         else pgPrev.style.display = '';
     }
+
+    // disabling the prev and next links
+    var prevLink = document.querySelector(".previous_page"),
+        nextLink = document.querySelector(".next_page");
+
+    prevLink.className = prevLink.className.replace(/ ?disabled ?/, "");
+    nextLink.className = nextLink.className.replace(/ ?disabled ?/, "");
+
+    if (this.currentPage == 1) {
+        prevLink.className += " disabled";
+    }
+    else if (this.currentPage == this.pages) {
+        nextLink.className += " disabled";
+    }
 }
 this.prev = function () {
     if (this.currentPage > 1) this.showPage(this.currentPage - 1);

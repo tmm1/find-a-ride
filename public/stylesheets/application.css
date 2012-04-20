@@ -174,3 +174,12 @@ h5.table-text {
 #no-contacts {
  text-align: center;
 }
+
+#pagination ul li > a {
+  cursor: pointer;
+}
+#pagination ul li > a.active,
+#pagination ul li > a.active:hover {
+  background: #e36b23;
+  color: #ffffff;
+}
