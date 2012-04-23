@@ -161,7 +161,7 @@ h5.table-text {
 #no-selection-error {
   background-color: #2A333C;
 }
-.invite-gmail-button {
+.invite-gmail-button, .invite-facebook-button {
   margin-top: 10px;
   margin-left: 250px;
   margin-top: 10px;
