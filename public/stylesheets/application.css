@@ -32,7 +32,7 @@ p.terms_cond_error{
 }
 #dp3 .add-on {
     float: none;
-    margin: -14px 0 0 -4px;
+    margin: -14px 0 0 -5px;
 }
 .carousel {
     background-color: #3A87AD;
@@ -170,7 +170,7 @@ h5.table-text {
   width: 720px;
   margin-left: -361px;
 }
-.hookclass {
+#hook-up {
   width: 592px;
   margin-left: -297px;
 }

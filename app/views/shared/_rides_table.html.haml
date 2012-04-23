@@ -1,3 +1,4 @@
+%script{:type => 'text/javascript'} var rides = {};
 %table{:class => 'table table-striped'}
   %th Name
   %th Leaving from
@@ -22,9 +23,9 @@
       %td
       %td
         - unless already_hooked_up
-          = link_to(hookup_label(result), '#hook-up-'+uuid, :class => 'btn btn-medium btn-primary', "data-toggle" => "modal")
+          = link_to(hookup_label(result), "#hook-up-#{uuid}", :class => 'btn btn-medium btn-primary hookup', 'data-ride_id' => result.try(:id))
+          %script{:type => "text/javascript"} rides[#{result.try(:id)}] = #{ride_details_json(result, uuid)};
         - else
           %span{:class => 'btn btn-medium btn-primary disabled'}= hookup_label(result)
-    - unless already_hooked_up
-      %div{:id => "hook-up-#{uuid}", :class => 'modal hide hookclass', :url => new_user_hook_up_url(:user_id => current_user.id, :id => user_id(result), :orig => result.ride_origin.name, :dest => result.ride_destination.name, :time => humanize_time(result.ride_time), :type => type, "#{type}_id" => result.id , :uuid => uuid)}
 
+= render "shared/hookup_modal_template"

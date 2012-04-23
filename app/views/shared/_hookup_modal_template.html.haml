@@ -1,0 +1,41 @@
+%div#hook-up.modal.hide
+
+%script#hookup-modal-template{:type => "text/x-jquery-tmpl"}
+  .modal-header
+    %h2 ${header}
+  .modal-body
+    .form
+      %span.label.label-important.hookup-note Please fill in the information below and submit to get in touch
+      %p
+      %form#new_hook_up.formtastic.hook_up{"accept-charset" => "UTF-8", :action => "/users/vikas-reddy/hook_ups?ride_offer_id=112", :method => "post", :novalidate => "novalidate"}
+        %div{:style => "margin:0;padding:0;display:inline"}
+          %input{:name => "utf8", :type => "hidden", :value => "✓"}/
+          %input{:name => "authenticity_token", :type => "hidden", :value => "${auth_token}"}/
+        %fieldset.inputs
+          %ol/
+          %h3 To: ${contactee_name}
+          %h6 Going from: ${origin}
+          %h6 Going to: ${destination}
+          %h6 ${ride_time}
+          %br/
+          %li#hook_up_contactee_id_input.hidden.input.optional
+            %input#hook_up_contactee_id{:name => "hook_up[contactee_id]", :type => "hidden", :value => "${contactee_id}"}/
+          %li#hook_up_contacter_id_input.hidden.input.optional
+            %input#hook_up_contacter_id{:name => "hook_up[contacter_id]", :type => "hidden", :value => "${contacter_id}"}/
+          %li#hook_up_hookable_id_input.hidden.input.optional
+            %input#hook_up_hookable_id{:name => "hook_up[hookable_id]", :type => "hidden", :value => "${hookable_id}"}/
+          %li#hook_up_hookable_type_input.hidden.input.required
+            %input#hook_up_hookable_type{:name => "hook_up[hookable_type]", :type => "hidden", :value => "${hookable_type}"}/
+          %li#hook_up_mobile_input.string.input.optional.stringish
+            %label.label{:for => "hook_up_mobile"} Mobile number
+            %input#hook_up_mobile{:name => "hook_up[mobile]", :title => "Enter your mobile number to contact", :type => "text", :value => "${mobile}"}/
+          %li#hook_up_message_input.text.input.required
+            %label.label{:for => "hook_up_message"}
+              Message
+              %abbr{:title => "required"} *
+            %textarea#hook_up_message{:cols => "20", :name => "hook_up[message]", :placeholder => "Use this space to add any other information that you think might be useful like your exact address, exact time of pick up, pick up or drop off points etc.", :rows => "10"}
+          %input#hook_up_uniq_id{:name => "hook_up_uniq_id", :type => "hidden", :value => "${hook_up_uniq_id}"}/
+  .modal-footer
+    .loader.pull-left{:style => "display: none;"}
+      %img{:alt => "Loader", :src => "/images/loader.gif?1334209982"}/
+    %a#hook-submit.btn.btn-primary.btn-large.pull-left{:href => "#"} Submit

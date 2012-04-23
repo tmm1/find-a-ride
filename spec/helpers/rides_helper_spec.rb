@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe RidesHelper do
+
+  include Devise::TestHelpers
+
   describe '#user name' do
     it 'should return user name for the ride request' do
       ride_request = Factory(:ride_request)
@@ -107,6 +110,25 @@ describe RidesHelper do
     it 'should return request for ride offer' do
       ride_offer = Factory(:ride_offer)
       helper.hookup_label(ride_offer).should == 'Request'
+    end
+  end
+
+  describe '#ride_details_json' do
+    it 'should return json-ised hash of values' do
+      offerer, requestor = Factory(:user), Factory(:user)
+      sign_in requestor
+      ride_offer = Factory(:ride_offer, :offerer => offerer, :type => 'RideOffer')
+      json = helper.ride_details_json(ride_offer, "someString")
+      hash = ActiveSupport::JSON.decode(json)
+      hash.class.should == Hash
+      hash.keys.count.should == 11
+      hash['mobile'].should == requestor.mobile
+    end
+
+    it 'should not raise any error if any argument is nil' do
+      lambda {
+        helper.ride_details_json(nil, nil)
+      }.should_not raise_error
     end
   end
 end
