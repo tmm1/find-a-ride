@@ -1,8 +1,16 @@
 class HomeController < ApplicationController
+  layout "application", :except => [:authorize]
+  
   def about
   end
   
   def index
+  end
+
+  def authorize
+      respond_to do |format|
+        format.html # authorize.html.haml
+      end
   end
   
   def contact

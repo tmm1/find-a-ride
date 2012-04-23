@@ -161,7 +161,7 @@ h5.table-text {
 #no-selection-error {
   background-color: #2A333C;
 }
-.invite-gmail-button {
+.invite-gmail-button, .invite-facebook-button {
   margin-top: 10px;
   margin-left: 250px;
   margin-top: 10px;
@@ -175,8 +175,9 @@ h5.table-text {
   margin-left: -297px;
 }
 #import-gmail-contacts {
-  width: 583px;
-  margin-left: -293px;
+  min-width: 583px;
+  width: auto;
+  margin-left: -312px;
 }
 #no-contacts {
  text-align: center;
