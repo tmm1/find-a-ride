@@ -1,6 +1,6 @@
 .text
-  %h1
-    You can invite your friends to use OnTheWay. There are three ways.
+  %h2
+    It would be awesome if you can let your friends know about OnTheWay. There are three ways you can do that.
 %br
 .hero-unit
   = semantic_form_for 'invites', :url => send_invite_user_invites_url(current_user), :html => {:method => :post} do |f|

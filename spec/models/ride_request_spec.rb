@@ -100,7 +100,8 @@ describe RideRequest do
       params = {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => "#{get_date}", :start_time => "#{get_date} 04:30:00 pm", :vehicle => 'four_wheeler', :user_id => @login_user.id}
       results = RideRequest.search(params)
       results.should have(2).things
-      results.should == [@ride_request6, @ride_request11]
+      results.should include @ride_request6
+      results.should include @ride_request11
       results.should_not include [@ride_request2, @ride_request3, @ride_request9, @ride_request4, @ride_request5, @ride_request7, @ride_request8, @ride_request1, @ride_request10]
     end
 
