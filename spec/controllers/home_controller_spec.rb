@@ -18,7 +18,15 @@ describe HomeController do
       response.should render_template(:index)
     end    
   end
-  
+
+  describe "#authorize" do
+    it "should render authorize" do
+      post 'authorize'
+      response.should be_success
+      response.should render_template(:authorize)
+    end
+  end
+
   describe "#contact" do
     before(:all) do
       ActionMailer::Base.delivery_method = :test
