@@ -19,6 +19,8 @@
   - if !all_contacts.blank?
     .modal-header
       %h1 Your Gmail Contacts
+      %br
+      %span{:class => 'label label-important'} Note : You can invite up to maximum of 25 contacts
     .modal-body
       %table{:id => "fetched_gmail_contacts_list"}
         - all_contacts.each do |contact|

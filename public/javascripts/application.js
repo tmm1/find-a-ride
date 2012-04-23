@@ -290,6 +290,12 @@ $(document).ready(function() {
         }
         else {
           email_list = emails.val().split(",");
+          if(email_list.length > 25){
+           valid = false;
+           emails.after("<p class='inline-errors'>more than 25 emails should not be allowed</p>");
+          }
+            else
+            {
           for(var i=0; i<email_list.length; i++) {
             if (isValidEmail(email_list[i])) {
               valid = true;
@@ -299,6 +305,7 @@ $(document).ready(function() {
               break;
             }
           }
+        }
         }
         if (valid) {
 	        $("#invites_submit").hide();
@@ -353,6 +360,10 @@ $(document).ready(function() {
 	             var tot_checked = $("input:checkbox[name=contact_list]:checked").length;
 	             var i = 1;
 	             if ($("input:checkbox[name=contact_list]:checked").length > 0) {
+                         if ($("input:checkbox[name=contact_list]:checked").length > 25){
+                          $("#no-selection-error").append("<p class='inline-errors'> More than 25 emails should not be allowed </p>");
+                         }
+                         else {
 	               $("#invite-gmail-contacts").hide();
 	               $("#import-gmail-contacts").find('.loader').show();
 	               $("input:checkbox[name=contact_list]:checked").each(function(){
@@ -371,7 +382,10 @@ $(document).ready(function() {
 	                 $("#import-gmail-contacts").find('.loader').hide();
 	                 $("#import-gmail-contacts").modal('hide');
 	               }, 1000);
-	             } else {
+                     }
+	             }
+
+                     else {
 	               $("#no-selection-error").append("<p class='inline-errors'> No email addresses selected </p>");
 	             }
 	           });
