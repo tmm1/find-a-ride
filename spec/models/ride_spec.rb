@@ -84,7 +84,7 @@ describe Ride do
 
   describe "#scopes" do
     it 'default_scope should ignore expired rides' do
-      Ride.scoped.where_values.should eql(["`rides`.`expires_on` >= '#{Date.today}'"])
+      Ride.scoped.where_values.should eql(["rides.expires_on >= '#{Date.today}'"])
     end
   end
 

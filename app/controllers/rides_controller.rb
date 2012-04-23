@@ -47,8 +47,8 @@ class RidesController < ApplicationController
   private
 
   def get_rides
-    @ride_requests = current_user.ride_requests.paginate(:page => params[:ride_request_page], :per_page => 5)
-    @ride_offers = current_user.ride_offers.paginate(:page => params[:ride_offer_page], :per_page => 5)
+    @ride_requests = current_user.ride_requests.order("created_at DESC").paginate(:page => params[:ride_request_page], :per_page => 5)
+    @ride_offers = current_user.ride_offers.order("created_at DESC").paginate(:page => params[:ride_offer_page], :per_page => 5)
   end
 end
 
