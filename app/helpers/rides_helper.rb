@@ -64,4 +64,26 @@ module RidesHelper
     uuid = UUID.new
     uuid.generate
   end
+
+  def ride_details_json(ride, uuid)
+    unless ride.nil?
+      contactee = (ride.type == "RideOffer") ? ride.offerer : ride.requestor
+      hash = {
+        :header          => "#{header_text(params[:type])} #{contactee.try(:full_name)}",
+        :contactee_name  => contactee.try(:full_name),
+        :origin          => ride.try(:ride_origin).try(:name),
+        :destination     => ride.try(:ride_destination).try(:name),
+        :ride_time       => humanize_time(ride.try(:ride_time)),
+        :contactee_id    => contactee.try(:id),
+        :contacter_id    => current_user.try(:id),
+        :hookable_id     => ride.try(:id),
+        :hookable_type   => ride.try(:type),
+        :mobile          => current_user.try(:mobile),
+        :hook_up_uniq_id => uuid
+      }
+    else
+      hash = {}
+    end
+    hash.to_json.html_safe
+  end
 end

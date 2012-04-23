@@ -12,10 +12,6 @@ $(document).ready(function() {
     
     $('#contact-form textarea#comments').placeHeld();
     
-    $('.result-popover').popover({
-        title: 'Please note'
-    });
-
     // *** set carousel interval *** //
     $('.carousel').carousel({
         interval: 3500
@@ -76,55 +72,55 @@ $(document).ready(function() {
     });
     
     /*** Hook up modal ***/
-    $(".modal.hide.hookclass").on('show', function(){
-        var obj =  $(this)
-        $.ajax({
-            type: 'GET',
-            url: $(this).attr('url'),
-            success: function(data) {
-                obj.html(data)
-                hookupSubmit(); //hook-up handler
-            }
-        });
-    });
+    if($('.search-results').length > 0) {
 
-    var hookupSubmit =  function(){
-	    $("#hook-submit").click(function(){
-	        $('#hook-up').find('.inline-errors').remove();
-	        var valid = true;
-	        var url = $('#new_hook_up').attr('action');       
-	        var hook_id = $('#hook-up').find('#hook_up_uniq_id').val();
-	        var message = $('#hook-up').find('#hook_up_message');
-	        var phone = $('#hook-up').find('#hook_up_mobile');
-	        if (message.val() === '' || message.val() === undefined) {
-	            valid = false;
-	            message.after("<p class='inline-errors'>can't be blank</p>");
-	        }
-	        if (phone.val() !== '' && !isValidMobile(phone.val())) {           
-	            valid = false;
-	            phone.after("<p class='inline-errors'>can't be invalid</p>");
-	        }
-	        if (valid) {
-	            $("#hook-submit").hide();
-	            $('#hook-up').find('.loader').show();
-	            $.ajax({
-	                type: 'POST',
-	                url: url,
-	                data: $("#new_hook_up").serialize(),
-	                success: function(data) {
-	                    $('#hook-up-'+hook_id).modal('hide');
-	                    if (data === 'success') {
-	                        $('.notice-area').html("<div class='alert alert-success'>Your message was successfully sent. Please wait to hear back.</div>")
-	                    }
-	                    else {
-	                        $('.notice-area').html("<div class='alert alert-error'>There was a problem. Please retry later.</div>")
-	                    }
-	                    setTimeout(hideFlashMessages, 3500);
-	                }
-	            });
-	        }
-	    });
-	}
+      $('.search-results').ajaxComplete(initSearchResultsPopovers);
+      initSearchResultsPopovers();
+
+      $('body').on('click', 'a.hookup', function(e) {
+        e.preventDefault();
+
+        $("#hook-up").html($("#hookup-modal-template").tmpl(rides[$(this).attr('data-ride_id')]));
+        $("#hook-up").modal({keyboard: 'false'});
+      });
+
+      $('body').on('click', '#hook-submit', function(){
+          $('#hook-up').find('.inline-errors').remove();
+          var valid = true;
+          var url = $('#new_hook_up').attr('action');
+          var hook_id = $('#hook-up').find('#hook_up_uniq_id').val();
+          var message = $('#hook-up').find('#hook_up_message');
+          var phone = $('#hook-up').find('#hook_up_mobile');
+          if (message.val() === '' || message.val() === undefined) {
+              valid = false;
+              message.after("<p class='inline-errors'>can't be blank</p>");
+          }
+          if (phone.val() !== '' && !isValidMobile(phone.val())) {
+              valid = false;
+              phone.after("<p class='inline-errors'>can't be invalid</p>");
+          }
+          if (valid) {
+              $("#hook-submit").hide();
+              $('#hook-up').find('.loader').show();
+              $.ajax({
+                  type: 'POST',
+                  url: url,
+                  data: $("#new_hook_up").serialize(),
+                  success: function(data) {
+                      $('#hook-up').modal('hide');
+                      if (data === 'success') {
+                          $('.notice-area').html("<div class='alert alert-success'>Your message was successfully sent. Please wait to hear back.</div>")
+                      }
+                      else {
+                          $('.notice-area').html("<div class='alert alert-error'>There was a problem. Please retry later.</div>")
+                      }
+                      setTimeout(hideFlashMessages, 3500);
+                  }
+              });
+          }
+      });
+    }
+
 	
     /*** Contact modal ***/    
     $('#contact').on('show', function () {
@@ -516,6 +512,10 @@ function setAppCity(location){
     });
 }
 
-
+function initSearchResultsPopovers() {
+  $('.result-popover', '.search-results').popover({
+      title: 'Please note'
+  });
+}
 
 
