@@ -396,7 +396,7 @@ $(document).ready(function() {
 
 	pusher_channel.bind($('#pusher-event').val(), function(data) {
 	  if ($('#pusher-receiver').val() === data.user_id) {
-		$('#alert-badge').html(data.message);
+		$('.alert-badge').html(data.message);
 	  }
 	});
 });

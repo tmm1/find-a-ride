@@ -1,0 +1,10 @@
+%table{:class => 'table table-striped'}
+  %th From
+  %th Received at
+  - alerts.each do |a|
+    %tr
+      %td
+        %h5.table-text= a.sender.full_name
+      %td
+        %h5.table-text= humanize_time(a.created_at)
+
