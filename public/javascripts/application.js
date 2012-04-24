@@ -84,7 +84,9 @@ $(document).ready(function() {
         $("#hook-up").modal({keyboard: 'false'});
       });
 
-      $('body').on('click', '#hook-submit', function(){
+      $('body').on('click', '#hook-submit', function(e){
+          e.preventDefault();
+
           $('#hook-up').find('.inline-errors').remove();
           var valid = true;
           var url = $('#new_hook_up').attr('action');
@@ -110,6 +112,14 @@ $(document).ready(function() {
                       $('#hook-up').modal('hide');
                       if (data === 'success') {
                           $('.notice-area').html("<div class='alert alert-success'>Your message was successfully sent. Please wait to hear back.</div>")
+
+                          // updating the result row
+                          var rideId = $('input[name="hook_up[hookable_id]"]', '#hook-up').val(),
+                              hookup_link = $('[data-ride_id="' + rideId + '"]'),
+                              hookup_label = hookup_link.html();
+                          hookup_link.closest('#hook-up-popover' + hook_id).attr('data-content',
+                            'Ah, It looks like you already might be in touch with this user!');
+                          hookup_link.replaceWith('<span class="btn btn-medium btn-primary disabled">' + hookup_label + '</span>');
                       }
                       else {
                           $('.notice-area').html("<div class='alert alert-error'>There was a problem. Please retry later.</div>")
@@ -193,10 +203,10 @@ $(document).ready(function() {
 	}
 
     /** Delete Ride **/
-    function initDeleteRideHandlers() {
-      $(".ride-list .delete-ride-cell .disabled").popover({title: "Please note"});
+    if($('.ride-list').length > 0) {
 
-      $(".delete-ride").click(function(e) {
+      // Show confirmation buttons
+      $('.ride-list').on('click', '.delete-ride', function(e) {
         e.preventDefault();
         $(".delete-ride").show();
         $(".confirm-delete").hide();
@@ -206,7 +216,8 @@ $(document).ready(function() {
         $("#confirm-delete-" + rideId).show();
       });
 
-      $(".yes, .no", ".confirm-delete").click(function(e) {
+      // Handle confirmation buttons
+      $('.ride-list').on('click', '.confirm-delete .yes, .confirm-delete .no', function(e) {
         e.preventDefault();
 
         var matches = $(this).parent().attr("id").match(/(\d+)$/),
@@ -215,21 +226,23 @@ $(document).ready(function() {
         // clicked "Sure?"
         if($(this).hasClass("yes")) {
 
-          var url = $("#delete-ride-" + rideId).attr('href');
+          var url = $("#delete-ride-" + rideId).attr('href'),
+              current_page = $("#delete-ride-" + rideId).closest("div.tab-pane")
+                          .find(".pagination .active a");
 
-          var matches = $("#delete-ride-" + rideId).closest("div.tab-pane")
-                          .find(".pagination .active a").attr("href").match(/(\w+)=(\d+)$/),
-              key = matches[1],
-              value = matches[2],
-              dataArray = {};
+          if(current_page.length > 0) {
+            var matches = current_page.attr("href").match(/(\w+)=(\d+)$/),
+                key = matches[1], value = matches[2],
+                dataArray = {};
 
-          // adjusting the page number
-          if((parseInt(value) > 1) &&
-            ($("#delete-ride-" + rideId).closest("div.tab-pane").find(".delete-ride-cell").size() == 1)) {
-            value = parseInt(value) - 1;
+            // adjusting the page number
+            if((parseInt(value) > 1) &&
+              ($("#delete-ride-" + rideId).closest("div.tab-pane").find(".delete-ride-cell").size() == 1)) {
+              value = parseInt(value) - 1;
+            }
+
+            dataArray[key] = value;
           }
-
-          dataArray[key] = value;
 
           $.ajax({
             type: 'DELETE', url: url, data: dataArray,
@@ -250,12 +263,12 @@ $(document).ready(function() {
           $("#delete-ride-" + rideId).show();
         }
       });
+
+      $(".ride-list").ajaxComplete(initDeleteRidePopovers);
+      initDeleteRidePopovers();
     }
 
-    $(".ride-list").ajaxComplete(initDeleteRideHandlers);
-    initDeleteRideHandlers();
 
-    /**  Delete Ride  **/
 
   $("#gmail-contacts-button").click(function(e){
     $('#import-gmail-contacts').find('.inline-errors').remove();
@@ -530,6 +543,10 @@ function initSearchResultsPopovers() {
   $('.result-popover', '.search-results').popover({
       title: 'Please note'
   });
+}
+
+function initDeleteRidePopovers() {
+  $(".ride-list .delete-ride-cell .disabled").popover({title: "Please note"});
 }
 
 
