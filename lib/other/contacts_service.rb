@@ -5,7 +5,7 @@ module ContactsService
       all_contacts = []
       contacts = Contacts::Gmail.new(user, pwd).contacts
       contacts && contacts.each do |con|
-        all_contacts << con[1] if user != con[1]
+        all_contacts << con[1]
       end
       all_contacts
     rescue Exception => ex
