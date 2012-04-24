@@ -27,6 +27,12 @@ describe Alert do
       @alert.read
       @alert.read?.should be true
     end
+    
+    it 'should set state as archived' do
+      @alert.read
+      @alert.archive
+      @alert.archived?.should be true
+    end
   end
   
   describe '#alert scope methods' do
@@ -49,6 +55,13 @@ describe Alert do
     it 'should return all read alerts' do
       Alert.read.should have(1).things
       Alert.read.should_not include [@alert1, @alert2]
+    end
+
+    it 'should return all unarchived alerts' do
+      @alert3.read
+      @alert3.archive
+      Alert.unarchived.should have(4).things
+      Alert.unarchived.should_not include @alert3
     end
   end
   

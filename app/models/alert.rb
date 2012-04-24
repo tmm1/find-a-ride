@@ -10,6 +10,9 @@ class Alert < ActiveRecord::Base
   state_machine :state, :initial => :unread do
     event :read do
       transition :unread => :read
+    end
+    event :archive do
+      transition :read => :archived
     end 
   end
   
@@ -19,6 +22,10 @@ class Alert < ActiveRecord::Base
   
   def self.unread
     where(:state => 'unread')
+  end
+  
+  def self.unarchived
+    where("state != ?", 'archived')
   end
   
   private
