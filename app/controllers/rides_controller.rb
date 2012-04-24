@@ -30,7 +30,6 @@ class RidesController < ApplicationController
 
   def destroy
     @ride = Ride.find(params[:id])
-    ride_type = @ride.class.to_s.underscore.gsub(/_/, '')
     if @ride.deletable? and can?(:delete, @ride)
       @ride.destroy
       flash.now[:success] = "The #{@ride.humanize_type} was deleted successfully"
