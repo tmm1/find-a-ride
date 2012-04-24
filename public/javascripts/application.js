@@ -295,7 +295,7 @@ $(document).ready(function() {
           email_list = emails.val().split(",");
           if(email_list.length > 25){
            valid = false;
-           emails.after("<p class='inline-errors'>more than 25 emails should not be allowed</p>");
+           emails.after("<p class='inline-errors'>only maximum of 25 emails</p>");
           }
             else
             {
@@ -364,7 +364,7 @@ $(document).ready(function() {
 	             var i = 1;
 	             if ($("input:checkbox[name=contact_list]:checked").length > 0) {
                          if ($("input:checkbox[name=contact_list]:checked").length > 25){
-                          $("#no-selection-error").append("<p class='inline-errors'> More than 25 emails should not be allowed </p>");
+                          $("#no-selection-error").append("<p class='inline-errors'> only maximum of 25 emails </p>");
                          }
                          else {
 	               $("#invite-gmail-contacts").hide();
@@ -409,7 +409,7 @@ $(document).ready(function() {
 
 	pusher_channel.bind($('#pusher-event').val(), function(data) {
 	  if ($('#pusher-receiver').val() === data.user_id) {
-		$('#alert-badge').html(data.message);
+		$('.alert-badge').html(data.message);
 	  }
 	});
 });

@@ -46,6 +46,7 @@ PoolRide::Application.routes.draw do
   
   resources :users do
     resources :hook_ups
+    resources :alerts
     resources :rides do
       collection do
         get 'list'
