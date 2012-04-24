@@ -28,16 +28,18 @@ $(document).ready(function() {
     $("a#full-trace").click(function(e){
         $("#fulltrace").show();
     });
- 
-    
-    // *** Confirmation dialog on deactivate user *** //
-    $('#mymodal').modal({
-        keyboard: false,
-        show: false
-    });
 
     //*** dialog for showing exception ***//
     $('#exception').modal({
+        keyboard: false,
+        show: false
+    });
+    
+    /** alert content collapse **/
+    $('.alert-row').collapse('toggle');
+
+    /***  user inactive confirm dialog ***/
+    $('#mymodal').modal({
         keyboard: false,
         show: false
     });

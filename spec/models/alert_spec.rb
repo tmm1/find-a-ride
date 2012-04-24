@@ -13,7 +13,10 @@ describe Alert do
   
   describe '#state transitions' do
     before(:each) do
-      @alert = Factory(:alert)
+      Alert.destroy_all
+      Ride.destroy_all
+      hook_up = Factory(:hook_up, :hookable => Factory(:ride_request))
+      @alert = Factory(:alert, :hook_up => hook_up)
     end
     
     it 'should set initial state as unread' do
