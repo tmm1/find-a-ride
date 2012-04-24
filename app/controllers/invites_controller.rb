@@ -17,6 +17,7 @@ class InvitesController < ApplicationController
   def get_gmail_contacts
     begin
       @gmail_contacts = ContactsService.fetch_gmail_contacts(params[:login], params[:password]) || []
+      @gmail_contacts -= User.select(:email).map(&:email) unless @gmail_contacts.empty?
       respond_to do |wants|
         wants.js {}
       end
