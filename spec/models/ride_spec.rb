@@ -95,11 +95,11 @@ describe Ride do
 
     it "should fail with the duplicate error" do
       ride_request1 = RideRequest.create({
-        :orig => 'Madhapur', :dest => 'Kondapur', :type=>"RideRequest",
+        :orig => 'Madhapur', :dest => 'Kondapur', :type=>"RideRequest", :vehicle => "two_wheeler",
         :start_date => get_date(2.days.from_now), :start_time => get_time(2.days.from_now)
       })
       ride_request2 = RideRequest.new({
-        :orig => 'Madhapur', :dest => 'Kondapur', :type=>"RideRequest",
+        :orig => 'Madhapur', :dest => 'Kondapur', :type=>"RideRequest", :vehicle => "two_wheeler",
         :start_date => get_date(2.days.from_now), :start_time => get_time(2.days.from_now)
       })
       ride_request2.should_not be_valid
@@ -118,6 +118,20 @@ describe Ride do
       ride_request2.should be_valid
       ride_request2.errors.full_messages.should eql([])
     end
+
+
+    it "should successfully create a ride request if vehicle type is different" do
+       ride_request1 = RideRequest.create({
+        :orig => 'Madhapur', :dest => 'Kondapur', :type=>"RideRequest", :vehicle => "two_wheeler",
+        :start_date => get_date(2.days.from_now), :start_time => get_time(2.days.from_now)
+      })
+      ride_request2 = RideRequest.new({
+        :orig => 'Madhapur', :dest => 'Kondapur', :type=>"RideRequest", :vehicle => "four_wheeler",
+        :start_date => get_date(2.days.from_now), :start_time => get_time(2.days.from_now)
+      })
+      ride_request2.should be_valid
+      ride_request2.errors.full_messages.should eql([])
+    end
   end
 
   describe "#duplicate validation for ride offer" do
@@ -126,11 +140,11 @@ describe Ride do
     end
     it "should fail with the duplicate error" do
       ride_offer1 = RideOffer.create({
-        :orig => 'Madhapur', :dest => 'Kondapur', :type=>"RideOffer",
+        :orig => 'Madhapur', :dest => 'Kondapur', :type=>"RideOffer",:vehicle => "two_wheeler",
         :start_date => get_date(2.days.from_now), :start_time => get_time(2.days.from_now)
       })
       ride_offer2 = RideOffer.create({
-        :orig => 'Madhapur', :dest => 'Kondapur', :type=>"RideOffer",
+        :orig => 'Madhapur', :dest => 'Kondapur', :type=>"RideOffer",:vehicle => "two_wheeler",
         :start_date => get_date(2.days.from_now), :start_time => get_time(2.days.from_now)
       })
       ride_offer2.should_not be_valid
@@ -144,6 +158,19 @@ describe Ride do
       })
       ride_offer2 = RideOffer.new({
         :orig => 'Madhapur', :dest => 'Addagutta', :type=>"RideOffer",
+        :start_date => get_date(2.days.from_now), :start_time => get_time(2.days.from_now)
+      })
+      ride_offer2.should be_valid
+      ride_offer2.errors.full_messages.should eql([])
+    end
+
+    it "should successfully create a ride offer if vehicle type is different" do
+      ride_offer1 = RideOffer.create({
+        :orig => 'Madhapur', :dest => 'Begumpet', :type=>"RideOffer",:vehicle => "four_wheeler",
+        :start_date => get_date(2.days.from_now), :start_time => get_time(2.days.from_now)
+      })
+      ride_offer2 = RideOffer.new({
+        :orig => 'Madhapur', :dest => 'Begumpet', :type=>"RideOffer",:vehicle => "two_wheeler",
         :start_date => get_date(2.days.from_now), :start_time => get_time(2.days.from_now)
       })
       ride_offer2.should be_valid
