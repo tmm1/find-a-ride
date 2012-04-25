@@ -229,13 +229,12 @@ $(document).ready(function() {
         if($(this).hasClass("yes")) {
 
           var url = $("#delete-ride-" + rideId).attr('href'),
-              current_page = $("#delete-ride-" + rideId).closest("div.tab-pane")
-                          .find(".pagination .active a");
+              current_page = $("#delete-ride-" + rideId).closest("div.tab-pane").find(".pagination .active a"),
+              dataArray = {};
 
           if(current_page.length > 0) {
             var matches = current_page.attr("href").match(/(\w+)=(\d+)$/),
-                key = matches[1], value = matches[2],
-                dataArray = {};
+                key = matches[1], value = matches[2];
 
             // adjusting the page number
             if((parseInt(value) > 1) &&
@@ -243,6 +242,12 @@ $(document).ready(function() {
               value = parseInt(value) - 1;
             }
 
+            dataArray[key] = value;
+          }
+          else {
+            var currentTab = $("#delete-ride-" + rideId).closest("div.tab-pane").attr("id"),
+                key = currentTab.replace(/^([a-z]+)-([a-z]+)s$/, '$1_$2_page'),
+                value = 1;
             dataArray[key] = value;
           }
 

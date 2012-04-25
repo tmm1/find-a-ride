@@ -2,6 +2,7 @@
   %th Leaving from
   %th Going to
   %th Time
+  %th Vehicle Type
   %th
   - rides.each do |ride|
     - uuid = user_uuid
@@ -12,6 +13,8 @@
         %h5.table-text= ride.try(:ride_destination).try(:name)
       %td
         %h5.table-text= humanize_time(ride.try(:ride_time))
+      %td
+        %h5.table-text.text-center= vehicle_type_image(ride)
       %td.delete-ride-cell
         - if ride.deletable?
           %a.btn.btn-primary.delete-ride{:id => "delete-ride-#{ride.id}", :href => user_ride_path(current_user, ride)}

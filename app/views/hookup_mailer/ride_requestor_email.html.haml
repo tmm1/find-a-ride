@@ -27,4 +27,6 @@
 %p.hookup-msg-addl= @message
 
 %p{:style => 'font-size: 18px;'} Thanks -
-%p= "#{@hook_up.contacter.try(:full_name)}"
+%p.hookup-contact-info
+  %b= "#{@hook_up.contacter.try(:full_name)}"
+
