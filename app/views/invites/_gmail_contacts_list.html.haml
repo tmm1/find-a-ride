@@ -1,20 +1,3 @@
-#import-modal
-  .modal-header
-    %h2 Fill in your Gmail account information
-    %br
-    %span{:class => 'label label-important'} Contacts retrieval may not work if 2-step authentication is enabled
-  .modal-body
-    %label.label Email*
-    = text_field_tag 'gmail_userid'
-    %label.label Password*
-    = password_field_tag 'gmail_password'
-    %br
-    .loader.pull-left{:style => 'display: none;'}
-      = image_tag('loader.gif')
-    %br
-    #fetch-gmail-contacts{:class => 'btn btn-primary btn-large pull-left'}
-      Submit
-
 #contacts-modal{:style => 'display:none;'}
   - if !all_contacts.blank?
     .modal-header
@@ -31,19 +14,21 @@
             %td
               = contact
       %br
-      #pagination
+      - if all_contacts.size > 7 
+        #pagination
       %br
       .loader.pull-left{:style => 'display: none;'}
         = image_tag('loader.gif')
     #no-selection-error
     .modal-footer
-      #invite-gmail-contacts{:class => 'btn btn-primary btn-large pull-left'}
+      #invite-gmail-contacts{:class => 'btn btn-primary btn-large pull-left enter-key'}
         Invite
 
-    %script{:type => "text/javascript"}
-      var pager = new Pager('fetched_gmail_contacts_list', 10, 'pager', 'pagination');
-      pager.init();
-      pager.showPage(1);
+    - if all_contacts.size > 7
+      %script{:type => "text/javascript"}
+        var pager = new Pager('fetched_gmail_contacts_list', 6, 'pager', 'pagination');
+        pager.init();
+        pager.showPage(1);
   - else
     .modal-header
     .modal-body

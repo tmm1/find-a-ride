@@ -34,5 +34,6 @@
               = render :partial => "facebook_invite"
 
 #import-gmail-contacts{:class => 'modal hide fade'}
-  = render :partial => 'import_gmail_contacts', :locals => { :all_contacts => [] }
+  = render :partial => 'gmail_contacts_form', :locals => { :all_contacts => [] }
+  = render :partial => 'gmail_contacts_list', :locals => { :all_contacts => [] }
   

@@ -1,0 +1,16 @@
+#import-modal
+  .modal-header
+    %h2 Fill in your Gmail account information
+    %br
+    %span{:class => 'label label-important'} Contacts retrieval may not work if 2-step authentication is enabled
+  .modal-body
+    %label.label Email*
+    = text_field_tag 'gmail_userid'
+    %label.label Password*
+    = password_field_tag 'gmail_password'
+    %br
+    .loader.pull-left{:style => 'display: none;'}
+      = image_tag('loader.gif')
+    %br
+    #fetch-gmail-contacts{:class => 'btn btn-primary btn-large pull-left enter-key'}
+      Submit

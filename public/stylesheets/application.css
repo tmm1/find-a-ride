@@ -191,4 +191,10 @@ h5.table-text {
   background: #e36b23;
   color: #ffffff;
 }
+.user-alerts .alert-row {
+  cursor: pointer;
+}
+.user-alerts .alert-content {
+  display: none;
+}
 

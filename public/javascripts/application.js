@@ -429,6 +429,16 @@ $(document).ready(function() {
 		$('.alert-badge').html(data.message);
 	  }
 	});
+
+  // user alerts
+  if($('.user-alerts').length > 0) {
+
+    $('.user-alerts').on('click', '.alert-row', function(e) {
+      var target = $(this).attr("data-target");
+      $(target).toggle(500);
+    });
+
+  }
 });
 
 /** utility methods **/
