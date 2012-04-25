@@ -14,7 +14,9 @@
       %td
         = link_to("View", "#", :class => 'btn btn-medium btn-success')
         = link_to("Archive", "#", :class => 'btn btn-medium btn-danger')
-    .alert-content{:id => "alert-#{a.id}"}
+    %tr.alert-content{:id => "alert-#{a.id}"}
+      %td{:colspan => '4'}
+        = render 'alerts/show'
 
         
 
