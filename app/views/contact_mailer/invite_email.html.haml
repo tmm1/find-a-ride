@@ -7,9 +7,9 @@
   = link_to "Sign up", signup_url(:referrer => @sender.email), :class => 'blue-underline'
   to get started and be OnTheWay.
 %br
-%p{:style => 'font-size: 18px;'}
-  Thanks -
+%p{:style => 'font-size: 18px;'} Thanks -
+%p.hookup-contact-info
+  %b= "#{@sender.full_name}"
   %br
-  = @sender.full_name
-  %br
-  = @sender.email
+%p.hookup-contact-info
+  = link_to("#{@sender.email}", "mailto:#{@sender.email}", :class => 'blue-underline')
