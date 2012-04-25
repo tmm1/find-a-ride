@@ -1,10 +1,20 @@
 %table{:class => 'table table-striped'}
+  %th
   %th From
   %th Received at
+  %th
   - alerts.each do |a|
-    %tr
+    %tr{:class => 'alert-row', :"data-target" => "#alert-#{a.id}"}
+      %td
+        = alert_image(a)
       %td
         %h5.table-text= a.sender.full_name
       %td
         %h5.table-text= humanize_time(a.created_at)
+      %td
+        = link_to("View", "#", :class => 'btn btn-medium btn-success')
+        = link_to("Archive", "#", :class => 'btn btn-medium btn-danger')
+    .alert-content{:id => "alert-#{a.id}"}
+
+        
 

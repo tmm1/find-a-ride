@@ -6,7 +6,7 @@ describe ContactsService do
     it 'should fetch gmail contacts successfully' do
       contacts = []
       lambda {contacts = ContactsService.fetch_gmail_contacts('contactsuser@gmail.com', 'importcontacts')}.should_not raise_error
-      contacts.should have(1).things
+      contacts.should have_at_least(1).things
     end
     
     it 'should fail authentication when trying to fetch contacts' do

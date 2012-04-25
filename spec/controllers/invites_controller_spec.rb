@@ -59,7 +59,15 @@ describe InvitesController do
       get 'get_gmail_contacts', { :login => "contactsuser@gmail.com", :password => "importcontacts", :user_id => @login_user.id, :format => :js }
       response.should have_content_type 'text/javascript'
       assigns[:gmail_contacts].should_not be_empty
-      assigns[:gmail_contacts].should have(1).things
+      assigns[:gmail_contacts].should have_at_least(1).things
+    end
+
+    it "should not fetch contact which is already exists in the system" do
+      sign_in @login_user
+      user = Factory(:user)
+      get 'get_gmail_contacts', { :login => "contactsuser@gmail.com", :password => "importcontacts", :user_id => @login_user.id, :format => :js }
+      response.should have_content_type 'text/javascript'
+      assigns[:gmail_contacts].should_not include(user.email)
     end
   end
 

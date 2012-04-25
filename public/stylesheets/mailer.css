@@ -1,5 +1,6 @@
 .navbar {
   height: 70px;
+  color: #999999 !important;
 }
 .container {
   height: 100%;
@@ -17,7 +18,7 @@ p.hookup-msg {
 }
 p.hookup-msg b, p.hookup-contact-info b {
   font-size: 18px;
-  color: #FFFFFF;
+  color: #FFFFFF !important;
   font-weight: bold;
 }
 p.hookup-contact-info {
@@ -26,4 +27,10 @@ p.hookup-contact-info {
 p.hookup-msg-addl {
   line-height: 20px;
   font-size: 16px;
+}
+.hero-unit p {
+    color: inherit !important;
+}
+.badge {
+   color: #FFFFFF !important;
 }

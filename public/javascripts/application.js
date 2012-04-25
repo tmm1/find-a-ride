@@ -28,16 +28,18 @@ $(document).ready(function() {
     $("a#full-trace").click(function(e){
         $("#fulltrace").show();
     });
- 
-    
-    // *** Confirmation dialog on deactivate user *** //
-    $('#mymodal').modal({
-        keyboard: false,
-        show: false
-    });
 
     //*** dialog for showing exception ***//
     $('#exception').modal({
+        keyboard: false,
+        show: false
+    });
+    
+    /** alert content collapse **/
+    $('.alert-row').collapse('toggle');
+
+    /***  user inactive confirm dialog ***/
+    $('#mymodal').modal({
         keyboard: false,
         show: false
     });
@@ -84,7 +86,9 @@ $(document).ready(function() {
         $("#hook-up").modal({keyboard: 'false'});
       });
 
-      $('body').on('click', '#hook-submit', function(){
+      $('body').on('click', '#hook-submit', function(e){
+          e.preventDefault();
+
           $('#hook-up').find('.inline-errors').remove();
           var valid = true;
           var url = $('#new_hook_up').attr('action');
@@ -110,6 +114,14 @@ $(document).ready(function() {
                       $('#hook-up').modal('hide');
                       if (data === 'success') {
                           $('.notice-area').html("<div class='alert alert-success'>Your message was successfully sent. Please wait to hear back.</div>")
+
+                          // updating the result row
+                          var rideId = $('input[name="hook_up[hookable_id]"]', '#hook-up').val(),
+                              hookup_link = $('[data-ride_id="' + rideId + '"]'),
+                              hookup_label = hookup_link.html();
+                          hookup_link.closest('#hook-up-popover' + hook_id).attr('data-content',
+                            'Ah, It looks like you already might be in touch with this user!');
+                          hookup_link.replaceWith('<span class="btn btn-medium btn-primary disabled">' + hookup_label + '</span>');
                       }
                       else {
                           $('.notice-area').html("<div class='alert alert-error'>There was a problem. Please retry later.</div>")
