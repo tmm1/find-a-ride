@@ -7,7 +7,7 @@
     .form
       %span.label.label-important.hookup-note Please fill in the information below and submit to get in touch
       %p
-      %form#new_hook_up.formtastic.hook_up{"accept-charset" => "UTF-8", :action => "/users/vikas-reddy/hook_ups?ride_offer_id=112", :method => "post", :novalidate => "novalidate"}
+      %form#new_hook_up.formtastic.hook_up{"accept-charset" => "UTF-8", :action => "${create_hookup_path}", :method => "post", :novalidate => "novalidate"}
         %div{:style => "margin:0;padding:0;display:inline"}
           %input{:name => "utf8", :type => "hidden", :value => "✓"}/
           %input{:name => "authenticity_token", :type => "hidden", :value => "${auth_token}"}/

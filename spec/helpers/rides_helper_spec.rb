@@ -121,8 +121,9 @@ describe RidesHelper do
       json = helper.ride_details_json(ride_offer, "someString")
       hash = ActiveSupport::JSON.decode(json)
       hash.class.should == Hash
-      hash.keys.count.should == 11
+      hash.keys.count.should == 12
       hash['mobile'].should == requestor.mobile
+      hash['create_hookup_path'].should == user_hook_ups_path(requestor, :ride_offer_id => ride_offer.id)
     end
 
     it 'should not raise any error if any argument is nil' do
