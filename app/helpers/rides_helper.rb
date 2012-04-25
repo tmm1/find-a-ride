@@ -25,11 +25,11 @@ module RidesHelper
 
   def humanize_time(time)
     if time.today?
-      time.strftime('Today at %l:%M%p')
+      time.strftime('Today at %-l:%M%p')
     elsif time.to_date == Time.now.advance(:days => 1).to_date
-      time.strftime('Tomorrow at %l:%M%p')
+      time.strftime('Tomorrow at %-l:%M%p')
     else
-      time.strftime('%B %d, %Y at %l:%M%p')
+      time.strftime('%B %d, %Y at %-l:%M%p')
     end
   end
 
