@@ -349,7 +349,7 @@
           $next.removeClass([type, direction].join(' ')).addClass('active')
           $active.removeClass(['active', direction].join(' '))
           that.sliding = false
-          setTimeout(function () { that.$element.trigger('slid') }, 0)
+          setTimeout(function () {that.$element.trigger('slid')}, 0)
         })
       }
 
@@ -674,6 +674,7 @@
         this.$element.trigger('show')
 
         escape.call(this)
+        enterKey.call(this)
         backdrop.call(this, function () {
           var transition = $.support.transition && that.$element.hasClass('fade')
 
@@ -689,7 +690,7 @@
           that.$element.addClass('in')
 
           transition ?
-            that.$element.one($.support.transition.end, function () { that.$element.trigger('shown') }) :
+            that.$element.one($.support.transition.end, function () {that.$element.trigger('shown')}) :
             that.$element.trigger('shown')
 
         })
@@ -793,6 +794,18 @@
     }
   }
 
+  function enterKey() {
+        var that = this
+        if (this.isShown && this.options.keyboard) {
+            $(document).on('keyup.dismiss.modal', function ( e ) {
+                if (e.keyCode == 13 && e.target.type != "textarea") {
+                    $(".enter-key").trigger('click');
+                }
+            })
+        }else if (!this.isShown) {
+            $(document).off('keyup.dismiss.modal')
+        }
+    }
 
  /* MODAL PLUGIN DEFINITION
   * ======================= */
@@ -883,7 +896,7 @@
       }
 
       this.options.selector ?
-        (this._options = $.extend({}, this.options, { trigger: 'manual', selector: '' })) :
+        (this._options = $.extend({}, this.options, {trigger: 'manual', selector: ''})) :
         this.fixTitle()
     }
 
@@ -955,7 +968,7 @@
 
         $tip
           .remove()
-          .css({ top: 0, left: 0, display: 'block' })
+          .css({top: 0, left: 0, display: 'block'})
           .appendTo(inside ? this.$element : document.body)
 
         pos = this.getPosition(inside)
@@ -1704,7 +1717,7 @@
       var that = this
       e.stopPropagation()
       e.preventDefault()
-      setTimeout(function () { that.hide() }, 150)
+      setTimeout(function () {that.hide()}, 150)
     }
 
   , click: function (e) {
