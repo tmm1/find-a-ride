@@ -24,7 +24,10 @@
     %b= "landline: #{@hook_up.contacter.landline}"
 %br
 
-%p.hookup-msg-addl= @message
+%p.hookup-msg-addl
+  Additional information:
+  %br
+  = @message
 
 %p{:style => 'font-size: 18px;'} Thanks -
 %p.hookup-contact-info

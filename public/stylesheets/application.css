@@ -194,7 +194,17 @@ h5.table-text {
 .user-alerts .alert-row {
   cursor: pointer;
 }
-.user-alerts .alert-content {
+.user-alerts .content-row {
   display: none;
+}
+.user-alerts .alert-content {
+  padding: 10px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -border-radius: 6px;
+  background-color: #505e6e;
+}
+.user-alerts .alert-content p {
+  font-size: 90%;
 }
 

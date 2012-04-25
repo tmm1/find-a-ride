@@ -1,0 +1,15 @@
+.alert-content
+  %p
+    %span
+      = "I would like to #{alert.hook_up.hookable.request? ? 'offer' : 'request'} you a ride from #{alert.hook_up.hookable.try(:ride_origin).try(:name)} to #{alert.hook_up.hookable.try(:ride_destination).try(:name)} at around #{formatted_ride_time(alert.hook_up.hookable.try(:ride_time))} You can get in touch with me at #{alert.sender.mobile}"
+  %p
+    %span
+      Additional information:
+      = alert.message
+  %h4= alert.sender.full_name
+  %h5= alert.sender.email
+
+
+  
+
+

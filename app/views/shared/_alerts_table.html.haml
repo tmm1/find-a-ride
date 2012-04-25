@@ -4,7 +4,7 @@
   %th Received at
   %th
   - alerts.each do |a|
-    %tr{:class => 'alert-row', :"data-target" => "#alert-#{a.id}"}
+    %tr.alert-row{:"data-target" => "#alert-#{a.id}"}
       %td
         = alert_image(a)
       %td
@@ -12,12 +12,13 @@
       %td
         %h5.table-text= humanize_time(a.created_at)
       %td
-        = link_to("View", "#", :class => 'btn btn-medium btn-success')
-        = link_to("Archive", "#", :class => 'btn btn-medium btn-danger')
-    %tr.alert-content{:id => "alert-#{a.id}"}
+        .pull-right
+          = link_to("Archive", "#", :class => 'btn btn-medium btn-danger')
+    %tr.content-row{:id => "alert-#{a.id}"}
       %td{:colspan => '4'}
-        = render 'alerts/show'
+        = render :partial => 'alerts/show', :locals => {:alert => a} 
 
 
         
+
 

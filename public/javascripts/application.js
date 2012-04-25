@@ -1,12 +1,12 @@
 $(document).ready(function() {
     var user_inactive_check = false;
-	var pusher_channel = null;
+	  var pusher_channel = null;
     typeaheadSearch();
     rideTime();
     rideDate();
     gmailContacts();
     initializePusher();
-	setTimeout(hideFlashMessages, 3500);
+	  setTimeout(hideFlashMessages, 3500);
 
     $('.input-append').datepicker();
     
@@ -35,9 +35,6 @@ $(document).ready(function() {
         show: false
     });
     
-    /** alert content collapse **/
-    $('.alert-row').collapse('toggle');
-
     /***  user inactive confirm dialog ***/
     $('#mymodal').modal({
         keyboard: false,
@@ -430,14 +427,12 @@ $(document).ready(function() {
 	  }
 	});
 
-  // user alerts
+  /*** user alert content ***/
   if($('.user-alerts').length > 0) {
-
     $('.user-alerts').on('click', '.alert-row', function(e) {
       var target = $(this).attr("data-target");
-      $(target).toggle(500);
+      $(target).toggle(200);
     });
-
   }
 });
 
