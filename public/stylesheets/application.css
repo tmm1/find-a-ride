@@ -198,10 +198,11 @@ h5.table-text {
   display: none;
 }
 .user-alerts .alert-content {
+  margin: 0px;
   padding: 10px;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  -border-radius: 6px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -border-radius: 3px;
   background-color: #505e6e;
 }
 .user-alerts .alert-content p {

@@ -2,7 +2,6 @@
   %th
   %th From
   %th Received at
-  %th
   - alerts.each do |a|
     %tr.alert-row{:"data-target" => "#alert-#{a.id}"}
       %td
@@ -11,11 +10,8 @@
         %h5.table-text= a.sender.full_name
       %td
         %h5.table-text= humanize_time(a.created_at)
-      %td
-        .pull-right
-          = link_to("Archive", "#", :class => 'btn btn-medium btn-danger')
     %tr.content-row{:id => "alert-#{a.id}"}
-      %td{:colspan => '4'}
+      %td{:colspan => '3'}
         = render :partial => 'alerts/show', :locals => {:alert => a} 
 
 
