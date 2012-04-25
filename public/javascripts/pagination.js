@@ -54,15 +54,19 @@ this.showPage = function (pageNumber) {
     var prevLink = document.querySelector(".previous_page"),
         nextLink = document.querySelector(".next_page");
 
-    prevLink.className = prevLink.className.replace(/ ?disabled ?/, "");
-    nextLink.className = nextLink.className.replace(/ ?disabled ?/, "");
-
-    if (this.currentPage == 1) {
-        prevLink.className += " disabled";
+    if(prevLink != null) {
+      prevLink.className = prevLink.className.replace(/ ?disabled ?/, "");
+      if (this.currentPage == 1) {
+          prevLink.className += " disabled";
+      }
     }
-    else if (this.currentPage == this.pages) {
+    if(nextLink != null) {
+      nextLink.className = nextLink.className.replace(/ ?disabled ?/, "");
+      if (this.currentPage == this.pages) {
         nextLink.className += " disabled";
+      }
     }
+
 }
 this.prev = function () {
     if (this.currentPage > 1) this.showPage(this.currentPage - 1);
@@ -98,7 +102,7 @@ this.showPageNav = function (start) {
         this.numbers = new Array(10);
 
         var pagerHtml = '<ul>';
-        if (this.pages > 2) {
+        if (this.pages > 1) {
             pagerHtml += '<li>'
             pagerHtml += '<a class="prev previous_page" onclick="' + this.pagerName + '.prev();" class="">← Prev</a></li>';
         }
