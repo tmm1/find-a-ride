@@ -209,3 +209,24 @@ h5.table-text {
   font-size: 90%;
 }
 
+/* Background color of rows 1, 4, 8, 12, 16, ... */
+.table-striped.alerts-list tbody tr:first-child td,
+.table-striped.alerts-list tbody tr:first-child th,
+.table-striped.alerts-list tbody tr:nth-child(4n+4) td,
+.table-striped.alerts-list tbody tr:nth-child(4n+4) th {
+    background-color: #45515f;
+}
+.table-striped.alerts-list tbody tr:first-child:hover td,
+.table-striped.alerts-list tbody tr:first-child:hover th,
+.table-striped.alerts-list tbody tr:nth-child(4n+4):hover td,
+.table-striped.alerts-list tbody tr:nth-child(4n+4):hover th {
+    background-color: #505E6E;
+}
+/* Background color of alert-content rows 3, 5, 7, 9, 11, ... */
+.table-striped.alerts-list tbody tr:nth-child(2n+3) td:hover,
+.table-striped.alerts-list tbody tr:nth-child(2n+3) th:hover {
+    background-color: #45515f;
+}
+.clear {
+  clear: both;
+}
