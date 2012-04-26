@@ -42,7 +42,7 @@ describe AlertsController do
     it "should fail changing of state" do
       sign_in @login_user
       @alert.state.should == 'unread'
-      get "read", {:id => @alert.state}
+      post "read", {:id => @alert.state, :user_id => @login_user.id}
       response.should have_content_type 'text/html'
       @alert.reload
       @alert.state.should_not == 'read'
@@ -52,7 +52,7 @@ describe AlertsController do
     it "should the change state to read" do
       sign_in @login_user
       @alert.state.should == 'unread'
-      get "read", {:id => @alert.id}
+      post "read", {:id => @alert.id, :user_id => @login_user.id}
       response.should have_content_type 'text/html'
       @alert.reload
       @alert.state.should == 'read'
