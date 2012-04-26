@@ -39,6 +39,16 @@ describe AlertsController do
       Alert.destroy_all
     end
 
+    it "should fail changing of state" do
+      sign_in @login_user
+      @alert.state.should == 'unread'
+      get "read", {:id => @alert.state}
+      response.should have_content_type 'text/html'
+      @alert.reload
+      @alert.state.should_not == 'read'
+      @alert.state.should == 'unread'
+    end
+
     it "should the change state to read" do
       sign_in @login_user
       @alert.state.should == 'unread'

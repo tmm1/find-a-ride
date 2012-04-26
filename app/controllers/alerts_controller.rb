@@ -8,10 +8,14 @@ class AlertsController < ApplicationController
   end
 
   def read
-    alert = Alert.find(params[:id])
-    alert.update_attribute(:state, 'read')
+    begin
+      alert = Alert.find(params[:id])
+      status = alert.read ? 'success' : 'failure'
+    rescue
+      status = 'failure'
+    end
     respond_to do |wants|
-      wants.json { render :json => { :success => 'success' } }
+      wants.json { render :json => { :status => status } }
     end
   end
 end

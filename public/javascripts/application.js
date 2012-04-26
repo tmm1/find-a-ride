@@ -438,8 +438,10 @@ $(document).ready(function() {
         $.ajax({
           type: 'POST',
           url: url,
-          beforeSend: function() {
-            alertRow.find(".alert-image").attr('src', '/images/glyphicons_121_message_empty.png');
+          success: function(data) {
+            if(data.status == 'success') {
+              alertRow.find(".alert-image").attr('src', '/images/glyphicons_121_message_empty.png');
+            }
           }
         });
       }
