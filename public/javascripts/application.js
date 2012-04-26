@@ -432,6 +432,7 @@ $(document).ready(function() {
     $('.user-alerts').on('click', '.alert-row', function(e) {
       var alertRow = $(this);
       var target = alertRow.attr("data-target");
+      var alertCount = $("a.dropdown-toggle span.alert-badge").text();
       $(target).toggle(200);
       if(alertRow.attr("data-read-status") === 'unread'){
         var url = alertRow.attr("data-service-url");
@@ -441,6 +442,7 @@ $(document).ready(function() {
           success: function(data) {
             if(data.status == 'success') {
               alertRow.find(".alert-image").attr('src', '/images/glyphicons_121_message_empty.png');
+              $("a.dropdown-toggle span.alert-badge").text(alertCount-1);
             }
           }
         });
