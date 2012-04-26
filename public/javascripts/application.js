@@ -430,8 +430,19 @@ $(document).ready(function() {
   /*** user alert content ***/
   if($('.user-alerts').length > 0) {
     $('.user-alerts').on('click', '.alert-row', function(e) {
-      var target = $(this).attr("data-target");
+      var alertRow = $(this);
+      var target = alertRow.attr("data-target");
       $(target).toggle(200);
+      if(alertRow.attr("data-read-status") === 'unread'){
+        var url = alertRow.attr("data-service-url");
+        $.ajax({
+          type: 'POST',
+          url: url,
+          beforeSend: function() {
+            alertRow.find(".alert-image").attr('src', '/images/glyphicons_121_message_empty.png');
+          }
+        });
+      }
     });
   }
 });

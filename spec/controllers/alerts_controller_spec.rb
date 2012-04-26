@@ -27,4 +27,26 @@ describe AlertsController do
     end
   end
 
+  describe "#read" do
+    before(:all) do
+      @login_user = Factory(:user)
+      @alert = Factory(:alert)
+    end
+
+    after(:all) do
+      RideOffer.destroy_all
+      RideRequest.destroy_all
+      Alert.destroy_all
+    end
+
+    it "should the change state to read" do
+      sign_in @login_user
+      @alert.state.should == 'unread'
+      get "read", {:id => @alert.id}
+      response.should have_content_type 'text/html'
+      @alert.reload
+      @alert.state.should == 'read'
+    end
+  end
+
 end

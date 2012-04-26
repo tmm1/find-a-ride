@@ -3,7 +3,7 @@
   %th From
   %th Received at
   - alerts.each do |a|
-    %tr.alert-row{:"data-target" => "#alert-#{a.id}"}
+    %tr.alert-row{:"data-target" => "#alert-#{a.id}", :"data-service-url" => read_alert_url(a.id), :"data-read-status" => a.state}
       %td
         = alert_image(a)
       %td
