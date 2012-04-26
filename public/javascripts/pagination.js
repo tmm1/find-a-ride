@@ -11,7 +11,10 @@ this.numbers = new Array(10);
 this.showRecords = function (from, to) {
     var table = document.getElementById(tableName);
     var rows = table.rows;
-    for (var i = 1; i < rows.length; i++) {
+
+    from--; to--; // converting 'from' and 'to' as array indices
+
+    for (var i = 0; i < rows.length; i++) {
         if (i < from || i > to) rows[i].style.display = 'none';
         else rows[i].style.display = '';
     }
@@ -78,7 +81,7 @@ this.next = function () {
 }
 this.init = function () {
     var rows = document.getElementById(tableName).rows;
-    var records = (rows.length - 1);
+    var records = rows.length;
     this.pages = Math.ceil(records / itemsPerPage);
     this.inited = true;
 }
