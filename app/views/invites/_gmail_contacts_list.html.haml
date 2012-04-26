@@ -13,20 +13,20 @@
               %input{:type=>"checkbox", :name=>"contact_list", :id => contact}
             %td
               = contact
-      %br
+
       - if all_contacts.size > 10 
-        #pagination
-      %br
-      .loader.pull-left{:style => 'display: none;'}
-        = image_tag('loader.gif')
+        #pagination.pagination
+
     #no-selection-error
     .modal-footer
       #invite-gmail-contacts{:class => 'btn btn-primary btn-large pull-left enter-key'}
         Invite
+      .loader.pull-left{:style => 'display: none;'}
+        = image_tag('loader.gif')
 
     - if all_contacts.size > 10
       %script{:type => "text/javascript"}
-        var pager = new Pager('fetched_gmail_contacts_list', 9, 'pager', 'pagination');
+        var pager = new Pager('fetched_gmail_contacts_list', 10, 'pager', 'pagination');
         pager.init();
         pager.showPage(1);
   - else

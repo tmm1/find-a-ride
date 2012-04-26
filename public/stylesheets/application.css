@@ -183,11 +183,14 @@ h5.table-text {
  text-align: center;
 }
 
-#pagination ul li > a {
+#import-gmail-contacts .pagination {
+  margin: 20px 0 0;
+}
+#import-gmail-contacts .pagination ul li > a {
   cursor: pointer;
 }
-#pagination ul li > a.active,
-#pagination ul li > a.active:hover {
+#import-gmail-contacts .pagination ul li > a.active,
+#import-gmail-contacts .pagination ul li > a.active:hover {
   background: #e36b23;
   color: #ffffff;
 }
