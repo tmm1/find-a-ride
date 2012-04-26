@@ -26,12 +26,6 @@ PoolRide::Application.routes.draw do
     end
   end
   
-  resources :alerts do
-    member do
-      post 'read'
-    end
-  end
-
   resources :rides do
     collection do
       post 'search'

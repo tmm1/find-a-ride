@@ -28,35 +28,33 @@ describe AlertsController do
   end
 
   describe "#read" do
-    before(:all) do
+    before(:each) do
       @login_user = Factory(:user)
       @alert = Factory(:alert)
     end
 
-    after(:all) do
+    after(:each) do
       RideOffer.destroy_all
       RideRequest.destroy_all
       Alert.destroy_all
     end
 
-    it "should fail changing of state" do
+    it "should fail changing the state to read" do
       sign_in @login_user
-      @alert.state.should == 'unread'
-      post "read", {:id => @alert.state, :user_id => @login_user.id}
+      @alert.read && @alert.archive
+      post 'read', {:id => @alert.id, :user_id => @login_user.id}
       response.should have_content_type 'text/html'
       @alert.reload
-      @alert.state.should_not == 'read'
-      @alert.state.should == 'unread'
+      @alert.read?.should be false
     end
 
     it "should the change state to read" do
       sign_in @login_user
-      @alert.state.should == 'unread'
-      post "read", {:id => @alert.id, :user_id => @login_user.id}
+      @alert.unread?.should be true
+      post 'read', {:id => @alert.id, :user_id => @login_user.id}
       response.should have_content_type 'text/html'
       @alert.reload
-      @alert.state.should == 'read'
+      @alert.read?.should be true
     end
   end
-
 end

@@ -8,14 +8,15 @@ class AlertsController < ApplicationController
   end
 
   def read
-    begin
-      alert = Alert.find(params[:id])
-      status = alert.read ? 'success' : 'failure'
-    rescue
-      status = 'failure'
-    end
-    respond_to do |wants|
-      wants.json { render :json => { :status => status } }
+    alert = Alert.find(params[:id])
+    if alert.read  
+      respond_to do |wants|
+        wants.json { render :json => { :status => 'success' } }
+      end    
+    else
+      respond_to do |wants|
+        wants.json { render :json => { :status => 'failure' } }
+      end    
     end
   end
 end
