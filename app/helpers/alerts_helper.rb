@@ -1,5 +1,6 @@
 module AlertsHelper
   def alert_image(alert)
-    alert.read? ? image_tag('glyphicons_121_message_empty.png') : image_tag('glyphicons_010_envelope.png')
+    img_url = alert.read? ? 'glyphicons_121_message_empty.png' : 'glyphicons_010_envelope.png'
+    image_tag(img_url, :class => 'alert-image')
   end
 end
