@@ -488,11 +488,11 @@ function alertInfo() {
 }
 
 function hideFlashMessages() {
-    $('.alert').slideUp(300);
+    $('.alert').slideUp(200);
 }
 
 function showFlashMessages() {
-  $('.notice-area').slideDown(300);
+  $('.notice-area').slideDown(200);
 }
 
 

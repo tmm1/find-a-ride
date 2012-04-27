@@ -1,5 +1,4 @@
 .notice-area {
-    height: 50px;
     text-align: center;
     position: fixed;
     top: 0;
@@ -8,11 +7,12 @@
     opacity: 0.95;
 }
 .notice-area .alert {
-  width: 1150px;
+  width: auto;
   height: 40px;
   padding-top: 30px;
+  min-width: 470px;
   color: #fff;
-  font-size: 24px;
+  font-size: 20px;
   display: inline-block;
 }
 p.inline-errors {
