@@ -9,4 +9,4 @@
 - if params[:action] == 'destroy'
   :plain
     $('.notice-area').html('#{escape_javascript(render 'shared/flashes')}');
-    setTimeout(hideFlashMessages, 3500);
+    alertInfo();

@@ -6,7 +6,7 @@ $(document).ready(function() {
     rideDate();
     gmailContacts();
     initializePusher();
-	  setTimeout(hideFlashMessages, 3500);
+    alertInfo();
 
     $('.input-append').datepicker();
     
@@ -123,7 +123,7 @@ $(document).ready(function() {
                       else {
                           $('.notice-area').html("<div class='alert alert-error'>There was a problem. Please retry later.</div>")
                       }
-                      setTimeout(hideFlashMessages, 3500);
+                      alertInfo();
                   }
               });
           }
@@ -176,7 +176,7 @@ $(document).ready(function() {
                     else {
                         $('.notice-area').html("<div class='alert alert-error'>There was a problem. Please retry later.</div>")
                     }
-                    setTimeout(hideFlashMessages, 3500);
+                    alertInfo();
                 }
             });
         }
@@ -473,14 +473,24 @@ function send_email_invites(email_list, token, url) {
     success: function(data) {
       if (data === 'success') {
         $('.notice-area').html("<div class='alert alert-success'>Thanks! Your invite was successfully sent.</div>");
-        setTimeout(hideFlashMessages, 3500);
+        alertInfo();
       }
     }
   });
 }
 
+function alertInfo() {
+  $('.notice-area').hide();
+  setTimeout(showFlashMessages, 500);
+  setTimeout(hideFlashMessages, 4500);
+}
+
 function hideFlashMessages() {
-    $('.alert').fadeOut(600);
+    $('.alert').slideUp(300);
+}
+
+function showFlashMessages() {
+  $('.notice-area').slideDown(1000);
 }
 
 // Note that using Google Gears requires loading the Javascript

@@ -1,11 +1,17 @@
 .notice-area {
     height: 50px;
     text-align: center;
+    position: fixed;
+    top: 0;
+    opacity: 0.95;
 }
 .notice-area .alert {
-  width: auto;
+  width: 930px;
+  height: 40px;
+  padding-top: 30px;
+  color: #fff;
   min-width: 470px;
-  font-size: 18px;
+  font-size: 24px;
   display: inline-block;
 }
 p.inline-errors {
