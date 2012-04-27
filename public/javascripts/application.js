@@ -484,7 +484,7 @@ function send_email_invites(email_list, token, url) {
 function alertInfo() {
   $('.notice-area').hide();
   setTimeout(showFlashMessages, 500);
-  setTimeout(hideFlashMessages, 4500);
+  setTimeout(hideFlashMessages, 3500);
 }
 
 function hideFlashMessages() {
@@ -492,7 +492,7 @@ function hideFlashMessages() {
 }
 
 function showFlashMessages() {
-  $('.notice-area').slideDown(600);
+  $('.notice-area').slideDown(300);
 }
 
 
