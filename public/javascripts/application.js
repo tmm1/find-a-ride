@@ -490,7 +490,7 @@ function hideFlashMessages() {
 }
 
 function showFlashMessages() {
-  $('.notice-area').slideDown(1000);
+  $('.notice-area').slideDown(600);
 }
 
 // Note that using Google Gears requires loading the Javascript

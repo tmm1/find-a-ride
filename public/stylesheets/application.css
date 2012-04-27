@@ -3,14 +3,15 @@
     text-align: center;
     position: fixed;
     top: 0;
+    left:0;
+    right:0;
     opacity: 0.95;
 }
 .notice-area .alert {
-  width: 930px;
+  width: 1150px;
   height: 40px;
   padding-top: 30px;
   color: #fff;
-  min-width: 470px;
   font-size: 24px;
   display: inline-block;
 }
