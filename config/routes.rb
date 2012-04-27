@@ -49,6 +49,7 @@ PoolRide::Application.routes.draw do
     resources :alerts do
       member do
         post 'read'
+        post 'archive'
       end
     end
     resources :rides do

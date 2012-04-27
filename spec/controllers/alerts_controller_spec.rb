@@ -57,4 +57,58 @@ describe AlertsController do
       @alert.read?.should be true
     end
   end
+
+  describe '#archive' do
+    before(:each) do
+      RideRequest.delete_all
+      RideOffer.delete_all
+      Alert.delete_all
+      @alert = Factory(:alert)
+      @login_user = @alert.receiver
+    end
+
+    after(:all) do
+      RideRequest.delete_all
+      RideOffer.delete_all
+      Alert.delete_all
+    end
+
+    def do_archive(options = {})
+      xhr :post, :archive, {:id => @alert.id, :user_id => @login_user.id}.merge(options)
+    end
+
+    it 'should archive an alert which has been read' do
+      sign_in @login_user
+      @alert.read
+      @alert.archived?.should be_false
+
+      do_archive
+
+      response.content_type.should == Mime::JS.to_s
+      flash.now[:success].should == "The alert was archived successfully"
+      assigns[:alerts].should_not include @alert
+      @alert.reload
+      @alert.archived?.should be_true
+    end
+
+    it 'should not archive an alert which has not been read' do
+      sign_in @login_user
+
+      do_archive
+
+      response.content_type.should == Mime::JS.to_s
+      flash.now[:error].should == "The alert was not archived"
+      @alert.reload
+      @alert.archived?.should be_false
+    end
+
+    it 'should not raise an error for an invalid alert' do
+      sign_in @login_user
+
+      lambda { do_archive(:id => 0) }.should_not raise_error
+
+      response.content_type.should == Mime::JS.to_s
+      flash.now[:error].should == "The alert was not archived"
+    end
+  end
 end

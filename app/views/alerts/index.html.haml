@@ -1,7 +1,5 @@
-- if @alerts.empty?
-  .hero-unit
+.hero-unit.user-alerts
+  - if @alerts.empty?
     = render 'no_alerts'
-- else
-  .hero-unit
-    .user-alerts
-      = render 'grid'
+  - else
+    = render 'grid'

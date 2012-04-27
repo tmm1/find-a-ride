@@ -233,3 +233,18 @@ h5.table-text {
 .clear {
   clear: both;
 }
+
+.alert-content .loader {
+  display: none;
+  position: relative;
+  float: right;
+  height: 28px;
+  width: 80px;
+}
+.alert-content .loader img {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  margin-top: -5px;
+  margin-right: -8px;
+}

@@ -1,2 +1,7 @@
 :plain
-  $('.user-alerts').html("#{escape_javascript(render 'grid')}")
+  $('.hero-unit').html("#{escape_javascript(render (@alerts.empty? ? 'no_alerts' : 'grid'))}")
+
+- if params[:action] == 'archive'
+  :plain
+    $('.notice-area').html('#{escape_javascript(render 'shared/flashes')}');
+    alertInfo();

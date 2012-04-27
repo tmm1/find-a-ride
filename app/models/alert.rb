@@ -25,7 +25,7 @@ class Alert < ActiveRecord::Base
   end
   
   def self.unarchived
-    where("state != ?", 'archived')
+    where("alerts.state != ?", 'archived')
   end
   
   private

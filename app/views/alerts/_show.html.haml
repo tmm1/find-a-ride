@@ -9,7 +9,9 @@
   %h4= alert.sender.email
   %h5= alert.sender.mobile
   %h5= alert.sender.landline
-  = link_to('Archive', " ", :class => 'btn btn-medium btn-danger pull-right')
+  = link_to('Archive', archive_user_alert_path(current_user, alert), :class => 'btn btn-medium btn-danger pull-right archive')
+  .loader
+    = image_tag('loader.gif')
   %br.clear
 
   

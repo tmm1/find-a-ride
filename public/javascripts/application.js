@@ -448,6 +448,30 @@ $(document).ready(function() {
         });
       }
     });
+
+    $('.user-alerts').on('click', '.alert-content .archive', function(e) {
+      e.preventDefault();
+      var alertContent = $(this).closest('.alert-content');
+
+      var activePage = $('.pagination li.active a', '.user-alerts'),
+          pageNumber = 1, matches = null;
+
+      if(activePage.length > 0) {
+        matches = activePage.attr('href').match(/=(\d+)$/);
+        pageNumber = matches[1];
+
+        if(pageNumber > 1 && $('.user-alerts .alert-row').length == 1)
+          pageNumber--;
+      }
+
+      $.ajax({
+        url: $(this).attr('href'), type: 'POST', data: {'page': pageNumber},
+        beforeSend: function() {
+          alertContent.find('.archive').hide();
+          alertContent.find('.loader').show();
+        }
+      });
+    });
   }
 });
 
