@@ -7,7 +7,9 @@ $(document).ready(function() {
     gmailContacts();
     initializePusher();
     alertInfo();
-
+    // init facebook handler
+    facebookInviteFriends();
+    
     $('.input-append').datepicker();
     
     $('#contact-form textarea#comments').placeHeld();
@@ -492,6 +494,27 @@ function hideFlashMessages() {
 function showFlashMessages() {
   $('.notice-area').slideDown(600);
 }
+
+
+// Facebook app response handler
+function requestCallback(response) {
+    if(response){
+        $('.notice-area').html("<div class='alert alert-success'>Thanks! Your invite was successfully sent.</div>");
+        alertInfo();
+    }
+}
+
+ var facebookInviteFriends = function(){
+     $("a#invite_fb_friends").click(function() {
+        FB.init({
+           appId:'218915071554448',
+           cookie:false,
+           status:false
+        });
+
+        FB.ui({ method: 'apprequests', message: $(this).attr('data-data') + ' invites you to OnTheWay. It is a service that helps folks who want to share rides contact each other and mutually arrange for traveling together.'}, requestCallback);
+      });
+ }
 
 // Note that using Google Gears requires loading the Javascript
 // at http://code.google.com/apis/gears/gears_init.js
