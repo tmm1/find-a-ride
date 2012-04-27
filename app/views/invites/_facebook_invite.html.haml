@@ -1,20 +1,4 @@
 #friends{:class => "invite-facebook-button"}
-  %p= link_to "Use facebook to invite friends", "#", :id => "invite_fb_friends",:class =>"btn btn-info"
+  %p= link_to "Use facebook to invite friends", "#", :id => "invite_fb_friends",:class =>"btn btn-info" , "data-data" => "#{current_user.full_name}"
   #fb-root
   %script{:src => "http://connect.facebook.net/en_US/all.js"}
-  :javascript
-    $(function(){
-      $("a#invite_fb_friends").click(function() {
-        FB.init({
-           appId:'218915071554448',
-           cookie:false,
-           status:false
-        });
-
-        FB.ui({ method: 'apprequests', message: ' #{current_user.first_name}  #{current_user.last_name} invites you to OnTheWay. It is a service that helps folks who want to share rides contact each other and mutually arrange for traveling together.'}, requestCallback);
-      });
-      function requestCallback(response) {
-        $('.notice-area').html("<div class='alert alert-success'>Thanks! Your invite was successfully sent.</div>");
-        setTimeout(hideFlashMessages, 3500);
-      }
-    });

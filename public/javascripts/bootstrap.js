@@ -1933,7 +1933,8 @@
 			var d = new Date(this.viewDate),
 				year = d.getFullYear(),
 				month = d.getMonth(),
-				currentDate = this.date.valueOf();
+				currentDate = this.date.valueOf();                                
+                                todayDate = (new Date()  - 1000 * 60 * 60 * 24);
 			this.picker.find('.datepicker-days th:eq(1)')
 						.text(DPGlobal.dates.months[month]+' '+year);
 			var prevMonth = new Date(year, month-1, 28,0,0,0,0),
@@ -1945,6 +1946,7 @@
 			nextMonth = nextMonth.valueOf();
 			html = [];
 			var clsName;
+                        
 			while(prevMonth.valueOf() < nextMonth) {
 				if (prevMonth.getDay() == this.weekStart) {
 					html.push('<tr>');
@@ -1954,6 +1956,9 @@
 					clsName += ' old';
 				} else if (prevMonth.getMonth() > month) {
 					clsName += ' new';
+				}
+                                if (prevMonth.valueOf() < todayDate.valueOf()) {
+					clsName += ' old';
 				}
 				if (prevMonth.valueOf() == currentDate) {
 					clsName += ' active';
@@ -1997,9 +2002,9 @@
 		  var todayDate = new Date();
 		  selectedDate = new Date(selectedDate);
 		  todayDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate(), 0, 0, 0);
-		  if (selectedDay != '' && (selectedDate < todayDate)){
-		    return;
-		  }
+//		  if (selectedDay != '' && (selectedDate < todayDate)){
+//		    return;
+//		  }
 			e.stopPropagation();
 			e.preventDefault();
 			var target = $(e.target).closest('span, td, th');

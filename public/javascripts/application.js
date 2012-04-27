@@ -6,8 +6,10 @@ $(document).ready(function() {
     rideDate();
     gmailContacts();
     initializePusher();
-	  setTimeout(hideFlashMessages, 3500);
-
+    alertInfo();
+    // init facebook handler
+    facebookInviteFriends();
+    
     $('.input-append').datepicker();
     
     $('#contact-form textarea#comments').placeHeld();
@@ -123,7 +125,7 @@ $(document).ready(function() {
                       else {
                           $('.notice-area').html("<div class='alert alert-error'>There was a problem. Please retry later.</div>")
                       }
-                      setTimeout(hideFlashMessages, 3500);
+                      alertInfo();
                   }
               });
           }
@@ -176,7 +178,7 @@ $(document).ready(function() {
                     else {
                         $('.notice-area').html("<div class='alert alert-error'>There was a problem. Please retry later.</div>")
                     }
-                    setTimeout(hideFlashMessages, 3500);
+                    alertInfo();
                 }
             });
         }
@@ -497,15 +499,46 @@ function send_email_invites(email_list, token, url) {
     success: function(data) {
       if (data === 'success') {
         $('.notice-area').html("<div class='alert alert-success'>Thanks! Your invite was successfully sent.</div>");
-        setTimeout(hideFlashMessages, 3500);
+        alertInfo();
       }
     }
   });
 }
 
-function hideFlashMessages() {
-    $('.alert').fadeOut(600);
+function alertInfo() {
+  $('.notice-area').hide();
+  setTimeout(showFlashMessages, 500);
+  setTimeout(hideFlashMessages, 3500);
 }
+
+function hideFlashMessages() {
+    $('.alert').slideUp(200);
+}
+
+function showFlashMessages() {
+  $('.notice-area').slideDown(200);
+}
+
+
+// Facebook app response handler
+function requestCallback(response) {
+    if(response){
+        $('.notice-area').html("<div class='alert alert-success'>Thanks! Your invite was successfully sent.</div>");
+        alertInfo();
+    }
+}
+
+ var facebookInviteFriends = function(){
+     $("a#invite_fb_friends").click(function() {
+        FB.init({
+           appId:'218915071554448',
+           cookie:false,
+           status:false
+        });
+
+        FB.ui({ method: 'apprequests', message: $(this).attr('data-data') + ' invites you to OnTheWay. It is a service that helps folks who want to share rides contact each other and mutually arrange for traveling together.'}, requestCallback);
+      });
+ }
 
 // Note that using Google Gears requires loading the Javascript
 // at http://code.google.com/apis/gears/gears_init.js
