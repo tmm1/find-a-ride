@@ -435,7 +435,9 @@ $(document).ready(function() {
       var alertRow = $(this);
       var target = alertRow.attr("data-target");
       var alertCount = $("a.dropdown-toggle span.alert-badge").text();
+      $('.content-row:visible', '.user-alerts').not(target).hide();
       $(target).toggle(200);
+
       if(alertRow.attr("data-read-status") === 'unread'){
         var url = alertRow.attr("data-service-url");
         $.ajax({
