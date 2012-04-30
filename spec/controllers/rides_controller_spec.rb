@@ -26,6 +26,13 @@ describe RidesController do
       response.should render_template(:index)
       assigns(:ride).should_not be nil
     end
+    it "ajax request should render grid" do
+      sign_in @login_user
+      xhr :get , 'index'
+      response.should be_success
+      response.should render_template(:index)
+      response.should render_template(:grid) 
+    end
   end
   
   describe '#search' do

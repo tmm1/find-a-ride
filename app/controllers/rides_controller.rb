@@ -6,6 +6,7 @@ class RidesController < ApplicationController
 
   def index
     @ride = Ride.new
+    @ride_offers = Ride.offers.where("user_id != #{current_user.id}").paginate(:page => params[:page], :per_page => 5)
   end
   
   def list
