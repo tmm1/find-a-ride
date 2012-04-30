@@ -86,6 +86,14 @@ describe Ride do
     it 'default_scope should ignore expired rides' do
       Ride.scoped.where_values.should eql(["rides.expires_on >= '#{Date.today}'"])
     end
+
+    it 'ride offers scope should ignore ride requests' do
+      Ride.offers.where_values.should eql(["rides.expires_on >= '#{Date.today}'", "rides.expires_on >= '#{Date.today}'", "type = 'RideOffer'"])
+    end
+    
+    it "should return ride offers in the ride time order" do
+      Ride.offers.order_values.should == ["ride_time"]
+    end    
   end
 
   describe "#duplicate validation for ride request" do
