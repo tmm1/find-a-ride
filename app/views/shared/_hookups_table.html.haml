@@ -5,9 +5,9 @@
         %h5.table-text
           = activity_text(h, current_user)
           from
-          %span="#{h.hookable.ride_origin.name}"
-          to 
-          %span="#{h.hookable.ride_destination.name}"
+          %span="#{h.hookable.try(:ride_origin).try(:name)}"
+          to
+          %span="#{h.hookable.try(:ride_destination).try(:name)}"
           for travel around
-          %span="#{h.hookable.ride_time.strftime('%B %d, %Y %l:%M%p')}"
+          %span= h.hookable ? "#{h.hookable.ride_time.strftime('%B %d, %Y %l:%M%p')}" : ""
       %td= link_to('Rate the experience', '#', :class => 'btn btn-primary btn-small')
