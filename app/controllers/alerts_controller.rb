@@ -37,6 +37,6 @@ class AlertsController < ApplicationController
   private
 
   def get_alerts
-    @alerts = current_user.received_alerts.unarchived.order('created_at DESC').paginate(:page => params[:page], :per_page => 3)
+    @alerts = current_user.received_alerts.unarchived.order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
   end
 end
