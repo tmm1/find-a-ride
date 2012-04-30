@@ -1,10 +1,10 @@
-.text
-  %h2 
-    Please fill in the form below and submit to post a ride offer
-    %br  
-    %small You will be notified when someone responds to your offer.
-%br
 .hero-unit
+  .text
+    %h2 
+      Put in a ride offer using the form below 
+      %br  
+      %small You will be notified when someone responds to your offer
+  %br
   .pull-right
     %span{:class => 'label label-important'} *Fields are required
   = semantic_form_for @ride_offer, :url => ride_offers_path(@ride_offer) do |f|

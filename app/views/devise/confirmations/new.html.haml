@@ -1,7 +1,7 @@
-.text
-  %h2 Enter your email to receive verification instructions again
-%br
 .hero-unit
+  .text
+    %h2 Enter your email to receive verification instructions again
+  %br
   .pull-right
     %span{:class => 'label label-important'} *Fields are required
   = semantic_form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method =>    :post }) do |f|

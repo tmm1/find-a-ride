@@ -1,8 +1,8 @@
-.text
-  %h2
-    It would be awesome if you can let your friends know about OnTheWay. There are three ways you can do that.
-%br
 .hero-unit
+  .text
+    %h2
+      It would be awesome if you can let your friends know about OnTheWay. There are three ways you can do it.
+  %br
   = semantic_form_for 'invites', :url => send_invite_user_invites_url(current_user), :html => {:method => :post} do |f|
     = f.inputs do
       .accordion{:id => "accordion2"}
