@@ -1,7 +1,7 @@
-.text
-  %h2 Update your password here
-%br
 .hero-unit
+  .text
+    %h2 Update your password here
+  %br
   .pull-right
     %span{:class => 'label label-important'} *Fields are required
   = semantic_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|

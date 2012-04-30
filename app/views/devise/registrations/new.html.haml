@@ -1,7 +1,7 @@
-.text
-  %h2 Fill in information below and submit to get yourself an OnTheWay account
-%br
 .hero-unit
+  .text
+    %h2 Fill in information below and submit to get yourself an OnTheWay account
+  %br
   .pull-right
     %span{:class => 'label label-important'} *Fields are required
   = semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name ) , :html => {:autocomplete =>"off"}) do |f|
