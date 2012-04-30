@@ -129,6 +129,7 @@ describe RidesHelper do
       hash.keys.count.should == 12
       hash['mobile'].should == requestor.mobile
       hash['create_hookup_path'].should == user_hook_ups_path(requestor, :ride_offer_id => ride_offer.id)
+      hash['header'].should == "Request a ride from #{offerer.full_name}"
     end
 
     it 'should not raise any error if any argument is nil' do

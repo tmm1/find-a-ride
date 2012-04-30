@@ -71,7 +71,7 @@ module RidesHelper
     unless ride.nil?
       contactee = (ride.type == "RideOffer") ? ride.offerer : ride.requestor
       hash = {
-        :header             => "#{header_text(params[:type])} #{contactee.try(:full_name)}",
+        :header             => "#{header_text(ride.type.underscore)} #{contactee.try(:full_name)}",
         :create_hookup_path => user_hook_ups_path(current_user, "#{ride.type.underscore}_id" => ride.try(:id)),
         :contactee_name     => contactee.try(:full_name),
         :origin             => ride.try(:ride_origin).try(:name),
