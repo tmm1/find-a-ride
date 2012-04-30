@@ -51,6 +51,11 @@ describe RidesHelper do
       ride_request = Factory(:ride_request, :vehicle => 'two_wheeler')
       helper.vehicle_type_image(ride_request).should == image_tag('2-wheeler.png', :size => '40x40')
     end
+
+    it 'should return string any' do
+      ride_request = Factory(:ride_request, :vehicle => 'any')
+      helper.vehicle_type_image(ride_request).should == 'any'
+    end
   end
   
   describe '#humanize time' do

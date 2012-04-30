@@ -9,6 +9,8 @@ module RidesHelper
       image_tag('2-wheeler.png', :size => '40x40')
     when 'four_wheeler' then
       image_tag('4-wheeler.png', :size => '30x30')
+    when 'any' then
+      'any'
     end
   end
 
