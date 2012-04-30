@@ -4,6 +4,9 @@ class Ride < ActiveRecord::Base
   
   default_scope lambda { where("rides.expires_on >= ?", Date.today) }
 
+  # Ride offers in the system
+  scope :offers, lambda{ where("type = ?", "RideOffer").order('ride_time') }
+  
   # DynamicDefaultScoping to be included after default_scope
   include DynamicDefaultScoping
 

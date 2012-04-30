@@ -26,6 +26,13 @@
     If you are willing to offer a ride, You can
   %br
   = link_to('Post a ride offer', new_ride_offer_path, :class => 'btn btn-info btn-large')
-
-
-
+%br
+.hero-unit.search-results
+  - if @ride_offers.nil? || @ride_offers.empty?
+    .no-results
+      %h2
+        %small
+          No one offering a ride at the moment
+  - else
+    .ride_offer= render 'grid'
+    
