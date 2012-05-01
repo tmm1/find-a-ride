@@ -134,11 +134,15 @@ $(document).ready(function() {
       });
     }
 
-	
-    /*** Contact modal ***/    
+    /*** Contact modal ***/
     $('#contact').on('show', function () {
-        resetContactForm(true);
+      resetContactForm(true);
+      $('.contact-modal-link').find('a').attr('href', '');
     })
+
+    $('#contact').on('hide', function () {
+      $('.contact-modal-link').find('a').attr('href', '#contact');
+    });
 
     $("#contact-submit").click(function(e){
         $('#contact').find('.inline-errors').remove();
