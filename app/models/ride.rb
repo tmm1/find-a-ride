@@ -62,6 +62,8 @@ class Ride < ActiveRecord::Base
     query.deep_merge!(ride_time)
     vehicle_type = (params[:vehicle].blank? || params[:vehicle] == 'any') ? ['any' , 'four_wheeler','two_wheeler']  : params[:vehicle]
     query.deep_merge!(:vehicle => vehicle_type)
+    active_offerers = User.other_active(params[:user_id]).select(:id)
+    query.deep_merge!({:user_id => active_offerers})
     Ride.where(query).order('ride_time ASC')
   end
 

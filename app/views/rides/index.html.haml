@@ -14,12 +14,6 @@
     %br
     %span Vehicle Type
     = select_tag(:vehicle, options_for_select(vehicle_type_collection))
-  - if @ride_offers.nil? || @ride_offers.empty?
-    .no-results
-      %h2
-        %small
-          No one offering a ride at the moment
-  - else
     .ride_offer= render 'grid'
 .text-center
   %h2
