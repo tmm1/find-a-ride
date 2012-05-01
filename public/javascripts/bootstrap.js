@@ -1933,8 +1933,12 @@
 			var d = new Date(this.viewDate),
 				year = d.getFullYear(),
 				month = d.getMonth(),
-				currentDate = this.date.valueOf();                                
-                                todayDate = (new Date()  - 1000 * 60 * 60 * 24);
+				currentDate = this.date.valueOf();
+
+      var maxDate = new Date(),
+          todayDate = (new Date()  - 1000 * 60 * 60 * 24);
+      maxDate.setDate(this.date.getDate() + 60);
+
 			this.picker.find('.datepicker-days th:eq(1)')
 						.text(DPGlobal.dates.months[month]+' '+year);
 			var prevMonth = new Date(year, month-1, 28,0,0,0,0),
@@ -1957,7 +1961,7 @@
 				} else if (prevMonth.getMonth() > month) {
 					clsName += ' new';
 				}
-                                if (prevMonth.valueOf() < todayDate.valueOf()) {
+        if (prevMonth.valueOf() < todayDate.valueOf() || prevMonth.valueOf() > maxDate) {
 					clsName += ' old';
 				}
 				if (prevMonth.valueOf() == currentDate) {
