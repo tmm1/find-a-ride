@@ -46,12 +46,14 @@ $(document).ready(function() {
     $(".inactive_input").click(function(e){
         if ($('.inactive_input').attr("checked")) {
             $('#mymodal').modal('toggle');
+            $("#user_inactive").focus().blur();
         } else {
             user_inactive_check = false;
         }
     });
 
     $('#mymodal').on('hide', function(){
+        $("#user_inactive").focus();
         if (!user_inactive_check) {
             $('.inactive_input').attr("checked", null);
             user_inactive_check = false;
