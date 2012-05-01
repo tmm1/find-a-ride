@@ -1937,7 +1937,10 @@
 
       var maxDate = new Date(),
           todayDate = (new Date()  - 1000 * 60 * 60 * 24);
-      maxDate.setDate(this.date.getDate() + 60);
+
+      // Two months from now, same date
+      maxDate.setMonth(this.date.getMonth() + 2);
+      maxDate.setDate(this.date.getDate());
 
 			this.picker.find('.datepicker-days th:eq(1)')
 						.text(DPGlobal.dates.months[month]+' '+year);
