@@ -1938,9 +1938,8 @@
       var maxDate = new Date(),
           todayDate = (new Date()  - 1000 * 60 * 60 * 24);
 
-      // Two months from now, same date
-      maxDate.setMonth(this.date.getMonth() + 2);
-      maxDate.setDate(this.date.getDate());
+      // 60 days from now
+      maxDate.setDate(this.date.getDate() + 60);
 
 			this.picker.find('.datepicker-days th:eq(1)')
 						.text(DPGlobal.dates.months[month]+' '+year);
