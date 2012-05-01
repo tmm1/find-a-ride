@@ -96,6 +96,90 @@ describe Ride do
     end    
   end
 
+  describe "#filter" do  
+
+    before(:all) do
+
+      Ride.destroy_all
+      @ride_offer1 = Factory(:ride_offer, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => 0.day.from_now.strftime("%d/%b/%Y"), :start_time => "11:30:00 pm"
+      })
+      @ride_offer2 = Factory(:ride_offer, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => Time.now.tomorrow.strftime("%d/%b/%Y"), :start_time => "11:00:00 pm"
+      })
+      @ride_offer3 = Factory(:ride_offer, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => 2.days.from_now.strftime("%d/%b/%Y"), :start_time => "02:00:00 pm"
+      })
+      @ride_offer4 = Factory(:ride_offer, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => 7.days.from_now.strftime("%d/%b/%Y"), :start_time => "02:30:00 pm"
+      })
+      @ride_offer5 = Factory(:ride_offer, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => 14.days.from_now.strftime("%d/%b/%Y"), :start_time => "03:30:00 pm"
+      })
+      @ride_offer6 = Factory(:ride_offer, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => 0.day.from_now.strftime("%d/%b/%Y"), :start_time => "11:00:00 pm"
+      })
+      @ride_offer7 = Factory(:ride_offer, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'two_wheeler',
+        :start_date => 7.days.from_now.strftime("%d/%b/%Y"), :start_time => "01:30:00 pm"
+      })
+      @ride_offer8 = Factory(:ride_offer, {
+        :orig => 'Madhapur', :dest => 'Jubilee Hills Road No 1', :vehicle => 'four_wheeler',
+        :start_date => 2.days.from_now.strftime("%d/%b/%Y"), :start_time => "01:30:00 pm"
+      })
+      @ride_offer9 = Factory(:ride_offer, {
+        :orig => 'Madhapur', :dest => 'Kachiguda Railway Station', :vehicle => 'four_wheeler',
+        :start_date => 2.days.from_now.strftime("%d/%b/%Y"), :start_time => "01:00:00 pm"
+      })
+      @ride_offer10 = Factory(:ride_offer, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'four_wheeler',
+        :start_date => 14.days.from_now.strftime("%d/%b/%Y"), :start_time => "01:30:00 pm"
+      })
+      @ride_offer11 = Factory(:ride_offer, {
+        :orig => 'Madhapur', :dest => 'Kondapur', :vehicle => 'two_wheeler',
+        :start_date => 14.days.from_now.strftime("%d/%b/%Y"), :start_time => "04:30:00 pm"
+      })
+    end
+
+
+    it 'should return results for filter criteria 1' do
+      params = {:orig => '', :dest => '', :ride_time => "today",  :vehicle => 'any'}
+      results = Ride.filter(params)
+      results.should have(2).things
+      results.should == [@ride_offer6, @ride_offer1]
+      results.should_not include [@ride_offer2,@ride_offer3,@ride_offer4, @ride_offer5, @ride_offer7, @ride_offer8, @ride_offer9, @ride_offer10]
+    end 
+    
+    it 'should return results for filter criteria 2' do
+      params = {:orig => '', :dest => '', :ride_time => "tomorrow",  :vehicle => 'any'}
+      results = Ride.filter(params)
+      results.should have(1).things
+      results.should == [@ride_offer2]
+      results.should_not include [@ride_offer1, @ride_offer3, @ride_offer4, @ride_offer5, @ride_offer6, @ride_offer7, @ride_offer8, @ride_offer9, @ride_offer10]
+    end
+
+    it 'should return results for filter criteria 3' do
+      params = {:orig => '', :dest => '', :ride_time => 2.days.from_now.end_of_day(),  :vehicle => 'any'}
+      results = Ride.filter(params)
+      results.should have(6).things      
+    end
+
+     it 'should return results for filter criteria 4' do
+      params = {:orig => '', :dest => 'Kachiguda Railway Station', :ride_time => 2.days.from_now.end_of_day(),  :vehicle => 'any'}
+      results = Ride.filter(params)
+      results.should have(1).things
+    end
+
+
+
+  end
+
   describe "#duplicate validation for ride request" do
     before(:each) do
       Ride.destroy_all

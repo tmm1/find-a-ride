@@ -4,6 +4,7 @@ $(document).ready(function() {
     typeaheadSearch();
     rideTime();
     rideDate();
+    rideOfferSearch();
     gmailContacts();
     initializePusher();
     alertInfo();
@@ -18,6 +19,16 @@ $(document).ready(function() {
     $('.carousel').carousel({
         interval: 3500
     });
+
+    $("#ride_time, #vehicle").change(function(e){
+            e.preventDefault();
+            var url = $("#ride_offer_url").val()
+            var ride_time = $("#ride_time").val()
+            var vehicle = $("#vehicle").val()
+            var ride_orig = $('#ride_orig').val();
+            var ride_dest = $('#ride_dest').val();
+            rideOffersList(url, {ride_time: ride_time, vehicle: vehicle, orig: ride_orig, dest: ride_dest});
+     });
 	
     // *** define tooltip on input fields across the app *** //
     $('.text-input').tooltip({
@@ -642,4 +653,43 @@ function initDeleteRidePopovers() {
   $(".ride-list .delete-ride-cell .disabled").popover({title: "Please note"});
 }
 
+function rideOfferSearch(){
+    $('.rideOffer').typeahead({
+        source: function (typeahead, query) {
+            return  $.ajax({
+                url: '/location_search?q='+query,
+                dataType: 'json',
+                success: function(data) {
+                    return typeahead.process(data);
+                },
+                failure : function(){
+                }
+            })
+        },
+       itemSelected: function(ele, val, text) {
+            var url = $("#ride_offer_url").val()
+            var ride_time = $("#ride_time").val()
+            var vehicle = $("#vehicle").val()
+            var ride_orig
+            var ride_dest
+            if($(ele).attr('id') == 'ride_orig'){
+               ride_orig = text
+               ride_dest = $('#ride_dest').val();
+            }
+            else if($(ele).attr('id') == 'ride_dest'){
+               ride_orig = $('#ride_orig').val();
+               ride_dest = text
+            }
+            rideOffersList(url,{ride_time: ride_time, vehicle: vehicle, orig: ride_orig, dest: ride_dest});
+        }
+    });
+}
+
+var rideOffersList =  function(url, dataArray){
+         $.ajax({
+                  type: 'GET', data: dataArray,
+                  dataType: 'script',
+                  url: url
+              });
+     }
 

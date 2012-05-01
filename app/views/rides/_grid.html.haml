@@ -1,8 +1,4 @@
-.results
-  %h2
-    = pluralize(@ride_offers.total_entries, 'dude')
-    looking to offer a ride.
-%br
-%p
-= render :partial => 'shared/rides_table', :locals => {:results => @ride_offers, :type => :ride_offer}
-= will_paginate @ride_offers, :renderer => RemoteLinkRenderer
+.results 
+  %p
+  = render :partial => 'shared/rides_table', :locals => {:results => @ride_offers, :type => :ride_offer}
+  = will_paginate @ride_offers, :renderer => RemoteLinkRenderer

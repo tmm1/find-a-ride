@@ -89,7 +89,7 @@ describe RidesHelper do
   
   describe '#vehicle type collection' do
     it 'should return the collection' do
-      helper.vehicle_type_collection.should == [['Four-Wheeler', 'four_wheeler'], ['Two-Wheeler', 'two_wheeler'], ['I don\'t care', 'any']]
+      helper.vehicle_type_collection.should == [['I don\'t care', 'any'],['Four-Wheeler', 'four_wheeler'], ['Two-Wheeler', 'two_wheeler'] ]
     end
   end
   

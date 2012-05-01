@@ -44,7 +44,7 @@ module RidesHelper
   end
 
   def vehicle_type_collection
-    [['Four-Wheeler', 'four_wheeler'], ['Two-Wheeler', 'two_wheeler'], ['I don\'t care', 'any']]
+    [['I don\'t care', 'any'],['Four-Wheeler', 'four_wheeler'], ['Two-Wheeler', 'two_wheeler'] ]
   end
 
   def payment_type_collection(payment_options=[])
