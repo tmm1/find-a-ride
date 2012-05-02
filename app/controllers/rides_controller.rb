@@ -5,8 +5,8 @@ class RidesController < ApplicationController
   authorize_resource
 
   def index
-    @ride = Ride.new
-    @ride_offers = Ride.offers.where("user_id != #{current_user.id}").paginate(:page => params[:page], :per_page => 5)
+    params.deep_merge!(:user_id => current_user.id) if params
+    @ride_offers = Ride.filter(params).paginate(:page => params[:page], :per_page => 10)
   end
   
   def list
@@ -21,10 +21,10 @@ class RidesController < ApplicationController
   def search
     @ride = Ride.new(params[:ride])
     respond_to do |format|
-      if @ride.valid?
+      if params[:ride] && @ride.valid?
         format.html { redirect_to(search_ride_offers_path(params[:ride].merge({:from => :search}))) }
       else
-        format.html { render :action => 'index' }
+        format.html {}
       end
     end
   end

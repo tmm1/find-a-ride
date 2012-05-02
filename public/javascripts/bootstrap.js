@@ -1514,6 +1514,7 @@
 
     if (typeof this.onselect == "function")
     this.onselect(val)
+    this.options.itemSelected(this.$element, this.$menu.find('.active').attr('data-value'), this.$menu.find('.active').text())
       return this.hide()
     }
 
@@ -1754,6 +1755,7 @@
   , item: '<li><a href="#"></a></li>'
   , onselect: null
   , property: 'value'
+  , itemSelected: function() {}
   }
 
   $.fn.typeahead.Constructor = Typeahead

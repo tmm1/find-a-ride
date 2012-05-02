@@ -1,0 +1,25 @@
+.hero-unit
+  .text
+    %h2
+      Search for a ride by filling in the necessary criteria
+    %br
+    %span{:class => 'label label-important'} Note: Ride time considered for search is a 1 hr window giving you a better chance of hitching a ride
+    %p
+      %br
+  .pull-right
+    %span{:class => 'label label-important'} *Fields are required
+  = semantic_form_for @ride, :url => search_rides_path(@ride) do |f|
+    = f.inputs do
+      = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => "orig", :label => "I am going from"}
+      = render :partial => "shared/auto_search_input", :locals => {:form_element => f, :name => "dest", :label => "I am going to"}
+      #dp3{:"data-date-format" => "dd-mm-yyyy", :"data-date" => Time.now.strftime("%d-%m-%Y"), :class => "input-append date"}
+        = f.input :start_date,  :input_html => { :class => 'text-input' , :readonly => true, :title => 'Choose the date you are looking for a ride', :value => Time.zone.now.strftime("%d-%m-%Y")},  :label => 'What date?', :required => true
+        .add-on
+          %i{:class => "icon-th"}
+      = f.input :start_time, :input_html => { :readonly => true, :class => 'text-input timepicker', :title => 'Choose the time you are looking for a ride'}, :label => 'Around what time?' , :required => true
+      = f.input :vehicle, :as => :select, :label => 'The kind of vehicle I prefer?', :include_blank => false, :collection => vehicle_type_collection, :input_html => { :class => 'text-input', :title => 'Enter the type of vehicle you prefer'}, :required => true
+    = f.buttons do
+      = f.commit_button :label => 'Search', :button_html => {:class => 'btn btn-primary btn-large'}
+.text-center
+  %br
+  = link_to('Post a ride offer', new_ride_offer_path, :class => 'btn btn-info btn-large')

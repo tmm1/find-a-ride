@@ -23,8 +23,7 @@ describe RidesController do
       sign_in @login_user
       get 'index'
       response.should be_success
-      response.should render_template(:index)
-      assigns(:ride).should_not be nil
+      response.should render_template(:index)      
     end
     it "ajax request should render grid" do
       sign_in @login_user
@@ -51,7 +50,7 @@ describe RidesController do
       search_params[:dest] = nil
       post 'search', {:ride => search_params}
       response.should be_success
-      response.should render_template(:index)
+      response.should render_template(:search)
       assigns(:ride).should_not be_valid
     end
   end
