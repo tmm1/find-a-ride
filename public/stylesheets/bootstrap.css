@@ -787,9 +787,11 @@ select:focus {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    outline: thin dotted #333;
+    /*outline: thin dotted #333;
+      outline-offset: -2px;
+    */
     outline: 5px auto -webkit-focus-ring-color;
-    outline-offset: -2px;
+    
 }
 .input-mini {
     width: 60px;

@@ -16,7 +16,14 @@ describe HomeController do
       get 'index'
       response.should be_success
       response.should render_template(:index)
-    end    
+    end
+
+    it "ajax request should render grid" do
+      xhr :get ,  'index'
+      response.should be_success
+      response.should render_template(:grid)
+    end
+    
   end
 
   describe "#authorize" do

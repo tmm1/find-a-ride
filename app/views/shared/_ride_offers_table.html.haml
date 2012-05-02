@@ -1,0 +1,22 @@
+%script{:type => 'text/javascript'} var rides = {};
+%table{:class => 'table table-striped'}
+  %th Name
+  %th Leaving from
+  %th Going to
+  %th Time
+  %th= 'Vehicle type' if type == :ride_offer
+  %th  
+  - results.each do |result|    
+    - uuid = user_uuid
+    %tr{:id => "hook-up-popover#{uuid}", :class => 'result-popover', "data-content" => 'Sign Up, To request a ride!'}
+      %td
+        %h5.table-text= user_name(result)
+      %td
+        %h5.table-text= result.ride_origin.name
+      %td
+        %h5.table-text= result.ride_destination.name
+      %td
+        %h5.table-text= humanize_time(result.ride_time)
+      %td{:style => 'text-align: center;'}= vehicle_type_image(result) if type == :ride_offer
+      %td
+

@@ -1,12 +1,16 @@
-.hero-unit  
+.hero-unit.search-results  
   .home
-    = render 'shared/carousel'
+    =# render 'shared/carousel'
     %br
-    %h2
+    %h3
       This is a free service that enables eco-friendly citizens to find and share rides with other like minded folks to drive down fuel usage, save money and mother earth in the process. Simple, ain't it?
-      = link_to('Learn more', about_url, :class => 'btn btn-primary btn-large')
-    %br
+      = link_to('Learn more', about_url, :class => 'btn btn-primary btn-medium')
     %br
     %br
     - unless user_signed_in?
       = render 'shared/signup'
+    %br
+    = render :partial => 'rides/ride_offers_list', :locals => {:url => index_path}
+    %br
+    %br
+    .ride_offer= render 'grid'

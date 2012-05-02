@@ -1,22 +1,12 @@
-.text
-  %h1
-    Ride Offers List
 %br
 .hero-unit.search-results
   %p
-    = hidden_field_tag :ride_offer_url , rides_path
-    = render :partial => "shared/auto_search_input", :locals => {:name => "ride_orig", :label => "I am going from"}
+    = render :partial => 'ride_offers_list', :locals => {:url => rides_path}
     %br
-    = render :partial => "shared/auto_search_input", :locals => {:name => "ride_dest", :label => "I am going to"}
     %br
-    %span Ride Time
-    =select_tag(:ride_time, options_for_select(Ride::RIDETIME.collect {|s,i| [ i, s ] }))
-    %br
-    %span Vehicle Type
-    = select_tag(:vehicle, options_for_select(vehicle_type_collection))
-    .ride_offer= render 'grid'
+    .ride_offer= render 'rides/grid'
 .text-center
   %h2
-    If you are looking for specific ride offer , You can go for advanced search
+    Search for a ride offer
   %br
-  = link_to('Search for a ride offer', search_rides_path, :class => 'btn btn-info btn-large')
+  = link_to('Search', search_rides_path, :class => 'btn btn-info btn-large')

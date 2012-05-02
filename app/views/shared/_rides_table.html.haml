@@ -19,7 +19,7 @@
         %h5.table-text= result.ride_destination.name
       %td
         %h5.table-text= humanize_time(result.ride_time)
-      %td= vehicle_type_image(result) if type == :ride_offer
+      %td{:style => 'text-align: center;'}= vehicle_type_image(result) if type == :ride_offer
       %td
       %td
         - unless already_hooked_up

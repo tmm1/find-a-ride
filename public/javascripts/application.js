@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var user_inactive_check = false;
-	  var pusher_channel = null;
+    var pusher_channel = null;
     typeaheadSearch();
     rideTime();
     rideDate();

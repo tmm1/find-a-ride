@@ -154,7 +154,7 @@ describe Ride do
       })
       @ride_offer11 = Factory(:ride_offer, {
         :orig => 'Madhapur', :dest => 'Jubilee Hills Road No 1', :vehicle => 'two_wheeler',
-        :start_date => Time.now.tomorrow.strftime("%d/%b/%Y"), :start_time => "11:30:00 pm",
+        :start_date => 7.days.from_now.strftime("%d/%b/%Y"), :start_time => "11:30:00 pm",
         :offerer => @login_user
       })
     end
@@ -169,11 +169,10 @@ describe Ride do
     end 
     
     it 'should return results for filter criteria 2' do
-      params = {:orig => '', :dest => '', :ride_time => "tomorrow",  :vehicle => 'any', :user_id => @login_user.id}
+      params = {:orig => '', :dest => '', :ride_time => 14.days.from_now.end_of_day(),  :vehicle => 'any', :user_id => @login_user.id}
       results = Ride.filter(params)
-      results.should have(1).things
-      results.should == [@ride_offer2]
-      results.should_not include [@ride_offer1, @ride_offer3, @ride_offer4, @ride_offer5, @ride_offer6, @ride_offer7, @ride_offer8, @ride_offer9, @ride_offer10]
+      results.should have(10).things
+      results.should_not include [@ride_offer11]
     end
 
     it 'should return results for filter criteria 3' do
@@ -189,9 +188,9 @@ describe Ride do
     end
 
      it 'should return results for filter criteria 5' do
-      params = {:orig => 'Madhapur', :dest => 'Jubilee Hills Road No 1', :ride_time => "tomorrow",  :vehicle => 'any', :user_id => @login_user.id}
+      params = {:orig => 'Madhapur', :dest => 'Jubilee Hills Road No 1', :ride_time => 7.days.from_now.end_of_day(),  :vehicle => 'any', :user_id => @login_user.id}
       results = Ride.filter(params)
-      results.should have(0).things
+      results.should have(1).things
     end
 
   end

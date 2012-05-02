@@ -1,0 +1,10 @@
+- if @ride_offers.nil? || @ride_offers.empty?
+  .no-results
+    %h2
+      %small
+        No one offering a ride at the moment
+- else
+  .results
+    %p
+      = render :partial => 'shared/ride_offers_table', :locals => {:results => @ride_offers, :type => :ride_offer}
+      = will_paginate @ride_offers, :renderer => RemoteLinkRenderer
