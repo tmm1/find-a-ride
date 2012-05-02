@@ -1,0 +1,4 @@
+development: localhost:6379
+test: localhost:6379
+staging: on-the-way.herokuapp.com:6379
+production: on-the-way.herokuapp.com:6379

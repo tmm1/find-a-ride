@@ -7,7 +7,7 @@ class InvitesController < ApplicationController
   def send_invite
     #TODO: consider sending out individual emails (and not a single one) for privacy sake
     if !params[:email_list].empty?
-      ContactMailer.invite_email(current_user, params[:email_list]).deliver
+      Resque.enqueue(ContactMailer, :invite_email, current_user.id, params[:email_list])
       render :text => 'success', :status => 200
     else
       render :text => 'failed', :status => 200

@@ -81,4 +81,23 @@ describe HookupMailer do
     end
   end
     
+  describe '#perform' do
+    before(:each) do
+      @email = mock('email', :deliver => true)
+      @hook_up = mock_model(HookUp)
+      @mobile = "1231231231"
+    end
+
+    it 'should send ride requestor email' do
+      HookUp.should_receive(:find).with(@hook_up.id).and_return(@hook_up)
+      HookupMailer.should_receive(:send).with(:ride_requestor_email, @hook_up, @mobile).and_return(@email)
+      HookupMailer.perform(:ride_requestor_email, @hook_up.id, @mobile)
+    end
+
+    it 'should send ride offerer email' do
+      HookUp.should_receive(:find).with(@hook_up.id).and_return(@hook_up)
+      HookupMailer.should_receive(:send).with(:ride_offerer_email, @hook_up, @mobile).and_return(@email)
+      HookupMailer.perform(:ride_offerer_email, @hook_up.id, @mobile)
+    end
+  end
 end

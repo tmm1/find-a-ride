@@ -23,6 +23,7 @@ gem "friendly_id"
 gem 'pusher'
 gem 'pusher-client'
 gem 'em-http-request'
+gem 'resque'
 
 group :mysql do
   gem 'mysql'

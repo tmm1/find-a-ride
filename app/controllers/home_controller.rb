@@ -14,8 +14,8 @@ class HomeController < ApplicationController
   end
   
   def contact
-    contact_email = ContactMailer.contact_email(params)
-    if contact_email.deliver
+    info = params.except(:action, :controller)
+    if Resque.enqueue(ContactMailer, :contact_email, info)
       render :text => 'success', :status => 200
     else
       render :text => 'failed', :status => 200

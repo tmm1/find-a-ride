@@ -35,10 +35,11 @@ describe HomeController do
     end
     
     it 'should allow user to contact successfully' do
-      post 'contact', {:name => 'john emburey', :email => 'john@gmail.com', :about => 'General Feedback', :comments => 'Hey! this is a great site, keep it going!' }
+      info = {'name' => 'john emburey', 'email' => 'john@gmail.com', 'about' => 'General Feedback', 'comments' => 'Hey! this is a great site, keep it going!'}
+      Resque.should_receive(:enqueue).with(ContactMailer, :contact_email, info).and_return(true)
+      post 'contact', info
       response.should be_success
       response.body.should == 'success'
-      ActionMailer::Base.deliveries.size.should == 1
     end
   end
 

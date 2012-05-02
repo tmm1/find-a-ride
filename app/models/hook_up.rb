@@ -54,7 +54,7 @@ class HookUp < ActiveRecord::Base
   end
   
   def notify_contactee
-    self.hookable.try(:request?) ? HookupMailer.ride_offerer_email(self, self.mobile).deliver : HookupMailer.ride_requestor_email(self, self.mobile).deliver
+    Resque.enqueue(HookupMailer, self.hookable.try(:request?) ? :ride_offerer_email : :ride_requestor_email, self.id, self.mobile)
   end
   
   def create_alert
