@@ -5,6 +5,7 @@
     left:0;
     right:0;
     opacity: 0.95;
+    display: none;
 }
 .notice-area .alert {
   width: auto;

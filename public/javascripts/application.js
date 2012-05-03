@@ -525,8 +525,7 @@ function send_email_invites(email_list, token, url) {
   });
 }
 
-function alertInfo() {
-  $('.notice-area').hide();
+function alertInfo() { 
   setTimeout(showFlashMessages, 500);
   setTimeout(hideFlashMessages, 3500);
 }
