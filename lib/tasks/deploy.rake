@@ -24,8 +24,8 @@ namespace :deploy do
 
     puts "\n Pushing..."
     run "git push origin #{tag_name}"
-    run "git push git@heroku.com:#{STAGING_APP}.git #{tag_name}:master"
-    run "git push git@heroku.com:#{STAGING_WORKER}.git #{tag_name}:master"
+    run "git push heroku #{tag_name}:master"
+    run "git push worker #{tag_name}"
 
     puts "\n Migrating..."
     run "heroku run rake db:migrate --app #{STAGING_APP}"

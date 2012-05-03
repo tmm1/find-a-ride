@@ -83,6 +83,9 @@ PoolRide::Application.routes.draw do
   match "/errors/unprocessable_entity" => "errors#unprocessable_entity" , :as => :unprocessable_entity
   match "/errors/access_denied" => "errors#access_denied" , :as => :access_denied
   
+  # Resque Web
+  mount Resque::Server.new, :at => "/resque"
+
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
