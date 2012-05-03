@@ -10,6 +10,7 @@ end
 
 namespace :deploy do
   STAGING_APP = 'on-the-way'
+  STAGING_WORKER = 'on-the-way-worker'
   STAGING_BUNDLE = 'on-the-way-bundle'
   desc "Deploy to Staging"
   task :staging do
@@ -24,6 +25,7 @@ namespace :deploy do
     puts "\n Pushing..."
     run "git push origin #{tag_name}"
     run "git push git@heroku.com:#{STAGING_APP}.git #{tag_name}:master"
+    run "git push git@heroku.com:#{STAGING_WORKER}.git #{tag_name}:master"
 
     puts "\n Migrating..."
     run "heroku run rake db:migrate --app #{STAGING_APP}"
