@@ -21,15 +21,15 @@ namespace :deploy do
     tag_name = "heroku-#{iso_date}"
     puts "\n Tagging as #{tag_name}..."
     run "git tag #{tag_name} master"
-
-    puts "\n Pushing..."
     run "git push origin #{tag_name}"
+    
+    puts "\n Pushing web app..."
     run "git push heroku #{tag_name}:master"
+    puts "\n Pushing worker app..."
     run "git push worker #{tag_name}"
 
     puts "\n Migrating..."
     run "heroku run rake db:migrate --app #{STAGING_APP}"
-    #run "heroku run rake db:seed --app #{STAGING_APP}"
 
     puts "\n Deployment to staging completed"
   end
