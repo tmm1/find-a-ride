@@ -29,7 +29,5 @@ PoolRide::Application.configure do
   
   PUSHER_CHANNEL = 'ontheway_dev'
   PUSHER_EVENT = 'user_alert_dev'
-  
-  
 end
 

@@ -39,5 +39,7 @@ PoolRide::Application.configure do
   PUSHER_EVENT = 'user_alert_test'
   
   FACEBOOK_DIRECT_URL = 'https://www.facebook.com/dialog/apprequests?app_id=250325615010342&message=Invitation%20to%20join%20OnTheWay%20app!&redirect_uri=http://localhost:3000/facebook_invite'
-
+  
+   # Stub redis and perform the operation immediately
+   Resque.inline = true
 end

@@ -319,11 +319,7 @@ describe User do
     end
   end
 
-  describe 'mailers' do
-    before(:each) do
-      Resque.stub!(:enqueue)
-    end
-
+  describe '#mailers' do
     describe '#send_confirmation_instructions' do
       before(:each) do
         @user = Factory(:user)
@@ -332,21 +328,18 @@ describe User do
       it 'should use an existing token to send confirmation instructions' do
         @user.update_attribute(:confirmation_token, UUID.new.generate)
         @user.should_not_receive(:generate_confirmation_token!)
-        Resque.should_receive(:enqueue).with(::Devise.mailer, :confirmation_instructions, @user.id)
         @user.send_confirmation_instructions
       end
 
       it 'should generate a new token and send confirmation instructions' do
         @user.update_attribute(:confirmation_token, nil)
         @user.should_receive(:generate_confirmation_token!)
-        Resque.should_receive(:enqueue).with(::Devise.mailer, :confirmation_instructions, @user.id)
         @user.send_confirmation_instructions
       end
     end
 
     it 'should send unlock instructions' do
       @user = Factory(:user)
-      Resque.should_receive(:enqueue).with(::Devise.mailer, :unlock_instructions, @user.id)
       @user.send_unlock_instructions
     end
 
@@ -358,14 +351,12 @@ describe User do
       it 'should use an existing reset-password token to send instructions' do
         @user.should_receive(:should_generate_token?).and_return(false)
         @user.should_not_receive(:generate_reset_password_token!)
-        Resque.should_receive(:enqueue).with(::Devise.mailer, :reset_password_instructions, @user.id)
         @user.send_reset_password_instructions
       end
 
       it 'should generate a new reset-password token and send instructions' do
         @user.should_receive(:should_generate_token?).and_return(true)
         @user.should_receive(:generate_reset_password_token!)
-        Resque.should_receive(:enqueue).with(::Devise.mailer, :reset_password_instructions, @user.id)
         @user.send_reset_password_instructions
       end
     end
