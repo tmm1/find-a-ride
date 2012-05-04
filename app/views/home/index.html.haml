@@ -1,4 +1,4 @@
-.hero-unit.search-results  
+.hero-unit
   .home
     =# render 'shared/carousel'
     %br
@@ -9,8 +9,9 @@
     %br
     - unless user_signed_in?
       = render 'shared/signup'
-    %br
-    = render :partial => 'rides/ride_offers_list', :locals => {:url => index_path}
-    %br
-    %br
-    .ride_offer= render 'grid'
+.hero-unit.search-results
+  %br
+  = render :partial => 'rides/ride_offers_list', :locals => {:url => index_path}
+  %br
+  %br
+  .ride_offer= render 'grid'

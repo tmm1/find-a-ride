@@ -1,11 +1,15 @@
-.form-inline
-  = hidden_field_tag :ride_offer_url , url
-  %span{:style => "padding-right:513px;"} &nbsp
-  %span{:style => "padding-right:65px;" , :class => 'label'} Time
-  %span.label Vehicle
+%h2.text-center
+  Looking for a ride? Use the grid below to find one
 %br
-.form-inline  
-  = render :partial => "shared/auto_search_input", :locals => {:name => "ride_orig", :placeHolderText => "Leaving from",:style => "width:228px;"}
-  = render :partial => "shared/auto_search_input", :locals => {:name => "ride_dest", :placeHolderText => "Going to",:style => "width:228px;"}
-  = select_tag(:ride_time, options_for_select(Ride::RIDETIME.collect {|s,i| [ i, s ] }),:style => 'width:175px;')
-  = select_tag(:vehicle, options_for_select(vehicle_type_collection),:style => 'width:150px;')
+.filter-container
+  .form-inline
+    = hidden_field_tag :ride_offer_url , url
+    %span{:style => "padding-right:513px;"} &nbsp
+    %span{:style => "padding-right:65px;" , :class => 'label'} When?
+    %span.label Vehicle type
+  %br
+  .form-inline  
+    = render :partial => "shared/auto_search_input", :locals => {:name => "ride_orig", :placeHolderText => "Leaving from",:style => "width:228px;"}
+    = render :partial => "shared/auto_search_input", :locals => {:name => "ride_dest", :placeHolderText => "Going to",:style => "width:228px;"}
+    = select_tag(:ride_time, options_for_select(Ride::RIDETIME.collect {|s,i| [ i, s ] }), :style => 'width:175px;')
+    = select_tag(:vehicle, options_for_select(vehicle_type_collection), :style => 'width:150px;')
