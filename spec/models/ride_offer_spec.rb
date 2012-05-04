@@ -69,6 +69,11 @@ describe RideOffer do
       }
       @ride_offer12 = Factory.build(:ride_offer, @ride_offer12_params)
       @ride_offer12.save(:validate => false) # to save a past ride
+
+      @ride_offer13 = Factory(:ride_offer, {
+        :orig => 'Secunderabad', :dest => 'Ameerpet', :vehicle => 'four_wheeler',
+        :start_date => 7.days.from_now.strftime("%d/%b/%Y"), :start_time => "02:30:00 pm"
+      })
     end
 
     it 'should return results for search criteria 1' do
@@ -119,6 +124,41 @@ describe RideOffer do
     it 'should not return results for search criteria 3' do
       results = RideOffer.search(@ride_offer12_params)
       results.should have(0).things
+    end
+
+    it 'should return results for filter criteria f1' do
+      params = {:orig => '', :dest => '', :ride_time => 2.days.from_now.end_of_day(),  :vehicle => 'any', :user_id => @login_user.id}
+      results = RideOffer.search(params)
+      results.should have(9).things
+    end
+
+    it 'should return results for filter criteria f2' do      
+      results = RideOffer.search({})
+      results.should have(0).things
+    end
+
+    it 'should return results for filter criteria f3' do
+      params = {:orig => '', :dest => '', :ride_time => 7.days.from_now.end_of_day(),  :vehicle => 'four_wheeler', :user_id => @login_user.id}
+      results = RideOffer.search(params)
+      results.should have(8).things
+    end
+
+    it 'should return results for filter criteria f4' do
+      params = {:orig => 'Secunderabad', :dest => '', :ride_time => 7.days.from_now.end_of_day(),  :vehicle => 'four_wheeler', :user_id => @login_user.id}
+      results = RideOffer.search(params)
+      results.should have(1).things
+    end
+
+    it 'should return results for filter criteria f5' do
+      params = {:orig => '', :dest => 'Ameerpet', :ride_time => 7.days.from_now.end_of_day(),  :vehicle => 'any', :user_id => @login_user.id}
+      results = RideOffer.search(params)
+      results.should have(1).things
+    end
+
+    it 'should return results for anonymous user filter criteria f6' do
+      params = {:orig => '', :dest => '', :ride_time => 7.days.from_now.end_of_day(),  :vehicle => 'any'}
+      results = RideOffer.search(params)
+      results.should have(11).things
     end
   end
 end

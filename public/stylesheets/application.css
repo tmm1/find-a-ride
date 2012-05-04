@@ -260,6 +260,6 @@ h5.table-text {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -border-radius: 3px;
-  border: 1px solid #49AFCD;
+ /* border: 1px solid #49AFCD; */
   width: 100%;
 }

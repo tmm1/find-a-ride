@@ -5,7 +5,7 @@ class HomeController < ApplicationController
   end
   
   def index
-    @ride_offers = Ride.filter(params).paginate(:page => params[:page], :per_page => 10)
+    @ride_offers = RideOffer.search(params).paginate(:page => params[:page], :per_page => 10)
   end
 
   def authorize

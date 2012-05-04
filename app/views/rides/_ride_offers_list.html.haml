@@ -4,12 +4,13 @@
 .filter-container
   .form-inline
     = hidden_field_tag :ride_offer_url , url
-    %span{:style => "padding-right:513px;"} &nbsp
-    %span{:style => "padding-right:65px;" , :class => 'label'} When?
-    %span.label Vehicle type
+    .label.input-mini-large{:style => "display: inline-block;"} Starting from
+    .label.input-mini-large{:style => "display: inline-block;"} Going to
+    .label.input-xmedium{:style => "display: inline-block;"} Time
+    .label.input-small{:style => "display: inline-block;"} Vehicle
   %br
   .form-inline  
-    = render :partial => "shared/auto_search_input", :locals => {:name => "ride_orig", :placeHolderText => "Leaving from",:style => "width:228px;"}
-    = render :partial => "shared/auto_search_input", :locals => {:name => "ride_dest", :placeHolderText => "Going to",:style => "width:228px;"}
-    = select_tag(:ride_time, options_for_select(Ride::RIDETIME.collect {|s,i| [ i, s ] }), :style => 'width:175px;')
-    = select_tag(:vehicle, options_for_select(vehicle_type_collection), :style => 'width:150px;')
+    = render :partial => "shared/auto_search_input", :locals => {:name => "ride_orig", :placeHolderText => "Leaving from",:style => "width:216px;"}
+    = render :partial => "shared/auto_search_input", :locals => {:name => "ride_dest", :placeHolderText => "Going to",:style => "width:216px;"}
+    = select_tag(:ride_time, options_for_select(ride_time_collection.collect {|s,i| [ i, s ] }), :style => 'width:175px;')
+    = select_tag(:vehicle, options_for_select(vehicle_type_collection), :style => 'width:142px;')
