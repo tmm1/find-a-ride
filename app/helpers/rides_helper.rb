@@ -89,4 +89,11 @@ module RidesHelper
     end
     hash.to_json.html_safe
   end
+
+  def ride_time_collection
+    {"today"                              => "Today",
+     "#{2.days.from_now.end_of_day() }"   => "2 Days from now " ,
+     "#{7.days.from_now.end_of_day() }"   => "1 week from now",
+     "#{14.days.from_now.end_of_day() }"  => "2 weeks from now"}
+  end
 end

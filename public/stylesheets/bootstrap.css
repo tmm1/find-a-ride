@@ -802,8 +802,14 @@ select:focus {
 .input-medium {
     width: 150px;
 }
+.input-xmedium {
+    width: 170px;
+}
 .input-large {
     width: 210px;
+}
+.input-mini-large {
+    width: 217px;
 }
 .input-xlarge {
     width: 270px;
@@ -4837,4 +4843,6 @@ footer.footer {
 .terms-and-conds {float: left;margin-right: 5px !important;margin-top: 1px !important;}
 .remember-me{float: left; margin-right: 5px !important;margin-top: 2px !important;}
 .hookup-note {margin: 0 0 9px 25px;}
+.no-results{text-align: center;}
+.filter-titles{padding-right: 72px;}
 

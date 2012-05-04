@@ -138,4 +138,11 @@ describe RidesHelper do
       }.should_not raise_error
     end
   end
+
+  describe '#ride time collection' do
+    it 'should return the collection' do
+      helper.ride_time_collection.should == {"today" => "Today","#{2.days.from_now.end_of_day() }"   => "2 Days from now " ,"#{7.days.from_now.end_of_day() }"   => "1 week from now", "#{14.days.from_now.end_of_day() }"  => "2 weeks from now"}
+    end
+  end
+
 end

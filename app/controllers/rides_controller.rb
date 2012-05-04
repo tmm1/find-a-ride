@@ -6,7 +6,7 @@ class RidesController < ApplicationController
 
   def index
     params.deep_merge!(:user_id => current_user.id) if params
-    @ride_offers = Ride.filter(params).paginate(:page => params[:page], :per_page => 10)
+    @ride_offers = RideOffer.search(params).paginate(:page => params[:page], :per_page => 10)
   end
   
   def list
