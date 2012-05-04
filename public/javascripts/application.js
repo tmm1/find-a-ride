@@ -20,6 +20,17 @@ $(document).ready(function() {
         interval: 3500
     });
 
+    $("#email").keypress(function(e){
+      if(e.keyCode == 40) {
+        $('#contact-submit').removeClass('enter-key');
+      } else if(e.keyCode == 13) {
+        $("#email").focus();
+        setTimeout(function(){
+          $('#contact-submit').addClass('enter-key');
+        }, 1000);
+      }
+    });
+
     $("#ride_time, #vehicle").change(function(e){
             e.preventDefault();
             var url = $("#ride_offer_url").val()
