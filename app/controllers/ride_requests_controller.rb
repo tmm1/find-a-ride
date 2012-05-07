@@ -5,6 +5,7 @@ class RideRequestsController < RidesController
   authorize_resource
 
   def new
+    @ride_request = RideRequest.new
   end
 
   def create

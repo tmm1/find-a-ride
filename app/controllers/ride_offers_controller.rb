@@ -5,6 +5,7 @@ class RideOffersController < RidesController
   authorize_resource
 
   def new
+    @ride_offer = RideOffer.new
   end
 
   def create
