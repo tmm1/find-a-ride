@@ -55,15 +55,28 @@
             - else
               %ul{:class => 'nav nav-pills pull-right'}
                 %li= link_to("Sign in", signin_url)
-    .container
-      .notice-area
-        = render 'shared/flashes'  
-      = yield
+    .notice-area
+      = render 'shared/flashes'
+    - if user_signed_in?
+      .container-fluid
+        .row-fluid
+          .span3.sidebar
+            %ul.nav.nav-list
+              = sidebar_entries
+          .span9
+            = yield
       .footer
         %hr
         %h3
           %a{:href => 'http://www.imaginea.com/labs', :target => '_blank'}
             %span{:class => 'badge badge-info'} Imaginea Labs. Copyright &copy; 2012, Pramati Technologies Private Limited
+    - else
+      .container
+        = yield
+        .footer
+          %hr
+          %h3
+            %a{:href => 'http://www.imaginea.com/labs', :target => '_blank'}
+              %span{:class => 'badge badge-info'} Imaginea Labs. Copyright &copy; 2012, Pramati Technologies Private Limited
     = render 'shared/contact'
-
     
