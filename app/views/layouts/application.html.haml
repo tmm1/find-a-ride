@@ -48,8 +48,6 @@
                     %li
                       = link_to("My alerts", user_alerts_path(current_user), :style => 'display: inline-block')
                       %span.badge.badge-error.alert-badge= current_user.unread_alerts.size
-                    %li= link_to("My requests and offers", list_user_rides_path(current_user))
-                    %li= link_to("My recent activity", recent_path(current_user))
                     %li= link_to("Invite friends", user_invites_path(current_user))
                     %li= link_to("Sign out", destroy_user_session_path, :method => :delete)
             - else
