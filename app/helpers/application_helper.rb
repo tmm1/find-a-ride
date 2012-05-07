@@ -9,13 +9,14 @@ module ApplicationHelper
 
   def sidebar_entries
     content = ''
-    [ {:text => "My requests and offers", :href => list_user_rides_path(current_user)},
-      {:text => "My recent activity", :href => recent_path(current_user)},
-      {:text => "Search for offers", :href => search_rides_path},
-      {:text => "Post an offer", :href => new_ride_offer_path}
+    [ {:text => "Search", :href => search_rides_path},
+      {:text => "Post an offer", :href => new_ride_offer_path},
+      {:text => "Request a ride", :href => new_ride_request_path},
+      {:text => "My requests and offers", :href => list_user_rides_path(current_user)},
+      {:text => "My recent activity", :href => recent_path(current_user)}
     ].each do |entry|
       content << content_tag(:li, :class => (request.fullpath == entry[:href] ? 'active' : '')) do
-        link_to(entry[:text], entry[:href], entry[:args])
+        link_to(entry[:text], entry[:href])
       end
     end
     content.html_safe
