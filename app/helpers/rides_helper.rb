@@ -17,11 +17,11 @@ module RidesHelper
   def other_info_content(ride, hooked_up=false)
     unless hooked_up
       payment_details = ride.offer? ? "Expects #{ride.payment} in return for the ride" : "Can pay #{ride.payment} in return for the ride"
-      content = '<span id="ride-payment-info">'+payment_details+'</span>'
-      content = content + '<br />' + '<span id="ride-additional-info">'+ride.notes+'</span>' if !ride.notes.blank?
+      content = content_tag(:span, payment_details, :id => "ride-payment-info")
+      content = content + content_tag(:br) + content_tag(:span, ride.notes, :id => "ride-additional-info" ) if !ride.notes.blank?
       content
     else
-      'Ah, It looks like you already might be in touch with this user!'
+      content_tag(:span, 'Ah, It looks like you already might be in touch with this user!', :id => "ride-payment-info")
     end
   end 
 

@@ -37,7 +37,7 @@ describe RidesHelper do
     
     it 'should return already hooked up' do
       ride_request = Factory(:ride_request, :payment => 'nothing')
-      helper.other_info_content(ride_request, true).should == 'Ah, It looks like you already might be in touch with this user!'
+      helper.other_info_content(ride_request, true).include? 'Ah, It looks like you already might be in touch with this user!'
     end
   end
   
