@@ -8,7 +8,7 @@
   %th  
   - results.each do |result|    
     - uuid = user_uuid
-    %tr{:id => "hook-up-popover#{uuid}", :class => 'result-popover', "data-content" => 'Sign Up, To request a ride!'}
+    %tr{:id => "hook-up-popover#{uuid}", :class => 'result-popover', "data-content" => 'Sign in to request a ride'}
       %td
         %h5.table-text= user_name(result)
       %td
