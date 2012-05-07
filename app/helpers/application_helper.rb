@@ -6,4 +6,18 @@ module ApplicationHelper
       image_tag('blank_profile_picture.jpg', :alt => 'Pic', :size => size)
     end
   end
+
+  def sidebar_entries
+    content = ''
+    [ {:text => "My requests and offers", :href => list_user_rides_path(current_user)},
+      {:text => "My recent activity", :href => recent_path(current_user)},
+      {:text => "Search for offers", :href => search_rides_path},
+      {:text => "Post an offer", :href => new_ride_offer_path}
+    ].each do |entry|
+      content << content_tag(:li, :class => (request.fullpath == entry[:href] ? 'active' : '')) do
+        link_to(entry[:text], entry[:href], entry[:args])
+      end
+    end
+    content.html_safe
+  end
 end

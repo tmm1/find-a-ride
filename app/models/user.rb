@@ -106,16 +106,16 @@ class User < ActiveRecord::Base
 
   def send_confirmation_instructions
     generate_confirmation_token! if self.confirmation_token.nil?
-    Resque.enqueue(::Devise.mailer, :confirmation_instructions, self.id) unless Rails.env.test?
+    Resque.enqueue(UserMailer, :confirmation_instructions, self.id) unless Rails.env.test?
   end
 
   def send_unlock_instructions
-    Resque.enqueue(::Devise.mailer, :unlock_instructions, self.id) unless Rails.env.test?
+    Resque.enqueue(UserMailer, :unlock_instructions, self.id) unless Rails.env.test?
   end
 
   def send_reset_password_instructions
     generate_reset_password_token! if should_generate_token?
-    Resque.enqueue(::Devise.mailer, :reset_password_instructions, self.id) unless Rails.env.test?
+    Resque.enqueue(UserMailer, :reset_password_instructions, self.id) unless Rails.env.test?
   end
 
 end
