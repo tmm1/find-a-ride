@@ -1,4 +1,4 @@
-class Devise::Mailer < ::ActionMailer::Base
+class UserMailer < Devise::Mailer
   @queue = :emails
   
   def self.perform(method, record_id)
