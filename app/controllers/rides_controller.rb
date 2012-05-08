@@ -12,11 +12,6 @@ class RidesController < ApplicationController
   def list
     get_rides
   end
-
-  def new
-    @ride_request = RideRequest.new
-    @ride_offer = RideOffer.new
-  end
   
   def search
     @ride = Ride.new(params[:ride])

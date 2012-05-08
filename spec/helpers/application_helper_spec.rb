@@ -9,6 +9,7 @@ describe ApplicationHelper do
     tag.should_not be_nil
     tag.should == image_tag('blank_profile_picture.jpg', :alt => 'Pic', :size => '75x75')
   end
+
   it 'should return the image tag for the user dp for size 100x100' do
     user = Factory(:user)
     tag = helper.user_display_pic(user, '100x100')

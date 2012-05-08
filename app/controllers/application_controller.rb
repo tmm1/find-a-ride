@@ -1,9 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   include Geokit::Geocoders
-  
+  helper_method :selected_city
+
   def location_search    
-    @result = (City.find_by_name('Hyderabad').locations.select("name").collect {|loc| loc.name.downcase}.map do |l|
+    @result = (City.find_by_name(selected_city).locations.select("name").collect {|loc| loc.name.downcase}.map do |l|
       l.titleize if l.to_s.match(params[:q].to_s.try(:downcase))
     end).compact
     respond_to do |wants|
@@ -29,6 +30,10 @@ class ApplicationController < ActionController::Base
     cookies[:city] = params[:city] unless params[:city].nil?
     session[:city] = cookies[:city]
     redirect_to root_path, :notice => "You have chosen #{session[:city]}"
+  end
+
+  def selected_city
+    session[:city] || cookies[:city] || 'Hyderabad'
   end
 
   private

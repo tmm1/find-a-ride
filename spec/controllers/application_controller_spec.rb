@@ -72,4 +72,15 @@ describe ApplicationController do
       request.flash[:notice].should == 'You have chosen Chennai'
     end
   end
+
+  describe '#selected city' do
+    it 'should return hyderabad by default' do
+      @controller.selected_city.should == 'Hyderabad'
+    end
+
+    it 'should return the session city' do
+      session[:city] = 'Chennai'
+      @controller.selected_city.should == 'Chennai'
+    end
+  end
 end
