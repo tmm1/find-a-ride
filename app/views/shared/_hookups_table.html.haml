@@ -8,6 +8,8 @@
           %span="#{h.hookable.try(:ride_origin).try(:name)}"
           to
           %span="#{h.hookable.try(:ride_destination).try(:name)}"
+          in
+          %span="#{h.hookable.try(:ride_origin).try(:city).try(:name)}"
           for travel around
           %span= h.hookable ? "#{h.hookable.ride_time.strftime('%B %d, %Y %l:%M%p')}" : ""
       / %td=# link_to('Rate the experience', '#', :class => 'btn btn-primary btn-small')

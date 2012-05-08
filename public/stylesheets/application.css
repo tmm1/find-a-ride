@@ -115,6 +115,7 @@ input#ride_request_start_time, input#ride_offer_start_time, input#ride_start_tim
 }
 h5.table-text { 
     color: #ECE9D7!important;
+    font-size: 11px;
 }
 
 .ride-list .delete-ride-cell {

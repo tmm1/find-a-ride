@@ -1,4 +1,5 @@
 %table{:class => 'table table-striped'}
+  %th In
   %th Leaving from
   %th Going to
   %th Time
@@ -7,6 +8,8 @@
   - rides.each do |ride|
     - uuid = user_uuid
     %tr{:id => "ride-cell-#{ride.id}"}
+      %td
+        %h5.table-text= ride.try(:ride_origin).try(:city).try(:name)
       %td
         %h5.table-text= ride.try(:ride_origin).try(:name)
       %td
