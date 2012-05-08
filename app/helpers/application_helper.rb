@@ -9,7 +9,7 @@ module ApplicationHelper
 
   def uri_matches?(paths)
     paths ||= []
-    regex = %r|^([^?]*)(\??.*)$|
+    regex = %r|^([^?]*)(\??.*)$|  # ignore the arguments while matching
     paths.any? do |path|
       request.fullpath.sub(regex, '\1') == path.sub(regex, '\1')
     end
@@ -17,6 +17,7 @@ module ApplicationHelper
 
   def sidebar_entries
     entries = [
+      {:text => "Home",           :paths => [root_path]},
       {:text => "Search",         :paths => [search_rides_path, search_ride_requests_path, search_ride_offers_path]},
       {:text => "Post an offer",  :paths => [new_ride_offer_path, ride_offers_path]},
       {:text => "Request a ride", :paths => [new_ride_request_path, ride_requests_path]},

@@ -48,7 +48,8 @@ describe ApplicationHelper do
     it 'should include the five entries' do
       sign_in @user
       tag = helper.sidebar_entries
-      tag.scan('<li').should have(6).things
+      tag.scan('<li').should have(7).things
+      tag.should include(link_to("Home", root_path))
       tag.should include(link_to("Search", search_rides_path))
       tag.should include(link_to("Post an offer", new_ride_offer_path))
       tag.should include(link_to("Request a ride", new_ride_request_path))
