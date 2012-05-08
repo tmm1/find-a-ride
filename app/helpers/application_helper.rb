@@ -9,7 +9,7 @@ module ApplicationHelper
 
   def uri_matches?(paths)
     paths ||= []
-    regex = %r|^([^?]*)(\??.*)$|  # ignore the arguments while matching
+    regex = %r|^([^?]*)(\?.*)?$|  # ignore the arguments while matching
     paths.any? do |path|
       request.fullpath.sub(regex, '\1') == path.sub(regex, '\1')
     end
