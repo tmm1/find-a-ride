@@ -49,8 +49,7 @@ describe RidesController do
       @inactive_user = Factory(:user, :inactive => true)
     end
 
-    [
-      {:action => :new,    :method => :get},
+    [     
       {:action => :index,  :method => :get},
       {:action => :search, :method => :post, :args => {:search_params => Factory.attributes_for(:ride)}}
     ].each do |method|
