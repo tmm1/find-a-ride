@@ -655,12 +655,14 @@ function setAppCity(location){
 
 function initSearchResultsPopovers() {
   $('.result-popover', '.search-results').popover({
-      title: 'Please note'
+      title: 'Please note', placement: "left"
   });
 }
 
 function initDeleteRidePopovers() {
-  $(".ride-list .delete-ride-cell .disabled").popover({title: "Please note"});
+  $(".ride-list .delete-ride-cell .disabled").popover({
+    title: "Please note", placement: "top"
+  });
 }
 
 function rideOfferSearch(){
