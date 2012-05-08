@@ -4,6 +4,7 @@ describe ApplicationController do
   render_views
   before(:all) do
     hyd = Factory(:city)
+    chn = Factory(:city, :name => 'Chennai')
     Factory(:location, :name => 'Madhapur', :city => hyd)
     Factory(:location, :name => 'Kondapur', :city => hyd)
     Factory(:location, :name => 'Miyapur', :city => hyd)
@@ -53,6 +54,22 @@ describe ApplicationController do
       get "geocode_city" , {:lat_long =>"(26.460083,80.266113)"}
       session[:city].should == "Kanpur"
       response.should be_success
+    end
+  end
+
+  describe "#initialize city" do
+    it 'should initialize the city to Hyderabad' do
+      post "initialize_city", {:city => 'Hyderabad'}
+      response.should be_redirect
+      session[:city].should == 'Hyderabad'
+      request.flash[:notice].should == 'You have chosen Hyderabad'
+    end
+
+    it 'should initialize the city to Chennai' do
+      post "initialize_city", {:city => 'Chennai'}
+      response.should be_redirect
+      session[:city].should == 'Chennai'
+      request.flash[:notice].should == 'You have chosen Chennai'
     end
   end
 end

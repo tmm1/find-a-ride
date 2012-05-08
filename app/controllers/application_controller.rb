@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
   
   def location_search    
     @result = (City.find_by_name('Hyderabad').locations.select("name").collect {|loc| loc.name.downcase}.map do |l|
-        l.titleize if l.to_s.match(params[:q].to_s.try(:downcase))
-      end).compact
+      l.titleize if l.to_s.match(params[:q].to_s.try(:downcase))
+    end).compact
     respond_to do |wants|
       wants.json {
         render :json => @result
@@ -25,7 +25,13 @@ class ApplicationController < ActionController::Base
     redirect_to inactive_home_index_path unless current_user.active?
   end
 
- private
+  def initialize_city
+    cookies[:city] = params[:city] unless params[:city].nil?
+    session[:city] = cookies[:city]
+    redirect_to root_path, :notice => "You have chosen #{session[:city]}"
+  end
+
+  private
 
   # Overwriting the sign_out redirect path method
   def after_sign_out_path_for(resource_or_scope)

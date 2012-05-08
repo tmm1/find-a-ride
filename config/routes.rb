@@ -70,6 +70,7 @@ PoolRide::Application.routes.draw do
   end
   
   post "home/authorize" 
+  match '/initialize_city' => 'application#initialize_city', :as => :initialize_city
   match '/location_search' => 'application#location_search', :as => :location_search
   match '/geocode_city' => 'application#geocode_city'
   match '/twitter' => 'users/omniauth_callback#twitter'
