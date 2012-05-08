@@ -20,6 +20,3 @@
       = f.input :vehicle, :as => :select, :label => 'The kind of vehicle I prefer?', :include_blank => false, :collection => vehicle_type_collection, :input_html => { :class => 'text-input', :title => 'Enter the type of vehicle you prefer'}, :required => true
     = f.buttons do
       = f.commit_button :label => 'Search', :button_html => {:class => 'btn btn-primary btn-large'}
-.text-center
-  %br
-  = link_to('Post a ride offer', new_ride_offer_path, :class => 'btn btn-info btn-large')

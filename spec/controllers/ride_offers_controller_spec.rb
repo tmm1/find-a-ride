@@ -13,6 +13,7 @@ describe RideOffersController do
       get :new
       response.should be_success
       response.should render_template(:new)
+      assigns(:ride_offer).should_not be nil
     end
   end
 
