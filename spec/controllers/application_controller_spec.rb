@@ -71,6 +71,13 @@ describe ApplicationController do
       session[:city].should == 'Chennai'
       request.flash[:notice].should == 'You have chosen Chennai'
     end
+
+    it 'should initialize the city to Bengaluru' do
+      post "initialize_city", {:city => 'Bengaluru'}
+      response.should be_redirect
+      session[:city].should == 'Bengaluru'
+      request.flash[:notice].should == 'You have chosen Bengaluru'
+    end
   end
 
   describe '#selected city' do
@@ -81,6 +88,11 @@ describe ApplicationController do
     it 'should return the session city' do
       session[:city] = 'Chennai'
       @controller.selected_city.should == 'Chennai'
+    end
+
+    it 'should return the session city' do
+      session[:city] = 'Bengaluru'
+      @controller.selected_city.should == 'Bengaluru'
     end
   end
 end
