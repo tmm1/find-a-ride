@@ -8,9 +8,8 @@
     = text_field_tag 'gmail_userid'
     %label.label Password*
     = password_field_tag 'gmail_password'
-    %br
-    .loader.pull-left{:style => 'display: none;'}
+  .modal-footer
+    .loader{:style => 'display: none;'}
       = image_tag('loader.gif')
-    %br
-    #fetch-gmail-contacts{:class => 'btn btn-primary btn-large pull-left enter-key'}
+    #fetch-gmail-contacts{:class => 'btn btn-primary btn-large submit-button enter-key'}
       Submit

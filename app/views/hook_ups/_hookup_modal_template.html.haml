@@ -36,6 +36,6 @@
             %textarea#hook_up_message{:cols => "20", :name => "hook_up[message]", :placeholder => "Use this space to add any other information that you think might be useful like your exact address, exact time of pick up, pick up or drop off points etc.", :rows => "10"}
           %input#hook_up_uniq_id{:name => "hook_up_uniq_id", :type => "hidden", :value => "${hook_up_uniq_id}"}/
   .modal-footer
-    .loader.pull-left{:style => "display: none;"}
+    .loader{:style => "display: none;"}
       %img{:alt => "Loader", :src => "/images/loader.gif?1334209982"}/
-    %a#hook-submit.btn.btn-primary.btn-large.pull-left.enter-key{:href => "#"} Submit
+    %a#hook-submit.btn.btn-primary.btn-large.submit-button.enter-key{:href => "#"} Submit

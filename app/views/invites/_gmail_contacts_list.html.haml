@@ -19,9 +19,9 @@
 
     #no-selection-error
     .modal-footer
-      #invite-gmail-contacts{:class => 'btn btn-primary btn-large pull-left enter-key'}
+      #invite-gmail-contacts.submit-button{:class => 'btn btn-primary btn-large enter-key'}
         Invite
-      .loader.pull-left{:style => 'display: none;'}
+      .loader{:style => 'display: none;'}
         = image_tag('loader.gif')
 
     - if all_contacts.size > 10

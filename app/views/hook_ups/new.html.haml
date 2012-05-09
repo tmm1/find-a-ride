@@ -20,9 +20,9 @@
           = f.input :message, :as => :text , :input_html => { :rows => 10, :cols => 20, :placeholder => 'Use this space to add any other information that you think might be useful like your exact address, exact time of pick up, pick up or drop off points etc.' }, :required => true
           = hidden_field_tag 'hook_up_uniq_id', params[:uuid]
   .modal-footer
-    .loader{:style => 'display: none;', :class => 'pull-left'}
+    .loader{:style => 'display: none;'}
       = image_tag('loader.gif')
-    = link_to('Submit', '#', :id => 'hook-submit', :class => 'btn btn-primary btn-large pull-left enter-key')
+    = link_to('Submit', '#', :id => 'hook-submit', :class => 'btn btn-primary btn-large submit-button enter-key')
 
 
 

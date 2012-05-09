@@ -278,3 +278,18 @@ h5.table-text {
 #ride-offers .table-text {
     font-size: 11px;
 }
+
+fieldset.buttons li {
+  text-align: center;
+}
+.modal-footer {
+  text-align: center;
+  padding-top: 0;
+}
+.modal-footer .submit-button {
+  display: inline-block;
+}
+.modal-footer .loader {
+  display: inline-block;
+  height: 48px;
+}
