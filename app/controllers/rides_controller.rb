@@ -5,7 +5,7 @@ class RidesController < ApplicationController
   authorize_resource
 
   def index
-    params.deep_merge!(:user_id => current_user.id) if params
+    params.deep_merge!({:user_id => current_user.id, :city => selected_city}) if params
     @ride_offers = RideOffer.search(params).paginate(:page => params[:page], :per_page => 10)
   end
   

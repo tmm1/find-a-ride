@@ -242,6 +242,26 @@ describe Ride do
     end
   end
 
+  describe "#for city" do
+    before(:all) do
+      @ride1 = Factory(:ride_request, :orig => 'Madhapur', :dest => 'Kondapur')
+      @ride2 = Factory(:ride_offer, :orig => 'Madhapur', :dest => 'Miyapur')
+      @ride3 = Factory(:ride_request, :orig => 'Abiramapuram', :dest => 'Aminjikarai')
+      @ride4 = Factory(:ride_offer, :orig => 'Alwarpet', :dest => 'Abiramapuram')
+    end
+
+    it "should return the rides only for Hyderabad" do
+      rides = Ride.for_city('Hyderabad')
+      rides.should have_at_least(2).things
+      rides.should_not include [@ride3, @ride4]
+    end
+
+    it "should return the rides only for Chennai" do
+      rides = Ride.for_city('Chennai')
+      rides.should have_at_least(2).things
+      rides.should_not include [@ride1, @ride2]
+    end
+  end
 end
 
 
