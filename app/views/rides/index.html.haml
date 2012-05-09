@@ -2,6 +2,10 @@
   %p
     = render :partial => 'ride_offers_list', :locals => {:url => rides_path}
     %br
+    .search-spinner
+      .progress.progress-bar.progress-striped.active
+        .bar{:style=>"width: 100%;"}
+      %span Searching...
     %br
     .ride_offer= render 'rides/grid'
 
