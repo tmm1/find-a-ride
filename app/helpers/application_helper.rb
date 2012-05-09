@@ -38,4 +38,8 @@ module ApplicationHelper
     end
     content.html_safe
   end
+
+  def app_cities
+    ['Hyderabad', 'Chennai', 'Bengaluru']
+  end
 end

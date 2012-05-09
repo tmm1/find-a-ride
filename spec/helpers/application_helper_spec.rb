@@ -66,4 +66,10 @@ describe ApplicationHelper do
       tag.should include(content_tag(:li, :class => 'active') { link_to("Search", search_rides_path) })
     end
   end
+
+  describe '#app cities' do
+    it 'should return the cities for the app' do
+      helper.app_cities.should == ['Hyderabad', 'Chennai', 'Bengaluru']
+    end
+  end
 end
