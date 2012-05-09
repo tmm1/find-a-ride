@@ -1,4 +1,13 @@
 :plain
   $(".result-popover").popover('hide');
-  $(".ride_offer").html("#{escape_javascript(render 'grid')}");
+  setTimeout(function() {$('.progress-bar').find('.bar').css('width', '100%');} , 3000);
+  var result = function(){
+    $('.progress-bar').slideUp('slow',function(){
+    $(".ride_offer").html("#{escape_javascript(render 'grid')}");
+    $(".ride_offer").slideDown('slow',function(){
+        initSearchResultsPopovers();      
+    });
+    });
+  }
+  setTimeout(result,4000);
  

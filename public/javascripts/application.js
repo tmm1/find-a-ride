@@ -701,7 +701,17 @@ var rideOffersList =  function(url, dataArray){
          $.ajax({
                   type: 'GET', data: dataArray,
                   dataType: 'script',
-                  url: url
+                  url: url,
+                  beforeSend: function ( xhr ) {
+                    $(".ride_offer").slideUp('slow', function(){$(".ride_offer").html("");});
+                    $(".ride_offer").slideDown('fast',function(){
+                        $(".ride_offer").html("<div class='progress progress-bar progress-striped active'><div class='bar' style='width: 20%;'>searching...</div></div>");
+                        $('.progress-bar').slideDown('slow',function(){
+                           setTimeout(function() {$('.progress-bar').find('.bar').css('width', '40%')} , 1000);
+                           setTimeout(function() {$('.progress-bar').find('.bar').css('width', '80%')} , 2000);
+                        });
+                    });
+                   }
               });
      }
 
