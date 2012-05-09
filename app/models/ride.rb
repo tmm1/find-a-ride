@@ -15,7 +15,6 @@ class Ride < ActiveRecord::Base
   
   before_create :assign_attribs
                
-
   validates :orig, :dest, :start_date, :start_time, :presence => true
   validates :start_time, :start_date, :date_time => true
   validates :start_time, :time => true
@@ -28,6 +27,11 @@ class Ride < ActiveRecord::Base
   attr_accessor :start_time
 
   attr_accessible :type, :orig, :dest, :start_date, :start_time, :vehicle, :payment, :notes
+
+  def self.for_city(city)
+    locations = City.find_by_name(city).locations.collect(&:id)
+    where(:origin => locations, :destination => locations)
+  end
   
   def request?
     type.eql? 'RideRequest'

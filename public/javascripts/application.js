@@ -679,20 +679,20 @@ function rideOfferSearch(){
             })
         },
        itemSelected: function(ele, val, text) {
-            var url = $("#ride_offer_url").val()
-            var ride_time = $("#ride_time").val()
-            var vehicle = $("#vehicle").val()
-            var ride_orig
-            var ride_dest
+            var url = $("#ride_offer_url").val();
+            var ride_time = $("#ride_time").val();
+            var vehicle = $("#vehicle").val();
+            var ride_orig;
+            var ride_dest;
             if($(ele).attr('id') == 'ride_orig'){
-               ride_orig = text
+               ride_orig = text;
                ride_dest = $('#ride_dest').val();
             }
             else if($(ele).attr('id') == 'ride_dest'){
                ride_orig = $('#ride_orig').val();
-               ride_dest = text
+               ride_dest = text;
             }
-            rideOffersList(url,{ride_time: ride_time, vehicle: vehicle, orig: ride_orig, dest: ride_dest});
+            rideOffersList(url, {ride_time: ride_time, vehicle: vehicle, orig: ride_orig, dest: ride_dest});
         }
     });
 }

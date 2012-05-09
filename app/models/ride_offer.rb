@@ -19,7 +19,7 @@ class RideOffer < Ride
     active_offerers = params[:user_id] ? User.other_active(params[:user_id]).select(:id) : User.active().select(:id)
     query.deep_merge!({:user_id => active_offerers})
     params[:vehicle] = (params[:vehicle].blank? || params[:vehicle] == 'any' ) ? ['two_wheeler', 'four_wheeler'] : params[:vehicle]
-    RideOffer.where(query.deep_merge!({:vehicle => params[:vehicle], :ride_time => time_range})).order('ride_time ASC')
+    RideOffer.for_city(params[:city]).where(query.deep_merge!({:vehicle => params[:vehicle], :ride_time => time_range})).order('ride_time ASC')
   end
 end
 

@@ -5,6 +5,7 @@ class HomeController < ApplicationController
   end
   
   def index
+    params.deep_merge!(:city => selected_city)
     @ride_offers = RideOffer.search(params).paginate(:page => params[:page], :per_page => 10)
   end
 
