@@ -1,6 +1,6 @@
 #hook-up
   .modal-header
-    %h2= "#{header_text(params[:type])} #{@contactee.try(:full_name)}"
+    %h2.text-center= "#{header_text(params[:type])} #{@contactee.try(:full_name)}"
   .modal-body
     .form
       %span{:class => 'label label-important hookup-note'} Please fill in the information below and submit to get in touch

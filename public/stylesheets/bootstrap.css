@@ -2076,8 +2076,8 @@ table .span24 {
     box-shadow: none;
 }
 .btn-large {
-    padding: 12px 22px;
-    font-size: 20px;
+    padding: 12px 26px;
+    font-size: 22px;
     line-height: normal;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -3526,15 +3526,15 @@ input[type="submit"].btn.btn-mini {
     line-height: 1;
     background-color: #45515f;
     border-bottom: 1px solid #eee;
-    font-size: 14px;
+    font-size: 15px;
     color: #E36B23;
     -webkit-border-radius: 3px 3px 0 0;
     -moz-border-radius: 3px 3px 0 0;
     border-radius: 3px 3px 0 0;
 }
 .popover-content {
-    padding: 14px;
-    background-color: #ffffff;
+    padding: 13px;
+    background-color: #fbfbfb;
     font-family: 'Graduate', sans-serif;
     -webkit-border-radius: 0 0 3px 3px;
     -moz-border-radius: 0 0 3px 3px;
