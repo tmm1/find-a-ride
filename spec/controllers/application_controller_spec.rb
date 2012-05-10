@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe ApplicationController do
   render_views
+  include Devise::TestHelpers
   before(:all) do
     hyd = Factory(:city)
     chn = Factory(:city, :name => 'Chennai')
@@ -93,6 +94,31 @@ describe ApplicationController do
     it 'should return the session city' do
       session[:city] = 'Bengaluru'
       @controller.selected_city.should == 'Bengaluru'
+    end
+  end
+
+  describe '#admin access' do
+    before(:all) do
+      @login_user = Factory(:user)
+    end
+    it 'should render the admin page' do
+      sign_in @login_user
+      get 'admin'
+      response.should be_success
+      response.should render_template('home/admin')
+    end
+    it 'should authorize admin using the correct password' do
+      sign_in @login_user
+      post 'authorize_admin', {:admin_password => ADMIN_PASSWORD}
+      response.should be_redirect
+      request.flash[:success].should == 'Thanks for authenticating'
+    end
+    it 'should authorize admin using the incorrect password' do
+      sign_in @login_user
+      post 'authorize_admin', {:admin_password => 'd@mn!'}
+      response.should be_success
+      response.should render_template('home/admin')
+      request.flash[:error].should == 'Sorry! That was not the right password'
     end
   end
 end

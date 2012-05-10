@@ -14,3 +14,6 @@ Pusher.key = 'da814fcf509ac142465a'
 Pusher.secret = '1a28fbe1721cc21a9f33'
 Pusher.logger = Rails.logger
 PusherClient.logger = Rails.logger
+
+#admin password
+ADMIN_PASSWORD = '0nTheW@y@dm1n' #TODO: store this as a simple encrypted hash and not clear text
