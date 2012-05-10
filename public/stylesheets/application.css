@@ -298,7 +298,7 @@ fieldset.buttons li {
     width:25%;  
     float:left;
     margin-left: 37%;
-    margin-top: 45px;
+    margin-top: 15px;
     line-height: 20px;
     right: auto;
 }
@@ -307,4 +307,11 @@ fieldset.buttons li {
 }
 .progress-bar .bar{
     background-color: #E36B23 !important;
+}
+
+.offer-list{
+    padding: 60px 20px 30px;
+}
+.rides-table{
+    margin-bottom: 0px;
 }

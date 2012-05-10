@@ -4841,3 +4841,13 @@ footer.footer {
 .no-results{text-align: center;}
 .filter-titles{padding-right: 72px;}
 
+.hero-unit .middle-unit {
+    color: inherit;
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 30px;
+    font-family: 'RussoOne';
+}
+
+
+
