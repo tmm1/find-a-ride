@@ -13,6 +13,15 @@
     = csrf_meta_tag
     = javascript_include_tag :defaults
   %body
+    #fb-root
+    :javascript
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
     = render 'shared/pusher_config'
     .navbar
       .navbar-inner
@@ -74,7 +83,12 @@
       .footer
         %hr
         %h3
-          %a{:href => 'http://www.imaginea.com/labs', :target => '_blank'}
+          %a{:href => 'http://www.imaginea.com/labs', :target => '_blank',:class => "footer-badge"}
             %span{:class => 'badge badge-info'} Imaginea Labs. Copyright &copy; 2012, Pramati Technologies Private Limited
+          %span.share-links
+            .fb-like{"data-font" => "arial", "data-href" => "#{root_url}", "data-layout" => "button_count", "data-send" => "false", "data-show-faces" => "false", "data-width" => "106"}
+            %a.twitter-share-button{"data-url" => "#{root_url}", :href => "https://twitter.com/share"} Tweet
+            :javascript
+              !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
     = render 'shared/contact'
     
