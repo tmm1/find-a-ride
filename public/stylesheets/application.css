@@ -312,6 +312,19 @@ fieldset.buttons li {
 .offer-list{
     padding: 60px 20px 30px;
 }
-.rides-table{
+.rides-table {
     margin-bottom: 0px;
+}
+
+.share-links{
+    float: right;
+}
+.fb_iframe_widget {
+    margin-top: 4px;
+}
+.twitter-share-button{
+    margin-bottom: -4px;
+}
+.footer-badge , .footer-badge:hover {
+    margin-left: 218px;
 }
