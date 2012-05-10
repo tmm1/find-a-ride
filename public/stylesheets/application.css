@@ -335,14 +335,15 @@ fieldset.buttons li {
   text-align: center;
 }
 .share-links{
-    float: right;
+    position: absolute;
+   padding-left: 40%;
 }
 .fb_iframe_widget {
     margin-top: 4px;
+    margin-bottom: 4px;
 }
 .twitter-share-button{
-    margin-bottom: -4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
-.footer-badge , .footer-badge:hover {
-    margin-left: 218px;
-}
+
