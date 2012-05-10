@@ -62,7 +62,6 @@ p.terms_cond_error{
 .footer {
     text-align: center;
     margin-bottom: 10px;
-    margin-top: 150px;
 }
 
 .accordion-heading {
@@ -346,4 +345,11 @@ fieldset.buttons li {
     margin-top: 4px;
     margin-bottom: 4px;
 }
-
+.wrapper {
+  min-height: 96%;
+  margin: 0 auto -5em;
+}
+.footer, .push {
+  height: 5em;
+  clear: both;
+}

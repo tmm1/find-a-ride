@@ -23,72 +23,69 @@
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     = render 'shared/pusher_config'
-    .navbar
-      .navbar-inner
-        .container
-          %a{:class => 'brand', :href => root_url}
-            = image_tag('logo.png', :alt => 'OnTheWay', :size => '220x80')
-            %span{:class => 'badge badge-info'} Beta
-          .nav-collapse
-            - if user_signed_in?
-              %ul{:class => 'nav nav-pills'}
-                = render 'shared/links'
-            - else
-              %ul{:class => 'nav nav-pills'}
-                = render 'shared/links'
-                %li#options{:class => 'dropdown'}
-                  %a{:class => 'dropdown-toggle', "data-toggle" => 'dropdown', :href => 'options'} 
-                    More
-                    %b.caret
-                  %ul{:class => 'dropdown-menu'}
-                    %li= link_to("Sign up", signup_url)
-                    %li= link_to("Reset password", users_reset_password_url)
-                    %li= link_to("Confirm account", users_confirm_url)
-            - if user_signed_in?
-              %ul{:class => 'nav nav-pills pull-right'}
-                %li#user{:class => 'dropdown'}
-                  %a{:class => 'dropdown-toggle', "data-toggle" => 'dropdown', :href => 'user'}
-                    = user_display_pic(current_user, '30x30')
-                    = "#{current_user.name}"
-                    %span.badge.badge-error.alert-badge= current_user.unread_alerts.size
-                    %b.caret
-                  %ul{:class => 'dropdown-menu'}
-                    %li= link_to("Edit my account", edit_user_registration_path)
-                    %li
-                      = link_to("My alerts", user_alerts_path(current_user), :style => 'display: inline-block')
+    .wrapper
+      .navbar
+        .navbar-inner
+          .container
+            %a{:class => 'brand', :href => root_url}
+              = image_tag('logo.png', :alt => 'OnTheWay', :size => '220x80')
+              %span{:class => 'badge badge-info'} Beta
+            .nav-collapse
+              - if user_signed_in?
+                %ul{:class => 'nav nav-pills'}
+                  = render 'shared/links'
+              - else
+                %ul{:class => 'nav nav-pills'}
+                  = render 'shared/links'
+                  %li#options{:class => 'dropdown'}
+                    %a{:class => 'dropdown-toggle', "data-toggle" => 'dropdown', :href => 'options'}
+                      More
+                      %b.caret
+                    %ul{:class => 'dropdown-menu'}
+                      %li= link_to("Sign up", signup_url)
+                      %li= link_to("Reset password", users_reset_password_url)
+                      %li= link_to("Confirm account", users_confirm_url)
+              - if user_signed_in?
+                %ul{:class => 'nav nav-pills pull-right'}
+                  %li#user{:class => 'dropdown'}
+                    %a{:class => 'dropdown-toggle', "data-toggle" => 'dropdown', :href => 'user'}
+                      = user_display_pic(current_user, '30x30')
+                      = "#{current_user.name}"
                       %span.badge.badge-error.alert-badge= current_user.unread_alerts.size
-                    %li= link_to("Invite friends", user_invites_path(current_user))
-                    %li= link_to("Sign out", destroy_user_session_path, :method => :delete)
-            - else
-              %ul{:class => 'nav nav-pills pull-right'}
-                %li= link_to("Sign in", signin_url)
-    .notice-area
-      = render 'shared/flashes'
-    - if user_signed_in?
-      .container-fluid
-        .row-fluid
-          .span3.sidebar
-            %ul.nav.nav-list
-              = sidebar_entries
-          .span9
-            = yield
-      .footer
-        %hr
-        %h3
-          %a{:href => 'http://www.imaginea.com/labs', :target => '_blank'}
-            %span{:class => 'badge badge-info'} Imaginea Labs. Copyright &copy; 2012, Pramati Technologies Private Limited
-    - else
-      .container
-        = yield
-      .footer
-        %hr
-        %h3
-          %a{:href => 'http://www.imaginea.com/labs', :target => '_blank',:class => "footer-badge"}
-            %span{:class => 'badge badge-info'} Imaginea Labs. Copyright &copy; 2012, Pramati Technologies Private Limited
-        %div.share-links
-          .fb-like{"data-font" => "arial", :class=> "pull-right" , "data-href" => "#{root_url}", "data-layout" => "button_count", "data-send" => "false", "data-show-faces" => "false", "data-width" => "106"}
-          %a.twitter-share-button{:class=> "pull-right" ,"data-text" => "http://goo.gl/xa7B4 |  OnTheWay enables eco-friendly citizens to find and share rides with other like minded folks", :href => "https://twitter.com/share"} Tweet
-          :javascript
-            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+                      %b.caret
+                    %ul{:class => 'dropdown-menu'}
+                      %li= link_to("Edit my account", edit_user_registration_path)
+                      %li
+                        = link_to("My alerts", user_alerts_path(current_user), :style => 'display: inline-block')
+                        %span.badge.badge-error.alert-badge= current_user.unread_alerts.size
+                      %li= link_to("Invite friends", user_invites_path(current_user))
+                      %li= link_to("Sign out", destroy_user_session_path, :method => :delete)
+              - else
+                %ul{:class => 'nav nav-pills pull-right'}
+                  %li= link_to("Sign in", signin_url)
+      .notice-area
+        = render 'shared/flashes'
+      - if user_signed_in?
+        .container-fluid
+          .row-fluid
+            .span3.sidebar
+              %ul.nav.nav-list
+                = sidebar_entries
+            .span9
+              = yield
+      - else
+        .container
+          = yield
+      .push
+    .footer
+      %hr
+      %h3
+        %a{:href => 'http://www.imaginea.com/labs', :target => '_blank',:class => "footer-badge"}
+          %span{:class => 'badge badge-info'} Imaginea Labs. Copyright &copy; 2012, Pramati Technologies Private Limited
+      %div.share-links
+        .fb-like{"data-font" => "arial", :class=> "pull-right" , "data-href" => "#{root_url}", "data-layout" => "button_count", "data-send" => "false", "data-show-faces" => "false", "data-width" => "106"}
+        %a.twitter-share-button{:class=> "pull-right" ,"data-text" => "http://goo.gl/xa7B4 |  OnTheWay enables eco-friendly citizens to find and share rides with other like minded folks", :href => "https://twitter.com/share"} Tweet
+        :javascript
+          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
     = render 'shared/contact'
     
