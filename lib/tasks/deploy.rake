@@ -31,6 +31,9 @@ namespace :deploy do
     puts "\n Migrating..."
     run "heroku run rake db:migrate --app #{STAGING_APP}"
 
+    puts "\n Seeding..."
+    run "heroku run rake db:seed --app #{STAGING_APP}"
+
     puts "\n Deployment to staging completed"
   end
 end
