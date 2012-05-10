@@ -703,8 +703,8 @@ var rideOffersList =  function(url, dataArray){
                   dataType: 'script',
                   url: url,
                   beforeSend: function ( xhr ) {
-                    $(".ride_offer").fadeOut('slow', function(){
-                       $(".search-spinner").fadeIn('slow');
+                    $(".ride_offer").fadeOut(400, function(){
+                       $(".search-spinner").fadeIn(400);
                      });
                    }
               });
