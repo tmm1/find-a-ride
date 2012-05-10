@@ -87,9 +87,7 @@ PoolRide::Application.routes.draw do
   match "/errors/access_denied" => "errors#access_denied" , :as => :access_denied
   
   # Resque Web
-  authenticate :user do
-    mount Resque::Server.new, :at => "/resque"
-  end
+  mount Resque::Server.new, :at => "/resque"
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
