@@ -295,9 +295,12 @@ fieldset.buttons li {
     display: none;
 }
 .progress-bar{
-    width:25%;
-    margin-left: 28%;
+    width:25%;  
     float:left;
+    margin-left: 37%;
+    margin-top: 45px;
+    line-height: 20px;
+    right: auto;
 }
 .search-spinner span{
     padding-left: 4px;
