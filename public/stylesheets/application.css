@@ -334,8 +334,7 @@ fieldset.buttons li {
   text-align: center;
 }
 .share-links{
-    position: absolute;
-   padding-left: 40%;
+  display: inline-block;
 }
 .fb_iframe_widget {
     margin-top: 4px;
