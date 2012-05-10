@@ -169,10 +169,9 @@ h5.table-text {
 #no-selection-error {
   background-color: #2A333C;
 }
-.invite-gmail-button, .invite-facebook-button {
-  margin-top: 10px;
-  margin-left: 250px;
-  margin-top: 10px;
+.invite-gmail-button,
+.invite-facebook-button {
+  display: inline-block;
 }
 #terms {
   width: 720px;
@@ -269,9 +268,22 @@ h5.table-text {
 #ride-offers .table-text {
     font-size: 11px;
 }
-
+#new_ride,
+#new_ride_offer,
+#new_ride_request {
+  margin-bottom: 0;
+}
+fieldset.buttons {
+  margin-top: 30px;
+}
+fieldset.buttons ol {
+  margin-bottom: 0;
+}
 fieldset.buttons li {
   text-align: center;
+}
+#invite1 fieldset.buttons {
+  margin-top: 10px;
 }
 .modal-footer {
   text-align: center;
@@ -314,4 +326,11 @@ fieldset.buttons li {
 }
 .rides-table{
     margin-bottom: 0px;
+}
+.accordion-inner {
+  padding: 25px;
+}
+#invite2 .accordion-inner,
+#invite3 .accordion-inner {
+  text-align: center;
 }
