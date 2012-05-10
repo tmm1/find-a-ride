@@ -70,6 +70,8 @@ PoolRide::Application.routes.draw do
   end
   
   post "home/authorize" 
+  match '/admin' => 'application#admin'
+  match '/authorize_admin' => 'application#authorize_admin', :as => :authorize_admin
   match '/initialize_city' => 'application#initialize_city', :as => :initialize_city
   match '/location_search' => 'application#location_search', :as => :location_search
   match '/geocode_city' => 'application#geocode_city'
@@ -85,8 +87,9 @@ PoolRide::Application.routes.draw do
   match "/errors/access_denied" => "errors#access_denied" , :as => :access_denied
   
   # Resque Web
-  require 'resque/server'
-  mount Resque::Server.new, :at => "/resque"
+  authenticate :user do
+    mount Resque::Server.new, :at => "/resque"
+  end
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
