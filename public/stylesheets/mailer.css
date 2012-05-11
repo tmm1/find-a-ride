@@ -1,14 +1,17 @@
 .navbar {
   height: 70px;
+  width: 670px;
   color: #999999 !important;
+  margin: 0 auto;
 }
 .container {
-  width: auto;
+  width: 670px;
   height: 100%;
+  margin: 0 auto;
 }
 .footer {
-  margin-top: 110px;
-  margin-bottom: 50px;
+  margin-top: 60px;
+  margin-bottom: 0;
 }
 div.container a.blue-underline {
   color: #3A87AD;
