@@ -335,6 +335,9 @@ fieldset.buttons li {
 }
 .share-links{
   display: inline-block;
+  min-width: 130px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .fb_iframe_widget {
     margin-top: 4px;
@@ -346,9 +349,9 @@ fieldset.buttons li {
 }
 .wrapper {
   min-height: 96%;
-  margin: 0 auto -5em;
+  margin: 0 auto -6.5em;
 }
 .footer, .push {
-  height: 5em;
+  height: 6.5em;
   clear: both;
 }
