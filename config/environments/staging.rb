@@ -46,18 +46,18 @@ PoolRide::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-  
-  config.action_mailer.default_url_options = { :host => 'ontheway.co.in' }
 
-  config.action_mailer.asset_host = "http://ontheway.co.in/"
-  
-  config.action_controller.asset_host = "http://ontheway.co.in/"
-  
-  
-  
+  config.action_mailer.default_url_options = { :host => 'on-the-way.herokuapp.com' }
+
+  config.action_mailer.asset_host = "http://on-the-way.herokuapp.com"
+
+  config.action_controller.asset_host = "http://on-the-way.herokuapp.com"
+
+
+
   PUSHER_CHANNEL = 'ontheway_prod'
   PUSHER_EVENT = 'user_alert_prod'
-  
+
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
     :port           => '587',

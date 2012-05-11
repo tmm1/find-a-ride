@@ -194,8 +194,15 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   #config.omniauth :facebook, "250325615010342", "61c30e9eb03c66c93d70da50d5b49c27"
+  if Rails.env == "development"
+    config.omniauth :facebook, "378059885573677", "4f63bbab86beaaf8e2b7bc99d81bff1d", :iframe => true
+  elsif Rails.env == "staging"
+    config.omniauth :facebook, "375410002504836", "609efcbb1657a86a81ca54f0fbdbf8c2", :iframe => true
+  else
+    # production
+    config.omniauth :facebook, "218915071554448", "316e2690aed4543a68a0d2084255ca17", :iframe => true
+  end
 
-  config.omniauth :facebook, "218915071554448", "316e2690aed4543a68a0d2084255ca17", :iframe => true
   config.omniauth :twitter, "PcFsfpu4aUT1kf6GKlkeA", "19XgJSEQBSGJmbfLROAWeCUPmNuJ2lHjjcaEMkQHvag"
 
 
