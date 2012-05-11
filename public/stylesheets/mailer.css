@@ -3,6 +3,7 @@
   color: #999999 !important;
 }
 .container {
+  width: auto;
   height: 100%;
 }
 .footer {
