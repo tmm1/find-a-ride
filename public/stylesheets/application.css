@@ -284,6 +284,9 @@ fieldset.buttons li {
 #invite1 fieldset.buttons {
   margin-top: 10px;
 }
+#invite3 #friends p {
+  margin-bottom: 0;
+}
 .modal-footer {
   text-align: center;
   padding-top: 0;
