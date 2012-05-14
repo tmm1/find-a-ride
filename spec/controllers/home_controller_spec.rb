@@ -3,6 +3,7 @@ require 'spec_helper'
 describe HomeController do
   render_views
   include Devise::TestHelpers
+
   describe "#about" do
     it "should render about" do
       get 'about'
@@ -39,12 +40,13 @@ describe HomeController do
       ActionMailer::Base.delivery_method = :test
       ActionMailer::Base.perform_deliveries = true
       ActionMailer::Base.deliveries.clear
+      ResqueSpec.reset!
     end
     
     it 'should allow user to contact successfully' do
       info = {'name' => 'john emburey', 'email' => 'john@gmail.com', 'about' => 'General Feedback', 'comments' => 'Hey! this is a great site, keep it going!'}
-      Resque.should_receive(:enqueue).with(ContactMailer, :contact_email, info).and_return(true)
       post 'contact', info
+      ContactMailer.should have_queued(:contact_email, info).in(:emails)
       response.should be_success
       response.body.should == 'success'
     end

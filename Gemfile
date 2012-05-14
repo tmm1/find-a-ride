@@ -49,6 +49,7 @@ group :test do
   gem 'faker', '0.3.1'
   gem "shoulda-matchers"
   gem 'mocha', '0.9.10'
+  gem 'resque_spec', '0.10.0'
 end
 
 group :production do

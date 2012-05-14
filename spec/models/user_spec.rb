@@ -323,24 +323,28 @@ describe User do
     describe '#send_confirmation_instructions' do
       before(:each) do
         @user = Factory(:user)
+        ResqueSpec.reset!
       end
 
       it 'should use an existing token to send confirmation instructions' do
         @user.update_attribute(:confirmation_token, UUID.new.generate)
         @user.should_not_receive(:generate_confirmation_token!)
         @user.send_confirmation_instructions
+        UserMailer.should have_queued(:confirmation_instructions, @user.id).in(:emails)
       end
 
       it 'should generate a new token and send confirmation instructions' do
         @user.update_attribute(:confirmation_token, nil)
         @user.should_receive(:generate_confirmation_token!)
         @user.send_confirmation_instructions
+        UserMailer.should have_queued(:confirmation_instructions, @user.id).in(:emails)
       end
     end
 
     it 'should send unlock instructions' do
       @user = Factory(:user)
       @user.send_unlock_instructions
+      UserMailer.should have_queued(:unlock_instructions, @user.id).in(:emails)
     end
 
     describe '#send_reset_password_instructions' do
@@ -352,12 +356,14 @@ describe User do
         @user.should_receive(:should_generate_token?).and_return(false)
         @user.should_not_receive(:generate_reset_password_token!)
         @user.send_reset_password_instructions
+        UserMailer.should have_queued(:reset_password_instructions, @user.id).in(:emails)
       end
 
       it 'should generate a new reset-password token and send instructions' do
         @user.should_receive(:should_generate_token?).and_return(true)
         @user.should_receive(:generate_reset_password_token!)
         @user.send_reset_password_instructions
+        UserMailer.should have_queued(:reset_password_instructions, @user.id).in(:emails)
       end
     end
   end

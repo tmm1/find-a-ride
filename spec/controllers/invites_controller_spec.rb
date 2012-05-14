@@ -21,13 +21,14 @@ describe InvitesController do
       ActionMailer::Base.delivery_method = :test
       ActionMailer::Base.perform_deliveries = true
       ActionMailer::Base.deliveries.clear
+      ResqueSpec.reset!
     end
     
     it "should send the invite email to the provided email list" do
       sign_in @login_user
       email_list = ["reshu@gmail.com, reshuban@gmail.com"]
-      Resque.should_receive(:enqueue).with(ContactMailer, :invite_email, @login_user.id, email_list)
       xhr :post, :send_invite, {:email_list => email_list, :user_id => @login_user.id}
+      ContactMailer.should have_queued(:invite_email, @login_user.id, email_list).in(:emails)
       response.should be_success
       response.body.should == 'success'
     end

@@ -75,8 +75,9 @@ describe HookUp do
 
     it 'should deliver hook_up email successfully' do
       ActionMailer::Base.deliveries.clear
-      HookUp.create(@params).should_not be nil
-      # TODO: check whether hookup_email enqueued
+      hook_up = HookUp.create(@params)
+      hook_up.should_not be_new_record
+      HookupMailer.should have_queued(hook_up.hookable.request? ? :ride_offerer_email : :ride_requestor_email, hook_up.id, hook_up.mobile)
     end
   end
 
