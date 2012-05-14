@@ -29,8 +29,7 @@ class Ride < ActiveRecord::Base
   attr_accessible :type, :orig, :dest, :start_date, :start_time, :vehicle, :payment, :notes
 
   def self.for_city(city)
-    locations = City.find_by_name(city).locations.collect(&:id)
-    where(:origin => locations, :destination => locations)
+    joins('INNER JOIN locations ON rides.origin = locations.id INNER JOIN cities ON locations.city_id = cities.id').where('cities.name' => city)
   end
   
   def request?
