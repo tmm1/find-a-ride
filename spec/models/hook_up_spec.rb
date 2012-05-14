@@ -77,7 +77,7 @@ describe HookUp do
       ActionMailer::Base.deliveries.clear
       hook_up = HookUp.create(@params)
       hook_up.should_not be_new_record
-      HookupMailer.should have_queued(hook_up.hookable.request? ? :ride_offerer_email : :ride_requestor_email, hook_up.id, hook_up.mobile)
+      HookupMailer.should have_queued(hook_up.hookable.request? ? :ride_offerer_email : :ride_requestor_email, hook_up.id, hook_up.mobile).in(:emails)
     end
   end
 
