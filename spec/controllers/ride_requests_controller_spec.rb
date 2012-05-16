@@ -46,8 +46,8 @@ describe RideRequestsController do
 
     it "should fail creating a duplicate ride request" do
       sign_in @login_user
-      RideRequest.create({:orig => 'Madhapur', :dest => 'Begumpet', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideRequest"}).should_not be nil
-      post 'create', :ride_request => {:orig => 'Madhapur', :dest => 'Begumpet', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideRequest"}
+      RideRequest.create({:orig => 'Madhapur', :dest => 'Begumpet', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideRequest", :current_city => "Hyderabad"}).should_not be nil
+      post 'create', :ride_request => {:orig => 'Madhapur', :dest => 'Begumpet', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideRequest",:current_city => "Hyderabad"}
       ride_request = assigns(:ride_request)
       ride_request.valid?.should be false
       ride_request.errors.first.should include("Oops. You already put in one with similar criteria!")

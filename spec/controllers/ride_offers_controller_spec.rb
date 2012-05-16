@@ -46,8 +46,8 @@ describe RideOffersController do
 
     it "should fail creating a duplicate ride offer" do
       sign_in @login_user
-      RideOffer.create(RideOffer.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideOffer"})).should_not be nil
-      post 'create', :ride_offer => {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideOffer"}
+      RideOffer.create(RideOffer.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideOffer",:current_city => "Hyderabad"})).should_not be nil
+      post 'create', :ride_offer => {:orig => 'Madhapur', :dest => 'Kondapur', :start_date => '10/12/2012', :start_time => '10/12/2012 01:30:00', :type=>"RideOffer",:current_city => "Hyderabad"}
       ride_offer = assigns(:ride_offer)
       ride_offer.valid?.should be false
       ride_offer.errors.first.should include("Oops. You already put in one with similar criteria!")

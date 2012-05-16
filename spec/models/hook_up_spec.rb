@@ -35,8 +35,8 @@ describe HookUp do
       Ride.destroy_all
       @user = Factory(:user)
       @contactee_user = Factory(:user)
-      @ride_request = RideRequest.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => 2.days.from_now.to_s, :start_time => '10:30pm'})
-      @ride_offer = RideOffer.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => 2.days.from_now.to_s, :start_time => '10:30pm'})
+      @ride_request = RideRequest.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => 2.days.from_now.to_s, :start_time => '10:30pm',:current_city => "Hyderabad"})
+      @ride_offer = RideOffer.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => 2.days.from_now.to_s, :start_time => '10:30pm',:current_city => "Hyderabad"})
     end
 
     it 'should set the state as offered if hookable is a ride request' do
@@ -87,8 +87,8 @@ describe HookUp do
       Ride.destroy_all
       user = Factory(:user)
       contactee_user = Factory(:user)
-      ride_request = RideRequest.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => 2.days.from_now.to_s, :start_time => '10:30pm'})
-      ride_offer = RideOffer.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => 2.days.from_now.to_s, :start_time => '10:30pm'})
+      ride_request = RideRequest.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => 2.days.from_now.to_s, :start_time => '10:30pm',:current_city => "Hyderabad"})
+      ride_offer = RideOffer.create({:orig => 'Madhapur', :dest => 'Kondapur', :start_date => 2.days.from_now.to_s, :start_time => '10:30pm',:current_city => "Hyderabad"})
       @hook_up1 = HookUp.create({:contactee_id => contactee_user.id, :contacter_id => user.id, :message => 'Hook me up!', :hookable => ride_request})
       @hook_up2 = HookUp.create({:contactee_id => contactee_user.id, :contacter_id => user.id, :message => 'Hook me up!', :hookable => ride_offer})
     end

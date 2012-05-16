@@ -93,10 +93,10 @@ describe RidesController do
       RideOffer.destroy_all
       RideRequest.destroy_all
       RideOffer.record_timestamps = false
-      locs = Location.limit(6).select(:name).map(&:name)
-      @ride_offer1 = Factory(:ride_offer, :offerer => @login_user, :orig => locs[0], :dest => locs[1], :created_at => 3.days.ago)
-      @ride_offer2 = Factory(:ride_offer, :offerer => @login_user, :orig => locs[2], :dest => locs[3], :created_at => 1.day.ago)
-      @ride_offer3 = Factory(:ride_offer, :offerer => @login_user, :orig => locs[4], :dest => locs[5], :created_at => 2.days.ago)
+      locs = Location.where(:city_id => 1).limit(6).select(:name).map(&:name)
+      @ride_offer1 = Factory(:ride_offer, :offerer => @login_user, :orig => locs[0], :dest => locs[1], :created_at => 3.days.ago,:current_city => "Hyderabad")
+      @ride_offer2 = Factory(:ride_offer, :offerer => @login_user, :orig => locs[2], :dest => locs[3], :created_at => 1.day.ago,:current_city => "Hyderabad")
+      @ride_offer3 = Factory(:ride_offer, :offerer => @login_user, :orig => locs[4], :dest => locs[5], :created_at => 2.days.ago,:current_city => "Hyderabad")
     end
 
     after(:all) do

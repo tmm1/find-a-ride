@@ -25,8 +25,9 @@ class Ride < ActiveRecord::Base
   attr_accessor :dest
   attr_accessor :start_date
   attr_accessor :start_time
+  attr_accessor :current_city
 
-  attr_accessible :type, :orig, :dest, :start_date, :start_time, :vehicle, :payment, :notes
+  attr_accessible :type, :orig, :dest, :start_date, :start_time, :vehicle, :payment, :notes,:current_city
 
   def self.for_city(city)
     joins('INNER JOIN locations ON rides.origin = locations.id INNER JOIN cities ON locations.city_id = cities.id').where('cities.name' => city)
@@ -51,9 +52,10 @@ class Ride < ActiveRecord::Base
   private
 
   def assign_attribs
+    city = City.find_by_name(self.current_city)    
     self.ride_time = Helper.to_datetime(self.start_date, self.start_time)
-    self.origin = Location.find_by_name(self.orig).id
-    self.destination = Location.find_by_name(self.dest).id
+    self.origin = city.locations.find_by_name(self.orig).id
+    self.destination = city.locations.find_by_name(self.dest).id
     self.expires_on = self.ride_time.to_date + 15.days
   end
 end

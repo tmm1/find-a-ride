@@ -20,6 +20,7 @@
       = f.input :payment, :as => :select, :label => 'In return, I expect to get', :include_blank => false, :collection => payment_type_collection(['Cash', 'Nothing']), :input_html => { :class => 'text-input', :title => 'What are you expecting in return?'}, :required => true
       = f.input :notes, :as => :text, :label => 'Any additional information', :input_html => { :class => 'text-input', :title => 'Anything else you would like to add? (Max of 300 chars)', :placeholder => 'Use this space to convey a litte more detail about your offer like specific address, pick up or drop off points, specific time of pick up etc'}
       = f.input :type , :as => :hidden , :value => "RideOffer"
+      = f.input :current_city , :as => :hidden , :value => selected_city
     = f.buttons do
       = f.commit_button :label => 'Submit', :button_html => {:class => 'btn btn-primary btn-large'}
 
