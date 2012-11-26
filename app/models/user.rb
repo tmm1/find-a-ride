@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   
   include ActiveModel::Validations
   
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable#, :confirmable
   has_many :ride_offers
   has_many :ride_requests
   has_many :hook_ups_as_contacter, :class_name => 'HookUp', :foreign_key => 'contacter_id'
