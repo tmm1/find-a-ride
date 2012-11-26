@@ -1,1 +1,7 @@
-We are responsible citizens. Not just for our colonies, but for the entire planet. And it is our responsibility to conserve our resources. Find-a-Ride is a service we are doing to ourselves. On this site, People who want to share rides can contact each other & mutually arrange for traveling together. This site doesn't deal with the financial arrangement between the parties involved and leaves that to the discretion of the parties themselves. 
+git clone git://github.com/tmm1/find-a-ride
+cd find-a-ride
+bundle install
+bundle exec rake db:create
+bundle exec rake db:migrate
+bundle exec script/rails server
+
